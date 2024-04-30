@@ -8,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tuquoque';
+
+  isSideBarHidden = false
+
+  getValueFromApp(event: boolean) {
+    this.isSideBarHidden = event
+    console.log(event)
+  }
 }

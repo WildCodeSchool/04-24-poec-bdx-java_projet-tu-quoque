@@ -8,6 +8,10 @@
     padding-inline-start: 0;
     gap: 0.5em;
     background-color: #30495B;
+
+    &.hidden {
+        display: none;
+    }
     .navigation-list-element {
         list-style-type: none;
     }
