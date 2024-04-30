@@ -1,0 +1,12 @@
+.header {
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0B202F;
+    .app-title {
+        color: #fff;
+        font-family: cinzel;
+        font-weight: 100;
+    }
+}

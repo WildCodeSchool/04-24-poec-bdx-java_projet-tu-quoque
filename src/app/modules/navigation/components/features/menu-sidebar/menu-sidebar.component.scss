@@ -1,0 +1,14 @@
+.navigation-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: calc(100vh - 90px);
+    padding-inline-start: 0;
+    gap: 0.5em;
+    background-color: #30495B;
+    .navigation-list-element {
+        list-style-type: none;
+    }
+}
