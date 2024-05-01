@@ -1,24 +1,19 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NavigationService } from '../../../../shared/services/navigation.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  title: string = "tu quoque"
 
-  @Output()
-  showSidebard: EventEmitter<boolean> = new EventEmitter();
+  title: string = 'tu quoque';
 
-  isHidden!: boolean;
-
-  constructor(private navService: NavigationService){}
+  constructor(private navService: NavigationService) {}
 
   onClick() {
-    this.isHidden = !this.isHidden
-    this.showSidebard.emit(this.isHidden)
-
+    this.navService.setSidebarVisible();
   }
 }

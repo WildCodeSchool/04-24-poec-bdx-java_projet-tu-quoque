@@ -1,4 +1,4 @@
-<div *ngIf="isSideBarHidden" [@inOutAnimation]>
+<div *ngIf="isSidebarOpen$ | async" [@inOutAnimation]>
   <ul class="navigation-list">
     <li
       class="navigation-list-element"
