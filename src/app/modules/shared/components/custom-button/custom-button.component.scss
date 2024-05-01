@@ -3,7 +3,8 @@
     padding: 1em 2em;
     font-family: alice;
     border: 1px solid #C29B0F;
-    
+    transition: 200ms;
+
     &.lblue-gold {
         background-color: #30495B;
         color: #fff;
@@ -17,5 +18,10 @@
     &.gold {
         background-color: #C29B0F;
         color: #0B202F;
+    }
+    &:hover {
+        background-color: #C29B0F;
+        color: #0B202F;
+
     }
 }
