@@ -1,38 +1,35 @@
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 25px;
   height: 90px;
   background-color: #0b202f;
+
+  &::after{
+    content: "";
+    width:90%;
+    height: 0.5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .app-title {
     color: #fff;
     font-family: cinzel;
     font-weight: 100;
+    font-size: 1.5em;
   }
-  .profile-btn {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: transparent;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    .profile-image {
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
-  }
-  .menu-btn {
-    background-color: transparent;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: none;
-  }
+ .header-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+ }
+
 }

@@ -12,7 +12,7 @@ export class HeaderComponent {
   @Output()
   showSidebard: EventEmitter<boolean> = new EventEmitter();
 
-  isHidden: boolean = false;
+  isHidden!: boolean;
 
   constructor(private navService: NavigationService){}
 

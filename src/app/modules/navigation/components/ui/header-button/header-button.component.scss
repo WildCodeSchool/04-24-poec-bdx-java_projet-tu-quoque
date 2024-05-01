@@ -1,0 +1,18 @@
+.header-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: none;
+    border: none;
+    background: transparent;
+    .header-img {
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+}

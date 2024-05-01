@@ -5,12 +5,14 @@ import { NavigationRoutingModule } from './navigation-routing.module';
 import { MenuSidebarComponent } from './components/features/menu-sidebar/menu-sidebar.component';
 import { HeaderComponent } from './components/features/header/header.component';
 import { SharedModule } from '../shared/shared.module';
+import { HeaderButtonComponent } from './components/ui/header-button/header-button.component';
 
 
 @NgModule({
   declarations: [
     MenuSidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    HeaderButtonComponent
   ],
   imports: [
     CommonModule,

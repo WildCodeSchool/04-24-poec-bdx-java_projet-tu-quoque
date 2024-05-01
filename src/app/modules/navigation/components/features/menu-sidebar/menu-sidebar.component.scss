@@ -5,9 +5,12 @@
     justify-content: center;
     margin: 0;
     height: calc(100vh - 90px);
+    width: 100vw;
     padding-inline-start: 0;
     gap: 0.5em;
     background-color: #30495B;
+    position: absolute;
+    z-index: 10;
 
     &.hidden {
         display: none;

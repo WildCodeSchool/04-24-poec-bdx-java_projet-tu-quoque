@@ -13,7 +13,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
         transition(
           ':enter', 
           [
-            style({ height: 0, opacity: 0 }),
+            style({opacity: 0 }),
             animate('0.2s ease-out', 
                     style({ height: 300, opacity: 1 }))
           ]
@@ -21,7 +21,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
         transition(
           ':leave', 
           [
-            style({ height: 300, opacity: 1 }),
+            style({opacity: 1 }),
             animate('0.2s ease-in', 
                     style({ height: 0, opacity: 0 }))
           ]
@@ -36,5 +36,9 @@ export class MenuSidebarComponent {
   pagesToNavigateList: string[] = ["Accueil", "personnages", "tables", "Mon compte", "Déconexion"]
 
   constructor(private navService: NavigationService){}
+
+  onClick() {
+    this.isSideBarHidden = !this.isSideBarHidden
+  }
 
 }
