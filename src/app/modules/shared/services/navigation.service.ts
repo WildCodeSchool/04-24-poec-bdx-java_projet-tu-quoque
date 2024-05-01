@@ -1,15 +1,21 @@
 import { Injectable, Input } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavigationService {
 
-  sidebarHidden: boolean = true
 
-  @Input() isSideBarHidden!: boolean
+  isSidebarVisible$: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
-  constructor() { }
+  constructor() {}
 
+  setSidebarVisible(): void {
+    this.isSidebarVisible$.next(!this.isSidebarVisible$.value)
+  }
+
+  getSidebarIsVisible$(): Observable<boolean> {
+    return this.isSidebarVisible$.asObservable()
+  }
 }

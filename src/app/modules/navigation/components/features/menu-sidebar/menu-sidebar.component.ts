@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NavigationService } from '../../../../shared/services/navigation.service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu-sidebar',
@@ -32,13 +33,16 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class MenuSidebarComponent {
 
-  @Input() isSideBarHidden!: boolean
+
   pagesToNavigateList: string[] = ["Accueil", "personnages", "tables", "Mon compte", "Déconexion"]
+
+  isSidebarOpen$: Observable<boolean> = this.navService.getSidebarIsVisible$()
 
   constructor(private navService: NavigationService){}
 
+
   onClick() {
-    this.isSideBarHidden = !this.isSideBarHidden
+    this.navService.setSidebarVisible()
   }
 
 }
