@@ -4,6 +4,9 @@
     font-family: alice;
     border: 1px solid #C29B0F;
     transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &.lblue-gold {
         background-color: #30495B;
@@ -16,10 +19,17 @@
     &.gold {
         background-color: #C29B0F;
         color: #0B202F;
+        &:hover {
+            opacity: 80%;
+        }
     }
     &:hover {
         background-color: #C29B0F;
         color: #0B202F;
-
+        opacity: 80%;
+    }
+    &.bgSquare {
+        width: 130px;
+        height: 130px;
     }
 }
