@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './modules/navigation/components/features/header/header.component';
 import { MenuSidebarComponent } from './modules/navigation/components/features/menu-sidebar/menu-sidebar.component';
+import { HeaderButtonComponent } from './modules/navigation/components/ui/header-button/header-button.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         HeaderComponent,
-        MenuSidebarComponent
+        MenuSidebarComponent,
+        HeaderButtonComponent
       ],
     }).compileComponents();
   });
