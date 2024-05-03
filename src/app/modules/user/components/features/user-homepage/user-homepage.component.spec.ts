@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserHomepageComponent } from './user-homepage.component';
+import { CustomButtonComponent } from '../../../../shared/components/custom-button/custom-button.component';
+import { FormsModule } from '@angular/forms';
 
 describe('UserHomepageComponent', () => {
   let component: UserHomepageComponent;
@@ -8,10 +10,12 @@ describe('UserHomepageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserHomepageComponent]
+      declarations: [UserHomepageComponent,
+        CustomButtonComponent
+      ]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(UserHomepageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
