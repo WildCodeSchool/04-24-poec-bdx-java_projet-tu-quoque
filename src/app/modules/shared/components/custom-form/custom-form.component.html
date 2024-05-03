@@ -1,0 +1,12 @@
+<form #customForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <label for="connexion-type">Email</label>
+    <input id="connexion-type" type="email" formControlName="email">
+    
+    <label for="password-type">Mot de passe</label>
+    <input id="password-type" type="password" formControlName="password">
+    
+    
+    <button type="reset">Restaurer</button>
+    <button type="submit">Sauvegarder</button>
+    </form>
