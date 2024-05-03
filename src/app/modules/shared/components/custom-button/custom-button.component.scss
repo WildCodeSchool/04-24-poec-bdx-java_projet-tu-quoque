@@ -3,17 +3,21 @@
   padding: 1em 2em;
   font-family: alice;
   border: 1px solid #c29b0f;
+  transition: 200ms;
+
   &.lblue-gold {
     background-color: #30495b;
     color: #fff;
-    // border: 1px solid $custom-gold;
-    // background-color: $custom-light-blue;
   }
   &.dblue-gold {
     background-color: #0b202f;
     color: #fff;
   }
   &.gold {
+    background-color: #c29b0f;
+    color: #0b202f;
+  }
+  &:hover {
     background-color: #c29b0f;
     color: #0b202f;
   }

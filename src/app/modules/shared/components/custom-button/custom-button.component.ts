@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class CustomButtonComponent {
 @Input() name!: string
-@Input() chosenColor!: "button gold"
+@Input() style!: string
 }
