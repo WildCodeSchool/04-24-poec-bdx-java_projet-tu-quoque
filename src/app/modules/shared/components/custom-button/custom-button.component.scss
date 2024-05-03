@@ -1,24 +1,35 @@
 .button {
-  width: 50vw;
-  padding: 1em 2em;
-  font-family: alice;
-  border: 1px solid #c29b0f;
-  transition: 200ms;
+    width: 50vw;
+    padding: 1em 2em;
+    font-family: alice;
+    border: 1px solid #C29B0F;
+    transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  &.lblue-gold {
-    background-color: #30495b;
-    color: #fff;
-  }
-  &.dblue-gold {
-    background-color: #0b202f;
-    color: #fff;
-  }
-  &.gold {
-    background-color: #c29b0f;
-    color: #0b202f;
-  }
-  &:hover {
-    background-color: #c29b0f;
-    color: #0b202f;
-  }
+    &.lblue-gold {
+        background-color: #30495B;
+        color: #fff;
+    }
+    &.dblue-gold {
+        background-color: #0B202F;
+        color: #fff;
+    }
+    &.gold {
+        background-color: #C29B0F;
+        color: #0B202F;
+        &:hover {
+            opacity: 80%;
+        }
+    }
+    &:hover {
+        background-color: #C29B0F;
+        color: #0B202F;
+        opacity: 80%;
+    }
+    &.bgSquare {
+        width: 130px;
+        height: 130px;
+    }
 }
