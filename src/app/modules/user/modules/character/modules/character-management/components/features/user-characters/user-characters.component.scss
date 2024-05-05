@@ -1,0 +1,41 @@
+:host {
+    display:  flex;
+    flex-direction: column;
+    min-height: calc(100vh - 90px);
+    width: 100vw;
+    padding: 1em 5%;
+    background-color: #0b202f;
+    color: #fff;
+    font-family: alice;
+    font-size: large;
+}
+
+.character-list-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    
+    &.list-empty {
+        justify-content: center;
+        
+    }
+
+    .add-button {
+        border: none;
+        border-radius: 50%;
+        padding: 0;
+        background-color: #0b202f;
+        
+    }
+    .add-button-img {
+        display: inline-block;
+        width: 50px;
+
+        &.list-empty {
+            width: 200px;
+        }
+    }
+}
