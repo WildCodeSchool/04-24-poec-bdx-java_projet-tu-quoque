@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CharacterManagementComponent } from './components/character-management/character-management.component';
 
 const routes: Routes = [
   {
@@ -10,7 +9,8 @@ const routes: Routes = [
   },
   {
     path: "management",
-    component: CharacterManagementComponent
+    loadChildren: () => import("./modules/character-management/character-management.module")
+    .then(m => m.CharacterManagementModule)
   }
 
 ];
