@@ -1,1 +1,5 @@
 <p>sheet-page works!</p>
+
+<div *ngIf="raceList$ | async as raceList">
+{{raceList | json}}
+</div>
