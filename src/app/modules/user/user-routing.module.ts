@@ -13,7 +13,9 @@ const routes: Routes = [
     component: UserHomepageComponent
   },
   {
-    path: "management", loadChildren: () => import('./modules/character-management/character-management.module').then(m => m.CharacterManagementModule)
+    path: "character", 
+    loadChildren: () => import('./modules/character/character.module')
+    .then(m => m.CharacterModule)
   }
 ];
 
