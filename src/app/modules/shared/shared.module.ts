@@ -5,6 +5,7 @@ import { CustomFormComponent } from './components/custom-form/custom-form.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListOfElementComponent } from './components/list-of-element/list-of-element.component';
 import { RouterLink } from '@angular/router';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
 
 
 
@@ -12,7 +13,8 @@ import { RouterLink } from '@angular/router';
   declarations: [
     CustomButtonComponent,
     CustomFormComponent,
-    ListOfElementComponent
+    ListOfElementComponent,
+    PageHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { RouterLink } from '@angular/router';
   exports: [
     CustomButtonComponent,
     CustomFormComponent,
-    ListOfElementComponent
+    ListOfElementComponent,
+    PageHeaderComponent
   ]
 })
 export class SharedModule { }
