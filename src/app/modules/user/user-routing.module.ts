@@ -13,7 +13,7 @@ const routes: Routes = [
     component: UserHomepageComponent
   },
   {
-    path: "character", 
+    path: "characters", 
     loadChildren: () => import('./modules/character/character.module')
     .then(m => m.CharacterModule)
   }
