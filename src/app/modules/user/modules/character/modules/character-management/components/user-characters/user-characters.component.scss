@@ -23,7 +23,7 @@
     align-items: center;
     gap: 1em;
     
-    &.no-character {
+    &.list-empty {
         justify-content: center;
         
     }
@@ -54,7 +54,7 @@
         display: inline-block;
         width: 50px;
 
-        &.no-character {
+        &.list-empty {
             width: 200px;
         }
     }
