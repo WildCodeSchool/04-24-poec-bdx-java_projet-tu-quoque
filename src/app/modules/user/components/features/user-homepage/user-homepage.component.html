@@ -1,8 +1,8 @@
 <div class="homepage">
     <app-custom-button *ngFor="let option of options; let index= index" 
         [style]="index % 2 === 0? 'dblue-gold bgSquare': 'gold bgSquare'" 
-        [name]="option"
-        [routerLink]="['/management']"    
+        [name]="option.name"
+        [routerLink]="option.url"    
     >
     </app-custom-button>
 </div>
