@@ -1,5 +1,59 @@
 {
     "user": {
         "name": "jo"
-    }
+    },
+    "races": [
+        {
+            "name": "elfe",
+            "stats": [
+                {
+                    "stat": "DEX",
+                    "mod": 2
+                },
+                {
+                    "stat": "CON",
+                    "mod": -2
+                }
+            ],
+            "skills": [
+                {
+                    "skill": "Détection",
+                    "mod": 2
+                },
+                {
+                    "skill": "Fouille",
+                    "mod": 2
+                },
+                {
+                    "skill": "Perception auditive",
+                    "mod": 2
+                }
+            ],
+            "languages": {
+                "systemically": [
+                    "commun",
+                    "elfe"
+                ],
+                "additional": [
+                    "draconien",
+                    "gnoll",
+                    "gnome",
+                    "gobelin",
+                    "orque",
+                    "sylvestre"
+                ]
+            },
+            "adultAge": 110,
+            "baseHeight": {
+                "M": 135,
+                "F": 135
+            },
+            "modHeight": "5d6",
+            "baseWeight": {
+                "M": 42,
+                "F": 40
+            },
+            "modWeight": "1d6"
+        }
+    ]
 }
