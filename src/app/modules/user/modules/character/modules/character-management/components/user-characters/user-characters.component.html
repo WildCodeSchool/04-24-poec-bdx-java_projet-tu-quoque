@@ -1,0 +1,23 @@
+<header class="characterList-header">
+    <img [src]="('assets/images/user-icon.svg')" alt="">
+    <p>Mes fiches personnage</p>
+</header>
+@if(characterList.length) {
+    <main class="character-list-body ">
+        <ul class="character-list">
+            <li class="character-line" *ngFor="let character of characterList">
+                <img [src]="('assets/images/character-icon.svg')" alt="character">
+                <p class="character-name" [routerLink]="['../myCharacters', character.id]">{{character.name}}</p>
+                <img [src]="('assets/images/modify-icon.svg')" alt="modify" [routerLink]="">
+                <img [src]="('assets/images/garbage-icon.svg')" alt="delete">
+            </li>
+        </ul>
+        <button class="add-button">
+            <img class="add-button-img" src="assets/images/add-round-icon.svg" alt="add">
+        </button>
+    </main>
+} @else {
+    <main class="character-list-body no-character">
+        <img class="add-button-img no-character" src="assets/images/add-round-icon.svg" alt="add">
+    </main>
+}
