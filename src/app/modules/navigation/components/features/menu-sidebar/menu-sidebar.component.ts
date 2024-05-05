@@ -34,7 +34,13 @@ import { Observable } from 'rxjs';
 export class MenuSidebarComponent {
 
 
-  pagesToNavigateList: string[] = ["Accueil", "Personnages", "Tables", "Mon compte", "Déconnexion"]
+  pagesToNavigateList: any = [
+    {name: "Accueil", url: ""},
+    {name: "Personnages", url: "user/characters"},
+    {name: "Tables", url: "user/tables"},
+    {name: "Mon compte", url: "user/account"},
+    {name: "Déconnexion", url: ""}
+  ]
 
   isSidebarOpen$: Observable<boolean> = this.navService.getSidebarIsVisible$()
 
