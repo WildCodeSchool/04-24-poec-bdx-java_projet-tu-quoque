@@ -3,22 +3,27 @@ import { CommonModule } from '@angular/common';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 import { CustomFormComponent } from './components/custom-form/custom-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListOfElementComponent } from './components/list-of-element/list-of-element.component';
+import { RouterLink } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [
     CustomButtonComponent,
-    CustomFormComponent
+    CustomFormComponent,
+    ListOfElementComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   exports: [
     CustomButtonComponent,
-    CustomFormComponent
+    CustomFormComponent,
+    ListOfElementComponent
   ]
 })
 export class SharedModule { }
