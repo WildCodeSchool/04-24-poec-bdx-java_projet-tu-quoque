@@ -5,7 +5,7 @@
     "races": [
         {
             "name": "elfe",
-            "stats": [
+            "statsModifiers": [
                 {
                     "stat": "DEX",
                     "mod": 2
