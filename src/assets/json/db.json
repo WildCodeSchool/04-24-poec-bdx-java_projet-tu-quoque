@@ -1,5 +1,183 @@
 {
     "user": {
         "name": "jo"
-    }
+    },
+    "races": [
+        {
+            "name": "elfe",
+            "statsModifiers": [
+                {
+                    "stat": "DEX",
+                    "mod": 2
+                },
+                {
+                    "stat": "CON",
+                    "mod": -2
+                }
+            ],
+            "sizeCategorie": "M",
+            "skills": [
+                {
+                    "skill": "Détection",
+                    "mod": 2
+                },
+                {
+                    "skill": "Fouille",
+                    "mod": 2
+                },
+                {
+                    "skill": "Perception auditive",
+                    "mod": 2
+                }
+            ],
+            "languages": {
+                "systemically": [
+                    "commun",
+                    "elfe"
+                ],
+                "additional": [
+                    "draconien",
+                    "gnoll",
+                    "gnome",
+                    "gobelin",
+                    "orque",
+                    "sylvestre"
+                ]
+            },
+            "adultAge": 110,
+            "baseHeight": {
+                "M": 135,
+                "F": 135
+            },
+            "modHeight": "5d6",
+            "baseWeight": {
+                "M": 42,
+                "F": 40
+            },
+            "modWeight": "1d6"
+        },
+        {
+            "name": "demi-orque",
+            "statsModifiers": [
+                {
+                    "stats": "STR",
+                    "mod": 2
+                },
+                {
+                    "stats": "INT",
+                    "mod": -2
+                },
+                {
+                    "stats": "CHA",
+                    "mod": -2
+                }
+            ],
+            "sizeCategorie": "M",
+            "skills": [],
+            "languages": {
+                "systemically": [
+                    "commun",
+                    "orque"
+                ],
+                "additional": [
+                    "abyssal",
+                    "draconien",
+                    "géant",
+                    "gnoll",
+                    "gobelin"
+                ]
+            },
+            "adultAge": 14,
+            "baseHeight": {
+                "M": 150,
+                "F": 135
+            },
+            "modHeight": "5d12",
+            "baseWeight": {
+                "M": 75,
+                "F": 55
+            },
+            "modWeight": "2d6"
+        }
+    ],
+    "classes": [
+        {
+            "name": "Barbare",
+            "DV": "d12",
+            "classSkills": [
+                "Artisanat",
+                "Dressage",
+                "Equitation",
+                "Escalade",
+                "Intimidation",
+                "Natation",
+                "Perception auditive",
+                "Saut",
+                "Survie"
+            ],
+            "baseSkillPoints": "(4 + mod INT) * 4",
+            "skillPointsPerLevel": "4 + mod INT",
+            "weapons": [
+                "courante",
+                "guerre"
+            ],
+            "shields": "toutes sauf pavois",
+            "armors": [
+                "lègere",
+                "intermédiaire"
+            ],
+            "special": []
+        },
+        {
+            "name": "Roublard",
+            "DV": "d6",
+            "classSkills": [
+                "Acrobaties",
+                "Artisanat",
+                "Bluff",
+                "Connaissance (Folklore local)",
+                "Contrefaçon",
+                "Crochetage",
+                "Décryptage",
+                "Déguisement",
+                "Déplacement silencieux",
+                "Désamorçage/sabotage",
+                "Détection",
+                "Diplomatie",
+                "Discrétion",
+                "Equilibre",
+                "Escalade",
+                "Escamotage",
+                "Estimation",
+                "Evasion",
+                "Fouille",
+                "Intimidation",
+                "Maîtrise des cordes",
+                "Natation",
+                "Perception auditive",
+                "Profession",
+                "Psychologie",
+                "Renseignement",
+                "Représentation",
+                "Saut",
+                "Utilisation d'objets magiques"
+            ],
+            "baseSkillPoints": "(8 + mod INT) * 4",
+            "skillPointsPerLevel": "8 + mod INT",
+            "weapons": [
+                "courante",
+                "arbalète de poing",
+                "arc court (normal et composite)",
+                "épée courte",
+                "matraque",
+                "rapière"
+            ],
+            "shields": "",
+            "armors": [
+                "lègere"
+            ],
+            "special": []
+        }
+    ],
+    "classBaseBonus": []
 }
