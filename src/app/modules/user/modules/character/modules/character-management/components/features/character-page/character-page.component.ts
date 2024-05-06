@@ -29,6 +29,7 @@ export class CharacterPageComponent implements OnInit {
       name: 'Discussion 4',
     },
   ];
+  isCharacterSheetVisible: boolean = false;
 
   constructor(
     private _characterService: CharacterService,
@@ -38,5 +39,13 @@ export class CharacterPageComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
     this.character$ = this._characterService.getCharacterById(id);
+  }
+
+  setCharacterSheetVisible(): void {
+    this.isCharacterSheetVisible = true
+  }
+
+  toggleCharacterSheetVisible(event: boolean): void {
+    this.isCharacterSheetVisible = !this.isCharacterSheetVisible
   }
 }

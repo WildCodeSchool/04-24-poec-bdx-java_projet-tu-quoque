@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-character-presentation',
@@ -9,4 +9,12 @@ export class CharacterPresentationComponent {
 
   @Input()
   character!: any
+
+  @Output()
+  isCharachterSheetVisible: EventEmitter<boolean> = new EventEmitter<boolean>()
+
+
+  sendCharacterSheetVisible(): void {
+    this.isCharachterSheetVisible.emit()
+  }
 }

@@ -1,7 +1,10 @@
 <app-page-header [elementIcon]="'assets/images/user-icon.svg'" [title]="'Mon personnage'"></app-page-header>
 <ng-container *ngIf="character$ |async as character" >
-<app-character-presentation [character]="character"></app-character-presentation>
+<app-character-presentation [character]="character" (isCharachterSheetVisible)="toggleCharacterSheetVisible($event)"></app-character-presentation>
 <app-custom-area-title [title]="'/Nom de la partie en cours/'"></app-custom-area-title>
 <app-list-of-element [baseUrl]="''" [elementIcon]="'assets/images/discussion-icon.svg'" [elementList]="characterDiscussionList" ></app-list-of-element>
 <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
+@if (isCharacterSheetVisible) {
+    <app-character-sheet-display (isCharacterSheetVisible)="toggleCharacterSheetVisible($event)"></app-character-sheet-display>
+}
 </ng-container>

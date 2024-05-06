@@ -8,10 +8,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class CharacterSheetDisplayComponent {
 
   @Output()
-  isCharacterSheetVisible: EventEmitter<boolean> = new EventEmitter()
+  isCharacterSheetVisible: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   sendCharacterSheetVisible(): void {
-    this.isCharacterSheetVisible.emit(false)
-    console.log("false")
+    this.isCharacterSheetVisible.emit()
   }
 }
