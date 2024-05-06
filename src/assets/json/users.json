@@ -1,0 +1,26 @@
+{
+    "characters": [
+        {
+          "id": 1,
+          "name": "Elric",
+          "avatar":"/assets/images/profile-img-test.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Boromir"
+        },
+        {
+          "id": 3,
+          "name": "Willow"
+        }
+      ],
+      "notes": [
+        {
+          "id": 1,
+          "title": "What is the meaning of life ?",
+          "writerId": 1,
+          "writerRole": "character",
+          "content": "42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42"
+        }
+      ]
+}
