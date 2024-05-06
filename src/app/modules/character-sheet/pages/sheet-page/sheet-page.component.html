@@ -1,5 +1,14 @@
-<p>sheet-page works!</p>
+<div class="page-container">
+    <p>sheet-page works!</p>
+    plop
 
-<div *ngIf="raceList$ | async as raceList">
-{{raceList | json}}
+    <div *ngIf="raceList$ | async as raceList">
+    {{raceList | json}}
+    </div>
+    <ul *ngIf="classList$ | async as classList">
+        <li *ngFor="let class of classList">
+            {{class | json}}
+        </li>
+    </ul>
+    <app-character-informations></app-character-informations>
 </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DbService } from '../../../shared/services/db-service/db.service';
 import { Observable } from 'rxjs';
+import { Race } from '../../models/types/race.type';
+import { CharacterClass } from '../../models/types/character-class.type';
 
 @Component({
   selector: 'app-sheet-page',
@@ -8,7 +10,8 @@ import { Observable } from 'rxjs';
   styleUrl: './sheet-page.component.scss'
 })
 export class SheetPageComponent implements OnInit {
-  raceList$!: Observable<any>;
+  raceList$!: Observable<Race[]>;
+  classList$!: Observable<CharacterClass[]>;
 
   constructor(private dbService: DbService) {
 
@@ -16,6 +19,7 @@ export class SheetPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.raceList$ = this.dbService.getRaces$();
+    this.classList$ = this.dbService.getClasses$();
   }
 
 }
