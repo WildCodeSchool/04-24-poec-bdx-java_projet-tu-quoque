@@ -41,10 +41,6 @@ export class CharacterPageComponent implements OnInit {
     this.character$ = this._characterService.getCharacterById(id);
   }
 
-  setCharacterSheetVisible(): void {
-    this.isCharacterSheetVisible = true
-  }
-
   toggleCharacterSheetVisible(event: boolean): void {
     this.isCharacterSheetVisible = !this.isCharacterSheetVisible
   }

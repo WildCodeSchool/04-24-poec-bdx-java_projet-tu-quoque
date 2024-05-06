@@ -14,7 +14,7 @@ export class CharacterPresentationComponent {
   isCharachterSheetVisible: EventEmitter<boolean> = new EventEmitter<boolean>()
 
 
-  sendCharacterSheetVisible(): void {
+  showCharacterSheet(): void {
     this.isCharachterSheetVisible.emit()
   }
 }

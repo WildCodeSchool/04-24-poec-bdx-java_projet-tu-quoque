@@ -10,7 +10,7 @@ export class CharacterSheetDisplayComponent {
   @Output()
   isCharacterSheetVisible: EventEmitter<boolean> = new EventEmitter<boolean>()
 
-  sendCharacterSheetVisible(): void {
+  hideCharacterSheet(): void {
     this.isCharacterSheetVisible.emit()
   }
 }
