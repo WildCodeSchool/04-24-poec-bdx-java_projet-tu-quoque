@@ -11,6 +11,11 @@ const routes: Routes = [
     path: "management",
     loadChildren: () => import("./modules/character-management/character-management.module")
     .then(m => m.CharacterManagementModule)
+  },
+  {
+    path: "creation",
+    loadChildren: () => import("./modules/character-creation/character-creation.module")
+    .then(m => m.CharacterCreationModule)
   }
 
 ];
