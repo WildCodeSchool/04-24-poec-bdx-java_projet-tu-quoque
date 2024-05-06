@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { Observable, map } from 'rxjs';
@@ -33,7 +33,8 @@ export class CharacterPageComponent implements OnInit {
 
   constructor(
     private _characterService: CharacterService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -43,5 +44,10 @@ export class CharacterPageComponent implements OnInit {
 
   toggleCharacterSheetVisible(event: boolean): void {
     this.isCharacterSheetVisible = !this.isCharacterSheetVisible
+    if(this.isCharacterSheetVisible) {
+      this._renderer.setStyle(document.body, 'overflow', 'hidden')
+    } else {
+      this._renderer.setStyle(document.body, 'overflow', 'auto')
+    }
   }
 }
