@@ -7,13 +7,10 @@ import { Observable } from 'rxjs';
   templateUrl: './user-tables.component.html',
   styleUrl: './user-tables.component.scss'
 })
-export class UserTablesComponent implements OnInit {
+export class UserTablesComponent {
 
   userTableList$: Observable<any> = this._tableService.getUserTableList()
 
   constructor(private _tableService: TableService){}
 
-  ngOnInit(): void {
-      this._tableService.getUserTableList().subscribe(response => console.log(response))
-  }
 }
