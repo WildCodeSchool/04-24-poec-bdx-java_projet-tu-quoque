@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
 })
 export class UserHomepageComponent {
 
-  options: string[] =["Personnages", "tables"]
+  options: any =[
+    {name: "Personnages", url: "../characters"},
+    {name: "tables", url: "../tables"}
+  ]
 }

@@ -1,0 +1,10 @@
+<ul class="character-list">
+  <li class="character-line" *ngFor="let character of elementList">
+    <img [src]="elementIcon" alt="character" />
+    <p class="character-name" [routerLink]="[baseUrl, character.id]">
+      {{ character.name }}
+    </p>
+    <img [src]="'assets/images/modify-icon.svg'" alt="modify" [routerLink]="" />
+    <img [src]="'assets/images/garbage-icon.svg'" alt="delete" (click)="deleteElement()"/>
+  </li>
+</ul>
