@@ -11,6 +11,11 @@ const routes: Routes = [
     path: "management",
     loadChildren: () => import("./modules/table-management/table-management.module")
     .then(m => m.TableManagementModule)
+  },
+  {
+    path: "creation",
+    loadChildren: () => import("./modules/table-creation/table-creation.module")
+    .then(m => m.TableCreationModule)
   }
 ];
 
