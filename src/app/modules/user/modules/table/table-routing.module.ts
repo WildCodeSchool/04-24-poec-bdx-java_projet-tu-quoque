@@ -9,19 +9,18 @@ const routes: Routes = [
   },
   {
     path: "management",
-    loadChildren: () => import("./modules/character-management/character-management.module")
-    .then(m => m.CharacterManagementModule)
+    loadChildren: () => import("./modules/table-management/table-management.module")
+    .then(m => m.TableManagementModule)
   },
   {
     path: "creation",
-    loadChildren: () => import("./modules/character-creation/character-creation.module")
-    .then(m => m.CharacterCreationModule)
+    loadChildren: () => import("./modules/table-creation/table-creation.module")
+    .then(m => m.TableCreationModule)
   }
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CharacterRoutingModule { }
+export class TableRoutingModule { }

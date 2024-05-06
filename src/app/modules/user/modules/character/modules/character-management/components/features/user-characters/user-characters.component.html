@@ -4,12 +4,12 @@
     <main class="character-list-body ">
         <app-list-of-element [elementList]="userCharacterList" [elementIcon]="'assets/images/character-icon.svg'" [baseUrl]="'../myCharacters'"></app-list-of-element>
         <button class="add-button">
-            <img class="add-button-img" src="assets/images/add-round-icon.svg" alt="add">
+            <img class="add-button-img" [routerLink]="'../../creation'" src="assets/images/add-round-icon.svg" alt="add">
         </button>
     </main>
 } @else {
     <main class="character-list-body list-empty">
-        <img class="add-button-img list-empty" src="assets/images/add-round-icon.svg" alt="add">
+        <img class="add-button-img list-empty" [routerLink]="'../../creation'" src="assets/images/add-round-icon.svg" alt="add">
     </main>
 }
 </ng-container>

@@ -6,6 +6,7 @@ import { UserCharactersComponent } from './components/features/user-characters/u
 import { CharacterPageComponent } from './components/features/character-page/character-page.component';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { CharacterPresentationComponent } from './components/ui/character-presentation/character-presentation.component';
+import { CharacterSheetDisplayComponent } from './components/ui/character-sheet-display/character-sheet-display.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { CharacterPresentationComponent } from './components/ui/character-presen
     UserCharactersComponent,
     CharacterPageComponent,
     CharacterPresentationComponent,
+    CharacterSheetDisplayComponent,
   ],
   imports: [
     CommonModule,

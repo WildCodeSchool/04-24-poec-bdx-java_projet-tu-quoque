@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewCharacterComponent } from './components/features/new-character/new-character.component';
+import { UserTablesComponent } from './components/features/user-tables/user-tables.component';
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "newCharacter",
+    redirectTo: "myTables",
     pathMatch: "full"
   },
   {
-    path: "newCharacter",
-    component: NewCharacterComponent
+    path: "myTables",
+    component: UserTablesComponent
   }
 ];
 
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CharacterCreationRoutingModule { }
+export class TableManagementRoutingModule { }

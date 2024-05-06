@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { Observable, map } from 'rxjs';
@@ -29,14 +29,26 @@ export class CharacterPageComponent implements OnInit {
       name: 'Discussion 4',
     },
   ];
+  isCharacterSheetVisible: boolean = false;
 
   constructor(
     private _characterService: CharacterService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
     this.character$ = this._characterService.getCharacterById(id);
+  }
+
+  toggleCharacterSheetVisible(event: boolean): void {
+    window.scrollTo(0, 0)
+    this.isCharacterSheetVisible = !this.isCharacterSheetVisible
+    if(this.isCharacterSheetVisible) {
+      this._renderer.setStyle(document.body, 'overflow', 'hidden')
+    } else {
+      this._renderer.setStyle(document.body, 'overflow', 'auto')
+    }
   }
 }
