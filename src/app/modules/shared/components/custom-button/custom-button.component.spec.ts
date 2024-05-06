@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomButtonComponent } from './custom-button.component';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared.module';
 
 describe('CustomButtonComponent', () => {
   let component: CustomButtonComponent;
@@ -8,10 +10,11 @@ describe('CustomButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CustomButtonComponent]
+      declarations: [CustomButtonComponent],
+      imports: [FormsModule]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CustomButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
