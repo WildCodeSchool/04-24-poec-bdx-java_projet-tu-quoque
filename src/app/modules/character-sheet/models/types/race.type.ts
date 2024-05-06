@@ -6,6 +6,7 @@ import { StatModifier } from "./stat-modifier.type"
 export type Race = {
     name: string,
     statsModifiers: StatModifier[],
+    size: string,
     skills: SkillModifier[],
     languages: RaceLanguage,
     adultAge: number,

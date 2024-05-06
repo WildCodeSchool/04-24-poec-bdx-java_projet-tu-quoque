@@ -15,7 +15,7 @@
                     "mod": -2
                 }
             ],
-            "size": "M",
+            "sizeCategorie": "M",
             "skills": [
                 {
                     "skill": "Détection",
@@ -72,7 +72,7 @@
                     "mod": -2
                 }
             ],
-            "size": "M",
+            "sizeCategorie": "M",
             "skills": [],
             "languages": {
                 "systemically": [
