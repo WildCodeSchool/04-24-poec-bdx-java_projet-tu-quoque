@@ -7,6 +7,7 @@ import { NavigationModule } from './modules/navigation/navigation.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AuthentificationModule } from './modules/authentification/authentification.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     ButtonModule,
     NavigationModule,
     AuthentificationModule,
