@@ -1,0 +1,16 @@
+<app-page-header [elementIcon]="'assets/images/myTables-title-icon.svg'" [title]="'Mes tables'"></app-page-header>
+<ng-container *ngIf="userTableList$| async as userTableList">
+    @if (userTableList.length) {
+        <main class="table-list-body">
+            <app-list-of-element [elementList]="userTableList" [elementIcon]="'assets/images/table-icon.svg'" [baseUrl]="'../myTables'"></app-list-of-element>
+            <button class="add-button">
+                <img class="add-button-img" src="assets/images/add-round-icon.svg" [routerLink]="'../../creation'" alt="add">
+            </button>
+        </main>
+    } @else {
+        <main class="table-list-body list-empty">
+            <img class="add-button-img list-empty" src="assets/images/add-round-icon.svg" [routerLink]="'../../creation'" alt="add">
+        </main>
+    
+    }
+</ng-container>

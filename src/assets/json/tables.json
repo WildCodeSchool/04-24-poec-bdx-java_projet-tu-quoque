@@ -1,0 +1,24 @@
+{
+    "tables": [
+        {
+          "id": 1,
+          "name": "Table ronde"
+        },
+        {
+          "id": 2,
+          "name": "Imbattable"
+        },
+        {
+          "id":3,
+          "name":"Acceptable"
+        },
+        {
+          "id":4,
+          "name":"Ajustable"
+        },
+        {
+          "id":5,
+          "name": "Évitable"
+        }
+      ]
+}
