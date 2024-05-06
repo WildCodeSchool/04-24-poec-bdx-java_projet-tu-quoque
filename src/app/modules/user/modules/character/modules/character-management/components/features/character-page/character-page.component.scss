@@ -1,9 +1,9 @@
 :host {
     display:  flex;
     flex-direction: column;
-    min-height: calc(100vh - 90px);
+    min-height: 100vh;
     width: 100vw;
-    padding: 1em 5%;
+    padding: calc(90px + 1em) 5% 1em 5%;
     background-color: #0b202f;
     color: #fff;
     font-family: alice;
