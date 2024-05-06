@@ -43,6 +43,7 @@ export class CharacterPageComponent implements OnInit {
   }
 
   toggleCharacterSheetVisible(event: boolean): void {
+    window.scrollTo(0, 0)
     this.isCharacterSheetVisible = !this.isCharacterSheetVisible
     if(this.isCharacterSheetVisible) {
       this._renderer.setStyle(document.body, 'overflow', 'hidden')
