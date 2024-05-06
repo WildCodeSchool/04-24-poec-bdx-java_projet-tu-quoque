@@ -1,0 +1,6 @@
+<select [name]="selectName" [id]="selectName" *ngIf="list$ | async as list">
+    <option value=""></option>
+    <option *ngFor="let item of list" [value]="item.name" >{{item.name}}</option>
+    
+</select>
+<label [for]="selectName">{{selectLabel}}</label>
