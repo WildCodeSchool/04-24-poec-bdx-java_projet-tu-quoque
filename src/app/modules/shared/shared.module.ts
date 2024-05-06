@@ -7,6 +7,8 @@ import { ListOfElementComponent } from './components/list-of-element/list-of-ele
 import { RouterLink } from '@angular/router';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { CustomAreaTitleComponent } from './components/custom-area-title/custom-area-title.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -23,6 +25,8 @@ import { CustomAreaTitleComponent } from './components/custom-area-title/custom-
     FormsModule,
     ReactiveFormsModule,
     RouterLink
+    HttpClientModule
+
   ],
   exports: [
     CustomButtonComponent,
