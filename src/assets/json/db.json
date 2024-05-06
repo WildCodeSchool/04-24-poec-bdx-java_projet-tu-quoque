@@ -179,5 +179,34 @@
             "special": []
         }
     ],
-    "classBaseBonus": []
+    "classBaseBonus": [],
+    "alignments": [
+        {
+            "name": "Loyal Bon"
+        },
+        {
+            "name": "Loyal Neutre"
+        },
+        {
+            "name": "Loyal Mauvais"
+        },
+        {
+            "name": "Neutre Bon"
+        },
+        {
+            "name": "Neutre"
+        },
+        {
+            "name": "Neutre Mauvais"
+        },
+        {
+            "name": "Chaotique Bon"
+        },
+        {
+            "name": "Chaotique Neutre"
+        },
+        {
+            "name": "Chaotique Mauvais"
+        }
+    ]
 }
