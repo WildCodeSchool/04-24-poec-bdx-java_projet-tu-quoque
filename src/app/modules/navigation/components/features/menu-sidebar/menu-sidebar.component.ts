@@ -35,7 +35,7 @@ export class MenuSidebarComponent {
 
 
   pagesToNavigateList: any = [
-    {name: "Accueil", url: ""},
+    {name: "Accueil", url: "user"},
     {name: "Personnages", url: "user/characters"},
     {name: "Tables", url: "user/tables"},
     {name: "Mon compte", url: "user/account"},

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListOfElementComponent } from './components/list-of-element/list-of-element.component';
 import { RouterLink } from '@angular/router';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { CustomAreaTitleComponent } from './components/custom-area-title/custom-area-title.component';
 
 
 
@@ -14,7 +15,8 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     CustomButtonComponent,
     CustomFormComponent,
     ListOfElementComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    CustomAreaTitleComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     CustomButtonComponent,
     CustomFormComponent,
     ListOfElementComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    CustomAreaTitleComponent
   ]
 })
 export class SharedModule { }

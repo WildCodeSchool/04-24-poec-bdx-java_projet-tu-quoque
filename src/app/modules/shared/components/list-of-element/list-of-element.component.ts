@@ -16,6 +16,7 @@ export class ListOfElementComponent {
   baseUrl!: string;
 
   deleteElement(): void {
+    alert("On supprime vraiment ?")
     console.log('delete');
   }
 }

@@ -1,7 +1,8 @@
 <app-page-header [elementIcon]="'assets/images/user-icon.svg'" [title]="'Mes fiches personnage'"></app-page-header>
-@if(characterList.length) {
+<ng-container *ngIf="userCharacterList |async as userCharacterList">
+@if(userCharacterList.length) {
     <main class="character-list-body ">
-        <app-list-of-element [elementList]="characterList" [elementIcon]="'assets/images/character-icon.svg'" [baseUrl]="'../myCharacters'"></app-list-of-element>
+        <app-list-of-element [elementList]="userCharacterList" [elementIcon]="'assets/images/character-icon.svg'" [baseUrl]="'../myCharacters'"></app-list-of-element>
         <button class="add-button">
             <img class="add-button-img" src="assets/images/add-round-icon.svg" alt="add">
         </button>
@@ -11,3 +12,4 @@
         <img class="add-button-img list-empty" src="assets/images/add-round-icon.svg" alt="add">
     </main>
 }
+</ng-container>
