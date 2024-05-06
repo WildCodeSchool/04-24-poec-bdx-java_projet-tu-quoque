@@ -15,6 +15,7 @@
                     "mod": -2
                 }
             ],
+            "size": "M",
             "skills": [
                 {
                     "skill": "Détection",
@@ -54,6 +55,49 @@
                 "F": 40
             },
             "modWeight": "1d6"
+        },
+        {
+            "name": "demi-orque",
+            "statsModifiers": [
+                {
+                    "stats": "STR",
+                    "mod": 2
+                },
+                {
+                    "stats": "INT",
+                    "mod": -2
+                },
+                {
+                    "stats": "CHA",
+                    "mod": -2
+                }
+            ],
+            "size": "M",
+            "skills": [],
+            "languages": {
+                "systemically": [
+                    "commun",
+                    "orque"
+                ],
+                "additional": [
+                    "abyssal",
+                    "draconien",
+                    "géant",
+                    "gnoll",
+                    "gobelin"
+                ]
+            },
+            "adultAge": 14,
+            "baseHeight": {
+                "M": 150,
+                "F": 135
+            },
+            "modHeight": "5d12",
+            "baseWeight": {
+                "M": 75,
+                "F": 55
+            },
+            "modWeight": "2d6"
         }
     ]
 }
