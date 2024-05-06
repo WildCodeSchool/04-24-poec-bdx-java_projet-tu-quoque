@@ -1,0 +1,11 @@
+:host {
+    display:  flex;
+    flex-direction: column;
+    min-height: calc(100vh - 90px);
+    width: 100vw;
+    padding: 1em 5%;
+    background-color: #0b202f;
+    color: #fff;
+    font-family: alice;
+    font-size: large;
+}
