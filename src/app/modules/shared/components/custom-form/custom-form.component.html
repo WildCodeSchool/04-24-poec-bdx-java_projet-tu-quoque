@@ -1,12 +1,251 @@
-<form #customForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form
+#form="ngForm"
+(ngSubmit)="onSubmit()">
 
-    <label for="connexion-type">Email</label>
-    <input id="connexion-type" type="email" formControlName="email">
-    
-    <label for="password-type">Mot de passe</label>
-    <input id="password-type" type="password" formControlName="password">
-    
-    
-    <button type="reset">Restaurer</button>
-    <button type="submit">Sauvegarder</button>
+<div class="formgrid grid">
+  <div #fieldsContainer></div>
+</div>
+
+<p-button label="Submit" type="submit" class="m-auto mt-6"></p-button>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ng-container *ngIf="fields$ | async as fields">
+    <form [formGroup]="form">
+      <ng-container *ngFor="let field of fields">
+        <div *ngIf="field.type !== 'file'">
+          <label [for]="field.id" for="id">{{ field.label }}</label>
+
+            <input *ngIf="field.type !== 'textarea'" 
+                id="id"    
+                [id]="field.id"
+                [name]="field.name"
+                [type]="field.type" 
+                [(ngModel)]="field.value"
+                [autocomplete]="field.autocomplete"
+                [placeholder]="field.placeholder" 
+                [required]="field.required"
+                [minlength]="field.minlength"
+                [maxlength]="field.maxlength"
+                [pattern]="field.pattern"
+                [disabled]="field.disabled"
+                #ref="ngModel"
+                >
+
+            <textarea *ngIf="field.type === 'textarea'" 
+                    id="id"
+                    [rows]="5"
+                    [cols]="30"
+                    [id]="field.id"
+                    [name]="field.name"
+                    [(ngModel)]="field.value"
+                    [placeholder]="field.placeholder"
+                    [required]="field.required"
+                    [minlength]="field.minlength"
+                    [disabled]="field.disabled"
+                    #ref="ngModel"
+                    [ngClass]="{'ng-invalid ng-dirty': ref.invalid && ref.dirty}"
+            >
+            </textarea>
+        </div>
+
+        <div *ngIf="field.type === 'file'">
+          <label [for]="field.id">{{ field.label }}</label>
+          <input type="file" 
+                id="id"
+                [id]="field.id" 
+                (change)="onFileChange($event, field.name)" 
+                [accept]="field.accept"
+                [title]="field.label">
+        </div>
+      </ng-container>
     </form>
+  </ng-container>
+  
+
+  @if (ref.errors && ref.dirty && ref.invalid && formSubmitted()) {
+
+    <app-input-error 
+      [field]="field"
+      [ref]="ref"
+    ></app-input-error>
+    
+  } -->
+
+
+
+
+
+<!-- <form #customForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()"> -->
+
+    <!-- <div class="form-field">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" placeholder="Enter your email">
+        <div *ngIf="form.get('email')?.errors && form.get('email')?.touched">
+          <span *ngIf="form.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email</span>
+        </div>
+      </div>
+    
+      <div class="form-field">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" placeholder="Enter your password">
+        <div *ngIf="form.get('password')?.errors && form.get('password')?.touched">
+          <span *ngIf="form.get('password')?.errors?.['required']">Password is required</span>
+        </div>
+      </div>
+    
+      <div class="form-field">
+        <label for="passwordVerification">Password Verification:</label>
+        <input type="password" id="passwordVerification" formControlName="passwordVerification" placeholder="Verify your password">
+        <div *ngIf="form.get('passwordVerification')?.errors && form.get('passwordVerification')?.touched">
+          <span *ngIf="form.get('passwordVerification')?.errors?.['required']">Password verification is required</span>
+        </div>
+      </div>
+    
+      <div class="form-field">
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username" placeholder="Choose a username">
+      </div>
+    
+      <div class="form-field">
+        <label for="characterName">Character Name:</label>
+        <input type="text" id="characterName" formControlName="characterName" placeholder="Enter character name">
+      </div>
+    
+      <div class="form-field">
+        <label for="tableName">Table Name:</label>
+        <input type="text" id="tableName" formControlName="tableName" placeholder="Name your table">
+      </div>
+    
+      <div class="form-field">
+        <label for="noteTitle">Note Title:</label>
+        <input type="text" id="noteTitle" formControlName="noteTitle" placeholder="Enter the title of your note">
+      </div>
+    
+      <div class="form-field">
+        <label for="noteDescription">Note Description:</label>
+        <input type="text" id="noteDescription" formControlName="noteDescription" placeholder="Describe your note">
+      </div> -->
+<!--     
+    <label for="passwordId">Mot de passe</label>
+    <input 
+    type="password"
+    [password]="password"
+    id="passwordId" 
+    [(ngModel)]="password"
+    (ngModelChange)="onInputChange($event)"
+    (focus)="markAsTouched()"
+    placeholder="Entrez votre mot de passe"
+    [required]="required"
+    >
+    
+    <label for="passwordVerificationId">Vérification de mot de passe</label>
+    <input 
+    type="password"
+    [passwordVerification]="passwordVerification"
+    id="passwordVerificationId" 
+    [(ngModel)]="password"
+    (ngModelChange)="onInputChange($event)"
+    (focus)="markAsTouched()"
+    placeholder="Entrez de nouveau votre mot de passe"
+    [required]="required"
+    >
+    
+    <label for="usernameId">Pseudonyme</label>
+    <input 
+    type="text"
+    [username]="username"
+    id="usernameId" 
+    [(ngModel)]="username"
+    (ngModelChange)="onInputChange($event)"
+    (focus)="markAsTouched()"
+    placeholder="Entrez votre pseudo"
+    >
+
+    <label for="userAvatarId">Avatar</label>
+    <input 
+        type="file"
+        id="userAvatarId"
+        [userAvatar]="userAvatar"
+        (change)="onFileChange($event, 'userAvatar')"
+        [disabled]="disabled"
+        accept="image/*"
+    >
+
+    <label for="characterNameId">Nom du personnage</label>
+    <input 
+    type="text"
+    [characterName]="characterName"
+    id="characterNameId" 
+    [(ngModel)]="characterName"
+    (ngModelChange)="onInputChange($event)"
+    (focus)="markAsTouched()"
+    placeholder="Entrez le nom de votre personnage" 
+    >
+
+    <label for="characterAvatarId">Avatar du personnage</label>
+    <input 
+        type="file"
+        id="characterAvatarId"
+        [characterAvatar]="characterAvatar"
+        (change)="onFileChange($event)"
+        [disabled]="disabled"
+        accept="image/*"
+    >
+
+    <label for="tableNameId">Nom de la table</label>
+    <input 
+    type="text"
+    [tableName]="tableName"
+    id="tableNameId" 
+    [(ngModel)]="tableName"
+    (ngModelChange)="onInputChange($event)"
+    (focus)="markAsTouched()"
+    placeholder="Entrez le nom de votre table" 
+    >
+
+    <label for="tableAvatarId">Avatar pour la table</label>
+    <input 
+        type="file"
+        id="tableAvatarId"
+        [tableAvatar]="tableAvatar"
+        (change)="onFileChange($event)"
+        [disabled]="disabled"
+        accept="image/*"
+    >
+
+    <label for="noteTitleId">Titre de votre note</label>
+    <input 
+    type="text"
+    [noteTitle]="noteTitle"
+    id="noteTitleId" 
+    [(ngModel)]="noteTitle"
+    (ngModelChange)="onInputChange($event)"
+    (focus)="markAsTouched()"
+    placeholder="Entrez le titre de votre note" 
+    >
+
+    <label for="noteDescriptionId">Description de votre note</label>
+    <input 
+    type="text"
+    [noteDescription]="noteDescription"
+    id="noteDescriptionId" 
+    [(ngModel)]="noteDescription"
+    (ngModelChange)="onInputChange($event)"
+    (focus)="markAsTouched()"
+    placeholder="Entrez la description de votre note"  -->
+    <!-- > -->
+
+    <!-- <button type="submit">Sauvegarder</button> -->
+    <!-- </form> -->
