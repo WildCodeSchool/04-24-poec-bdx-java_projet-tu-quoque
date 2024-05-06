@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Race } from '../../../character-sheet/models/types/race.type';
+import { CharacterClass } from '../../../character-sheet/models/types/character-class.type';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Race } from '../../../character-sheet/models/types/race.type';
 export class DbService {
   private readonly INDEX_URL: string = "http://localhost:3000/";
   private readonly RACES_ENDPOINT: string = "races";
+  private readonly CLASSES_ENDPOINT: string = "classes"
 
   constructor(private http: HttpClient) { }
 
@@ -18,5 +20,9 @@ export class DbService {
 
   getRaces$(): Observable<Race[]> {
     return this.getEndpoint$(this.RACES_ENDPOINT);
+  }
+
+  getClasses$(): Observable<CharacterClass[]> {
+    return this.getEndpoint$(this.CLASSES_ENDPOINT);
   }
 }
