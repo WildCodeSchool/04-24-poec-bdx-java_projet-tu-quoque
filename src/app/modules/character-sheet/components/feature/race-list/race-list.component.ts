@@ -9,15 +9,10 @@ import { DbService } from '../../../../shared/services/db-service/db.service';
   styleUrl: './race-list.component.scss'
 })
 export class RaceListComponent {
-  raceList$!: Observable<Race[]>;
+  raceList$: Observable<Race[]> = this.raceService.getRaces$();
   selectName: string = "characterRace";
   selectLabel: string = "RACE";
 
   constructor(private raceService: DbService) {
-
-  }
-
-  ngOnInit(): void {
-    this.raceList$ = this.raceService.getRaces$();
   }
 }
