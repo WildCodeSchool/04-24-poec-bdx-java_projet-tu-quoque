@@ -1,17 +1,11 @@
-// :host {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-// }
 .header {
-  position: fixed; //
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 25px;
   height: 90px;
-  width: 100vw; //
+  width: 100vw;
   background-color: #0b202f;
   z-index: 100;
 
