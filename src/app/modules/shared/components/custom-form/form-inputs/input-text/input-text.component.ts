@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, ViewChild, forwardRef, inject } from '@angular/core';
 import { TextField } from '../../../../models/fields/text-fields.type';
 import { TrackFormSubmitService } from '../../../../services/form-field/track-form-submit.service';
-import { FormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, KeyValuePipe } from '@angular/common';
 import { InputErrorComponent } from '../../errors/input-error/input-error.component';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,43 +10,75 @@ import { InputTextModule } from 'primeng/inputtext';
   selector: 'app-input-text',
   standalone: true,
   // templateUrl: './input-text.component.html',
-  // styleUrl: './input-text.component.scss',
-  imports: [InputTextModule, FormsModule, CommonModule, KeyValuePipe, InputErrorComponent],
+  styleUrl: './input-text.component.scss',
+  imports: [InputTextModule, FormsModule, CommonModule, KeyValuePipe, InputErrorComponent, ReactiveFormsModule],
   template: `
-
-  <div class="flex flex-column gap-1 field col-12">
     <label [for]="field.id">{{ field.label }}</label>
     <input
         pInputText
         [id]="field.id"
         [name]="field.name"
         [type]="field.type"
-        [(ngModel)]="field.value"
-        [autocomplete]="field.autocomplete"
+        [formControl]="control"
         [placeholder]="field.placeholder"
-        [required]="field.required"
-        [minlength]="field.minlength"
-        [maxlength]="field.maxlength"
-        [pattern]="field.pattern"
-        [disabled]="field.disabled"
-        #ref="ngModel"
-        [ngClass]="{'ng-invalid ng-dirty': ref.invalid && ref.dirty}"
+        (blur)="onBlur()"
     />
 
-    @if (ref.errors && ref.dirty && ref.invalid && formSubmitted()) {
-
-      <app-input-error 
-        [field]="field"
-        [ref]="ref"
-      ></app-input-error>
-      
+  <app-input-error 
+  [control]="control">
+  </app-input-error>
+`,
+  styles: ``,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputTextComponent),
+      multi: true
     }
-
-</div>`,
-  styles: ``
+  ]
 })
-export class InputTextComponent {
+export class InputTextComponent implements ControlValueAccessor {
 
-  formSubmitted = inject(TrackFormSubmitService).state;
-  field!: TextField;
+    @Input() field!: TextField;
+    @Input() control!: FormControl;
+
+    private _onChanged = (value: string) => {};
+    private _onTouched = () => {};
+
+  onInputChange(value: string): void {
+    this.field.value = value;
+    this._onChanged(value);
+  }
+
+  writeValue(value: any): void {
+    if (value !== undefined && this.control.value !== value) {
+      this.control.setValue(value, { emitEvent: false });
+  }
+  }
+
+  registerOnChange(fn: any): void {
+    this._onChanged = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this._onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    if (isDisabled) {
+      this.control.disable();
+    } else {
+      this.control.enable();
+    }
+  }
+
+  updateChanges(value: any): void {
+    this._onChanged(value);
+  }
+  
+
+  onBlur(): void {
+    this._onTouched();
+  }
+
 }
