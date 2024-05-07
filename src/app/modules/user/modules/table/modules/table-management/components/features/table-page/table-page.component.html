@@ -1,0 +1,16 @@
+<ng-container *ngIf="table$ |async as table">
+    <app-page-header [elementIcon]="'assets/images/table-icon.svg'" [title]="table.name"></app-page-header>
+    <app-table-presentation [table]="table"></app-table-presentation>
+    <app-custom-area-title [title]="'Liste des joueurs'"></app-custom-area-title>
+    <app-list-of-element [elementList]="table.players" [elementIcon]="'assets/images/character-icon.svg'" [replacementIcon]="'assets/images/hourglass-icon.svg'"></app-list-of-element>
+    <app-custom-add-button ></app-custom-add-button>
+    <app-custom-area-title [title]="'Tchat avec les joueurs'"></app-custom-area-title>
+    <app-list-of-element [elementList]="table.discussions" [elementIcon]="'assets/images/discussion-icon.svg'"></app-list-of-element>
+    <app-custom-add-button ></app-custom-add-button>
+    <app-custom-area-title [title]="'Dessins'"></app-custom-area-title>
+    <app-list-of-element [elementList]="table.drawings" [elementIcon]="'assets/images/brush-icon.svg'"></app-list-of-element>
+    <app-custom-add-button ></app-custom-add-button>
+</ng-container>
+<div class="bottom-part">
+    <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
+</div>

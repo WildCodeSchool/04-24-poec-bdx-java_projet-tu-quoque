@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class UserTablesComponent {
 
   userTableList$: Observable<any> = this._tableService.getUserTableList()
-
+  
   constructor(private _tableService: TableService){}
 
 }
