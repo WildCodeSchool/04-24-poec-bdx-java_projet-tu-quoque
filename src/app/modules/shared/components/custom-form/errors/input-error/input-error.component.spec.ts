@@ -17,7 +17,9 @@ describe('InputErrorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', async () => {
+    await fixture.whenStable()
+    fixture.detectChanges()
     expect(component).toBeTruthy();
   });
 });

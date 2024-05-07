@@ -1,55 +1,40 @@
-import { TestBed } from '@angular/core/testing';
-
 import { DiceService } from './dice.service';
 import { PossibleDice } from '../../models/enums/possible-dice.enum';
 
 describe('DiceService', () => {
-  let service: DiceService;
   type diceResult = {
     value: number;
     nb: number;
   }
-  let launchesForD6: diceResult[] = [
-    { value: 1, nb: 0 },
-    { value: 2, nb: 0 },
-    { value: 3, nb: 0 },
-    { value: 4, nb: 0 },
-    { value: 6, nb: 0 },
-    { value: 6, nb: 0 },
-  ];
-
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(DiceService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
 
   it('should be > 0', () => {
-    expect(service.throwOneDice(PossibleDice.d4)).toBeGreaterThan(0);
+    expect(DiceService.throwOneDice(PossibleDice.d4)).toBeGreaterThan(0);
   });
 
   it('d3 should be < 4', () => {
-    expect(service.throwOneDice(PossibleDice.d3)).toBeLessThan(4);
+    expect(DiceService.throwOneDice(PossibleDice.d3)).toBeLessThan(4);
   })
 
   it('should be less than 5% in 100 000 lauches for d6', () => {
+    let launchesForD6: diceResult[] = [
+      { value: 1, nb: 0 },
+      { value: 2, nb: 0 },
+      { value: 3, nb: 0 },
+      { value: 4, nb: 0 },
+      { value: 6, nb: 0 },
+      { value: 6, nb: 0 },
+    ];
     const NB_TRIES = 100 * 1000;
-
+    let min = NB_TRIES;
+    let max = 0;
     for (let i = 0; i < NB_TRIES; i += 1) {
-      const actualLauch = service.throwOneDice(PossibleDice.d6);
+      const actualLauch = DiceService.throwOneDice(PossibleDice.d6);
       for (let dice of launchesForD6) {
         if (dice.value === actualLauch) {
           dice.nb += 1;
         }
       }
     }
-
-    let min = NB_TRIES;
-    let max = 0;
     for (let dice of launchesForD6) {
       if (dice.nb > max) {
         max = dice.nb;
@@ -61,7 +46,6 @@ describe('DiceService', () => {
       expect(dice.value).toBeLessThanOrEqual(6);
     }
     const differenceInPercent = (max - min) / NB_TRIES * 100;
-
     expect(differenceInPercent).toBeLessThanOrEqual(5);
   });
 
@@ -70,7 +54,7 @@ describe('DiceService', () => {
     let min = Infinity;
     let max = - Infinity;
     for (let i = 0; i < 100; i += 1) {
-      const value = service.throwDices(3, PossibleDice.d6, 12);
+      const value = DiceService.throwDices(3, PossibleDice.d6, 12);
       if (value > max) max = value;
       if (value < min) min = value;
     }
@@ -84,7 +68,7 @@ describe('DiceService', () => {
     let min = Infinity;
     let max = - Infinity;
     for (let i = 0; i < 100; i += 1) {
-      const value = service.throwDicesForStatistic();
+      const value = DiceService.throwDicesForStatistic();
       if (value > max) max = value;
       if (value < min) min = value;
     }
@@ -92,5 +76,17 @@ describe('DiceService', () => {
     expect(min).toBeLessThanOrEqual(18);
     expect(max).toBeGreaterThanOrEqual(3);
     expect(min).toBeGreaterThanOrEqual(3);
+  });
+
+  it('should be between 8 and 18 for 2d6+6 roll', () => {
+    let min = Infinity;
+    let max = - Infinity;
+    for (let i = 0; i < 1000; i += 1) {
+      const value = DiceService.roll("2d6+6");
+      if (value > max) max = value;
+      if (value < min) min = value;
+    }
+    expect(max).toBe(18);
+    expect(min).toBe(8);
   });
 });

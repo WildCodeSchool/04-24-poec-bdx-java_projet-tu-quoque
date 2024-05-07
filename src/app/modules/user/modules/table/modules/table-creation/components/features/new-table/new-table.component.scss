@@ -1,0 +1,32 @@
+:host {
+    display:  flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    padding: calc(90px + 0.25em) 5% 1em 5%;
+    background-color: #0b202f;
+    color: #fff;
+    font-family: alice;
+    font-size: large;
+
+    input { // Temporaire, à remplacer par l'input de Nelia
+        margin: 1.5em auto;
+        height: 2.5em;
+        width: 90%;
+        background-color: #0b202f;
+        border: solid 1px #c29b0f;
+
+    }
+    .add-image-area {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        padding-top: 1em;
+
+        .add-button-img {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
