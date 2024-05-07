@@ -208,5 +208,13 @@
         {
             "name": "Chaotique Mauvais"
         }
+    ],
+    "gender": [
+        {
+            "name": "M"
+        },
+        {
+            "name": "F"
+        }
     ]
 }
