@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { GetFieldsService } from '../../../../shared/services/form-field/get-fields.service';
 import { TextField } from '../../../../shared/models/fields/text-fields.type';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../../shared/shared.module';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './connexion-page.component.html',
   styleUrl: './connexion-page.component.scss',
-  imports: [InputTextComponent, FormsModule, ReactiveFormsModule, CommonModule]
+  imports: [InputTextComponent, FormsModule, ReactiveFormsModule, CommonModule, SharedModule]
 })
 export class ConnexionPageComponent implements OnInit {
 
