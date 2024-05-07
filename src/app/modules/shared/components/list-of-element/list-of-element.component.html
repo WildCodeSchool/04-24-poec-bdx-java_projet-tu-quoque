@@ -1,6 +1,10 @@
 <ul class="character-list">
   <li class="character-line" *ngFor="let element of elementList">
-    <img [src]="elementIcon" alt="character" />
+    @if (!element?.accepted && replacementIcon) {
+      <img [src]="replacementIcon" alt="character" />
+    } @else {
+      <img [src]="elementIcon" alt="character" />
+    }
     <p class="character-name" [routerLink]="[baseUrl, element.id]">
       {{ element.name }}
     </p>
@@ -8,3 +12,4 @@
     <img [src]="'assets/images/garbage-icon.svg'" alt="delete" (click)="deleteElement()"/>
   </li>
 </ul>
+
