@@ -1,0 +1,15 @@
+:host {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    .add-button-img {
+        display: inline-block;
+        width: 50px;
+    
+        &.list-empty {
+            width: 200px;
+        }
+    }
+
+}
