@@ -8,16 +8,12 @@ import { DbService } from '../../../../shared/services/db-service/db.service';
   templateUrl: './classes-list.component.html',
   styleUrl: './classes-list.component.scss'
 })
-export class ClassesListComponent implements OnInit {
-  classList$!: Observable<CharacterClass[]>;
+export class ClassesListComponent {
+  classList$: Observable<CharacterClass[]> = this.classService.getClasses$();
   selectName: string = "characterClass";
   selectLabel: string = "CLASSE";
 
   constructor(private classService: DbService) {
-
   }
 
-  ngOnInit(): void {
-    this.classList$ = this.classService.getClasses$();
-  }
 }

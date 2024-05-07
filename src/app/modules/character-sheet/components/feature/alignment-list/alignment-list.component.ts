@@ -9,15 +9,11 @@ import { Alignment } from '../../../models/types/alignment.type';
   styleUrl: './alignment-list.component.scss'
 })
 export class AlignmentListComponent {
-  list$!: Observable<Alignment[]>;
+
+  list$: Observable<Alignment[]> = this.dbService.getAlignments$();
   selectName: string = "alignment";
   selectLabel: string = "ALIGNEMENT";
 
   constructor(private dbService: DbService) {
-
-  }
-
-  ngOnInit(): void {
-    this.list$ = this.dbService.getAlignments$();
   }
 }

@@ -9,15 +9,11 @@ import { Gender } from '../../../models/types/gender.type';
   styleUrl: './gender-list.component.scss'
 })
 export class GenderListComponent {
-  list$!: Observable<Gender[]>;
+  list$: Observable<Gender[]> = this.dbService.getGenders$();
   selectName: string = "gender";
   selectLabel: string = "SEXE";
 
   constructor(private dbService: DbService) {
 
-  }
-
-  ngOnInit(): void {
-    this.list$ = this.dbService.getGenders$();
   }
 }
