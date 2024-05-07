@@ -15,4 +15,11 @@ export class TableService {
       map((response: any) => response.tables)
     )
   }
+
+  getTableById(id: Number): Observable<any> {
+    return this.getUserTableList()
+    .pipe(
+      map((response: any) => response.find((table: any) => table.id === id))
+    )
+  }
 }
