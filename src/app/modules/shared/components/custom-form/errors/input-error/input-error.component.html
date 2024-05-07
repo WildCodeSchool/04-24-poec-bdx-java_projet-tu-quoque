@@ -1,9 +1,10 @@
 <div
 class="error-message"
-*ngFor="let error of ref.errors | keyvalue"
+*ngIf="control.errors && (control.dirty || control.touched)"
 >
-<span *ngIf="error.key === 'required'">Le champs est requis</span>
-<span *ngIf="error.key === 'minlength'">Le champs doit être de {{ field.minlength }} caractères</span>
-<span *ngIf="error.key === 'maxlength'">Le champs ne peut pas posséder plus de {{ field.maxlength }} caractères</span>
-<span *ngIf="error.key === 'pattern'">Le champs est invalide.</span>
+    <span *ngIf="control.hasError('required')">Le champ est requis</span>
+    <span *ngIf="control.hasError('minlength')">Le champ doit être de {{ control.errors['minlength'].requiredLength }} caractères</span>
+    <span *ngIf="control.hasError('maxlength')">Le champ ne peut pas posséder plus de {{ control.errors['maxlength'].requiredLength }} caractères</span>
+    <span *ngIf="control.hasError('pattern')">Le champ est invalide</span>
+
 </div>
