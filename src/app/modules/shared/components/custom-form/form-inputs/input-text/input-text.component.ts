@@ -5,14 +5,16 @@ import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, NgMo
 import { CommonModule, KeyValuePipe } from '@angular/common';
 import { InputErrorComponent } from '../../errors/input-error/input-error.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { SharedModule } from '../../../../shared.module';
 
 @Component({
   selector: 'app-input-text',
   standalone: true,
-  // templateUrl: './input-text.component.html',
+  templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss',
-  imports: [InputTextModule, FormsModule, CommonModule, KeyValuePipe, InputErrorComponent, ReactiveFormsModule],
+  imports: [InputTextModule, FormsModule, CommonModule, KeyValuePipe, InputErrorComponent, ReactiveFormsModule, SharedModule],
   template: `
+
     <label [for]="field.id">{{ field.label }}</label>
     <input
         pInputText

@@ -1,15 +1,3 @@
-h1 {
-  font-family: cinzel;
-}
-
-h2 {
-  font-family: alice;
-}
-
-.header {
-  display: flex;
-}
-
 :host {
   display: flex;
   flex-direction: column;
@@ -20,4 +8,11 @@ h2 {
   color: #fff;
   font-family: alice;
   font-size: large;
+}
+
+.validation-button {
+  margin-top: 5rem;
+}
+.subscription-button {
+  margin-top: 3rem;
 }
