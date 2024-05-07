@@ -10,8 +10,8 @@ import { DbService } from '../../../../shared/services/db-service/db.service';
 })
 export class RaceListComponent {
   raceList$!: Observable<Race[]>;
-  selectName: string = "characterClass";
-  selectLabel: string = "CLASSE";
+  selectName: string = "characterRace";
+  selectLabel: string = "RACE";
 
   constructor(private raceService: DbService) {
 
