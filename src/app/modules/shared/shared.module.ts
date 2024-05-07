@@ -31,6 +31,11 @@ import { CustomAddButtonComponent } from './components/custom-add-button/custom-
   ],
   exports: [
     CustomButtonComponent,
+    CustomAddButtonComponent,
+    ListOfElementComponent,
+    PageHeaderComponent,
+    CustomAreaTitleComponent,
+    FileUploadModule
   ]
 })
 export class SharedModule { }
