@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormControl, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-input-error',
@@ -9,12 +9,8 @@ import { NgModel } from '@angular/forms';
   templateUrl: './input-error.component.html',
   styleUrl: './input-error.component.scss'
 })
-export class InputErrorComponent {
+export class InputErrorComponent{
 
-  @Input()
-  field!: any;
-
-  @Input()
-  ref!: NgModel;
-
+  @Input() 
+  control!: FormControl;
 }
