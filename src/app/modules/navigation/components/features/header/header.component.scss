@@ -13,6 +13,7 @@
   height: 90px;
   width: 100vw; //
   background-color: #0b202f;
+  z-index: 100;
 
   &::after{
     content: "";
