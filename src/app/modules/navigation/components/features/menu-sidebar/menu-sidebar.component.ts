@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Renderer2 } from '@angular/core';
 import { NavigationService } from '../../../../shared/services/navigation.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Observable } from 'rxjs';
@@ -44,11 +44,25 @@ export class MenuSidebarComponent {
 
   isSidebarOpen$: Observable<boolean> = this.navService.getSidebarIsVisible$()
 
-  constructor(private navService: NavigationService){}
+  constructor(private navService: NavigationService, private _renderer: Renderer2){}
 
+
+  ngOnInit(): void {
+    // this.navService.getSidebarIsVisible$().subscribe(res => console.log(res))
+    this.navService.getSidebarIsVisible$().subscribe(res => 
+      {if(res) {
+        this._renderer.setStyle(document.body, 'overflow', 'hidden')
+      } else {
+        this._renderer.setStyle(document.body, 'overflow', 'auto')
+  
+      }}
+    )
+
+  }
 
   onClick() {
     this.navService.setSidebarVisible()
+
   }
 
 }
