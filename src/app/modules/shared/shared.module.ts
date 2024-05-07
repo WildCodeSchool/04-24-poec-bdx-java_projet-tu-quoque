@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
-import { CustomFormComponent } from './components/custom-form/custom-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListOfElementComponent } from './components/list-of-element/list-of-element.component';
 import { RouterLink } from '@angular/router';
@@ -16,7 +15,6 @@ import { CustomAddButtonComponent } from './components/custom-add-button/custom-
 @NgModule({
   declarations: [
     CustomButtonComponent,
-    CustomFormComponent,
     ListOfElementComponent,
     PageHeaderComponent,
     CustomAreaTitleComponent,
@@ -33,12 +31,6 @@ import { CustomAddButtonComponent } from './components/custom-add-button/custom-
   ],
   exports: [
     CustomButtonComponent,
-    CustomFormComponent,
-    CustomAddButtonComponent,
-    ListOfElementComponent,
-    PageHeaderComponent,
-    CustomAreaTitleComponent,
-    FileUploadModule
   ]
 })
 export class SharedModule { }

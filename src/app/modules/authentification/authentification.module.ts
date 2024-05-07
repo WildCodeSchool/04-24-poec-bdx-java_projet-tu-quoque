@@ -9,7 +9,6 @@ import { ConnexionPageComponent } from './components/feature/connexion-page/conn
 
 @NgModule({
   declarations: [
-    ConnexionPageComponent
   ],
   imports: [
     CommonModule,
