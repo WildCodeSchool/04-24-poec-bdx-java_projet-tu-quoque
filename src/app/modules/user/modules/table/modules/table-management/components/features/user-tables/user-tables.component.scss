@@ -1,10 +1,12 @@
+
 :host {
     display:  flex;
     flex-direction: column;
     min-height: 100vh;
     width: 100vw;
     padding: calc(90px + 0.25em) 5% 1em 5%;
-    background-color: #0b202f;
+    // background-color: $custom-dark-blue;
+    background-color: var(--custom-dark-blue);
     color: #fff;
     font-family: alice;
     font-size: large;
