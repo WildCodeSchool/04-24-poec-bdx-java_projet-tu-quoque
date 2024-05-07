@@ -3,8 +3,10 @@
 <input type="text">
 <app-custom-area-title [title]="'Télécharger un avatar'"></app-custom-area-title>
 <div class="add-image-area">
-    <img class="add-button-img" src="assets/images/add-round-icon.svg" alt="add">
-    <!-- <p-fileUpload 
+    <app-custom-add-button></app-custom-add-button>
+    <!-- MODULE PRIMENG A VOIR AVEC NELIA
+        
+        <p-fileUpload 
     mode="basic" 
     src=""
     name="demo[]" 
@@ -12,7 +14,6 @@
     accept="image/*" 
     maxFileSize="1000000" 
     /> -->
-
 </div>
 <app-custom-button [style]="'gold'" [name]="'Suivant'"></app-custom-button>
 <!--

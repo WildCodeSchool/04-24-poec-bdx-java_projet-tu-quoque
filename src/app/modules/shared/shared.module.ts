@@ -9,6 +9,7 @@ import { CustomAreaTitleComponent } from './components/custom-area-title/custom-
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputErrorComponent } from './components/custom-form/errors/input-error/input-error.component';
+import { CustomAddButtonComponent } from './components/custom-add-button/custom-add-button.component';
 
 
 
@@ -18,6 +19,7 @@ import { InputErrorComponent } from './components/custom-form/errors/input-error
     ListOfElementComponent,
     PageHeaderComponent,
     CustomAreaTitleComponent,
+    CustomAddButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { InputErrorComponent } from './components/custom-form/errors/input-error
   ],
   exports: [
     CustomButtonComponent,
+    CustomAddButtonComponent,
     ListOfElementComponent,
     PageHeaderComponent,
     CustomAreaTitleComponent,
