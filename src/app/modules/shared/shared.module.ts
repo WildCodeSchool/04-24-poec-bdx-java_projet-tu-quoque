@@ -8,7 +8,6 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { CustomAreaTitleComponent } from './components/custom-area-title/custom-area-title.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'primeng/fileupload';
-import { InputErrorComponent } from './components/custom-form/errors/input-error/input-error.component';
 
 
 
