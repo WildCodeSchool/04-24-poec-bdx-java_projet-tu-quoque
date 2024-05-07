@@ -10,9 +10,6 @@
         "autocomplete": false,
         "placeholder": "Entrez votre email",
         "required": true,
-        "minlength": 2,
-        "maxlength": 50,
-        "pattern": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
         "disabled": false
       },
       {
@@ -25,9 +22,6 @@
         "autocomplete": false, 
         "placeholder": "Entrez votre mot de passe",
         "required": true,
-        "minlength": 8,
-        "maxlength": 50,
-        "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
         "disabled": false
       },
       {

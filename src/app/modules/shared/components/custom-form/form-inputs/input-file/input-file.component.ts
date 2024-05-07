@@ -37,8 +37,7 @@ import { TrackFormSubmitService } from '../../../../services/form-field/track-fo
     @if (ref.errors && ref.dirty && ref.invalid && formSubmitted()) {
 
       <app-input-error 
-        [field]="field"
-        [ref]="ref"
+  
       ></app-input-error>
       
     }

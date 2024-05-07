@@ -34,9 +34,9 @@ import { TextAreaField } from '../../../../models/fields/textarea-field.type';
       @if (ref.errors && ref.dirty && ref.invalid && formSubmitted()) {
 
         <app-input-error 
-        [field]="field"
-        [ref]="ref"
-      ></app-input-error>
+    
+     
+        ></app-input-error>
 
       }
 
