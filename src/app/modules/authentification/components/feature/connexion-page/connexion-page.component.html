@@ -1,18 +1,26 @@
-<!-- <h1>Connexion</h1>
-
-<form #connexionForm="ngForm" (ngSubmit)="onSubmit()">
-
-<label for="connexion-type">Email</label>
-<input id="connexion-type" type="text">
-
-<label for="password-type">Mot de passe</label>
-<input id="password-type" type="text">
-
-
-<button type="reset">Restaurer</button>
-<button type="submit">Sauvegarder</button>
-</form> -->
-
+<div class="header">
+    <img [src]="connexionIcon" alt="Connexion">
+    <h1>Connexion</h1>
+</div>
     
-    <app-custom-form></app-custom-form>
-
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ng-container *ngIf="emailField$ | async as emailField"> 
+        <app-input-text
+         [field]="emailField"
+         formControlName="email"
+         [control]="emailControl"
+        >
+        </app-input-text>
+    </ng-container>
+    
+    <ng-container *ngIf="passwordField$ | async as passwordField"> 
+        <app-input-text
+         [field]="passwordField"
+         formControlName="password"
+         [control]="passwordControl"
+        >
+        </app-input-text>
+    </ng-container>
+    
+    <button type="submit" pButton label="Submit" class="m-auto mt-6">Valider</button>
+</form>
