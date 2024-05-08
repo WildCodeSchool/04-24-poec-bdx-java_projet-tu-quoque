@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AuthentificationModule } from './modules/authentification/authentification.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NoteModule } from './modules/note/note.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationModule,
     AuthentificationModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoteModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -19,7 +19,8 @@ import { NotesButtonComponent } from './components/ui/notes-button/notes-button.
   imports: [
     CommonModule,
     NavigationRoutingModule,
-    SharedModule
+    SharedModule,
+  
   ],
   exports: [
     MenuSidebarComponent,
