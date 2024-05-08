@@ -45,6 +45,19 @@
                 ]
             },
             "adultAge": 110,
+            "ageModifier": {
+                "Barbare": "4d6",
+                "Ensorceleur": "4d6",
+                "Roublard": "4d6",
+                "Barde": "6d6",
+                "Guerrier": "6d6",
+                "Paladin": "6d6",
+                "Rôdeur": "6d6",
+                "Druide": "10d6",
+                "Magicien": "10d6",
+                "Moine": "10d6",
+                "Prêtre": "10d6"
+            },
             "baseHeight": {
                 "M": 135,
                 "F": 135
@@ -88,6 +101,19 @@
                 ]
             },
             "adultAge": 14,
+            "ageModifier": {
+                "Barbare": "1d4",
+                "Ensorceleur": "1d4",
+                "Roublard": "1d4",
+                "Barde": "1d6",
+                "Guerrier": "1d6",
+                "Paladin": "1d6",
+                "Rôdeur": "1d6",
+                "Druide": "2d6",
+                "Magicien": "2d6",
+                "Moine": "2d6",
+                "Prêtre": "2d6"
+            },
             "baseHeight": {
                 "M": 150,
                 "F": 135
