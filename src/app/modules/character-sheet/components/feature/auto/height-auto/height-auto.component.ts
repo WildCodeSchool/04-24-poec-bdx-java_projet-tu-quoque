@@ -20,8 +20,6 @@ export class HeightAutoComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.race$.subscribe(race => console.log(race));
-    //this.characterSheetService.setSizeCategory$();
     this.listener.receiveInfoFrom(this.height$.pipe(
       distinctUntilChanged(),
       map(heightValue => {
