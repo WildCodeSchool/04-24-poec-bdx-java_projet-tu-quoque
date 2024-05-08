@@ -27,7 +27,7 @@ export class ListenPlayerActionService {
   }
 
   controlRace(field: Field) {
-    if (field.name == 'characterRace' && field.value == "") {
+    if (field.name == 'characterRace') {
       this.sheetModifiedByPlayer.height = '';
       this.sheetModifiedByPlayer.weight = '';
       this.sheetModifiedByPlayer.heightModifierRolled = '';
