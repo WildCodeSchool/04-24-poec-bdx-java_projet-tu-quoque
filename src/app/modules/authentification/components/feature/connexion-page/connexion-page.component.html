@@ -1,16 +1,25 @@
-<!-- <h1>Connexion</h1>
+    <app-page-header [title]="'Connexion'" [elementIcon]="connexionIcon"></app-page-header>
 
-<form #connexionForm="ngForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ng-container *ngIf="emailField$ | async as emailField"> 
+        <app-input-text
+         [field]="emailField"
+         formControlName="email"
+         [control]="emailControl"
+        >
+        </app-input-text>
+    </ng-container>
+    
+    <ng-container *ngIf="passwordField$ | async as passwordField"> 
+        <app-input-text
+         [field]="passwordField"
+         formControlName="password"
+         [control]="passwordControl"
+        >
+        </app-input-text>
+    </ng-container>
+    
+    <app-custom-button type="submit" [name]="'Valider'" [style]="'gold'" class="validation-button"></app-custom-button>
+</form>
 
-<label for="connexion-type">Email</label>
-<input id="connexion-type" type="text">
-
-<label for="password-type">Mot de passe</label>
-<input id="password-type" type="text">
-
-
-<button type="reset">Restaurer</button>
-<button type="submit">Sauvegarder</button>
-</form> -->
-
-<app-custom-form></app-custom-form>
+    <app-custom-button [name]="'Pas encore de compte ?'" [style]="'dblue-gold'" class="subscription-button" [routerLink]="['/authentification/inscription']"></app-custom-button>

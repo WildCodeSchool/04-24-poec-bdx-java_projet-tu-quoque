@@ -1,0 +1,17 @@
+    <label [for]="field.id">{{ field.label }}</label>
+    <textarea
+        [rows]="5"
+        [cols]="30"
+        [id]="field.id"
+        [name]="field.name"
+        [formControl]="control"
+        [placeholder]="field.placeholder"
+        (blur)="onBlur()"
+       
+    ></textarea>
+
+    
+
+      <app-input-error 
+      [control]="control">
+      ></app-input-error>
