@@ -13,6 +13,7 @@ import { NgModelDebounceChangeDirective } from '../shared/directives/ng-model-de
 import { GenderListComponent } from './components/feature/lists/gender-list/gender-list.component';
 import { SizeCategorieAutoComponent } from './components/feature/auto/size-categorie-auto/size-categorie-auto.component';
 import { HeightAutoComponent } from './components/feature/auto/height-auto/height-auto.component';
+import { SelfFilledComponent } from './components/ui/self-filled/self-filled.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { HeightAutoComponent } from './components/feature/auto/height-auto/heigh
     GenderListComponent,
     SizeCategorieAutoComponent,
     HeightAutoComponent,
+    SelfFilledComponent,
 
   ],
   imports: [
