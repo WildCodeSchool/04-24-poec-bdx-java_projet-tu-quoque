@@ -64,8 +64,8 @@ export class CharacterSheetService {
 
   setHeight$(): Observable<string> {
     let gender: Gender;
-    let baseHeight;
-    let heightModifier;
+    let baseHeight: number;
+    let heightModifier: string;
     let height: string;
     let heightModifierRolled: number;
     return this.listener.sendInfos().pipe(
@@ -77,7 +77,7 @@ export class CharacterSheetService {
         }
         return gender;
       }),
-      switchMap(((gender: Gender) => this.race$.pipe(
+      switchMap((gender: Gender) => this.race$.pipe(
         map((race: Race) => {
           if (race && gender && !height) {
             if (!heightModifierRolled) {
@@ -98,7 +98,29 @@ export class CharacterSheetService {
           }
         }),
       ))
-      )
+    );
+  }
+
+  setWeight$() {
+    let tmpSheet: any;
+    return this.listener.sendInfos().pipe(
+      map((sheet: any) => {
+        tmpSheet = sheet;
+        return sheet.gender;
+      }),
+      switchMap((gender: Gender) => this.race$.pipe(
+        map((race: Race) => {
+          if (tmpSheet.weight) {
+            return tmpSheet.weight;
+          }
+          else if (race && gender && tmpSheet.heightModifierRolled) {
+            return (race.baseWeight[gender] + (Number(tmpSheet.heightModifierRolled)) * DiceService.roll(race.modWeight) / 5).toFixed(0);
+          }
+          else {
+            return "";
+          }
+        })
+      ))
     );
   }
 }
