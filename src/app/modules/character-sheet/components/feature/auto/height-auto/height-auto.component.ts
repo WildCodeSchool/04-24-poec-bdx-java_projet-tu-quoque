@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Race } from '../../../models/types/race.type';
+import { Race } from '../../../../models/types/race.type';
 import { distinctUntilChanged, map, Observable } from 'rxjs';
-import { CharacterSheetService } from '../../../shared/services/character-sheet.service';
-import { CharacterClass } from '../../../models/types/character-class.type';
-import { ListenPlayerActionService } from '../../../shared/services/listen-player-action.service';
+import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
+import { CharacterClass } from '../../../../models/types/character-class.type';
+import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
 
 @Component({
   selector: 'app-height-auto',

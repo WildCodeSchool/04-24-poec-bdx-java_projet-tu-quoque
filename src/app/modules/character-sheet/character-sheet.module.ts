@@ -11,8 +11,8 @@ import { AlignmentListComponent } from './components/feature/lists/alignment-lis
 import { FormsModule } from '@angular/forms';
 import { NgModelDebounceChangeDirective } from '../shared/directives/ng-model-debounce-change.directive';
 import { GenderListComponent } from './components/feature/lists/gender-list/gender-list.component';
-import { SizeCategorieAutoComponent } from './components/feature/size-categorie-auto/size-categorie-auto.component';
-import { HeightAutoComponent } from './components/feature/height-auto/height-auto.component';
+import { SizeCategorieAutoComponent } from './components/feature/auto/size-categorie-auto/size-categorie-auto.component';
+import { HeightAutoComponent } from './components/feature/auto/height-auto/height-auto.component';
 
 
 @NgModule({

@@ -1,11 +1,11 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
-import { ListenPlayerActionService } from '../../../shared/services/listen-player-action.service';
+import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
 import { distinctUntilChanged, first, map, Observable, switchMap, tap } from 'rxjs';
-import { DbService } from '../../../../shared/services/db-service/db.service';
-import { Race } from '../../../models/types/race.type';
+import { DbService } from '../../../../../shared/services/db-service/db.service';
+import { Race } from '../../../../models/types/race.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { CharacterSheetService } from '../../../shared/services/character-sheet.service';
-import { Field } from '../../../shared/models/types/field.type';
+import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
+import { Field } from '../../../../shared/models/types/field.type';
 
 @Component({
   selector: 'app-size-categorie-auto',
