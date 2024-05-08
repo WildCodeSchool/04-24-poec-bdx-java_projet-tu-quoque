@@ -1,4 +1,5 @@
-<div class="auto">
-    <ng-container *ngIf="sizeCategory$ | async as sizeCategory">{{sizeCategory}}</ng-container>
-</div>
-<div>CATEGORIE DE TAILLE</div>
+<app-self-filled
+[valueObs$]="sizeCategory$"
+[unit]="unit"
+[label]="label"
+></app-self-filled>

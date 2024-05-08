@@ -11,6 +11,9 @@ import { CharacterSheetService } from '../../../../shared/services/character-she
 })
 export class SizeCategorieAutoComponent implements OnInit {
   sizeCategory$: Observable<string> = this.characterSheetService.setSizeCategory$()
+  unit: string = "";
+  label: string = "CATEGORIE DE TAILLE";
+
   constructor(
     private characterSheetService: CharacterSheetService,
     private listener: ListenPlayerActionService

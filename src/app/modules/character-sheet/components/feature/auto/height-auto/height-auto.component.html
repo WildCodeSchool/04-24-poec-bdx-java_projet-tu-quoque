@@ -1,4 +1,5 @@
-<div class="auto">
-    <ng-container *ngIf="height$ | async as height">{{height}}</ng-container>
-</div>
-<div>TAILLE</div>
+<app-self-filled
+[valueObs$]="height$"
+[unit]="unit"
+[label]="label"
+></app-self-filled>

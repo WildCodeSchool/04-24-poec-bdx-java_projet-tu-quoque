@@ -10,6 +10,8 @@ import { ListenPlayerActionService } from '../../../../shared/services/listen-pl
 })
 export class HeightAutoComponent implements OnInit {
   height$: Observable<string> = this.characterSheetService.setHeight$();
+  unit: string = "cm";
+  label: string = "TAILLE";
 
   constructor(
     private characterSheetService: CharacterSheetService,
