@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Race } from '../../../models/types/race.type';
+import { Race } from '../../../../models/types/race.type';
 import { Observable } from 'rxjs';
-import { DbService } from '../../../../shared/services/db-service/db.service';
+import { DbService } from '../../../../../shared/services/db-service/db.service';
 
 @Component({
   selector: 'app-race-list',

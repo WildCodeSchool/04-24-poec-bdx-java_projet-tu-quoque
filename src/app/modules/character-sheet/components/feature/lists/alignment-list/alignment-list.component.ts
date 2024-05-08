@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DbService } from '../../../../shared/services/db-service/db.service';
-import { Alignment } from '../../../models/types/alignment.type';
+import { DbService } from '../../../../../shared/services/db-service/db.service';
+import { Alignment } from '../../../../models/types/alignment.type';
 
 @Component({
   selector: 'app-alignment-list',
