@@ -9,10 +9,10 @@ export class NoteService {
 
   constructor(private _http: HttpClient) { }
 
-  private _HTTP_BASE: string = '/assets/json/notes.json'
+  private _BASE_URL: string = '/assets/json/notes.json'
 
   getNoteList(): Observable<any> {
-    return this._http.get(this._HTTP_BASE)
+    return this._http.get(this._BASE_URL)
     .pipe(
       map((result: any) => result.notes)
     )

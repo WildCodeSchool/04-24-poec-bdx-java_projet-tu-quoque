@@ -11,6 +11,7 @@ export class CharacterService {
 
   private readonly _BASE_URL = "/assets/json/users.json";
 
+
   constructor(private http: HttpClient) { }
 
   getUserCharacterList$(): Observable<Character[]> {
