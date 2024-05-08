@@ -16,6 +16,7 @@ export class ListenPlayerActionService {
     fromObs$.pipe(
       takeUntilDestroyed(this.destroyRef),
     ).subscribe((field: Field) => {
+      this.controlRace(field);
       this.sheetModifiedByPlayer[field.name] = field.value;
       this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
     });
@@ -23,5 +24,13 @@ export class ListenPlayerActionService {
 
   sendInfos() {
     return this.sheetModifiedListener$.asObservable();
+  }
+
+  controlRace(field: Field) {
+    if (field.name == 'characterRace' && field.value == "") {
+      this.sheetModifiedByPlayer.height = '';
+      this.sheetModifiedByPlayer.weight = '';
+      this.sheetModifiedByPlayer.heightModifierRolled = '';
+    }
   }
 }
