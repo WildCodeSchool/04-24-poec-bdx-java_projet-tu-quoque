@@ -98,9 +98,6 @@
         "autocomplete": false,
         "placeholder": "Entrez le nom de votre table",
         "required": true,
-        "minlength": 2,
-        "maxlength": 50,
-        "pattern": "[a-zA-Z0-9 ]*",
         "disabled": false
       },
       {

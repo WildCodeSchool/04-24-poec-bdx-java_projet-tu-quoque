@@ -1,6 +1,16 @@
 <app-page-header [elementIcon]="'assets/images/myTables-title-icon.svg'" [title]="'Création de table'"></app-page-header>
-<app-custom-area-title [title]="'Nom de table'"></app-custom-area-title>
-<input type="text">
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <ng-container *ngIf="tableNameField$ | async as tableNameField"> 
+        <app-input-text
+        [field]="tableNameField"
+        formControlName="tableName"
+        [control]="tableNameControl"
+        >
+        </app-input-text>
+    </ng-container>
+
 <app-custom-area-title [title]="'Télécharger un avatar'"></app-custom-area-title>
 <div class="add-image-area">
     <app-custom-add-button></app-custom-add-button>
@@ -20,3 +30,4 @@
     // A rajouter dans p-fileupload au moment de l'utilisation avec la bdd
         (onUpload)="onUpload($event)" 
 -->
+</form>
