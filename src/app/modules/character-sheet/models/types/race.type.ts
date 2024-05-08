@@ -1,3 +1,4 @@
+import { AgeModifierPerRace } from "./age-modifier-per-race.type"
 import { BaseMeasurement } from "./base-measurement.type"
 import { RaceLanguage } from "./race-language.type"
 import { SkillModifier } from "./skill.type"
@@ -10,6 +11,7 @@ export type Race = {
     skills: SkillModifier[],
     languages: RaceLanguage,
     adultAge: number,
+    ageModifier: AgeModifierPerRace,
     baseHeight: BaseMeasurement,
     modHeight: string,
     baseWeight: BaseMeasurement,
