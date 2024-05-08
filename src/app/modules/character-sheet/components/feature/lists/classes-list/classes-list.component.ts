@@ -9,11 +9,11 @@ import { DbService } from '../../../../../shared/services/db-service/db.service'
   styleUrl: './classes-list.component.scss'
 })
 export class ClassesListComponent {
-  classList$: Observable<CharacterClass[]> = this.classService.getClasses$();
+  classList$: Observable<CharacterClass[]> = this.dbService.getClasses$();
   selectName: string = "characterClass";
   selectLabel: string = "CLASSE";
 
-  constructor(private classService: DbService) {
+  constructor(private dbService: DbService) {
   }
 
 }
