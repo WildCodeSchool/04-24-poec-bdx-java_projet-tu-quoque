@@ -1,8 +1,7 @@
-import { Component, Input, ViewChild, forwardRef, inject } from '@angular/core';
+import { Component, Input, ViewChild, forwardRef } from '@angular/core';
 import { TextField } from '../../../../models/fields/text-fields.type';
-import { TrackFormSubmitService } from '../../../../services/form-field/track-form-submit.service';
 import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, NgModel, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule, KeyValuePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { InputErrorComponent } from '../../errors/input-error/input-error.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { SharedModule } from '../../../../shared.module';
@@ -12,25 +11,7 @@ import { SharedModule } from '../../../../shared.module';
   standalone: true,
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss',
-  imports: [InputTextModule, FormsModule, CommonModule, KeyValuePipe, InputErrorComponent, ReactiveFormsModule, SharedModule],
-  template: `
-
-    <label [for]="field.id">{{ field.label }}</label>
-    <input
-        pInputText
-        [id]="field.id"
-        [name]="field.name"
-        [type]="field.type"
-        [formControl]="control"
-        [placeholder]="field.placeholder"
-        (blur)="onBlur()"
-    />
-
-  <app-input-error 
-  [control]="control">
-  </app-input-error>
-`,
-  styles: ``,
+  imports: [InputTextModule, FormsModule, CommonModule, InputErrorComponent, ReactiveFormsModule, SharedModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
