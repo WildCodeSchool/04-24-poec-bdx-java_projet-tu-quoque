@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserNotesComponent } from './features/user-notes/user-notes.component';
-import { UserNotePageComponent } from './features/user-note-page/user-note-page.component';
+import { ShowCommentPageComponent } from '../../../../../shared/components/show-comment-page/show-comment-page.component';
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: "note/:id",
-    component: UserNotePageComponent
+    component: ShowCommentPageComponent
   }
 ];
 

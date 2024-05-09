@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GameNotesComponent } from './features/game-notes/game-notes.component';
-import { GameNotePageComponent } from './features/game-note-page/game-note-page.component';
+import { ShowCommentPageComponent } from '../../../../../shared/components/show-comment-page/show-comment-page.component';
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: "note/:id",
-    component: GameNotePageComponent
+    component: ShowCommentPageComponent
   }
 
 ];
