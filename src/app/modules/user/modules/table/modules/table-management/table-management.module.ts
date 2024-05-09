@@ -6,18 +6,20 @@ import { UserTablesComponent } from './components/features/user-tables/user-tabl
 import { SharedModule } from '../../../../../shared/shared.module';
 import { TablePageComponent } from './components/features/table-page/table-page.component';
 import { TablePresentationComponent } from './components/ui/table-presentation/table-presentation.component';
+import { TableNewPlayerComponent } from './components/features/table-new-player/table-new-player.component';
 
 
 @NgModule({
   declarations: [
     UserTablesComponent,
     TablePageComponent,
-    TablePresentationComponent
+    TablePresentationComponent,
+    TableNewPlayerComponent
   ],
   imports: [
     CommonModule,
     TableManagementRoutingModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class TableManagementModule { }
