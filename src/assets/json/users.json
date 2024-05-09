@@ -3,15 +3,20 @@
         {
           "id": 1,
           "name": "Elric",
+          "password": "1234",
           "avatar":"/assets/images/profile-img-test.jpg"
         },
         {
           "id": 2,
-          "name": "Boromir"
+          "name": "Boromir",
+          "password": "1234",
+          "avatar":""
         },
         {
           "id": 3,
-          "name": "Willow"
+          "name":"Willow",
+          "password": "1234",
+          "avatar":""
         }
       ],
       "notes": [
