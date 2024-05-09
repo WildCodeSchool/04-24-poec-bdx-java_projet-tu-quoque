@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class NotesButtonComponent {
 
-
-  openNotesPage(): void {
-    console.log("click")
-  }
 }

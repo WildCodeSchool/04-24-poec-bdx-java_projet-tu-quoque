@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'user', 
     loadChildren: () => import('./modules/user/user.module')
     .then(m  => m.UserModule) 
+  },
+  {
+    path: 'notepad',
+    loadChildren: () => import('./modules/notepad/notepad.module')
+    .then(m => m.NotepadModule)
   }
 ];
 
