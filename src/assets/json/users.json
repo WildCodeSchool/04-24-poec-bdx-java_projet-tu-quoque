@@ -1,26 +1,68 @@
 {
-    "characters": [
+  "users": [
         {
           "id": 1,
-          "name": "Elric",
-          "avatar":"/assets/images/profile-img-test.jpg"
+          "userName":"SkyWalker22",
+          "password":"1234",
+          "avatar":"/assets/images/user-profile-images/user1.jpg",
+          "characters": [
+            {
+              "id": 1,
+              "name": "Elric",
+              "charactersAvatar":"/assets/images/profile-img-test.jpg"
+            },
+            {
+              "id": 2,
+              "name": "Boromir",
+              "charactersAvatar":""
+            },
+            {
+              "id": 3,
+              "name":"Willow",
+              "charactersAvatar":""
+            }
+          ],
+          "notes": [
+            {
+              "id": 1,
+              "title": "What is the meaning of life ?",
+              "writerId": 1,
+              "writerRole": "character",
+              "content": "42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42"
+            }
+          ]
         },
         {
           "id": 2,
-          "name": "Boromir"
-        },
-        {
-          "id": 3,
-          "name": "Willow"
-        }
-      ],
-      "notes": [
-        {
-          "id": 1,
-          "title": "What is the meaning of life ?",
-          "writerId": 1,
-          "writerRole": "character",
-          "content": "42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42"
+          "userName":"Moussay",
+          "password":"1234",
+          "avatar":"/assets/images/user-profile-images/user2.png",
+          "characters": [
+            {
+              "id": 1,
+              "name": "Elric",
+              "charactersAvatar":"/assets/images/profile-img-test.jpg"
+            },
+            {
+              "id": 2,
+              "name": "Boromir",
+              "charactersAvatar":""
+            },
+            {
+              "id": 3,
+              "name":"Willow",
+              "charactersAvatar":""
+            }
+          ],
+          "notes": [
+            {
+              "id": 1,
+              "title": "What is the meaning of life ?",
+              "writerId": 1,
+              "writerRole": "character",
+              "content": "42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42"
+            }
+          ]
         }
       ]
 }

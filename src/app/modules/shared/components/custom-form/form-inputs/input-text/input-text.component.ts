@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, forwardRef } from '@angular/core';
-import { TextField } from '../../../../models/fields/text-fields.type';
+import { TextField } from '../../../../models/types/fields/text-fields.type';
 import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InputErrorComponent } from '../../errors/input-error/input-error.component';
