@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Race } from '../../../models/types/race.type';
+import { Race } from '../../../../models/types/race.type';
 import { Observable } from 'rxjs';
-import { DbService } from '../../../../shared/services/db-service/db.service';
+import { DbService } from '../../../../../shared/services/db-service/db.service';
 
 @Component({
   selector: 'app-race-list',
@@ -9,10 +9,10 @@ import { DbService } from '../../../../shared/services/db-service/db.service';
   styleUrl: './race-list.component.scss'
 })
 export class RaceListComponent {
-  raceList$: Observable<Race[]> = this.raceService.getRaces$();
+  raceList$: Observable<Race[]> = this.dbService.getRaces$();
   selectName: string = "characterRace";
   selectLabel: string = "RACE";
 
-  constructor(private raceService: DbService) {
+  constructor(private dbService: DbService) {
   }
 }

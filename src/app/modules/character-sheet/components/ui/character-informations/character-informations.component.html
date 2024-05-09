@@ -1,74 +1,49 @@
 
     <div class="informations">
         <div class="line">
-            <!--input written by player-->
-            <div class="information-container size-l">
-                <input type="text" name="characterName" id="characterName">
-                <label for="characterName">NOM DU PERSONNAGE</label>
-            </div>
-            <!--input written by player-->
-            <div class="information-container size-l">
-                <input type="text" name="playerName" id="playerName">
-                <label for="playerName">JOUEUR</label>
-            </div>
+            <app-first-line-inputs></app-first-line-inputs>
         </div>
         <div class="line">
-            <div class="information-container size-m">
+            <!--self-filled-->
+            <div class="information-container size-250">
                 <app-classes-list></app-classes-list>
             </div>
-            <div class="information-container size-xs">
+            <div class="information-container size-75">
                 <div class="auto">1</div>
-                <div>NIVEAU</div>
+                <div>NIV</div>
             </div>
-            <div class="information-container size-m">
+            <!--self-filled-->
+            <div class="information-container size-196">
                 <app-race-list></app-race-list>
             </div>
             <!--input written by player-->
-            <div class="information-container size-m">
+            <div class="information-container size-196">
                 <app-alignment-list></app-alignment-list>
             </div>
-            <!--input written by player-->
-            <div class="information-container size-m">
-                <input type="text" name="god" id="god">
-                <label for="god">DIVINITE</label>
-            </div>
+            <app-god-input></app-god-input>
         </div>
-        <div class="line">         
-            <div class="information-container size-s">
-                <div class="auto"></div>
-                <div>CATEGORIE DE TAILLE</div>
+        <div class="line">
+            <!--self-filled-->         
+            <div class="information-container size-117">
+                <app-size-categorie-auto></app-size-categorie-auto>
             </div>
-            <div class="information-container size-s">
-                <div class="auto">115 ans</div>
-                <div>AGE</div>
+            <!--self-filled-->
+            <div class="information-container size-117">
+                <app-age-auto></app-age-auto>
             </div>
             <!-- select choose by player -->
-            <div class="information-container size-xs">
+            <div class="information-container size-40">
                 <app-gender-list></app-gender-list>
             </div>
-            <div class="information-container size-s">
-                <div class="auto">1 m 95</div>
-                <div>TAILLE</div>
+            <!--self-filled-->
+            <div class="information-container size-117">
+                <app-height-auto></app-height-auto>
             </div>
-            <div class="information-container size-s">
-                <div class="auto">110 kgs</div>
-                <div>POIDS</div>
+            <!--self-filled-->
+            <div class="information-container size-117">
+                <app-weight-auto></app-weight-auto>
             </div>
-            <!--input written by player-->
-            <div class="information-container size-m">
-                <input type="text" name="eyes" id="eyes">
-                <label for="eyes">YEUX</label>
-            </div>
-            <!--input written by player-->
-            <div class="information-container size-m">
-                <input type="text" name="hair" id="hair">
-                <label for="hair">CHEVEUX</label>
-            </div>
-            <!--input written by player-->
-            <div class="information-container size-m">
-                <input type="text" name="skin" id="skin">
-                <label for="skin">PEAU</label>
-            </div>
+            <app-third-line-inputs></app-third-line-inputs>
         </div>
     </div>
     <div class="logo">

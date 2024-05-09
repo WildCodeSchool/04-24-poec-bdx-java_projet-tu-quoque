@@ -5,11 +5,10 @@
     flex-direction: column;
 }
 
-select {
+.auto {
     height: 24px;
-    font-size: 20px;
+    padding: 1px;
     border: none;
     border-bottom: 1px solid black;
-    background: none;
-    padding-bottom: 1px;
+    width: 100%;
 }
