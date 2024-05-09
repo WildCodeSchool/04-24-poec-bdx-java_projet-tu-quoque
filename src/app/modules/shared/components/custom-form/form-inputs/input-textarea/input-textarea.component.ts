@@ -3,7 +3,7 @@ import { FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputErrorComponent } from '../../errors/input-error/input-error.component';
 import { CommonModule } from '@angular/common';
-import { TextAreaField } from '../../../../models/fields/textarea-field.type';
+import { TextAreaField } from '../../../../models/types/fields/textarea-field.type';
 import { SharedModule } from '../../../../shared.module';
 import { InputTextModule } from 'primeng/inputtext';
 

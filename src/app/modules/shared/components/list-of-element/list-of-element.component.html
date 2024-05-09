@@ -1,15 +1,22 @@
 <ul class="character-list">
-  <li class="character-line" *ngFor="let element of elementList">
+  <li
+    class="character-line"
+    *ngFor="let element of elementList; let index = index"
+    [ngStyle]="{backgroundColor: index % 2 === 0 ? '#0b202f' : '#30495b'}"
+  >
     @if (!element?.accepted && replacementIcon) {
-      <img [src]="replacementIcon" alt="character" />
+    <img [src]="replacementIcon" alt="character" />
     } @else {
-      <img [src]="elementIcon" alt="character" />
+    <img [src]="elementIcon" alt="character"/>
     }
     <p class="character-name" [routerLink]="[baseUrl, element.id]">
       {{ element.name }}
     </p>
     <img [src]="'assets/images/modify-icon.svg'" alt="modify" [routerLink]="" />
-    <img [src]="'assets/images/garbage-icon.svg'" alt="delete" (click)="deleteElement()"/>
+    <img
+      [src]="'assets/images/garbage-icon.svg'"
+      alt="delete"
+      (click)="deleteElement()"
+    />
   </li>
 </ul>
-

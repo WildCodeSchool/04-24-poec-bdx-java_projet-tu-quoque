@@ -7,7 +7,9 @@
   list-style: none;
 
   .character-line {
-    width: 100%;
+    width: 100vw;
+    padding: 0 1.5rem;
+    transform: translateX(-7%);
     display: flex;
     gap: 1em;
 

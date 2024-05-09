@@ -9,6 +9,9 @@ import { CustomAreaTitleComponent } from './components/custom-area-title/custom-
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CustomAddButtonComponent } from './components/custom-add-button/custom-add-button.component';
+import { ShowCommentPageComponent } from './components/show-comment-page/show-comment-page.component';
+import { AddNotePageComponent } from './components/add-note-page/add-note-page.component';
+import { BackToPreviousPageDirective } from './directives/back-to-previous-page.directive';
 
 
 
@@ -19,6 +22,9 @@ import { CustomAddButtonComponent } from './components/custom-add-button/custom-
     PageHeaderComponent,
     CustomAreaTitleComponent,
     CustomAddButtonComponent,
+    ShowCommentPageComponent,
+    AddNotePageComponent,
+    BackToPreviousPageDirective,
   ],
   imports: [
     CommonModule,
@@ -35,7 +41,10 @@ import { CustomAddButtonComponent } from './components/custom-add-button/custom-
     ListOfElementComponent,
     PageHeaderComponent,
     CustomAreaTitleComponent,
-    FileUploadModule
+    FileUploadModule,
+    ShowCommentPageComponent,
+    AddNotePageComponent,
+    BackToPreviousPageDirective
   ]
 })
 export class SharedModule { }

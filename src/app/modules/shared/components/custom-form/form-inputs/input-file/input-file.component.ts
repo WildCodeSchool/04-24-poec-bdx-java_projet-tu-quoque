@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputErrorComponent } from '../../errors/input-error/input-error.component';
-import { FileField } from '../../../../models/fields/file-fields.type';
+import { FileField } from '../../../../models/types/fields/file-fields.type';
 import { TrackFormSubmitService } from '../../../../services/form-field/track-form-submit.service';
 
 

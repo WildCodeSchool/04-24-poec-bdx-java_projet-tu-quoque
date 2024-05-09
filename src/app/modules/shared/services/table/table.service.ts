@@ -7,10 +7,12 @@ import { Observable, map } from 'rxjs';
 })
 export class TableService {
 
+  private _BASE_URL: string = 'assets/json/tables.json'
+
   constructor(private _http: HttpClient) { }
 
   getUserTableList(): Observable<any> {
-    return this._http.get('assets/json/tables.json')
+    return this._http.get(this._BASE_URL)
     .pipe(
       map((response: any) => response.tables)
     )

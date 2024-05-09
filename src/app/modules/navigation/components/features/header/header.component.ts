@@ -11,9 +11,21 @@ export class HeaderComponent {
 
   title: string = 'tu quoque';
 
+  notesVisible: boolean = false
+  
+
   constructor(private navService: NavigationService) {}
 
   onClick() {
     this.navService.setSidebarVisible();
   }
+
+  openNotesPage(): void {
+    console.log("open")
+  }
+
+  closeNotePage(): void {
+    this.notesVisible = false
+  }
+
 }

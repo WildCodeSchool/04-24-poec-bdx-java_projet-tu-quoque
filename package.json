@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "db:start": "npx json-server src/assets/json/db.json"
+    "db:start": "npx json-server src/assets/json/db.json",
+    "user:start": "npx json-server src/assets/json/user.json"
   },
   "private": true,
   "dependencies": {
