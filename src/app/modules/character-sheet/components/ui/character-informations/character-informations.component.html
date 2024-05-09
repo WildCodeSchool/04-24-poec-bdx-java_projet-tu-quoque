@@ -1,16 +1,7 @@
 
     <div class="informations">
         <div class="line">
-            <!--input written by player-->
-            <div class="information-container size-l">
-                <input type="text" name="characterName" id="characterName">
-                <label for="characterName">NOM DU PERSONNAGE</label>
-            </div>
-            <!--input written by player-->
-            <div class="information-container size-l">
-                <input type="text" name="playerName" id="playerName">
-                <label for="playerName">JOUEUR</label>
-            </div>
+            <app-first-line-inputs></app-first-line-inputs>
         </div>
         <div class="line">
             <!--self-filled-->
@@ -29,11 +20,7 @@
             <div class="information-container size-m">
                 <app-alignment-list></app-alignment-list>
             </div>
-            <!--input written by player-->
-            <div class="information-container size-m">
-                <input type="text" name="god" id="god">
-                <label for="god">DIVINITE</label>
-            </div>
+            <app-god-input></app-god-input>
         </div>
         <div class="line">
             <!--self-filled-->         
@@ -56,21 +43,7 @@
             <div class="information-container size-s">
                 <app-weight-auto></app-weight-auto>
             </div>
-            <!--input written by player-->
-            <div class="information-container size-m">
-                <input type="text" name="eyes" id="eyes">
-                <label for="eyes">YEUX</label>
-            </div>
-            <!--input written by player-->
-            <div class="information-container size-m">
-                <input type="text" name="hair" id="hair">
-                <label for="hair">CHEVEUX</label>
-            </div>
-            <!--input written by player-->
-            <div class="information-container size-m">
-                <input type="text" name="skin" id="skin">
-                <label for="skin">PEAU</label>
-            </div>
+            <app-third-line-inputs></app-third-line-inputs>
         </div>
     </div>
     <div class="logo">
