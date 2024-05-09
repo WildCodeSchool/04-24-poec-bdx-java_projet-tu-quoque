@@ -1,0 +1,15 @@
+@import url("./../../../../shared/character-sheet.scss");
+
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+select {
+    height: 24px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 1px solid black;
+    background: none;
+    padding-bottom: 1px;
+}
