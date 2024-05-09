@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddNotePageComponent } from '../../../shared/components/add-note-page/add-note-page.component';
 
 const routes: Routes = [
   {
@@ -14,8 +15,7 @@ const routes: Routes = [
   },
   {
     path: "creation",
-    loadChildren: () => import('./modules/game-note-creation/game-note-creation.module')
-    .then(m => m.GameNoteCreationModule)
+    component: AddNotePageComponent
   }
 ];
 
