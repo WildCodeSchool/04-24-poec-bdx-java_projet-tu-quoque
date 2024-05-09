@@ -11,11 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 export class TablePageComponent {
 
   table$!: Observable<any>
-
+  id!: number
   constructor(private _tableService: TableService, private _route: ActivatedRoute){}
 
   ngOnInit(): void {
-    const id = Number(this._route.snapshot.paramMap.get('id'));
-    this.table$ = this._tableService.getTableById(id)
+    this.id = Number(this._route.snapshot.paramMap.get('id'));
+    this.table$ = this._tableService.getTableById(this.id)
   }
 }
