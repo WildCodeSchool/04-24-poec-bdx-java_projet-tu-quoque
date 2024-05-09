@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserHomepageComponent } from './components/features/user-homepage/user-homepage.component';
+import { AccountManagementComponent } from './components/features/account-management/account-management.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     path: "tables",
     loadChildren: () => import('./modules/table/table.module')
     .then(m => m.TableModule)
+  },
+  {
+    path: "account-management",
+    component: AccountManagementComponent
   }
 ];
 
