@@ -15,6 +15,7 @@ import { SizeCategorieAutoComponent } from './components/feature/auto/size-categ
 import { HeightAutoComponent } from './components/feature/auto/height-auto/height-auto.component';
 import { SelfFilledComponent } from './components/ui/self-filled/self-filled.component';
 import { WeightAutoComponent } from './components/feature/auto/weight-auto/weight-auto.component';
+import { AgeAutoComponent } from './components/feature/auto/age-auto/age-auto.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { WeightAutoComponent } from './components/feature/auto/weight-auto/weigh
     HeightAutoComponent,
     SelfFilledComponent,
     WeightAutoComponent,
+    AgeAutoComponent,
 
   ],
   imports: [
