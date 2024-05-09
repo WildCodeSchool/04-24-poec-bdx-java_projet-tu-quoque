@@ -1,22 +1,42 @@
 {
-    "characters": [
+  "users": [
+    {
+      "personalInfos": [
+        {
+          "id": 1,
+          "userName":"SkyWalker22",
+          "password":"1234",
+          "avatar":"/assets/images/user-profile-images/user1.jpg"
+        },
+        {
+          "id": 2,
+          "userName":"PixelPioneer",
+          "password":"1234",
+          "avatar":"/assets/images/user-profile-images/user2.png"
+        },
+        {
+          "id": 3,
+          "userName":"MysticWanderer",
+          "password":"1234",
+          "avatar":"/assets/images/user-profile-images/user2.png"
+        }
+      ],
+
+      "characters": [
         {
           "id": 1,
           "name": "Elric",
-          "password": "1234",
-          "avatar":"/assets/images/profile-img-test.jpg"
+          "charactersAvatar":"/assets/images/profile-img-test.jpg"
         },
         {
           "id": 2,
           "name": "Boromir",
-          "password": "1234",
-          "avatar":""
+          "charactersAvatar":""
         },
         {
           "id": 3,
           "name":"Willow",
-          "password": "1234",
-          "avatar":""
+          "charactersAvatar":""
         }
       ],
       "notes": [
@@ -28,4 +48,6 @@
           "content": "42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42"
         }
       ]
+    }
+  ]
 }

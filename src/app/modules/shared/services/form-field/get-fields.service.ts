@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal } from '@angular/core';
-import { TextField } from '../../models/fields/text-fields.type';
-import { TextAreaField } from '../../models/fields/textarea-field.type';
-import { FileField } from '../../models/fields/file-fields.type';
+import { TextField } from '../../models/types/fields/text-fields.type';
+import { TextAreaField } from '../../models/types/fields/textarea-field.type';
+import { FileField } from '../../models/types/fields/file-fields.type';
 import { Observable, map } from 'rxjs';
-import { Fields } from '../../models/fields/fields.type';
-import { FormFieldsResponse } from '../../models/fields/formFieldsResponse.interface';
+import { Fields } from '../../models/types/fields/fields.type';
+import { FormFieldsResponse } from '../../models/types/fields/formFieldsResponse.interface';
 
 @Injectable({
   providedIn: 'root'

@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { InputTextComponent } from '../../../../shared/components/custom-form/form-inputs/input-text/input-text.component';
 import { Observable, map } from 'rxjs';
 import { GetFieldsService } from '../../../../shared/services/form-field/get-fields.service';
-import { TextField } from '../../../../shared/models/fields/text-fields.type';
+import { TextField } from '../../../../shared/models/types/fields/text-fields.type';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../../shared/shared.module';
 import { RouterLink } from '@angular/router';

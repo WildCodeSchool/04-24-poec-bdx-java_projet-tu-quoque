@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextComponent } from '../../../../../../../../shared/components/custom-form/form-inputs/input-text/input-text.component';
 import { Observable, map } from 'rxjs';
-import { TextField } from '../../../../../../../../shared/models/fields/text-fields.type';
+import { TextField } from '../../../../../../../../shared/models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../../../../../../../shared/services/form-field/get-fields.service';
 
 @Component({
