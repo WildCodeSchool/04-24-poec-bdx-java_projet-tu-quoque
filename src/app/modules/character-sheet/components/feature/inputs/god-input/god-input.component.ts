@@ -7,5 +7,5 @@ import { InputField } from '../../../../shared/classes/input-field.class';
   styleUrl: './god-input.component.scss'
 })
 export class GodInputComponent {
-  field: InputField = new InputField("god", "DIVINITE", "size-m");
+  field: InputField = new InputField("god", "DIVINITE", "size-196");
 }

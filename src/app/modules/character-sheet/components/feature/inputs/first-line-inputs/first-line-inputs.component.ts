@@ -8,7 +8,7 @@ import { InputField } from '../../../../shared/classes/input-field.class';
 })
 export class FirstLineInputsComponent {
   fieldList: InputField[] = [
-    new InputField("characterName", "NOM DU PERSONNAGE", "size-l"),
-    new InputField("playerName", "JOUEUR", "size-l")
+    new InputField("characterName", "NOM DU PERSONNAGE", "size-470"),
+    new InputField("playerName", "JOUEUR", "size-470")
   ]
 }

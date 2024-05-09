@@ -8,8 +8,8 @@ import { InputField } from '../../../../shared/classes/input-field.class';
 })
 export class ThirdLineInputsComponent {
   fieldList: InputField[] = [
-    new InputField("eyesColor", "YEUX", "size-m"),
-    new InputField("hairColor", "CHEVEUX", "size-m"),
-    new InputField("skinColor", "PEAU", "size-m"),
+    new InputField("eyesColor", "YEUX", "size-117"),
+    new InputField("hairColor", "CHEVEUX", "size-117"),
+    new InputField("skinColor", "PEAU", "size-117"),
   ]
 }
