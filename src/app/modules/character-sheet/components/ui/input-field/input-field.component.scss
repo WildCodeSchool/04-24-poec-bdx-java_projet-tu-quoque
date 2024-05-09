@@ -1,0 +1,32 @@
+:host {
+    width: 100%;
+}
+
+.information-container {
+    display: flex;
+    flex-direction: column;
+
+
+    &.size-l {
+        flex: 8
+    }
+
+    &.size-m {
+        flex: 4;
+    }
+
+    &.size-s {
+        flex: 2;
+    }
+
+    &.size-xs {
+        flex: 1;
+    }
+
+    input[type=text] {
+        height: 1.5rem;
+        font-size: 1.25rem;
+        border: none;
+        border-bottom: 1px solid black;
+    }
+}
