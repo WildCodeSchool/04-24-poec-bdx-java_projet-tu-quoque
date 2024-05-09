@@ -103,4 +103,27 @@ export class CharacterSheetService {
       ))
     );
   }
+
+  setAge$() {
+    let tmpSheet: any;
+    return this.listener.sendInfos().pipe(
+      map((sheet: any) => {
+        tmpSheet = sheet;
+        return sheet.characterClass;
+      }),
+      switchMap(() => this.race$.pipe(
+        map((race: Race) => {
+          if (tmpSheet.age) {
+            return tmpSheet.age;
+          } else if (tmpSheet.characterClass && tmpSheet.characterRace) {
+            return (race.adultAge + DiceService.roll(race.ageModifier[tmpSheet.characterClass as ClassEnum])).toString();
+          } else {
+            return "";
+          }
+        })
+      )
+
+      )
+    )
+  }
 }
