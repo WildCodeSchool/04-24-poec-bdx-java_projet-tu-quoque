@@ -9,13 +9,19 @@ export class NotepadMainPageComponent {
   fakeUserId: number = 1
 
   fakeCharacterId: number = 42
-  // fakeCharacterId!: number
+  // fakeCharacterId!: number --> Test pour voir le cas ou pas de notes de perso
+
+  isUserSelected!: boolean
 
   @Output()
   areNotesVisible: EventEmitter<boolean> = new EventEmitter()
 
   closeNotes(): void {
     this.areNotesVisible.emit(false)
+  }
+
+  setUserSelected(event: boolean) {
+    this.isUserSelected = event
   }
 
 }
