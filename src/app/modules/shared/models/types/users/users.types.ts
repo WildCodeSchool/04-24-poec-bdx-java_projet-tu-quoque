@@ -1,9 +1,12 @@
 import { Characters } from "./characters.type";
 import { Notes } from "./notes.type";
-import { PersonalInfos } from "./personalInfos.type"
+
 
 export type Users = {
-    personalInfos: PersonalInfos[];
-    characters: Characters[];
-    notes: Notes[]
+    "id": number,
+    "userName": string,
+    "password": string,
+    "avatar": string,
+    "characters": Characters[],
+    "notes": Notes[]
 }

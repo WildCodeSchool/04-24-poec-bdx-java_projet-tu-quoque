@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrl: './user-characters.component.scss',
 })
 export class UserCharactersComponent {
-  userCharacterList: Observable<any> = this._characterService.getUserCharacterList()
+  userCharacterList: Observable<any> = this._characterService.getUserCharacterList$()
 
   constructor(private _characterService: CharacterService){}
 

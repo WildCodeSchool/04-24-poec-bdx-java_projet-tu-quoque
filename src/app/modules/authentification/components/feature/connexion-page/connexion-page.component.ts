@@ -7,6 +7,7 @@ import { TextField } from '../../../../shared/models/types/fields/text-fields.ty
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../../shared/shared.module';
 import { RouterLink } from '@angular/router';
+import { GetUsersService } from '../../../../shared/services/user/get-users.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class ConnexionPageComponent implements OnInit {
   passwordControl!: FormControl;
   connexionIcon: string = 'assets/icons/connexion.svg';
 
-  constructor(private _fieldsService: GetFieldsService, private _fb: FormBuilder) {
+  constructor(private _fieldsService: GetFieldsService, private _fb: FormBuilder, private _usersService: GetUsersService) {
     this.form = this._fb.group({
       email: ['', [
         Validators.required, 
