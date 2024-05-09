@@ -33,5 +33,8 @@ export class ListenPlayerActionService {
       this.sheetModifiedByPlayer.weight = '';
       this.sheetModifiedByPlayer.heightModifierRolled = '';
     }
+    if (['characterRace', 'characterClass'].includes(field.name)) {
+      this.sheetModifiedByPlayer.age = '';
+    }
   }
 }
