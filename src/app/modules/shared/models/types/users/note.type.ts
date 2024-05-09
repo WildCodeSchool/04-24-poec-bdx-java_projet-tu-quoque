@@ -1,4 +1,4 @@
-export type Notes = {
+export type Note = {
     "id": number;
     "title": string;
     "writerId": number;
