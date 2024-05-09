@@ -39,7 +39,7 @@ export class CharacterPageComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
-    this.character$ = this._characterService.getCharacterById(id);
+    this.character$ = this._characterService.getCharacterById$(id);
   }
 
   toggleCharacterSheetVisible(event: boolean): void {
