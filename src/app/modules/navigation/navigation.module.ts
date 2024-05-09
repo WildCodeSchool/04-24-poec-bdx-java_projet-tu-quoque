@@ -6,18 +6,21 @@ import { MenuSidebarComponent } from './components/features/menu-sidebar/menu-si
 import { HeaderComponent } from './components/features/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderButtonComponent } from './components/ui/header-button/header-button.component';
+import { NotesButtonComponent } from './components/ui/notes-button/notes-button.component';
 
 
 @NgModule({
   declarations: [
     MenuSidebarComponent,
     HeaderComponent,
-    HeaderButtonComponent
+    HeaderButtonComponent,
+    NotesButtonComponent
   ],
   imports: [
     CommonModule,
     NavigationRoutingModule,
-    SharedModule
+    SharedModule,
+  
   ],
   exports: [
     MenuSidebarComponent,

@@ -1,0 +1,34 @@
+:host {
+    display:  flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    width: 100vw;
+    padding: 2rem 5% 1em 5%;
+    background-color: #0b202f;
+    color: #fff;
+    font-family: alice;
+    font-size: large;
+
+
+    .main-note-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+        transform: translateX(-6%);
+
+        .note-text-area {
+            flex-grow: 1;
+            width: 80vw;
+            border: 1px solid #c29b0f;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
+
+            .text {
+                color: #c29b0f;
+            }
+        }
+    }
+  
+}

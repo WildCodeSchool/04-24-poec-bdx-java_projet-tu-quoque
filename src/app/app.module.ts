@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationModule,
     AuthentificationModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
