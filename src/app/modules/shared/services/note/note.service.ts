@@ -30,4 +30,11 @@ export class NoteService {
       map((result: any) => result.filter((discussion: any) => discussion.character_id === id))
     )
   }
+
+  getNoteById(id: number): Observable<any> {
+    return this.getNoteList()
+    .pipe(
+      map((result: any) => result.find((note: any) => note.id === id))
+    )
+  }
 }
