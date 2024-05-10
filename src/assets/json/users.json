@@ -9,17 +9,17 @@
             {
               "id": 1,
               "name": "Elric",
-              "charactersAvatar":"/assets/images/profile-img-test.jpg"
+              "avatar":"/assets/images/profile-img-test.jpg"
             },
             {
               "id": 2,
               "name": "Boromir",
-              "charactersAvatar":""
+              "avatar":""
             },
             {
               "id": 3,
               "name":"Willow",
-              "charactersAvatar":""
+              "avatar":""
             }
           ],
           "notes": [
@@ -41,17 +41,17 @@
             {
               "id": 1,
               "name": "Elric",
-              "charactersAvatar":"/assets/images/profile-img-test.jpg"
+              "avatar":"/assets/images/profile-img-test.jpg"
             },
             {
               "id": 2,
               "name": "Boromir",
-              "charactersAvatar":""
+              "avatar":""
             },
             {
               "id": 3,
               "name":"Willow",
-              "charactersAvatar":""
+              "avatar":""
             }
           ],
           "notes": [
