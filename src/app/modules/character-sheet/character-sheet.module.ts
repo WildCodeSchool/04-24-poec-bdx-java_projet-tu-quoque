@@ -20,8 +20,7 @@ import { InputFieldComponent } from './components/character-informations-compone
 import { FirstLineInputsComponent } from './components/character-informations-components/feature/inputs/first-line-inputs/first-line-inputs.component';
 import { GodInputComponent } from './components/character-informations-components/feature/inputs/god-input/god-input.component';
 import { ThirdLineInputsComponent } from './components/character-informations-components/feature/inputs/third-line-inputs/third-line-inputs.component';
-import { StrengthComponent } from './components/statistics-components/features/strength/strength.component';
-import { StatComponent } from './components/statistics-components/ui/stat/stat.component';
+import { StatComponent } from './components/statistics-components/features/stat/stat.component';
 import { StatisticsComponent } from './components/statistics-components/ui/statistics/statistics.component';
 import { SkillsComponent } from './components/skills-components/ui/skills/skills.component';
 
@@ -45,7 +44,6 @@ import { SkillsComponent } from './components/skills-components/ui/skills/skills
     FirstLineInputsComponent,
     GodInputComponent,
     ThirdLineInputsComponent,
-    StrengthComponent,
     StatComponent,
     StatisticsComponent,
     SkillsComponent,
