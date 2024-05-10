@@ -73,15 +73,15 @@
             "name": "demi-orque",
             "statsModifiers": [
                 {
-                    "stats": "STR",
+                    "stat": "FOR",
                     "mod": 2
                 },
                 {
-                    "stats": "INT",
+                    "stat": "INT",
                     "mod": -2
                 },
                 {
-                    "stats": "CHA",
+                    "stat": "CHA",
                     "mod": -2
                 }
             ],
