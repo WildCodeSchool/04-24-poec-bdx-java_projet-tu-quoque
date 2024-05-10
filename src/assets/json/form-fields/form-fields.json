@@ -116,22 +116,18 @@
       },
       {
         "fieldType": "text",
-        "label": "Titre de votre note",
+        "label": "Titre",
         "id": "noteTitle",
         "name": "noteTitle",
         "type": "text",
         "value": "",
         "autocomplete": false,
         "placeholder": "Entrez le titre de votre note",
-        "required": true,
-        "minlength": 2,
-        "maxlength": 50,
-        "pattern": "[a-zA-Z0-9 ]*",
         "disabled": false
       },
       {
         "fieldType": "textarea",
-        "label": "Description de votre note",
+        "label": "Description",
         "id": "noteDescription",
         "name": "noteDescription",
         "value": "",
@@ -139,6 +135,17 @@
         "placeholder": "Entrez la description de votre note",
         "required": true,
         "minlength": 5,
+        "disabled": false
+      },
+      {
+        "fieldType": "text",
+        "label": "Changer de pseudo",
+        "id": "usernameChange",
+        "name": "usernameChange",
+        "type": "text",
+        "value": "",
+        "autocomplete": false,
+        "placeholder": "Entrez votre pseudo",
         "disabled": false
       }
     ]

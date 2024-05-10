@@ -1,246 +1,440 @@
 {
-    "user": {
-        "name": "jo"
+  "users": [
+    {
+      "id": 1,
+      "name": "SkyWalker22",
+      "email": "skywalker22@gmail.com",
+      "password": "1234",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "role": "user"
     },
-    "races": [
+    {
+      "id": 2,
+      "userName": "Moussay",
+      "email": "moussay@gmail.com",
+      "password": "1234",
+      "avatar": "/assets/images/user-profile-images/user2.png",
+      "role": "admin"
+    }
+  ],
+  "characters": [
+    {
+      "id": 1,
+      "name": "Elric",
+      "avatar": "/assets/images/profile-img-test.jpg",
+      "usersId": 1,
+      "tablesId": 2,
+      "characterSheetId": 1,
+      "status": "on hold",
+      "scheduleId": 1
+    },
+    {
+      "id": 2,
+      "name": "Boromir",
+      "avatar": "",
+      "usersId": 1,
+      "tablesId": 2,
+      "characterSheetId": 1,
+      "status": "accepted",
+      "scheduleId": 1
+    },
+    {
+      "id": 3,
+      "name": "Willow",
+      "avatar": "",
+      "usersId": 1,
+      "tablesId": 2,
+      "characterSheetId": 1,
+      "status": "invited",
+      "scheduleId": 1
+    }
+  ],
+  "tables": [
+    {
+      "id": 1,
+      "avatar": "/assets/images/profile-img-test.jpg",
+      "usersId": 1
+    },
+    {
+      "id": 2,
+      "avatar": "",
+      "usersId": 1
+    },
+    {
+      "id": 2,
+      "avatar": "",
+      "usersId": 1
+    }
+  ],
+  "schedules": [
+    {
+      "id": 1,
+      "tablesId": 1
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "tablesId": 1,
+      "usersId": 1,
+      "charactersId": null,
+      "name": "Question",
+      "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
+    },
+    {
+      "id": 2,
+      "tablesId": 1,
+      "usersId": 1,
+      "charactersId": null,
+      "name": "Eureka",
+      "text": "42"
+    },
+    {
+      "id": 3,
+      "tablesId": 1,
+      "usersId": 1,
+      "charactersId": null,
+      "name": "mot de passe",
+      "text": "Ha Ha Ha !!!"
+    },
+    {
+      "id": 4,
+      "tablesId": null,
+      "usersId": 2,
+      "charactersId": 2,
+      "name": "Pas d'inspi",
+      "text": "Mur"
+    },
+    {
+      "id": 5,
+      "tablesId": null,
+      "usersId": 2,
+      "charactersId": 2,
+      "name": "Météo",
+      "text": "Beau temps"
+    },
+    {
+      "id": 6,
+      "tablesId": null,
+      "usersId": 2,
+      "charactersId": 2,
+      "name": "secret inavouable",
+      "text": "oublié"
+    }
+  ],
+  "drawings": [
+    {
+      "id": 1,
+      "name": "papy",
+      "content": "/assets/images/user-profile-images/user1.jpg",
+      "tablesId": 1
+    },
+    {
+      "id": 2,
+      "name": "maman sexy",
+      "content": "/assets/images/user-profile-images/user2.png",
+      "tablesId": 1
+    },
+    {
+      "id": 3,
+      "name": "papa",
+      "content": "/assets/images/user-profile-images/user3.png",
+      "tablesId": 1
+    }
+  ],
+  "chats": [
+    {
+      "id": 1,
+      "name": "vas te cacher sous l'escalier"
+    },
+    {
+      "id": 2,
+      "name": "Tu es maintenant un vampire"
+    },
+    {
+      "id": 3,
+      "name": "Sylvain est un gros nounours <3"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "text": "Mais pourquoi ?"
+    },
+    {
+      "id": 2,
+      "text": "Voilà, voilà"
+    }
+  ],
+  "chatsMessages": [
+    {
+      "chatsId": 1,
+      "messagesId": 1
+    },
+    {
+      "chatsId": 1,
+      "messagesId": 2
+    }
+  ],
+  "characterSheets": [
+    {
+      "id": 1
+    }
+  ],
+  "charactersChats": [
+    {
+      "charactersId": 1,
+      "chatsId": 1
+    }
+  ],
+  "tablesChats": [
+    {
+      "tablesId": 1,
+      "chatsId": 2
+    }
+  ],
+  "user": {
+    "name": "jo"
+  },
+  "races": [
+    {
+      "name": "elfe",
+      "statsModifiers": [
         {
-            "name": "elfe",
-            "statsModifiers": [
-                {
-                    "stat": "DEX",
-                    "mod": 2
-                },
-                {
-                    "stat": "CON",
-                    "mod": -2
-                }
-            ],
-            "sizeCategorie": "M",
-            "skills": [
-                {
-                    "skill": "Détection",
-                    "mod": 2
-                },
-                {
-                    "skill": "Fouille",
-                    "mod": 2
-                },
-                {
-                    "skill": "Perception auditive",
-                    "mod": 2
-                }
-            ],
-            "languages": {
-                "systemically": [
-                    "commun",
-                    "elfe"
-                ],
-                "additional": [
-                    "draconien",
-                    "gnoll",
-                    "gnome",
-                    "gobelin",
-                    "orque",
-                    "sylvestre"
-                ]
-            },
-            "adultAge": 110,
-            "ageModifier": {
-                "Barbare": "4d6",
-                "Ensorceleur": "4d6",
-                "Roublard": "4d6",
-                "Barde": "6d6",
-                "Guerrier": "6d6",
-                "Paladin": "6d6",
-                "Rôdeur": "6d6",
-                "Druide": "10d6",
-                "Magicien": "10d6",
-                "Moine": "10d6",
-                "Prêtre": "10d6"
-            },
-            "baseHeight": {
-                "M": 135,
-                "F": 135
-            },
-            "modHeight": "5d6",
-            "baseWeight": {
-                "M": 42,
-                "F": 40
-            },
-            "modWeight": "1d6"
+          "stat": "DEX",
+          "mod": 2
         },
         {
-            "name": "demi-orque",
-            "statsModifiers": [
-                {
-                    "stat": "FOR",
-                    "mod": 2
-                },
-                {
-                    "stat": "INT",
-                    "mod": -2
-                },
-                {
-                    "stat": "CHA",
-                    "mod": -2
-                }
-            ],
-            "sizeCategorie": "M",
-            "skills": [],
-            "languages": {
-                "systemically": [
-                    "commun",
-                    "orque"
-                ],
-                "additional": [
-                    "abyssal",
-                    "draconien",
-                    "géant",
-                    "gnoll",
-                    "gobelin"
-                ]
-            },
-            "adultAge": 14,
-            "ageModifier": {
-                "Barbare": "1d4",
-                "Ensorceleur": "1d4",
-                "Roublard": "1d4",
-                "Barde": "1d6",
-                "Guerrier": "1d6",
-                "Paladin": "1d6",
-                "Rôdeur": "1d6",
-                "Druide": "2d6",
-                "Magicien": "2d6",
-                "Moine": "2d6",
-                "Prêtre": "2d6"
-            },
-            "baseHeight": {
-                "M": 150,
-                "F": 135
-            },
-            "modHeight": "5d12",
-            "baseWeight": {
-                "M": 75,
-                "F": 55
-            },
-            "modWeight": "2d6"
+          "stat": "CON",
+          "mod": -2
         }
-    ],
-    "classes": [
+      ],
+      "sizeCategorie": "M",
+      "skills": [
         {
-            "name": "Barbare",
-            "DV": "d12",
-            "classSkills": [
-                "Artisanat",
-                "Dressage",
-                "Equitation",
-                "Escalade",
-                "Intimidation",
-                "Natation",
-                "Perception auditive",
-                "Saut",
-                "Survie"
-            ],
-            "baseSkillPoints": "(4 + mod INT) * 4",
-            "skillPointsPerLevel": "4 + mod INT",
-            "weapons": [
-                "courante",
-                "guerre"
-            ],
-            "shields": "toutes sauf pavois",
-            "armors": [
-                "lègere",
-                "intermédiaire"
-            ],
-            "special": []
+          "skill": "Détection",
+          "mod": 2
         },
         {
-            "name": "Roublard",
-            "DV": "d6",
-            "classSkills": [
-                "Acrobaties",
-                "Artisanat",
-                "Bluff",
-                "Connaissance (Folklore local)",
-                "Contrefaçon",
-                "Crochetage",
-                "Décryptage",
-                "Déguisement",
-                "Déplacement silencieux",
-                "Désamorçage/sabotage",
-                "Détection",
-                "Diplomatie",
-                "Discrétion",
-                "Equilibre",
-                "Escalade",
-                "Escamotage",
-                "Estimation",
-                "Evasion",
-                "Fouille",
-                "Intimidation",
-                "Maîtrise des cordes",
-                "Natation",
-                "Perception auditive",
-                "Profession",
-                "Psychologie",
-                "Renseignement",
-                "Représentation",
-                "Saut",
-                "Utilisation d'objets magiques"
-            ],
-            "baseSkillPoints": "(8 + mod INT) * 4",
-            "skillPointsPerLevel": "8 + mod INT",
-            "weapons": [
-                "courante",
-                "arbalète de poing",
-                "arc court (normal et composite)",
-                "épée courte",
-                "matraque",
-                "rapière"
-            ],
-            "shields": "",
-            "armors": [
-                "lègere"
-            ],
-            "special": []
+          "skill": "Fouille",
+          "mod": 2
+        },
+        {
+          "skill": "Perception auditive",
+          "mod": 2
         }
-    ],
-    "classBaseBonus": [],
-    "alignments": [
+      ],
+      "languages": {
+        "systemically": [
+          "commun",
+          "elfe"
+        ],
+        "additional": [
+          "draconien",
+          "gnoll",
+          "gnome",
+          "gobelin",
+          "orque",
+          "sylvestre"
+        ]
+      },
+      "adultAge": 110,
+      "ageModifier": {
+        "Barbare": "4d6",
+        "Ensorceleur": "4d6",
+        "Roublard": "4d6",
+        "Barde": "6d6",
+        "Guerrier": "6d6",
+        "Paladin": "6d6",
+        "Rôdeur": "6d6",
+        "Druide": "10d6",
+        "Magicien": "10d6",
+        "Moine": "10d6",
+        "Prêtre": "10d6"
+      },
+      "baseHeight": {
+        "M": 135,
+        "F": 135
+      },
+      "modHeight": "5d6",
+      "baseWeight": {
+        "M": 42,
+        "F": 40
+      },
+      "modWeight": "1d6"
+    },
+    {
+      "name": "demi-orque",
+      "statsModifiers": [
         {
-            "name": "Loyal Bon"
+          "stat": "FOR",
+          "mod": 2
         },
         {
-            "name": "Loyal Neutre"
+          "stat": "INT",
+          "mod": -2
         },
         {
-            "name": "Loyal Mauvais"
-        },
-        {
-            "name": "Neutre Bon"
-        },
-        {
-            "name": "Neutre"
-        },
-        {
-            "name": "Neutre Mauvais"
-        },
-        {
-            "name": "Chaotique Bon"
-        },
-        {
-            "name": "Chaotique Neutre"
-        },
-        {
-            "name": "Chaotique Mauvais"
+          "stat": "CHA",
+          "mod": -2
         }
-    ],
-    "genders": [
-        {
-            "name": "M"
-        },
-        {
-            "name": "F"
-        }
-    ]
+      ],
+      "sizeCategorie": "M",
+      "skills": [],
+      "languages": {
+        "systemically": [
+          "commun",
+          "orque"
+        ],
+        "additional": [
+          "abyssal",
+          "draconien",
+          "géant",
+          "gnoll",
+          "gobelin"
+        ]
+      },
+      "adultAge": 14,
+      "ageModifier": {
+        "Barbare": "1d4",
+        "Ensorceleur": "1d4",
+        "Roublard": "1d4",
+        "Barde": "1d6",
+        "Guerrier": "1d6",
+        "Paladin": "1d6",
+        "Rôdeur": "1d6",
+        "Druide": "2d6",
+        "Magicien": "2d6",
+        "Moine": "2d6",
+        "Prêtre": "2d6"
+      },
+      "baseHeight": {
+        "M": 150,
+        "F": 135
+      },
+      "modHeight": "5d12",
+      "baseWeight": {
+        "M": 75,
+        "F": 55
+      },
+      "modWeight": "2d6"
+    }
+  ],
+  "classes": [
+    {
+      "name": "Barbare",
+      "DV": "d12",
+      "classSkills": [
+        "Artisanat",
+        "Dressage",
+        "Equitation",
+        "Escalade",
+        "Intimidation",
+        "Natation",
+        "Perception auditive",
+        "Saut",
+        "Survie"
+      ],
+      "baseSkillPoints": "(4 + mod INT) * 4",
+      "skillPointsPerLevel": "4 + mod INT",
+      "weapons": [
+        "courante",
+        "guerre"
+      ],
+      "shields": "toutes sauf pavois",
+      "armors": [
+        "lègere",
+        "intermédiaire"
+      ],
+      "special": []
+    },
+    {
+      "name": "Roublard",
+      "DV": "d6",
+      "classSkills": [
+        "Acrobaties",
+        "Artisanat",
+        "Bluff",
+        "Connaissance (Folklore local)",
+        "Contrefaçon",
+        "Crochetage",
+        "Décryptage",
+        "Déguisement",
+        "Déplacement silencieux",
+        "Désamorçage/sabotage",
+        "Détection",
+        "Diplomatie",
+        "Discrétion",
+        "Equilibre",
+        "Escalade",
+        "Escamotage",
+        "Estimation",
+        "Evasion",
+        "Fouille",
+        "Intimidation",
+        "Maîtrise des cordes",
+        "Natation",
+        "Perception auditive",
+        "Profession",
+        "Psychologie",
+        "Renseignement",
+        "Représentation",
+        "Saut",
+        "Utilisation d'objets magiques"
+      ],
+      "baseSkillPoints": "(8 + mod INT) * 4",
+      "skillPointsPerLevel": "8 + mod INT",
+      "weapons": [
+        "courante",
+        "arbalète de poing",
+        "arc court (normal et composite)",
+        "épée courte",
+        "matraque",
+        "rapière"
+      ],
+      "shields": "",
+      "armors": [
+        "lègere"
+      ],
+      "special": []
+    }
+  ],
+  "classBaseBonus": [],
+  "alignments": [
+    {
+      "name": "Loyal Bon"
+    },
+    {
+      "name": "Loyal Neutre"
+    },
+    {
+      "name": "Loyal Mauvais"
+    },
+    {
+      "name": "Neutre Bon"
+    },
+    {
+      "name": "Neutre"
+    },
+    {
+      "name": "Neutre Mauvais"
+    },
+    {
+      "name": "Chaotique Bon"
+    },
+    {
+      "name": "Chaotique Neutre"
+    },
+    {
+      "name": "Chaotique Mauvais"
+    }
+  ],
+  "genders": [
+    {
+      "name": "M"
+    },
+    {
+      "name": "F"
+    }
+  ]
 }

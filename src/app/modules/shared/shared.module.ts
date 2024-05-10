@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CustomAddButtonComponent } from './components/custom-add-button/custom-add-button.component';
 import { ShowCommentPageComponent } from './components/show-comment-page/show-comment-page.component';
-import { AddNotePageComponent } from './components/add-note-page/add-note-page.component';
 import { BackToPreviousPageDirective } from './directives/back-to-previous-page.directive';
 
 
@@ -23,7 +22,6 @@ import { BackToPreviousPageDirective } from './directives/back-to-previous-page.
     CustomAreaTitleComponent,
     CustomAddButtonComponent,
     ShowCommentPageComponent,
-    AddNotePageComponent,
     BackToPreviousPageDirective,
   ],
   imports: [
@@ -43,7 +41,6 @@ import { BackToPreviousPageDirective } from './directives/back-to-previous-page.
     CustomAreaTitleComponent,
     FileUploadModule,
     ShowCommentPageComponent,
-    AddNotePageComponent,
     BackToPreviousPageDirective
   ]
 })
