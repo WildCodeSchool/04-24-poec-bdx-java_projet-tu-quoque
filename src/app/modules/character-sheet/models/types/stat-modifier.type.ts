@@ -1,6 +1,6 @@
-import { StatAbbr } from "../enums/stats-abbr.enum"
+import { StatAbbrKey } from "../enums/stats-abbr.enum"
 
 export type StatModifier = {
-    stats: StatAbbr,
+    stat: StatAbbrKey,
     mod: number
 }
