@@ -38,7 +38,7 @@ export class MenuSidebarComponent {
     {name: "Accueil", url: "user"},
     {name: "Personnages", url: "user/characters"},
     {name: "Tables", url: "user/tables"},
-    {name: "Mon compte", url: "user/account"},
+    {name: "Mon compte", url: "user/account-management"},
     {name: "Déconnexion", url: ""}
   ]
 
