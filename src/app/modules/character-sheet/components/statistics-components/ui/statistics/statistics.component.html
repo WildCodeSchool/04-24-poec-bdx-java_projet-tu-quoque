@@ -1,1 +1,23 @@
-<p>statistics works!</p>
+<table>
+    <thead>
+        <tr>
+            <td>CARACTERISTIQUES</td>
+            <td>SCORE</td>
+            <td>MODIF.</td>
+            <td>SCORE<br>TEMPORAIRE</td>
+            <td>MOD.<br>TEMPORAIRE</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let stat of stats">
+            <td>
+                {{stat.abbr}}<br>
+                {{stat.name}}
+            </td>
+            <td>{{stat.value}}</td>
+            <td>{{stat.mod}}</td>
+            <td>{{stat.tempValue || ""}}</td>
+            <td>{{stat.tempMod || ""}}</td>
+        </tr>
+    </tbody>
+</table>
