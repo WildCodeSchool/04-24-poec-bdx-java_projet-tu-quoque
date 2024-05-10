@@ -2,6 +2,7 @@ import { DestroyRef, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Field } from '../models/types/field.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { StatisticDetails } from '../../models/classes/statistics-details.class';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,14 @@ export class ListenPlayerActionService {
     if (['characterRace', 'characterClass'].includes(field.name)) {
       this.sheetModifiedByPlayer.age = '';
     }
+  }
+
+  receiveStatsFrom(fromObs$: Observable<StatisticDetails[]>) {
+    fromObs$.pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe((stats: StatisticDetails[]) => {
+      this.sheetModifiedByPlayer["stats"] = stats;
+      this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
+    });
   }
 }
