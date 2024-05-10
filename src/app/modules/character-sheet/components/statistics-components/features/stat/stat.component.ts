@@ -1,11 +1,9 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
-import { StatAbbr, StatAbbrKey } from '../../../../models/enums/stats-abbr.enum';
+import { Component } from '@angular/core';
 import { StatisticDetails } from '../../../../models/classes/statistics-details.class';
 import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
-import { distinctUntilChanged, map, Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, map, Observable } from 'rxjs';
 import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
 import { StatModifier } from '../../../../models/types/stat-modifier.type';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { StatisticsService } from '../../../../shared/services/statistics.service';
 
 @Component({
@@ -15,23 +13,17 @@ import { StatisticsService } from '../../../../shared/services/statistics.servic
 })
 export class StatComponent {
   stats$: Observable<StatisticDetails[]> = this.adjustStatsFunctionRace$();
-  stats: StatisticDetails[] = [];
 
   constructor(
     private listener: ListenPlayerActionService,
     private sheetService: CharacterSheetService,
-    private destroyRef: DestroyRef,
     private statService: StatisticsService
   ) {
-
   }
 
   ngOnInit(): void {
-    this.stats = this.statService.generate();
-    this.listener.receiveStatsFrom(
-      this.adjustStatsFunctionRace$().pipe(
-        takeUntilDestroyed(this.destroyRef)
-      ));
+    this.statService.generate();
+    this.listener.receiveStatsFrom(this.stats$);
   }
 
   adjustStatsFunctionRace$(): Observable<StatisticDetails[]> {
