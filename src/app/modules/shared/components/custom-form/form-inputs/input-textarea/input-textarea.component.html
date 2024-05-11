@@ -1,4 +1,7 @@
     <label [for]="field.id">{{ field.label }}</label>
+    
+    <div class="textarea-container">
+
     <textarea
         [rows]="5"
         [cols]="30"
@@ -7,9 +10,9 @@
         [formControl]="control"
         [placeholder]="field.placeholder"
         (blur)="onBlur()"
-       
     ></textarea>
 
+</div>
     
 
       <app-input-error 
