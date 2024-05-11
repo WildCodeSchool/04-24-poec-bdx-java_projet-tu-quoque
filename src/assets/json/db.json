@@ -14,7 +14,7 @@
       "email": "moussay@gmail.com",
       "password": "1234",
       "avatar": "/assets/images/user-profile-images/user2.png",
-      "role":  "admin"
+      "role": "admin"
     },
     {
       "id": 3,
@@ -48,7 +48,6 @@
       "avatar": "/assets/images/user-profile-images/user1.jpg",
       "role": "user"
     }
-
   ],
   "characters": [
     {
@@ -86,18 +85,34 @@
     {
       "id": 1,
       "avatar": "/assets/images/profile-img-test.jpg",
+      "name": "table ronde",
       "usersId": 1
     },
     {
       "id": 2,
       "avatar": "",
+      "name": "imbattable",
       "usersId": 1
     },
     {
-      "id": 2,
+      "id": 3,
       "avatar": "",
+      "name": "évitable",
+      "usersId": 1
+    },
+    {
+      "id": 4,
+      "avatar": "",
+      "name": "Acceptable",
+      "usersId": 1
+    },
+    {
+      "id": 5,
+      "avatar": "",
+      "name": "Ajustable",
       "usersId": 1
     }
+
   ],
   "schedules": [
     {
@@ -159,7 +174,7 @@
     {
       "id": 1,
       "name": "papy",
-      "content":  "/assets/images/user-profile-images/user1.jpg",
+      "content": "/assets/images/user-profile-images/user1.jpg",
       "tablesId": 1
     },
     {
@@ -178,15 +193,39 @@
   "chats": [
     {
       "id": 1,
-      "name": "vas te cacher sous l'escalier"
+      "name": "vas te cacher sous l'escalier",
+      "tableId": 1,
+      "characterId": null
     },
     {
       "id": 2,
-      "name": "Tu es maintenant un vampire"
+      "name": "Tu es maintenant un vampire",
+      "tableId": 1,
+      "characterId": null
     },
     {
       "id": 3,
-      "name": "Sylvain est un gros nounours <3"
+      "name": "Sylvain est un [complète cette phrase] <3",
+      "tableId": 1,
+      "characterId": null
+    },
+    {
+      "id": 4,
+      "name": "vas te cacher sous l'escalier",
+      "tableId": null,
+      "characterId": 1
+    },
+    {
+      "id": 5,
+      "name": "Tu es maintenant un vampire",
+      "tableId": null,
+      "characterId": 1
+    },
+    {
+      "id": 6,
+      "name": "Sylvain est un [complète cette phrase] <3",
+      "tableId": null,
+      "characterId": 1
     }
   ],
   "messages": [
@@ -226,9 +265,6 @@
       "chatsId": 2
     }
   ],
-  "user": {
-    "name": "jo"
-  },
   "races": [
     {
       "name": "elfe",
@@ -258,10 +294,7 @@
         }
       ],
       "languages": {
-        "systemically": [
-          "commun",
-          "elfe"
-        ],
+        "systemically": ["commun", "elfe"],
         "additional": [
           "draconien",
           "gnoll",
@@ -315,17 +348,8 @@
       "sizeCategorie": "M",
       "skills": [],
       "languages": {
-        "systemically": [
-          "commun",
-          "orque"
-        ],
-        "additional": [
-          "abyssal",
-          "draconien",
-          "géant",
-          "gnoll",
-          "gobelin"
-        ]
+        "systemically": ["commun", "orque"],
+        "additional": ["abyssal", "draconien", "géant", "gnoll", "gobelin"]
       },
       "adultAge": 14,
       "ageModifier": {
@@ -370,15 +394,9 @@
       ],
       "baseSkillPoints": "(4 + mod INT) * 4",
       "skillPointsPerLevel": "4 + mod INT",
-      "weapons": [
-        "courante",
-        "guerre"
-      ],
+      "weapons": ["courante", "guerre"],
       "shields": "toutes sauf pavois",
-      "armors": [
-        "lègere",
-        "intermédiaire"
-      ],
+      "armors": ["lègere", "intermédiaire"],
       "special": []
     },
     {
@@ -426,9 +444,7 @@
         "rapière"
       ],
       "shields": "",
-      "armors": [
-        "lègere"
-      ],
+      "armors": ["lègere"],
       "special": []
     }
   ],
