@@ -211,19 +211,19 @@
     },
     {
       "id": 4,
-      "name": "vas te cacher sous l'escalier",
+      "name": "Un magicien n'est jamais en retard...",
       "table_id": null,
       "character_id": 1
     },
     {
       "id": 5,
-      "name": "Tu es maintenant un vampire",
+      "name": "T'es où ???",
       "table_id": null,
       "character_id": 1
     },
     {
       "id": 6,
-      "name": "Sylvain est un [complète cette phrase] <3",
+      "name": "Apéro ?",
       "table_id": null,
       "character_id": 1
     }
