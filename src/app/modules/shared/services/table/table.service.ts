@@ -1,27 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
+import { Table } from '../../models/types/users/table.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableService {
 
-  private _BASE_URL: string = 'assets/json/tables.json'
+  // private _BASE_URL: string = 'assets/json/tables.json'
+
+  private readonly _BASE_URL: string = "http://localhost:3000/tables"
+
+  private readonly _USER_CONECTED = 1
+
 
   constructor(private _http: HttpClient) { }
 
-  getUserTableList(): Observable<any> {
+  getUserTableList$(): Observable<Table[]> {
     return this._http.get(this._BASE_URL)
     .pipe(
-      map((response: any) => response.tables)
+      map((response: any) => 
+        response.filter((response: Table) => response.user_id === this._USER_CONECTED)
+    )
     )
   }
 
-  getTableById(id: Number): Observable<any> {
-    return this.getUserTableList()
+  getTableById$(id: Number): Observable<Table> {
+    return this.getUserTableList$()
     .pipe(
-      map((response: any) => response.find((table: any) => table.id === id))
+      //tap(res => console.log(res)),
+      map((response: Table[]) => response.find((table: Table) => Number(table.id) === id) as Table)
     )
   }
 }

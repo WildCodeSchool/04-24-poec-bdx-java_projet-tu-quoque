@@ -2,7 +2,9 @@
     <app-page-header [elementIcon]="'assets/images/table-icon.svg'" [title]="table.name"></app-page-header>
     <app-table-presentation [table]="table"></app-table-presentation>
     <app-custom-area-title [title]="'Liste des joueurs'"></app-custom-area-title>
-    <app-list-of-element [elementList]="table.players" [elementIcon]="'assets/images/character-icon.svg'" [replacementIcon]="'assets/images/hourglass-icon.svg'"></app-list-of-element>
+    <ng-container *ngIf="users$|async as users">
+    <app-list-of-element [elementList]="users" [elementIcon]="'assets/images/character-icon.svg'" [replacementIcon]="'assets/images/hourglass-icon.svg'"></app-list-of-element>
+    </ng-container>
     <app-custom-add-button [routerLink]="'newPlayer'" ></app-custom-add-button>
     <app-custom-area-title [title]="'Chat avec les joueurs'"></app-custom-area-title>
     <app-list-of-element [elementList]="table.discussions" [elementIcon]="'assets/images/discussion-icon.svg'"></app-list-of-element>
