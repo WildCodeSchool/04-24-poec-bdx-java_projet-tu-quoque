@@ -54,31 +54,31 @@
       "id": 1,
       "name": "Elric",
       "avatar": "/assets/images/profile-img-test.jpg",
-      "userId": 1,
-      "tableId": 2,
-      "characterSheetId": 1,
+      "user_id": 1,
+      "table_id": 1,
+      "characterSheet_id": 1,
       "status": "to accept",
-      "scheduleId": 1
+      "schedule_id": 1
     },
     {
       "id": 2,
       "name": "Boromir",
       "avatar": "",
-      "userId": 1,
-      "tableId": 2,
-      "characterSheetId": 1,
+      "user_id": 1,
+      "table_id": 1,
+      "characterSheet_id": 1,
       "status": "accepted",
-      "scheduleId": 1
+      "schedule_id": 1
     },
     {
       "id": 3,
       "name": "Willow",
       "avatar": "",
-      "userId": 1,
-      "tableId": 2,
-      "characterSheetId": 1,
+      "user_id": 1,
+      "table_id": 1,
+      "characterSheet_id": 1,
       "status": "invited",
-      "scheduleId": 1
+      "schedule_id": 1
     }
   ],
   "tables": [
@@ -86,86 +86,86 @@
       "id": 1,
       "avatar": "/assets/images/profile-img-test.jpg",
       "name": "table ronde",
-      "userId": 1
+      "user_id": 1
     },
     {
       "id": 2,
       "avatar": "",
       "name": "imbattable",
-      "userId": 1
+      "user_id": 1
     },
     {
       "id": 3,
       "avatar": "",
       "name": "évitable",
-      "userId": 1
+      "user_id": 1
     },
     {
       "id": 4,
       "avatar": "",
       "name": "Acceptable",
-      "userId": 1
+      "user_id": 1
     },
     {
       "id": 5,
       "avatar": "",
       "name": "Ajustable",
-      "userId": 1
+      "user_id": 1
     }
 
   ],
   "schedules": [
     {
       "id": 1,
-      "tablesId": 1
+      "tables_id": 1
     }
   ],
   "notes": [
     {
       "id": 1,
-      "tableId": 1,
-      "userId": 1,
-      "characterId": null,
+      "table_id": 1,
+      "user_id": 1,
+      "character_id": null,
       "name": "Question",
       "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
     },
     {
       "id": 2,
-      "tableId": 1,
-      "userId": 1,
-      "characterId": null,
+      "table_id": 1,
+      "user_id": 1,
+      "character_id": null,
       "name": "Eureka",
       "text": "42"
     },
     {
       "id": 3,
-      "tableId": 1,
-      "userId": 1,
-      "characterId": null,
+      "table_id": 1,
+      "user_id": 1,
+      "character_id": null,
       "name": "mot de passe",
       "text": "Ha Ha Ha !!!"
     },
     {
       "id": 4,
-      "tableId": null,
-      "userId": 1,
-      "characterId": 2,
+      "table_id": null,
+      "user_id": 1,
+      "character_id": 2,
       "name": "Pas d'inspi",
       "text": "Mur"
     },
     {
       "id": 5,
-      "tableId": null,
-      "userId": 1,
-      "characterId": 2,
+      "table_id": null,
+      "user_id": 1,
+      "character_id": 2,
       "name": "Météo",
       "text": "Beau temps"
     },
     {
       "id": 6,
-      "tableId": null,
-      "userId": 1,
-      "characterId": 2,
+      "table_id": null,
+      "user_id": 1,
+      "character_id": 2,
       "name": "secret inavouable",
       "text": "oublié"
     }
@@ -175,57 +175,57 @@
       "id": 1,
       "name": "papy",
       "content": "/assets/images/user-profile-images/user1.jpg",
-      "tableId": 1
+      "table_id": 1
     },
     {
       "id": 2,
       "name": "maman sexy",
       "content": "/assets/images/user-profile-images/user2.png",
-      "tableId": 1
+      "table_id": 1
     },
     {
       "id": 3,
       "name": "papa",
       "content": "/assets/images/user-profile-images/user3.png",
-      "tableId": 1
+      "table_id": 1
     }
   ],
   "chats": [
     {
       "id": 1,
       "name": "vas te cacher sous l'escalier",
-      "tableId": 1,
-      "characterId": null
+      "table_id": 1,
+      "character_id": null
     },
     {
       "id": 2,
       "name": "Tu es maintenant un vampire",
-      "tableId": 1,
-      "characterId": null
+      "table_id": 1,
+      "character_id": null
     },
     {
       "id": 3,
       "name": "Sylvain est un [complète cette phrase] <3",
-      "tableId": 1,
-      "characterId": null
+      "table_id": 1,
+      "character_id": null
     },
     {
       "id": 4,
       "name": "vas te cacher sous l'escalier",
-      "tableId": null,
-      "characterId": 1
+      "table_id": null,
+      "character_id": 1
     },
     {
       "id": 5,
       "name": "Tu es maintenant un vampire",
-      "tableId": null,
-      "characterId": 1
+      "table_id": null,
+      "character_id": 1
     },
     {
       "id": 6,
       "name": "Sylvain est un [complète cette phrase] <3",
-      "tableId": null,
-      "characterId": 1
+      "table_id": null,
+      "character_id": 1
     }
   ],
   "messages": [
@@ -240,12 +240,12 @@
   ],
   "chatsMessages": [
     {
-      "chatId": 1,
-      "messageId": 1
+      "chat_id": 1,
+      "message_id": 1
     },
     {
-      "chatId": 1,
-      "messageId": 2
+      "chat_id": 1,
+      "message_id": 2
     }
   ],
   "characterSheets": [
@@ -255,14 +255,14 @@
   ],
   "charactersChats": [
     {
-      "characterId": 1,
-      "chatId": 1
+      "character_id": 1,
+      "chat_id": 1
     }
   ],
   "tablesChats": [
     {
-      "tableId": 1,
-      "chatId": 2
+      "table_id": 1,
+      "chat_id": 2
     }
   ],
   "races": [
