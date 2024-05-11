@@ -5,7 +5,7 @@ import { Observable, Subject, map, switchMap, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class userService {
 
   // using JSON server
   private readonly _BASE_URL: string = "http://localhost:3000/users"

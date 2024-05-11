@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UsersService } from '../../../../../../../../shared/services/users/users.service';
+import { userService } from '../../../../../../../../shared/services/users/user.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,13 +11,13 @@ export class TableNewPlayerComponent {
 
   inputText:string =""
   selectedUser!: string
-  suggestions: Observable<any> = this._usersService.getUserListFilteredByName$()
+  suggestions: Observable<any> = this._userService.getUserListFilteredByName$()
 
-  constructor(private _usersService: UsersService){}
+  constructor(private _userService: userService){}
 
 
   searchUser(event: any): void {
-    this._usersService.getUserByName$(event.query).subscribe()
+    this._userService.getUserByName$(event.query).subscribe()
   }
 
   addNewUser(): void {

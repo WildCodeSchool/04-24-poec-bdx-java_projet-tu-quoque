@@ -6,15 +6,15 @@ import { CharacterPageComponent } from './components/features/character-page/cha
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "myCharacters",
+    redirectTo: "my-characters",
     pathMatch: "full"
   },
   {
-    path: "myCharacters",
+    path: "my-characters",
     component: UserCharactersComponent
   },
   {
-    path: "myCharacters/:id",
+    path: "my-characters/:id",
     component: CharacterPageComponent
   }
 ];
