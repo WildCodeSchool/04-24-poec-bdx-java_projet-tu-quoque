@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { Table } from '../../../../../../../../shared/models/types/users/table.type';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
+import { ChatService } from '../../../../../../../../shared/services/chat/chat.service';
+import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
 
 @Component({
   selector: 'app-table-page',
@@ -15,16 +17,20 @@ export class TablePageComponent {
 
   table$!: Observable<Table>
   id!: number
-  users$!: Observable<Character[]>
+  userList$!: Observable<Character[]>
+  chatList$!: Observable<Chat[]>
 
   constructor(
     private _tableService: TableService,
     private _characterService: CharacterService, 
+    private _chatService: ChatService,
     private _route: ActivatedRoute){}
 
   ngOnInit(): void {
     this.id = Number(this._route.snapshot.paramMap.get('id'));
     this.table$ = this._tableService.getTableById$(this.id)
-    this.users$= this._characterService.getCharactersByTable$(this.id)
+    this.userList$= this._characterService.getCharactersByTable$(this.id)
+    this.chatList$ = this._chatService.getChatListByTable(this.id)
+    
   }
 }

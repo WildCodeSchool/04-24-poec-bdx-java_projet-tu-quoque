@@ -5,6 +5,8 @@ import { Observable, map, switchMap, tap } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
 import { Table } from '../../../../../../../../shared/models/types/users/table.type';
+import { ChatService } from '../../../../../../../../shared/services/chat/chat.service';
+import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
 
 @Component({
   selector: 'app-character-page',
@@ -15,6 +17,7 @@ export class CharacterPageComponent implements OnInit {
   
   character$!: Observable<Character>;
   table$!: Observable<Table>;
+  chatList$!: Observable<Chat[]>
 
   characterDiscussionList: any = [
     {
@@ -39,6 +42,7 @@ export class CharacterPageComponent implements OnInit {
   constructor(
     private _characterService: CharacterService,
     private _tableService: TableService,
+    private _chatService: ChatService,
     private _route: ActivatedRoute,
     private _renderer: Renderer2
   ) {}
@@ -48,8 +52,9 @@ export class CharacterPageComponent implements OnInit {
     this.character$ = this._characterService.getCharacterById$(id);
     this.table$ =this._characterService.getCharacterById$(id)
     .pipe(
-      switchMap(res => 
-        { return this._tableService.getTableById$(res.table_id)}))  
+      switchMap((res: any) => 
+        { return this._tableService.getTableById$(res.table_id)})) 
+    this.chatList$ = this._chatService.getChatListByCharacter(id)
   }
 
   toggleCharacterSheetVisible(event: boolean): void {

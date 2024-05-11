@@ -4,7 +4,9 @@
     <ng-container *ngIf="table$|async as table">
     <app-custom-area-title [title]="table.name"></app-custom-area-title>
     </ng-container>
-    <app-list-of-element [baseUrl]="''" [elementIcon]="'assets/images/discussion-icon.svg'" [elementList]="characterDiscussionList" ></app-list-of-element>
+    <ng-container *ngIf="chatList$|async as chatList">
+    <app-list-of-element [baseUrl]="''" [elementIcon]="'assets/images/discussion-icon.svg'" [elementList]="chatList" ></app-list-of-element>
+    </ng-container>
     <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
     @if (isCharacterSheetVisible) {
         <app-character-sheet-display (isCharacterSheetVisible)="toggleCharacterSheetVisible($event)"></app-character-sheet-display>
