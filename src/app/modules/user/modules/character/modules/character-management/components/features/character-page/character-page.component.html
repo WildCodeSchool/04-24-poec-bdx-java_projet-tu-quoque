@@ -1,7 +1,9 @@
 <ng-container *ngIf="character$ |async as character" >
     <app-page-header [elementIcon]="'assets/images/user-icon.svg'" [title]="character.name"></app-page-header>
     <app-character-presentation [character]="character" (isCharachterSheetVisible)="toggleCharacterSheetVisible($event)"></app-character-presentation>
-    <app-custom-area-title [title]="character.table | uppercase"></app-custom-area-title>
+    <ng-container *ngIf="table$|async as table">
+    <app-custom-area-title [title]="table.name"></app-custom-area-title>
+    </ng-container>
     <app-list-of-element [baseUrl]="''" [elementIcon]="'assets/images/discussion-icon.svg'" [elementList]="characterDiscussionList" ></app-list-of-element>
     <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
     @if (isCharacterSheetVisible) {

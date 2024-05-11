@@ -1,7 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap, tap } from 'rxjs';
+import { TableService } from '../../../../../../../../shared/services/table/table.service';
 
 @Component({
   selector: 'app-character-page',
@@ -11,6 +12,8 @@ import { Observable, map } from 'rxjs';
 export class CharacterPageComponent implements OnInit {
   
   character$!: Observable<any>;
+  table$!: Observable<any>;
+
   characterDiscussionList: any = [
     {
       id: 1,
@@ -33,6 +36,7 @@ export class CharacterPageComponent implements OnInit {
 
   constructor(
     private _characterService: CharacterService,
+    private _tableService: TableService,
     private _route: ActivatedRoute,
     private _renderer: Renderer2
   ) {}
@@ -40,6 +44,10 @@ export class CharacterPageComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
     this.character$ = this._characterService.getCharacterById$(id);
+    this.table$ =this._characterService.getCharacterById$(id)
+    .pipe(
+      switchMap(res => 
+        { return this._tableService.getTableById$(res.table_id)}))  
   }
 
   toggleCharacterSheetVisible(event: boolean): void {
