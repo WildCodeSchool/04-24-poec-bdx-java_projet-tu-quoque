@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { Observable } from 'rxjs';
+import { Character } from '../../../../../../../../shared/models/types/users/character.type';
 
 @Component({
   selector: 'app-user-characters',
@@ -8,7 +9,10 @@ import { Observable } from 'rxjs';
   styleUrl: './user-characters.component.scss',
 })
 export class UserCharactersComponent {
-  userCharacterList: Observable<any> = this._characterService.getUserCharacterList$()
+
+
+
+  userCharacterList$: Observable<Character[]> = this._characterService.getUserCharacterList$()
 
   constructor(private _characterService: CharacterService){}
 

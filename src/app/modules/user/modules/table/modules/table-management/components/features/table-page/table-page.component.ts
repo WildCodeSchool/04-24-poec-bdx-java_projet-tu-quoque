@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
+import { Table } from '../../../../../../../../shared/models/types/users/table.type';
+import { Character } from '../../../../../../../../shared/models/types/users/character.type';
 
 @Component({
   selector: 'app-table-page',
@@ -11,9 +13,10 @@ import { CharacterService } from '../../../../../../../../shared/services/charac
 })
 export class TablePageComponent {
 
-  table$!: Observable<any>
+  table$!: Observable<Table>
   id!: number
-  users$!: Observable<any>
+  users$!: Observable<Character[]>
+
   constructor(
     private _tableService: TableService,
     private _characterService: CharacterService, 

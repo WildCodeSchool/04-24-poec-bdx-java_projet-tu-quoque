@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { Observable, map, switchMap, tap } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
+import { Character } from '../../../../../../../../shared/models/types/users/character.type';
+import { Table } from '../../../../../../../../shared/models/types/users/table.type';
 
 @Component({
   selector: 'app-character-page',
@@ -11,8 +13,8 @@ import { TableService } from '../../../../../../../../shared/services/table/tabl
 })
 export class CharacterPageComponent implements OnInit {
   
-  character$!: Observable<any>;
-  table$!: Observable<any>;
+  character$!: Observable<Character>;
+  table$!: Observable<Table>;
 
   characterDiscussionList: any = [
     {
