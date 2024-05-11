@@ -12,9 +12,14 @@
     </ng-container>
     <app-custom-add-button ></app-custom-add-button>
     <app-custom-area-title [title]="'Dessins'"></app-custom-area-title>
-    <app-list-of-element [elementList]="" [elementIcon]="'assets/images/brush-icon.svg'"></app-list-of-element>
+    <ng-container *ngIf="drawingList$|async as drawingList">
+    <app-list-of-element [elementList]="drawingList" [elementIcon]="'assets/images/brush-icon.svg'" (sendDrawingUrl)="showDrawing($event)" [isForDrawing]="true"></app-list-of-element>
+    </ng-container>
     <app-custom-add-button ></app-custom-add-button>
 </ng-container>
 <div class="bottom-part">
     <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
+    @if(isDrawingVisible) {
+        <app-drawing-display (isDrawingVisible)="toggleDrawingVisible($event)" [drawingToShow]="drawingToShow"></app-drawing-display>
+    }
 </div>
