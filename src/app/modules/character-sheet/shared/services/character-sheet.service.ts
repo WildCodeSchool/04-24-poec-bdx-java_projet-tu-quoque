@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DbService } from '../../../shared/services/db-service/db.service';
-import { map, Observable, Subject, switchMap } from 'rxjs';
+import { map, Observable, Subject, switchMap, tap } from 'rxjs';
 import { Race } from '../../models/types/race.type';
 import { ListenPlayerActionService } from './listen-player-action.service';
 import { CharacterClass } from '../../models/types/character-class.type';
@@ -8,6 +8,8 @@ import { Field } from '../models/types/field.type';
 import { GenderEnum } from '../../models/enums/gender.enum';
 import { DiceService } from '../../../shared/services/dice-service/dice.service';
 import { ClassEnum } from '../../models/enums/classes.enum';
+import { StatisticDetails } from '../../models/classes/statistics-details.class';
+import { StatModifier } from '../../models/types/stat-modifier.type';
 
 @Injectable({
   providedIn: 'root'
@@ -122,8 +124,19 @@ export class CharacterSheetService {
           }
         })
       )
-
       )
     )
   }
+
+  getRaceStatsModifiers$(): Observable<StatModifier[]> {
+    return this.race$.pipe(
+      map((race: Race) => {
+        if (race) {
+          return race.statsModifiers
+        }
+        return [];
+      })
+    );
+  }
+
 }

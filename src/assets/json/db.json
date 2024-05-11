@@ -14,7 +14,7 @@
       "email": "moussay@gmail.com",
       "password": "1234",
       "avatar": "/assets/images/user-profile-images/user2.png",
-      "role":"admin"
+      "role": "admin"
     }
   ],
   "characters": [
@@ -126,19 +126,19 @@
     {
       "id": 1,
       "name": "papy",
-      "content":"/assets/images/user-profile-images/user1.jpg",
+      "content": "/assets/images/user-profile-images/user1.jpg",
       "tablesId": 1
     },
     {
       "id": 2,
       "name": "maman sexy",
-      "content":"/assets/images/user-profile-images/user2.png",
+      "content": "/assets/images/user-profile-images/user2.png",
       "tablesId": 1
     },
     {
       "id": 3,
       "name": "papa",
-      "content":"/assets/images/user-profile-images/user3.png",
+      "content": "/assets/images/user-profile-images/user3.png",
       "tablesId": 1
     }
   ],
@@ -225,7 +225,10 @@
         }
       ],
       "languages": {
-        "systemically": ["commun", "elfe"],
+        "systemically": [
+          "commun",
+          "elfe"
+        ],
         "additional": [
           "draconien",
           "gnoll",
@@ -264,23 +267,32 @@
       "name": "demi-orque",
       "statsModifiers": [
         {
-          "stats": "STR",
+          "stat": "FOR",
           "mod": 2
         },
         {
-          "stats": "INT",
+          "stat": "INT",
           "mod": -2
         },
         {
-          "stats": "CHA",
+          "stat": "CHA",
           "mod": -2
         }
       ],
       "sizeCategorie": "M",
       "skills": [],
       "languages": {
-        "systemically": ["commun", "orque"],
-        "additional": ["abyssal", "draconien", "géant", "gnoll", "gobelin"]
+        "systemically": [
+          "commun",
+          "orque"
+        ],
+        "additional": [
+          "abyssal",
+          "draconien",
+          "géant",
+          "gnoll",
+          "gobelin"
+        ]
       },
       "adultAge": 14,
       "ageModifier": {
@@ -325,9 +337,15 @@
       ],
       "baseSkillPoints": "(4 + mod INT) * 4",
       "skillPointsPerLevel": "4 + mod INT",
-      "weapons": ["courante", "guerre"],
+      "weapons": [
+        "courante",
+        "guerre"
+      ],
       "shields": "toutes sauf pavois",
-      "armors": ["lègere", "intermédiaire"],
+      "armors": [
+        "lègere",
+        "intermédiaire"
+      ],
       "special": []
     },
     {
@@ -375,7 +393,9 @@
         "rapière"
       ],
       "shields": "",
-      "armors": ["lègere"],
+      "armors": [
+        "lègere"
+      ],
       "special": []
     }
   ],
