@@ -193,15 +193,39 @@
   "chats": [
     {
       "id": 1,
-      "name": "vas te cacher sous l'escalier"
+      "name": "vas te cacher sous l'escalier",
+      "tableId": 1,
+      "characterId": null
     },
     {
       "id": 2,
-      "name": "Tu es maintenant un vampire"
+      "name": "Tu es maintenant un vampire",
+      "tableId": 1,
+      "characterId": null
     },
     {
       "id": 3,
-      "name": "Sylvain est un gros nounours <3"
+      "name": "Sylvain est un [complète cette phrase] <3",
+      "tableId": 1,
+      "characterId": null
+    },
+    {
+      "id": 4,
+      "name": "vas te cacher sous l'escalier",
+      "tableId": null,
+      "characterId": 1
+    },
+    {
+      "id": 5,
+      "name": "Tu es maintenant un vampire",
+      "tableId": null,
+      "characterId": 1
+    },
+    {
+      "id": 6,
+      "name": "Sylvain est un [complète cette phrase] <3",
+      "tableId": null,
+      "characterId": 1
     }
   ],
   "messages": [
@@ -241,9 +265,6 @@
       "chatsId": 2
     }
   ],
-  "user": {
-    "name": "jo"
-  },
   "races": [
     {
       "name": "elfe",
