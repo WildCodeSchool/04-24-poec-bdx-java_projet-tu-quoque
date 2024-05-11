@@ -54,8 +54,8 @@
       "id": 1,
       "name": "Elric",
       "avatar": "/assets/images/profile-img-test.jpg",
-      "usersId": 1,
-      "tablesId": 2,
+      "userId": 1,
+      "tableId": 2,
       "characterSheetId": 1,
       "status": "to accept",
       "scheduleId": 1
@@ -64,8 +64,8 @@
       "id": 2,
       "name": "Boromir",
       "avatar": "",
-      "usersId": 1,
-      "tablesId": 2,
+      "userId": 1,
+      "tableId": 2,
       "characterSheetId": 1,
       "status": "accepted",
       "scheduleId": 1
@@ -74,8 +74,8 @@
       "id": 3,
       "name": "Willow",
       "avatar": "",
-      "usersId": 1,
-      "tablesId": 2,
+      "userId": 1,
+      "tableId": 2,
       "characterSheetId": 1,
       "status": "invited",
       "scheduleId": 1
@@ -86,31 +86,31 @@
       "id": 1,
       "avatar": "/assets/images/profile-img-test.jpg",
       "name": "table ronde",
-      "usersId": 1
+      "userId": 1
     },
     {
       "id": 2,
       "avatar": "",
       "name": "imbattable",
-      "usersId": 1
+      "userId": 1
     },
     {
       "id": 3,
       "avatar": "",
       "name": "évitable",
-      "usersId": 1
+      "userId": 1
     },
     {
       "id": 4,
       "avatar": "",
       "name": "Acceptable",
-      "usersId": 1
+      "userId": 1
     },
     {
       "id": 5,
       "avatar": "",
       "name": "Ajustable",
-      "usersId": 1
+      "userId": 1
     }
 
   ],
@@ -123,48 +123,48 @@
   "notes": [
     {
       "id": 1,
-      "tablesId": 1,
-      "usersId": 1,
+      "tableId": 1,
+      "userId": 1,
       "characterId": null,
       "name": "Question",
       "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
     },
     {
       "id": 2,
-      "tablesId": 1,
-      "usersId": 1,
+      "tableId": 1,
+      "userId": 1,
       "characterId": null,
       "name": "Eureka",
       "text": "42"
     },
     {
       "id": 3,
-      "tablesId": 1,
-      "usersId": 1,
+      "tableId": 1,
+      "userId": 1,
       "characterId": null,
       "name": "mot de passe",
       "text": "Ha Ha Ha !!!"
     },
     {
       "id": 4,
-      "tablesId": null,
-      "usersId": 2,
+      "tableId": null,
+      "userId": 1,
       "characterId": 2,
       "name": "Pas d'inspi",
       "text": "Mur"
     },
     {
       "id": 5,
-      "tablesId": null,
-      "usersId": 2,
+      "tableId": null,
+      "userId": 1,
       "characterId": 2,
       "name": "Météo",
       "text": "Beau temps"
     },
     {
       "id": 6,
-      "tablesId": null,
-      "usersId": 2,
+      "tableId": null,
+      "userId": 1,
       "characterId": 2,
       "name": "secret inavouable",
       "text": "oublié"
@@ -175,19 +175,19 @@
       "id": 1,
       "name": "papy",
       "content": "/assets/images/user-profile-images/user1.jpg",
-      "tablesId": 1
+      "tableId": 1
     },
     {
       "id": 2,
       "name": "maman sexy",
       "content": "/assets/images/user-profile-images/user2.png",
-      "tablesId": 1
+      "tableId": 1
     },
     {
       "id": 3,
       "name": "papa",
       "content": "/assets/images/user-profile-images/user3.png",
-      "tablesId": 1
+      "tableId": 1
     }
   ],
   "chats": [
@@ -240,12 +240,12 @@
   ],
   "chatsMessages": [
     {
-      "chatsId": 1,
-      "messagesId": 1
+      "chatId": 1,
+      "messageId": 1
     },
     {
-      "chatsId": 1,
-      "messagesId": 2
+      "chatId": 1,
+      "messageId": 2
     }
   ],
   "characterSheets": [
@@ -255,14 +255,14 @@
   ],
   "charactersChats": [
     {
-      "charactersId": 1,
-      "chatsId": 1
+      "characterId": 1,
+      "chatId": 1
     }
   ],
   "tablesChats": [
     {
-      "tablesId": 1,
-      "chatsId": 2
+      "tableId": 1,
+      "chatId": 2
     }
   ],
   "races": [
