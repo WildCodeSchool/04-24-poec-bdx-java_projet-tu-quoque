@@ -7,19 +7,19 @@ import { TableNewPlayerComponent } from './components/features/table-new-player/
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "myTables",
+    redirectTo: "my-tables",
     pathMatch: "full"
   },
   {
-    path: "myTables",
+    path: "my-tables",
     component: UserTablesComponent
   },
   {
-    path: "myTables/:id",
+    path: "my-tables/:id",
     component: TablePageComponent
   },
   {
-    path: "myTables/:id/newPlayer",
+    path: "my-tables/:id/newPlayer",
     component: TableNewPlayerComponent
   }
 ];

@@ -9,7 +9,7 @@ const routes: Routes = [
     pathMatch: "full"
   },
   {
-    path: "newCharacter",
+    path: "new-character",
     component: NewCharacterComponent
   }
 ];

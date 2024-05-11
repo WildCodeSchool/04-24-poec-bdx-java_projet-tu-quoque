@@ -10,12 +10,45 @@
     },
     {
       "id": 2,
-      "userName": "Moussay",
+      "name": "Moussay",
       "email": "moussay@gmail.com",
       "password": "1234",
       "avatar": "/assets/images/user-profile-images/user2.png",
-      "role": "admin"
+      "role":  "admin"
+    },
+    {
+      "id": 3,
+      "name": "SkyIsTheLimit",
+      "email": "SkyIsTheLimit@gmail.com",
+      "password": "1234",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "MoussaillonDeMalheur",
+      "email": "MoussaillonDeMalheur@gmail.com",
+      "password": "1234",
+      "avatar": "/assets/images/user-profile-images/user2.png",
+      "role": "user"
+    },
+    {
+      "id": 5,
+      "name": "MimirOfMimisbrunn",
+      "email": "MimirOfMimisbrunn@gmail.com",
+      "password": "1234",
+      "avatar": "/assets/images/user-profile-images/user2.png",
+      "role": "user"
+    },
+    {
+      "id": 6,
+      "name": "Sigyn33",
+      "email": "Sigyn33@gmail.com",
+      "password": "1234",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "role": "user"
     }
+
   ],
   "characters": [
     {
@@ -25,7 +58,7 @@
       "usersId": 1,
       "tablesId": 2,
       "characterSheetId": 1,
-      "status": "on hold",
+      "status": "to accept",
       "scheduleId": 1
     },
     {
@@ -77,7 +110,7 @@
       "id": 1,
       "tablesId": 1,
       "usersId": 1,
-      "charactersId": null,
+      "characterId": null,
       "name": "Question",
       "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
     },
@@ -85,7 +118,7 @@
       "id": 2,
       "tablesId": 1,
       "usersId": 1,
-      "charactersId": null,
+      "characterId": null,
       "name": "Eureka",
       "text": "42"
     },
@@ -93,7 +126,7 @@
       "id": 3,
       "tablesId": 1,
       "usersId": 1,
-      "charactersId": null,
+      "characterId": null,
       "name": "mot de passe",
       "text": "Ha Ha Ha !!!"
     },
@@ -101,7 +134,7 @@
       "id": 4,
       "tablesId": null,
       "usersId": 2,
-      "charactersId": 2,
+      "characterId": 2,
       "name": "Pas d'inspi",
       "text": "Mur"
     },
@@ -109,7 +142,7 @@
       "id": 5,
       "tablesId": null,
       "usersId": 2,
-      "charactersId": 2,
+      "characterId": 2,
       "name": "Météo",
       "text": "Beau temps"
     },
@@ -117,7 +150,7 @@
       "id": 6,
       "tablesId": null,
       "usersId": 2,
-      "charactersId": 2,
+      "characterId": 2,
       "name": "secret inavouable",
       "text": "oublié"
     }
@@ -126,7 +159,7 @@
     {
       "id": 1,
       "name": "papy",
-      "content": "/assets/images/user-profile-images/user1.jpg",
+      "content":  "/assets/images/user-profile-images/user1.jpg",
       "tablesId": 1
     },
     {

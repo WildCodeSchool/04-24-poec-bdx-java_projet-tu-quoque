@@ -2,7 +2,7 @@
 <ng-container *ngIf="userCharacterList |async as userCharacterList">
 @if(userCharacterList.length) {
     <main class="character-list-body ">
-        <app-list-of-element [elementList]="userCharacterList" [elementIcon]="'assets/images/character-icon.svg'" [baseUrl]="'../myCharacters'"></app-list-of-element>
+        <app-list-of-element [elementList]="userCharacterList" [elementIcon]="'assets/images/character-icon.svg'" [baseUrl]="'../my-characters'"></app-list-of-element>
         <app-custom-add-button [routerLink]="'../../creation'"></app-custom-add-button>
 
     </main>

@@ -2,7 +2,7 @@
 <ng-container *ngIf="userTableList$| async as userTableList">
     @if (userTableList.length) {
         <main class="table-list-body">
-            <app-list-of-element [elementList]="userTableList" [elementIcon]="'assets/images/table-icon.svg'" [baseUrl]="'../myTables'"></app-list-of-element>
+            <app-list-of-element [elementList]="userTableList" [elementIcon]="'assets/images/table-icon.svg'" [baseUrl]="'../my-tables'"></app-list-of-element>
             <app-custom-add-button [routerLink]="'../../creation'"></app-custom-add-button>
         </main>
     } @else {

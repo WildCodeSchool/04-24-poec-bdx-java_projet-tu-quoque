@@ -9,7 +9,12 @@
     font-family: alice;
     font-size: large;
 
-    input {
-        height: 2rem;
+    .page-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        flex-grow: 1;
+        padding-top: 2rem;
     }
 }
