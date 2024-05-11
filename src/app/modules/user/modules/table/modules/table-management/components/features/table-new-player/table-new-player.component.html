@@ -1,2 +1,9 @@
 <app-page-header [elementIcon]="'assets/images/pixie-icon.svg'" [title]="'Nouveau joueur'"></app-page-header>
-<input type="search" name="userSearchBar" id="userSearchBar">
+<div class="page-body">
+    <p-autoComplete
+    [(ngModel)]="selectedUser" 
+    [suggestions]="suggestions |async" 
+    (completeMethod)="searchUser($event)" 
+    />
+    <app-custom-button [style]="'gold'" [name]="'Ajouter'" (click)="addNewUser()" PreviousPage></app-custom-button>
+</div>

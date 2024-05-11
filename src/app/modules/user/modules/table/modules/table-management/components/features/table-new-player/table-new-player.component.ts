@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { InputTextComponent } from '../../../../../../../../shared/components/custom-form/form-inputs/input-text/input-text.component';
+import { UsersService } from '../../../../../../../../shared/services/users/users.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-table-new-player',
@@ -8,5 +9,18 @@ import { InputTextComponent } from '../../../../../../../../shared/components/cu
 })
 export class TableNewPlayerComponent {
 
-  constructor(){}
+  inputText:string =""
+  selectedUser!: string
+  suggestions: Observable<any> = this._usersService.getUserListFilteredByName$()
+
+  constructor(private _usersService: UsersService){}
+
+
+  searchUser(event: any): void {
+    this._usersService.getUserByName$(event.query).subscribe()
+  }
+
+  addNewUser(): void {
+    console.log(`${this.selectedUser} à reçu une invitation !`)
+  }
 }
