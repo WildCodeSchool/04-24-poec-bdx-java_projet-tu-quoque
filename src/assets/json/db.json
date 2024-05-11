@@ -123,7 +123,7 @@
   "notes": [
     {
       "id": 1,
-      "table_id": 1,
+      "table_id": null,
       "user_id": 1,
       "character_id": null,
       "name": "Question",
@@ -131,7 +131,7 @@
     },
     {
       "id": 2,
-      "table_id": 1,
+      "table_id": null,
       "user_id": 1,
       "character_id": null,
       "name": "Eureka",
@@ -140,7 +140,7 @@
     {
       "id": 3,
       "table_id": 1,
-      "user_id": 1,
+      "user_id": null,
       "character_id": null,
       "name": "mot de passe",
       "text": "Ha Ha Ha !!!"
@@ -148,7 +148,7 @@
     {
       "id": 4,
       "table_id": null,
-      "user_id": 1,
+      "user_id": null,
       "character_id": 2,
       "name": "Pas d'inspi",
       "text": "Mur"
@@ -156,7 +156,7 @@
     {
       "id": 5,
       "table_id": null,
-      "user_id": 1,
+      "user_id": null,
       "character_id": 2,
       "name": "Météo",
       "text": "Beau temps"
@@ -164,7 +164,7 @@
     {
       "id": 6,
       "table_id": null,
-      "user_id": 1,
+      "user_id": null,
       "character_id": 2,
       "name": "secret inavouable",
       "text": "oublié"
