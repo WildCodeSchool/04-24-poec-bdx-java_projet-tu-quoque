@@ -31,7 +31,24 @@
       "password": "1234",
       "avatar": "/assets/images/user-profile-images/user2.png",
       "role": "user"
+    },
+    {
+      "id": 5,
+      "name": "MimirOfMimisbrunn",
+      "email": "MimirOfMimisbrunn@gmail.com",
+      "password": "1234",
+      "avatar": "/assets/images/user-profile-images/user2.png",
+      "role": "user"
+    },
+    {
+      "id": 6,
+      "name": "Sigyn33",
+      "email": "Sigyn33@gmail.com",
+      "password": "1234",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "role": "user"
     }
+
   ],
   "characters": [
     {
@@ -41,7 +58,7 @@
       "usersId": 1,
       "tablesId": 2,
       "characterSheetId": 1,
-      "status": "on hold",
+      "status": "to accept",
       "scheduleId": 1
     },
     {
