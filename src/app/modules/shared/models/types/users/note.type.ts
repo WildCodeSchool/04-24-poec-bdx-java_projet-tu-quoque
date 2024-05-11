@@ -1,7 +1,8 @@
 export type Note = {
-    "id": number;
-    "title": string;
-    "writerId": number;
-    "writerRole": "character" | "user";  // le rôle peut être soit 'character' soit 'user'
-    "content": string;
-}
+  id: number;
+  table_id: number;
+  user_id: number;
+  character_id: number;
+  name: string;
+  text: string;
+};
