@@ -19,24 +19,6 @@ export class CharacterPageComponent implements OnInit {
   table$!: Observable<Table>;
   chatList$!: Observable<Chat[]>
 
-  characterDiscussionList: any = [
-    {
-      id: 1,
-      name: 'Discussion 1',
-    },
-    {
-      id: 2,
-      name: 'Discussion 2',
-    },
-    {
-      id: 3,
-      name: 'Discussion 3',
-    },
-    {
-      id: 4,
-      name: 'Discussion 4',
-    },
-  ];
   isCharacterSheetVisible: boolean = false;
 
   constructor(
