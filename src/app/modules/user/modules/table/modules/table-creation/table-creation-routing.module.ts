@@ -5,11 +5,11 @@ import { NewTableComponent } from './components/features/new-table/new-table.com
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "newTable",
+    redirectTo: "new-table",
     pathMatch: "full"
   },
   {
-    path: "newTable",
+    path: "new-table",
     component: NewTableComponent
   }
 ];

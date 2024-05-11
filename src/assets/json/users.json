@@ -9,16 +9,19 @@
             {
               "id": 1,
               "name": "Elric",
+              "table": "Tu quoque mi fili",
               "avatar":"/assets/images/profile-img-test.jpg"
             },
             {
               "id": 2,
               "name": "Boromir",
+              "table": "Tu quoque mi fili",
               "avatar":""
             },
             {
               "id": 3,
               "name":"Willow",
+              "table": "Tu quoque mi fili",
               "avatar":""
             }
           ],
@@ -41,16 +44,19 @@
             {
               "id": 1,
               "name": "Elric",
+              "table": "Tu quoque mi fili",
               "avatar":"/assets/images/profile-img-test.jpg"
             },
             {
               "id": 2,
               "name": "Boromir",
+              "table": "Tu quoque mi fili",
               "avatar":""
             },
             {
               "id": 3,
               "name":"Willow",
+              "table": "Tu quoque mi fili",
               "avatar":""
             }
           ],

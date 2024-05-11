@@ -7,6 +7,7 @@ import { SharedModule } from '../../../../../shared/shared.module';
 import { TablePageComponent } from './components/features/table-page/table-page.component';
 import { TablePresentationComponent } from './components/ui/table-presentation/table-presentation.component';
 import { TableNewPlayerComponent } from './components/features/table-new-player/table-new-player.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,12 +15,14 @@ import { TableNewPlayerComponent } from './components/features/table-new-player/
     UserTablesComponent,
     TablePageComponent,
     TablePresentationComponent,
-    TableNewPlayerComponent
+    TableNewPlayerComponent,
   ],
   imports: [
     CommonModule,
     TableManagementRoutingModule,
     SharedModule,
+    FormsModule,
+
   ]
 })
 export class TableManagementModule { }

@@ -17,6 +17,7 @@ export class HeaderComponent {
   constructor(private navService: NavigationService) {}
 
   onClick() {
+    window.scrollTo(0, 0)
     this.navService.setSidebarVisible();
   }
 
