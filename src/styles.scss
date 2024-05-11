@@ -1,5 +1,5 @@
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
+// @import "primeng/resources/themes/lara-light-blue/theme.css";
+// @import "primeng/resources/primeng.css";
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Alice&display=swap");
 
@@ -9,7 +9,6 @@
   --custom-dark-blue: #0b202f;
   --front-family-title: cinzel;
   --front-family-content: alice;
-
 }
 // ne fonctionne pas
 $custom-gold: #c29b0f;
@@ -20,16 +19,15 @@ $front-family-content: alice;
 
 // ne fonctione pas
 @mixin display-page {
-  display:  flex;
+  display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100vw;
-  padding: calc(90px + 0.25em) 5% 1em 5%;
+  padding: calc(90px + 0.25em) 0% 1em 0%;
   background-color: $custom-dark-blue;
   color: #fff;
   font-family: $front-family-content;
   font-size: large;
-
 }
 
 body {
@@ -37,6 +35,3 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
-
-
