@@ -6,8 +6,15 @@
      [control]="noteTitleControl"
     >
     </app-input-text>
+    
 </ng-container>
-
+<ng-container *ngIf="noteDescriptionField$ | async as noteDescriptionField"> 
+    <app-input-textarea 
+    [field]="noteDescriptionField" 
+    formControlName="noteDescription"
+    [control]="noteDescriptionControl">
+    </app-input-textarea>
+</ng-container>
 
 <app-custom-button type="submit" [name]="'Valider'" [style]="'gold'" class="validation-button"></app-custom-button>
 </form>
