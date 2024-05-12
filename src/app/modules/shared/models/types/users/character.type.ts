@@ -3,10 +3,10 @@ import { CharacterStatus } from '../../enums/character-status.enum';
 export type Character = {
   id: number;
   name: string;
-  user_Id: number;
-  table_Id: number;
+  user_id: number;
+  table_id?: number;
   characterAvatar: string;
   characterSheet: number;
   status: CharacterStatus; //enum
-  schedule_Id: number;
+  schedule_id: number;
 };

@@ -19,7 +19,7 @@ const routes: Routes = [
     component: TablePageComponent
   },
   {
-    path: "my-tables/:id/newPlayer",
+    path: "my-tables/:id/new-player",
     component: TableNewPlayerComponent
   }
 ];

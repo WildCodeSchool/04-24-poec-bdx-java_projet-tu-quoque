@@ -8,6 +8,7 @@ import { TablePageComponent } from './components/features/table-page/table-page.
 import { TablePresentationComponent } from './components/ui/table-presentation/table-presentation.component';
 import { TableNewPlayerComponent } from './components/features/table-new-player/table-new-player.component';
 import { FormsModule } from '@angular/forms';
+import { DrawingDisplayComponent } from './components/ui/drawing-display/drawing-display.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     TablePageComponent,
     TablePresentationComponent,
     TableNewPlayerComponent,
+    DrawingDisplayComponent,
   ],
   imports: [
     CommonModule,

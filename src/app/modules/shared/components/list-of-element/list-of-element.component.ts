@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-list-of-element',
@@ -18,6 +18,16 @@ export class ListOfElementComponent {
   @Input()
   baseUrl!: string;
 
+  @Input()
+  isForDrawing: boolean = false
+
+  @Output()
+  sendDrawingUrl: EventEmitter<any> = new EventEmitter()
+
+
+  onClick(event: any): void {
+    this.sendDrawingUrl.emit(event)
+  }
   deleteElement(): void {
     alert("On supprime vraiment ?")
     console.log('delete');
