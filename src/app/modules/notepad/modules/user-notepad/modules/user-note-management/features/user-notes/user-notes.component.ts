@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NoteService } from '../../../../../../../shared/services/note/note.service';
 import { ActivatedRoute } from '@angular/router';
+import { Note } from '../../../../../../../shared/models/types/users/note.type';
 
 @Component({
   selector: 'app-user-notes',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './user-notes.component.scss'
 })
 export class UserNotesComponent {
-  noteList$!: Observable<any>
+  noteList$!: Observable<Note[]>
 
   constructor(
     private _notesService: NoteService, 
@@ -17,8 +18,7 @@ export class UserNotesComponent {
   ){}
   
   ngOnInit(): void {
-    const id = Number(this._route.snapshot.paramMap.get('id'))
-    this.noteList$ = this._notesService.getNoteListByUser(id)
+    this.noteList$ = this._notesService.getNoteListByUser()
     }
 
 }

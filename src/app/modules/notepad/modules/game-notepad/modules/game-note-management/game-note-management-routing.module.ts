@@ -6,11 +6,11 @@ import { ShowCommentPageComponent } from '../../../../../shared/components/show-
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "myNotes",
+    redirectTo: "game-notes",
     pathMatch: "full"
   },
   {
-    path: "myNotes",
+    path: "game-notes",
     component: GameNotesComponent
   },
   {

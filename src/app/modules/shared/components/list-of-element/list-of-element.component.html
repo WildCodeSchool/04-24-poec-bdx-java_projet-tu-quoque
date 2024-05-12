@@ -5,13 +5,19 @@
     [ngStyle]="{backgroundColor: index % 2 === 0 ? '#0b202f' : '#30495b'}"
   >
     @if (!element?.accepted && replacementIcon) {
-    <img [src]="replacementIcon" alt="character" />
+    <img [src]="replacementIcon" alt="element" />
     } @else {
-    <img [src]="elementIcon" alt="character"/>
+    <img [src]="elementIcon" alt="element"/>
     }
-    <p class="character-name" [routerLink]="[baseUrl, element.id]">
-      {{ element.name }}
-    </p>
+    @if (isForDrawing) {
+      <p class="character-name" (click)="onClick(element.content)">
+        {{ element.name }}
+      </p>
+    } @else {
+      <p class="character-name" [routerLink]="[baseUrl, element.id]">
+        {{ element.name }}
+      </p>
+    }
     <img [src]="'assets/images/modify-icon.svg'" alt="modify" [routerLink]="" />
     <img
       [src]="'assets/images/garbage-icon.svg'"

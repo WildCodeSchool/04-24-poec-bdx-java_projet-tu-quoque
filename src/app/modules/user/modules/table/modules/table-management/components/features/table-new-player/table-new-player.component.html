@@ -5,5 +5,8 @@
     [suggestions]="suggestions |async" 
     (completeMethod)="searchUser($event)" 
     />
+    <footer class="page-footer">
+    <app-custom-button [style]="'gold'" [name]="'Retour'" PreviousPage></app-custom-button>
     <app-custom-button [style]="'gold'" [name]="'Ajouter'" (click)="addNewUser()" PreviousPage></app-custom-button>
+    </footer>
 </div>
