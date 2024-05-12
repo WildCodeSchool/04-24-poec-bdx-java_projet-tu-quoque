@@ -5,7 +5,7 @@ import { NewCharacterComponent } from './components/features/new-character/new-c
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "newCharacter",
+    redirectTo: "new-character",
     pathMatch: "full"
   },
   {
