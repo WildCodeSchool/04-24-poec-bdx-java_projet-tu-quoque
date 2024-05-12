@@ -35,7 +35,7 @@ export class NoteService {
   getNoteById(id: number): Observable<any> {
     return this.getNoteList()
     .pipe(
-      map((result: any) => result.find((note: any) => note.id === id))
+      map((result: any) => result.find((note: any) => Number(note.id) === id))
     )
   }
 }
