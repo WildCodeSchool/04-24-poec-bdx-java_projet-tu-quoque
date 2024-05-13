@@ -23,10 +23,10 @@ h2 {
 
 .description-app {
   width: 100vw;
-  height: 12rem;
+  height: 20rem;
   display: flex;
   flex-direction: column;
-  padding: 1rem 3rem 0rem 3rem;
+  padding: 3rem;
   margin: 3rem 0rem 4rem 0rem;
   background-color: #30495b;
   color: #fff;
@@ -51,7 +51,7 @@ img {
   }
   .table-function-description {
     background-color: #172c3b;
-    width: 40%;
+    width: 50%;
     height: 15rem;
     display: flex;
     flex-direction: column;
@@ -74,7 +74,7 @@ img {
   }
   .function-description-content {
     background-color: #172c3b;
-    width: 40%;
+    width: 50%;
     height: 15rem;
     display: flex;
     flex-direction: column;
