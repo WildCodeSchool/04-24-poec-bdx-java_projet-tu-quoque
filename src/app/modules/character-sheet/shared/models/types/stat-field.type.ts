@@ -1,4 +1,4 @@
-import { StatisticDetails } from "../../../models/classes/statistics-details.class";
+import { StatisticDetails } from "../../../models/classes/statistic-details.class";
 
 export type StatField = {
     index: number;

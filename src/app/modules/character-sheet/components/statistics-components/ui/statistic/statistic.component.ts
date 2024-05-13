@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { StatisticDetails } from '../../../../models/classes/statistics-details.class';
+import { StatisticDetails } from '../../../../models/classes/statistic-details.class';
 import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
 import { Subject } from 'rxjs';
 import { StatField } from '../../../../shared/models/types/stat-field.type';

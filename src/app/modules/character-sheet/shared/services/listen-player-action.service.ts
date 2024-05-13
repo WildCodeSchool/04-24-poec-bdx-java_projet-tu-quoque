@@ -2,7 +2,7 @@ import { DestroyRef, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Field } from '../models/types/field.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { StatisticDetails } from '../../models/classes/statistics-details.class';
+import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { StatField } from '../models/types/stat-field.type';
 
 @Injectable({

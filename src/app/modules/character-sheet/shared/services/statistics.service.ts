@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StatisticDetails } from '../../models/classes/statistics-details.class';
+import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { StatAbbr, StatAbbrKey } from '../../models/enums/stats-abbr.enum';
 import { StatModifier } from '../../models/types/stat-modifier.type';
 
