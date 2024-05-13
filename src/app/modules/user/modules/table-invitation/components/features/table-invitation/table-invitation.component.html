@@ -1,0 +1,9 @@
+<app-page-header [title]="'Mes invitations'" [elementIcon]="'assets/images/myTables-title-icon.svg'"></app-page-header>
+<app-custom-area-title [title]="'Tables'"></app-custom-area-title>
+<ng-container *ngIf="tableInvitationList$|async as tableInvitationList">
+    <app-list-of-element [elementList]="tableInvitationList" [elementIcon]="'assets/images/table-icon.svg'"></app-list-of-element>
+</ng-container>
+<app-custom-area-title [title]="'Choisis ton personnage'"></app-custom-area-title>
+<ng-container *ngIf="availableCharacterList$| async as availableCharacterList">
+    <app-list-of-element [elementList]="availableCharacterList" [elementIcon]="'assets/images/character-icon.svg'"></app-list-of-element>
+</ng-container>

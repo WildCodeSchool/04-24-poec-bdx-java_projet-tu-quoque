@@ -28,6 +28,13 @@ export class CharacterService {
     )
   }
 
+  getUserCharacterWithoutTableList$(): Observable<Character[]> {
+    return this.getUserCharacterList$()
+    .pipe(
+      map((response: Character[]) => response.filter((character: Character) => character.table_id === null))
+    )
+  }
+
   getCharacterById$(characterId: number): Observable<Character> {
     return this.getUserCharacterList$()
       .pipe(

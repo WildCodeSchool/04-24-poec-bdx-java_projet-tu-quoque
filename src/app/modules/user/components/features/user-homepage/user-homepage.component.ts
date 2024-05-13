@@ -19,7 +19,7 @@ export class UserHomepageComponent {
         ? [
             { name: 'Personnages', url: '../characters' },
             { name: 'tables', url: '../tables' },
-            { name: 'invitations', url: '' },
+            { name: 'invitations', url: '../table-invitation' },
           ]
         : [
             { name: 'Personnages', url: '../characters' },

@@ -20,7 +20,12 @@ export class TableInvitationService {
   getTableInvitationListByUser$(id: number): Observable<any> {
     return this.getTableInvitationList$()
     .pipe(
-      map((tableInvitationList: any) => tableInvitationList.filter((invitation : any) => Number(invitation.user_id) === id)))
+      map((tableInvitationList: any) => tableInvitationList
+      .filter((invitation : any) => Number(invitation.user_id) === id)))
+      // methode pour recuperer :
+      //     un tableau des noms des tables des invitations 
+      //     à partir 
+      //     du tableau d'id de tables
   }
 
   getUserTableInvitationList$(): Observable<any> {
