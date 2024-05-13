@@ -7,6 +7,6 @@ export type Character = {
   table_id?: number;
   characterAvatar: string;
   characterSheet: number;
-  status: CharacterStatus; //enum
+  accepted: boolean; //enum
   schedule_id: number;
 };
