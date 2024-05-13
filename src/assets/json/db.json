@@ -1,57 +1,57 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "SkyWalker22",
       "email": "skywalker22@gmail.com",
-      "password": "1234",
+      "password": "Bonjour33!",
       "avatar": "/assets/images/user-profile-images/user1.jpg",
       "role": "user"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Moussay",
       "email": "moussay@gmail.com",
-      "password": "1234",
+      "password": "Bonjour33!",
       "avatar": "/assets/images/user-profile-images/user2.png",
       "role": "admin"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "SkyIsTheLimit",
       "email": "SkyIsTheLimit@gmail.com",
-      "password": "1234",
+      "password": "Bonjour33!",
       "avatar": "/assets/images/user-profile-images/user1.jpg",
       "role": "user"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "MoussaillonDeMalheur",
       "email": "MoussaillonDeMalheur@gmail.com",
-      "password": "1234",
+      "password": "Bonjour33!",
       "avatar": "/assets/images/user-profile-images/user2.png",
       "role": "user"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "MimirOfMimisbrunn",
       "email": "MimirOfMimisbrunn@gmail.com",
-      "password": "1234",
+      "password": "Bonjour33!",
       "avatar": "/assets/images/user-profile-images/user2.png",
       "role": "user"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Sigyn33",
       "email": "Sigyn33@gmail.com",
-      "password": "1234",
+      "password": "_=",
       "avatar": "/assets/images/user-profile-images/user1.jpg",
       "role": "user"
     }
   ],
   "characters": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Elric",
       "avatar": "/assets/images/profile-img-test.jpg",
       "user_id": 1,
@@ -61,7 +61,7 @@
       "schedule_id": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Boromir",
       "avatar": "",
       "user_id": 1,
@@ -71,7 +71,7 @@
       "schedule_id": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Willow",
       "avatar": "",
       "user_id": 1,
@@ -129,46 +129,45 @@
   ],
   "tables": [
     {
-      "id": 1,
+      "id": "1",
       "avatar": "/assets/images/profile-img-test.jpg",
       "name": "table ronde",
       "user_id": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "avatar": "",
       "name": "imbattable",
       "user_id": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "avatar": "",
       "name": "évitable",
       "user_id": 1
     },
     {
-      "id": 4,
+      "id": "4",
       "avatar": "",
       "name": "Acceptable",
       "user_id": 2
     },
     {
-      "id": 5,
+      "id": "5",
       "avatar": "",
       "name": "Ajustable",
       "user_id": 1
     }
-
   ],
   "schedules": [
     {
-      "id": 1,
+      "id": "1",
       "tables_id": 1
     }
   ],
   "notes": [
     {
-      "id": 1,
+      "id": "1",
       "table_id": null,
       "user_id": 1,
       "character_id": null,
@@ -176,7 +175,7 @@
       "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
     },
     {
-      "id": 2,
+      "id": "2",
       "table_id": null,
       "user_id": 1,
       "character_id": null,
@@ -184,7 +183,7 @@
       "text": "42"
     },
     {
-      "id": 3,
+      "id": "3",
       "table_id": 1,
       "user_id": null,
       "character_id": null,
@@ -192,7 +191,7 @@
       "text": "Ha Ha Ha !!!"
     },
     {
-      "id": 4,
+      "id": "4",
       "table_id": null,
       "user_id": null,
       "character_id": 2,
@@ -200,7 +199,7 @@
       "text": "Mur"
     },
     {
-      "id": 5,
+      "id": "5",
       "table_id": null,
       "user_id": null,
       "character_id": 2,
@@ -208,7 +207,7 @@
       "text": "Beau temps"
     },
     {
-      "id": 6,
+      "id": "6",
       "table_id": null,
       "user_id": null,
       "character_id": 2,
@@ -218,19 +217,19 @@
   ],
   "drawings": [
     {
-      "id": 1,
+      "id": "1",
       "name": "papy",
       "content": "/assets/images/user-profile-images/user1.jpg",
       "table_id": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "maman sexy",
       "content": "/assets/images/user-profile-images/user2.png",
       "table_id": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "papa",
       "content": "/assets/images/user-profile-images/user3.png",
       "table_id": 1
@@ -238,37 +237,37 @@
   ],
   "chats": [
     {
-      "id": 1,
+      "id": "1",
       "name": "vas te cacher sous l'escalier",
       "table_id": 1,
       "character_id": null
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Tu es maintenant un vampire",
       "table_id": 1,
       "character_id": null
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Sylvain est un [complète cette phrase] <3",
       "table_id": 1,
       "character_id": null
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Un magicien n'est jamais en retard...",
       "table_id": null,
       "character_id": 1
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "T'es où ???",
       "table_id": null,
       "character_id": 1
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Apéro ?",
       "table_id": null,
       "character_id": 1
@@ -276,39 +275,43 @@
   ],
   "messages": [
     {
-      "id": 1,
+      "id": "1",
       "text": "Mais pourquoi ?"
     },
     {
-      "id": 2,
+      "id": "2",
       "text": "Voilà, voilà"
     }
   ],
   "chatsMessages": [
     {
       "chat_id": 1,
-      "message_id": 1
+      "message_id": 1,
+      "id": "fc07"
     },
     {
       "chat_id": 1,
-      "message_id": 2
+      "message_id": 2,
+      "id": "e62e"
     }
   ],
   "characterSheets": [
     {
-      "id": 1
+      "id": "1"
     }
   ],
   "charactersChats": [
     {
       "character_id": 1,
-      "chat_id": 1
+      "chat_id": 1,
+      "id": "efd3"
     }
   ],
   "tablesChats": [
     {
       "table_id": 1,
-      "chat_id": 2
+      "chat_id": 2,
+      "id": "2c2d"
     }
   ],
   "races": [
@@ -340,7 +343,10 @@
         }
       ],
       "languages": {
-        "systemically": ["commun", "elfe"],
+        "systemically": [
+          "commun",
+          "elfe"
+        ],
         "additional": [
           "draconien",
           "gnoll",
@@ -373,7 +379,8 @@
         "M": 42,
         "F": 40
       },
-      "modWeight": "1d6"
+      "modWeight": "1d6",
+      "id": "5bf3"
     },
     {
       "name": "demi-orque",
@@ -394,8 +401,17 @@
       "sizeCategorie": "M",
       "skills": [],
       "languages": {
-        "systemically": ["commun", "orque"],
-        "additional": ["abyssal", "draconien", "géant", "gnoll", "gobelin"]
+        "systemically": [
+          "commun",
+          "orque"
+        ],
+        "additional": [
+          "abyssal",
+          "draconien",
+          "géant",
+          "gnoll",
+          "gobelin"
+        ]
       },
       "adultAge": 14,
       "ageModifier": {
@@ -420,7 +436,8 @@
         "M": 75,
         "F": 55
       },
-      "modWeight": "2d6"
+      "modWeight": "2d6",
+      "id": "7e29"
     }
   ],
   "classes": [
@@ -440,10 +457,17 @@
       ],
       "baseSkillPoints": "(4 + mod INT) * 4",
       "skillPointsPerLevel": "4 + mod INT",
-      "weapons": ["courante", "guerre"],
+      "weapons": [
+        "courante",
+        "guerre"
+      ],
       "shields": "toutes sauf pavois",
-      "armors": ["lègere", "intermédiaire"],
-      "special": []
+      "armors": [
+        "lègere",
+        "intermédiaire"
+      ],
+      "special": [],
+      "id": "68d2"
     },
     {
       "name": "Roublard",
@@ -490,46 +514,60 @@
         "rapière"
       ],
       "shields": "",
-      "armors": ["lègere"],
-      "special": []
+      "armors": [
+        "lègere"
+      ],
+      "special": [],
+      "id": "1c9a"
     }
   ],
   "classBaseBonus": [],
   "alignments": [
     {
-      "name": "Loyal Bon"
+      "name": "Loyal Bon",
+      "id": "0e18"
     },
     {
-      "name": "Loyal Neutre"
+      "name": "Loyal Neutre",
+      "id": "5aef"
     },
     {
-      "name": "Loyal Mauvais"
+      "name": "Loyal Mauvais",
+      "id": "d6b8"
     },
     {
-      "name": "Neutre Bon"
+      "name": "Neutre Bon",
+      "id": "0c30"
     },
     {
-      "name": "Neutre"
+      "name": "Neutre",
+      "id": "ebb9"
     },
     {
-      "name": "Neutre Mauvais"
+      "name": "Neutre Mauvais",
+      "id": "d7eb"
     },
     {
-      "name": "Chaotique Bon"
+      "name": "Chaotique Bon",
+      "id": "e8d3"
     },
     {
-      "name": "Chaotique Neutre"
+      "name": "Chaotique Neutre",
+      "id": "37ed"
     },
     {
-      "name": "Chaotique Mauvais"
+      "name": "Chaotique Mauvais",
+      "id": "20d0"
     }
   ],
   "genders": [
     {
-      "name": "M"
+      "name": "M",
+      "id": "6be0"
     },
     {
-      "name": "F"
+      "name": "F",
+      "id": "b58d"
     }
   ]
 }
