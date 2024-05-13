@@ -28,6 +28,7 @@ export class StatisticDetails {
 
     setStatTempValue(value: number) {
         this.tempValue = value;
-        this.tempMod = this.calcMod(this.tempValue);
+        if (value) this.tempMod = this.calcMod(this.tempValue);
+        else this.tempMod = 0;
     }
 }
