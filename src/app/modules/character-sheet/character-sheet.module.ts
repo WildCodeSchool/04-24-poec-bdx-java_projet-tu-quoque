@@ -23,6 +23,7 @@ import { ThirdLineInputsComponent } from './components/character-informations-co
 import { StatComponent } from './components/statistics-components/features/stat/stat.component';
 import { StatisticsComponent } from './components/statistics-components/ui/statistics/statistics.component';
 import { SkillsComponent } from './components/skills-components/ui/skills/skills.component';
+import { StatisticComponent } from './components/statistics-components/ui/statistic/statistic.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { SkillsComponent } from './components/skills-components/ui/skills/skills
     StatComponent,
     StatisticsComponent,
     SkillsComponent,
+    StatisticComponent,
 
   ],
   imports: [
