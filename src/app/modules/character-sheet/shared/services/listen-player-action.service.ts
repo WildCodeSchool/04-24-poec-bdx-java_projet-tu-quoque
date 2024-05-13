@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Field } from '../models/types/field.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { StatisticDetails } from '../../models/classes/statistics-details.class';
+import { StatField } from '../models/types/stat-field.type';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,6 @@ export class ListenPlayerActionService {
       takeUntilDestroyed(this.destroyRef),
     ).subscribe((field: Field) => {
       this.controlField(field);
-
       this.sheetModifiedByPlayer[field.name] = field.value;
       this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
     });
@@ -44,6 +44,15 @@ export class ListenPlayerActionService {
       takeUntilDestroyed(this.destroyRef),
     ).subscribe((stats: StatisticDetails[]) => {
       this.sheetModifiedByPlayer["stats"] = stats;
+      this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
+    });
+  }
+
+  receiveStatFrom(fromObs$: Observable<StatField>) {
+    fromObs$.pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe((statField: StatField) => {
+      this.sheetModifiedByPlayer["stats"][statField.index] = statField.stat;
       this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
     });
   }
