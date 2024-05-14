@@ -1,5 +1,5 @@
-<!-- <td>{{skill.skillClass ? "o" : "x" }}</td> -->
-<td>{{skill.id}}</td>
+<td>{{skill.skillClass ? "o" : "x" }}</td>
+<!-- <td>{{skill.id}}</td> -->
 <td>{{skill.detailsFromDb.key}}  
     {{skill.detailsFromDb.innate ? "•" : ""}}</td>
 <td>{{skill.detailsFromDb.name}} <input type="text" *ngIf="skill.detailsFromDb.choice" [(ngModel)]="complement" (ngModelDebounceChange)="sendChanges()"></td>
