@@ -6,7 +6,7 @@
   >
   @if (toSelectCharacter) {
     <img [src]="elementIcon" alt="element" />
-    <label class="element-name label" [htmlFor]="element.id">
+    <label class="element-name label" [htmlFor]="element.id" [routerLink]="['../../characters/management/my-characters/', element.id]">
       {{ element.name }}
     </label>
       <input type="radio" name="element.id" [id]="element.id" [value]="element.id" (click)="selectCharacter(element.id)">

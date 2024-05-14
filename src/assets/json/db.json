@@ -83,7 +83,7 @@
     {
       "id": 4,
       "name": "Gimli",
-      "avatar": "",
+      "avatar": "/assets/images/user-profile-images/user3.png",
       "user_id": 2,
       "table_id": 1,
       "characterSheet_id": 1,
@@ -103,11 +103,11 @@
     {
       "id": 6,
       "name": "Néo",
-      "avatar": "",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
       "user_id": 4,
       "table_id": 1,
       "characterSheet_id": 1,
-      "accepted": true,
+      "accepted": false,
       "schedule_id": 1
     }
 

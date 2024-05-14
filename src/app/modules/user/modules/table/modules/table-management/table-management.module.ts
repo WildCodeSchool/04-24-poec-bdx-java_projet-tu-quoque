@@ -9,6 +9,8 @@ import { TablePresentationComponent } from './components/ui/table-presentation/t
 import { TableNewPlayerComponent } from './components/features/table-new-player/table-new-player.component';
 import { FormsModule } from '@angular/forms';
 import { DrawingDisplayComponent } from './components/ui/drawing-display/drawing-display.component';
+import { CharactersToAcceptComponent } from './components/features/characters-to-accept/characters-to-accept.component';
+import { CharacterCardComponent } from './components/ui/character-card/character-card.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { DrawingDisplayComponent } from './components/ui/drawing-display/drawing
     TablePresentationComponent,
     TableNewPlayerComponent,
     DrawingDisplayComponent,
+    CharactersToAcceptComponent,
+    CharacterCardComponent,
   ],
   imports: [
     CommonModule,
