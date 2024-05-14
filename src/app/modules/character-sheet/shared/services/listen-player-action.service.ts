@@ -4,12 +4,13 @@ import { Field } from '../models/types/field.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { StatField } from '../models/types/stat-field.type';
+import { SkillDetails } from '../../models/classes/skill-details.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListenPlayerActionService {
-  sheetModifiedByPlayer: any = {};
+  sheetModifiedByPlayer: any = { "skills": [] };
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);
 
   constructor(private destroyRef: DestroyRef) { }
@@ -55,5 +56,14 @@ export class ListenPlayerActionService {
       this.sheetModifiedByPlayer["stats"][statField.index] = statField.stat;
       this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
     });
+  }
+
+  receiveSkillFrom(fromObs$: Observable<SkillDetails>) {
+    fromObs$.pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe((skill: SkillDetails) => {
+      this.sheetModifiedByPlayer['skills'][skill.id] = { rank: skill.ranks, complement: skill.complement };
+      this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
+    })
   }
 }
