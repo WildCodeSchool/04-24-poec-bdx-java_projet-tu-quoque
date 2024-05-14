@@ -28,6 +28,13 @@ export class CharacterService {
     )
   }
 
+  getUserCharacterWithoutTableList$(): Observable<Character[]> {
+    return this.getUserCharacterList$()
+    .pipe(
+      map((response: Character[]) => response.filter((character: Character) => character.table_id === null))
+    )
+  }
+
   getCharacterById$(characterId: number): Observable<Character> {
     return this.getUserCharacterList$()
       .pipe(
@@ -35,10 +42,17 @@ export class CharacterService {
       );
   }
 
-  getCharactersByTable$(tableId: number): Observable<Character[]> {
+  getCharactersByTable$(tableId: number): Observable<Character[]> { //A modifier : joueurs invités + personnages acceptés
     return this.getAllUsers$()
     .pipe(
       map((characters: Character[]) => characters.filter((character: Character) => Number(character.table_id) === tableId))
+    )
+  }
+
+  getCharacterToAcceptByTable$(id: number): Observable<Character[]> {
+    return this.getCharactersByTable$(id)
+    .pipe(
+      map((characterList: Character[]) => characterList.filter((character: Character) => character.accepted === false))
     )
   }
 }
