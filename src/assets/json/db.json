@@ -55,7 +55,7 @@
       "name": "Elric",
       "avatar": "/assets/images/profile-img-test.jpg",
       "user_id": 1,
-      "table_id": null,
+      "table_id": 4,
       "characterSheet_id": 1,
       "accepted": false,
       "schedule_id": 1

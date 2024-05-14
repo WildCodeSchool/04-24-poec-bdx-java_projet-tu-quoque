@@ -13,9 +13,25 @@ export class TableInvitationComponent {
   tableInvitationList$: Observable<any> = this._tableInvitationService.getUserTableInvitationList$();
   availableCharacterList$ : Observable<any> = this._characterService.getUserCharacterWithoutTableList$();
   
+  tableSelected!: number;
+  characterSelected!: number;
+
   constructor(
     private _tableInvitationService: TableInvitationService,
     private _characterService: CharacterService
   ){}
 
+  getTableSelected(event: number) {
+    console.log(event)
+    this.tableSelected = event
+  }
+
+  getCharacterSelected(event: any) {
+    console.log(event)
+    this.characterSelected = event
+  }
+
+  attributeCharacterToTable(): void {
+    console.log(` table n°: ${this.tableSelected}, personnage n°: ${this.characterSelected}`)
+  }
 }

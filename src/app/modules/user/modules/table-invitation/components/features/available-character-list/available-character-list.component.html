@@ -1,13 +1,20 @@
-<ul class="character-list">
+<ul class="element-list">
   <li
-    class="character-line"
+    class="element-line"
     *ngFor="let element of elementList; let index = index"
-    [ngStyle]="{ backgroundColor: index % 2 === 0 ? '#0b202f' : '#30495b' }"
+    [ngStyle]="styleObject(element.id)"
   >
-    <img [src]="'assets/images/character-icon.svg'" alt="element" />
-    <p class="character-name">
+  @if (toSelectCharacter) {
+    <img [src]="elementIcon" alt="element" />
+    <label class="element-name label" [htmlFor]="element.id">
       {{ element.name }}
-    </p>
-    <img [src]="'assets/images/garbage-icon.svg'" alt="delete" />
+    </label>
+      <input type="radio" name="element.id" [id]="element.id" [value]="element.id" (click)="selectCharacter(element.id)">
+    } @else {
+      <img [src]="elementIcon" alt="element" />
+      <p class="element-name" (click)="selectTable(element.id)">
+        {{ element.name }}
+      </p>  
+    }
   </li>
 </ul>

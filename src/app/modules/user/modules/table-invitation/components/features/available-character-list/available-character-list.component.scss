@@ -2,22 +2,33 @@
     width: 95%;
   }
   
-  .character-list {
+  .element-list {
     padding-inline-start: 0;
     list-style: none;
   
-    .character-line {
+    .element-line {
       width: 100vw;
       padding: 0 1.5rem;
+      background-color: #172C3b;
+      border: 2px solid #172C3b;
       transform: translateX(0%);
       display: flex;
       gap: 1em;
+
+      &:nth-child(odd) {
+        background-color: #0b202f;
+        border: 2px solid #0b202f;
+      }
   
-      .character-name {
+      .element-name {
         flex-grow: 1;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        &.label {
+          padding: 1.1rem 0;
+        }
       }
     }
   }

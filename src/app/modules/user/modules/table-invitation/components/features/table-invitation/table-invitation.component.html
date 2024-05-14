@@ -1,13 +1,35 @@
-<app-page-header [title]="'Mes invitations'" [elementIcon]="'assets/images/myTables-title-icon.svg'"></app-page-header>
+<app-page-header
+  [title]="'Mes invitations'"
+  [elementIcon]="'assets/images/myTables-title-icon.svg'"
+></app-page-header>
 <app-custom-area-title [title]="'Tables'"></app-custom-area-title>
-<ng-container *ngIf="tableInvitationList$|async as tableInvitationList">
-    <app-list-of-element [elementList]="tableInvitationList" [elementIcon]="'assets/images/table-icon.svg'"></app-list-of-element>
+<ng-container *ngIf="tableInvitationList$ | async as tableInvitationList">
+  <app-available-character-list
+    [toSelectCharacter]="false"
+    [elementList]="tableInvitationList"
+    [elementIcon]="'assets/images/table-icon.svg'"
+    (tableIdSelected)="getTableSelected($event)"
+    (characterIdSelected)="getCharacterSelected($event)"
+  ></app-available-character-list>
 </ng-container>
-<app-custom-area-title [title]="'Choisis ton personnage'"></app-custom-area-title>
-<ng-container *ngIf="availableCharacterList$| async as availableCharacterList">
-    <app-available-character-list [elementList]="availableCharacterList"></app-available-character-list>
+<app-custom-area-title
+  [title]="'Choisis ton personnage'"
+></app-custom-area-title>
+<ng-container *ngIf="availableCharacterList$ | async as availableCharacterList">
+  <app-available-character-list
+    [elementList]="availableCharacterList"
+    [elementIcon]="'assets/images/character-icon.svg'"
+  ></app-available-character-list>
 </ng-container>
 <footer class="page-footer">
-    <app-custom-button [style]="'gold'" [name]="'Sélectionner'" ></app-custom-button>
+  <app-custom-button
+    [style]="'gold'"
+    [name]="'Retour'"
+    PreviousPage
+  ></app-custom-button>
+  <app-custom-button
+    [style]="'gold'"
+    [name]="'Sélectionner'"
+    (click)="attributeCharacterToTable()"
+  ></app-custom-button>
 </footer>
-
