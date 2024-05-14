@@ -8,8 +8,8 @@ import { Field } from '../models/types/field.type';
 import { GenderEnum } from '../../models/enums/gender.enum';
 import { DiceService } from '../../../shared/services/dice-service/dice.service';
 import { ClassEnum } from '../../models/enums/classes.enum';
-import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { StatModifier } from '../../models/types/stat-modifier.type';
+import { StatisticDetails } from '../../models/classes/statistic-details.class';
 
 @Injectable({
   providedIn: 'root'
@@ -137,6 +137,12 @@ export class CharacterSheetService {
         return [];
       })
     );
+  }
+
+  getCaracteristics$(): Observable<StatisticDetails[]> {
+    return this.listener.sendInfos().pipe(
+      map((sheet: any) => sheet.stats)
+    )
   }
 
 }
