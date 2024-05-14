@@ -15,7 +15,7 @@
     <ng-container *ngIf="drawingList$|async as drawingList">
     <app-list-of-element [elementList]="drawingList" [elementIcon]="'assets/images/brush-icon.svg'" (sendDrawingUrl)="showDrawing($event)" [isForDrawing]="true"></app-list-of-element>
     </ng-container>
-    <app-custom-add-button ></app-custom-add-button>
+    <app-custom-add-button [routerLink]="'new-drawing'" ></app-custom-add-button>
 </ng-container>
 <div class="bottom-part">
     <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
