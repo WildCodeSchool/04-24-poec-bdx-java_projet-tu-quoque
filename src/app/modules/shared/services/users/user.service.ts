@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject, map, switchMap, tap } from 'rxjs';
 
 @Injectable({
@@ -12,10 +13,10 @@ export class userService {
 
   // private _BASE_URL: string = "/assets/json/users.json" 
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private router: Router) { }
 
   userListFilteredByName$: Subject<any> = new Subject()
-
+  userListFilteredByEmail$: Subject<any> = new Subject()
 
   getUserList$(): Observable<any> {
     return this._http.get(this._BASE_URL)
@@ -33,9 +34,34 @@ export class userService {
     )
   }
 
+  getUserByEmail$(email: string): Observable<any> {
+    return this.getUserList$()
+      .pipe(
+        map((userList: any) => userList.filter((user: any) => user.email === email)),
+      );
+  }
+
   getUserListFilteredByName$(): Observable<any> {
     return this.userListFilteredByName$.asObservable()
-
   }
- 
+
+  checkUserInfos(email: string, password: string): Observable<any> { {
+    return this.getUserByEmail$(email)
+    .pipe(
+      map(response => 
+        {
+          if(response.length){
+            if(response[0].password === password){
+              return(true)
+            } else {
+              return (false)
+            }
+          } else {
+            return (false)
+          }
+        }
+      ),
+    )
+  }
+  } 
 }

@@ -6,7 +6,10 @@ import { GetFieldsService } from '../../../../shared/services/form-field/get-fie
 import { TextField } from '../../../../shared/models/types/fields/text-fields.type';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../../shared/shared.module';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { userService } from '../../../../shared/services/users/user.service';
+
+
 
 
 
@@ -24,9 +27,14 @@ export class ConnexionPageComponent implements OnInit {
   emailControl!: FormControl;
   passwordField$!: Observable<TextField>;
   passwordControl!: FormControl;
+
   connexionIcon: string = 'assets/icons/connexion.svg';
 
-  constructor(private _fieldsService: GetFieldsService, private _fb: FormBuilder) {
+  constructor(
+    private _fieldsService: GetFieldsService, 
+    private _fb: FormBuilder, 
+    private _userService: userService, 
+    private router: Router) {
     this.form = this._fb.group({
       email: ['', [
         Validators.required, 
@@ -68,9 +76,11 @@ export class ConnexionPageComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      console.log('Form Value:', this.form.value);
+      const email = this.form.value.email;
+      const password = this.form.value.password;
+      this._userService.checkUserInfos(email, password).subscribe(res => {if (res){this.router.navigate(['/user'])}});
     } else {
-      console.log('Form is not valid:', this.form.get('email')?.errors, this.form.get('password')?.errors);
+      console.log('Le formulaire est invalide');
     }
   }
   
