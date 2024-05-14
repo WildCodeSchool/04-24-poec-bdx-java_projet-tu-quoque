@@ -1,7 +1,8 @@
+import { Skills } from "../enums/skills.enum"
 import { StatAbbrKey } from "../enums/stats-abbr.enum"
 
 export type SkillFromDb = {
-    name: string,
+    name: Skills,
     key: StatAbbrKey,
     innate: boolean,
     armorMalus: number,

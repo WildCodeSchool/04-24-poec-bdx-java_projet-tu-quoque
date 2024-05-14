@@ -1,4 +1,6 @@
+import { Skills } from "../enums/skills.enum"
+
 export type SkillModifier = {
-    skill: string,
+    skill: Skills,
     mod: number
 }
