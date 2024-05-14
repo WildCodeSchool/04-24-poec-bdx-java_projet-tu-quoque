@@ -5,7 +5,7 @@ export type Character = {
   name: string;
   user_id: number;
   table_id?: number;
-  characterAvatar: string;
+  avatar: string;
   characterSheet: number;
   accepted: boolean; //enum
   schedule_id: number;
