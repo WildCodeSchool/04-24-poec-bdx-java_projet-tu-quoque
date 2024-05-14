@@ -1,8 +1,7 @@
-<ul class="character-list">
+<ul class="element-list">
   <li
-    class="character-line"
-    *ngFor="let element of elementList; let index = index"
-    [ngStyle]="{backgroundColor: index % 2 === 0 ? '#0b202f' : '#30495b'}"
+    class="element-line"
+    *ngFor="let element of elementList"
   >
     @if (!element?.accepted && replacementIcon) {
     <img [src]="replacementIcon" alt="element" />
@@ -10,11 +9,11 @@
     <img [src]="elementIcon" alt="element"/>
     }
     @if (isForDrawing) {
-      <p class="character-name" (click)="onClick(element.content)">
+      <p class="element-name" (click)="onClick(element.content)">
         {{ element.name }}
       </p>
     } @else {
-      <p class="character-name" [routerLink]="[baseUrl, element.id]">
+      <p class="element-name" [routerLink]="[baseUrl, element.id]">
         {{ element.name }}
       </p>
     }
