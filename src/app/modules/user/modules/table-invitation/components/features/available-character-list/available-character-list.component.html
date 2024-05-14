@@ -1,0 +1,13 @@
+<ul class="character-list">
+  <li
+    class="character-line"
+    *ngFor="let element of elementList; let index = index"
+    [ngStyle]="{ backgroundColor: index % 2 === 0 ? '#0b202f' : '#30495b' }"
+  >
+    <img [src]="'assets/images/character-icon.svg'" alt="element" />
+    <p class="character-name">
+      {{ element.name }}
+    </p>
+    <img [src]="'assets/images/garbage-icon.svg'" alt="delete" />
+  </li>
+</ul>

@@ -17,8 +17,12 @@ export class TableService {
 
   constructor(private _http: HttpClient) { }
 
+  getTableList$(): Observable<Table[]> {
+    return this._http.get<Table[]>(this._BASE_URL)
+  }
+
   getUserTableList$(): Observable<Table[]> {
-    return this._http.get(this._BASE_URL)
+    return this.getTableList$()
     .pipe(
       map((response: any) => 
         response.filter((response: Table) => response.user_id === this._USER_CONECTED)

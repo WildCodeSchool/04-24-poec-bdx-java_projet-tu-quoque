@@ -5,5 +5,9 @@
 </ng-container>
 <app-custom-area-title [title]="'Choisis ton personnage'"></app-custom-area-title>
 <ng-container *ngIf="availableCharacterList$| async as availableCharacterList">
-    <app-list-of-element [elementList]="availableCharacterList" [elementIcon]="'assets/images/character-icon.svg'"></app-list-of-element>
+    <app-available-character-list [elementList]="availableCharacterList"></app-available-character-list>
 </ng-container>
+<footer class="page-footer">
+    <app-custom-button [style]="'gold'" [name]="'Sélectionner'" ></app-custom-button>
+</footer>
+
