@@ -24,6 +24,9 @@ import { StatComponent } from './components/statistics-components/features/stat/
 import { StatisticsComponent } from './components/statistics-components/ui/statistics/statistics.component';
 import { SkillsComponent } from './components/skills-components/ui/skills/skills.component';
 import { StatisticComponent } from './components/statistics-components/ui/statistic/statistic.component';
+import { SkillListComponent } from './components/skills-components/features/skill-list/skill-list.component';
+import { SkillRowComponent } from './components/skills-components/ui/skill-row/skill-row.component';
+import { LevelListComponent } from './components/character-informations-components/feature/lists/level-list/level-list.component';
 
 
 @NgModule({
@@ -49,6 +52,9 @@ import { StatisticComponent } from './components/statistics-components/ui/statis
     StatisticsComponent,
     SkillsComponent,
     StatisticComponent,
+    SkillListComponent,
+    SkillRowComponent,
+    LevelListComponent,
 
   ],
   imports: [
