@@ -17,8 +17,12 @@ export class TableService {
 
   constructor(private _http: HttpClient) { }
 
+  getTableList$(): Observable<Table[]> {
+    return this._http.get<Table[]>(this._BASE_URL)
+  }
+
   getUserTableList$(): Observable<Table[]> {
-    return this._http.get(this._BASE_URL)
+    return this.getTableList$()
     .pipe(
       map((response: any) => 
         response.filter((response: Table) => response.user_id === this._USER_CONECTED)
@@ -27,10 +31,10 @@ export class TableService {
   }
 
   getTableById$(id: Number): Observable<Table> {
-    return this.getUserTableList$()
+    return this.getTableList$()
     .pipe(
       //tap(res => console.log(res)), POURQUOI L4ID EST EN FORMAT STRING ???
-      map((response: Table[]) => response.find((table: Table) => Number(table.id) === id) as Table)
+      map((response: Table[]) => response.find((table: Table) => Number(table.id) === Number(id)) as Table)
     )
   }
 }

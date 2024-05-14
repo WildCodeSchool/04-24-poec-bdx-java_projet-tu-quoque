@@ -24,6 +24,11 @@ const routes: Routes = [
     .then(m => m.TableModule)
   },
   {
+    path: "table-invitation",
+    loadChildren: () => import('./modules/table-invitation/table-invitation.module')
+    .then(m => m.TableInvitationModule)
+  },
+  {
     path: "account-management",
     component: AccountManagementComponent
   }

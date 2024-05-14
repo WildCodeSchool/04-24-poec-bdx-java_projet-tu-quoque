@@ -8,4 +8,13 @@
   color: #fff;
   font-family: alice;
   font-size: large;
+
+  .page-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+    gap: 1rem;
+  }
 }

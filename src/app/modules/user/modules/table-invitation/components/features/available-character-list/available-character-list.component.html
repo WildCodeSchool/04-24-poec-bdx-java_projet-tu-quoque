@@ -1,0 +1,20 @@
+<ul class="element-list">
+  <li
+    class="element-line"
+    *ngFor="let element of elementList; let index = index"
+    [ngStyle]="styleObject(element.id)"
+  >
+  @if (toSelectCharacter) {
+    <img [src]="elementIcon" alt="element" />
+    <label class="element-name label" [htmlFor]="element.id" [routerLink]="['../../characters/management/my-characters/', element.id]">
+      {{ element.name }}
+    </label>
+      <input type="radio" name="element.id" [id]="element.id" [value]="element.id" (click)="selectCharacter(element.id)">
+    } @else {
+      <img [src]="elementIcon" alt="element" />
+      <p class="element-name" (click)="selectTable(element.id)">
+        {{ element.name }}
+      </p>  
+    }
+  </li>
+</ul>

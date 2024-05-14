@@ -55,9 +55,9 @@
       "name": "Elric",
       "avatar": "/assets/images/profile-img-test.jpg",
       "user_id": 1,
-      "table_id": 1,
+      "table_id": 4,
       "characterSheet_id": 1,
-      "status": "to accept",
+      "accepted": false,
       "schedule_id": 1
     },
     {
@@ -65,9 +65,9 @@
       "name": "Boromir",
       "avatar": "",
       "user_id": 1,
-      "table_id": 1,
+      "table_id": null,
       "characterSheet_id": 1,
-      "status": "accepted",
+      "accepted": false,
       "schedule_id": 1
     },
     {
@@ -75,11 +75,57 @@
       "name": "Willow",
       "avatar": "",
       "user_id": 1,
+      "table_id": null,
+      "characterSheet_id": 1,
+      "accepted": false,
+      "schedule_id": 1
+    },
+    {
+      "id": 4,
+      "name": "Gimli",
+      "avatar": "/assets/images/user-profile-images/user3.png",
+      "user_id": 2,
       "table_id": 1,
       "characterSheet_id": 1,
-      "status": "invited",
+      "accepted": false,
+      "schedule_id": 1
+    },
+    {
+      "id": 5,
+      "name": "Freyr",
+      "avatar": "",
+      "user_id": 3,
+      "table_id": 1,
+      "characterSheet_id": 1,
+      "accepted": true,
+      "schedule_id": 1
+    },
+    {
+      "id": 6,
+      "name": "Néo",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "user_id": 4,
+      "table_id": 1,
+      "characterSheet_id": 1,
+      "accepted": false,
       "schedule_id": 1
     }
+
+  ],
+  "user_table_invitations": [
+    {
+      "user_id": 2,
+      "table_id": 1
+    },
+    {
+      "user_id": 3,
+      "table_id": 1
+    },
+    {
+      "user_id": 1,
+      "table_id": 4
+    }
+
   ],
   "tables": [
     {
@@ -104,7 +150,7 @@
       "id": "4",
       "avatar": "",
       "name": "Acceptable",
-      "user_id": 1
+      "user_id": 2
     },
     {
       "id": "5",
