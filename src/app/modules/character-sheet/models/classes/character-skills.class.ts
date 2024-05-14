@@ -19,64 +19,51 @@ export class CharacterSkills {
 
     init() {
         this.skills$ = this.dbService.getSkills$().pipe(
-            map((skillList: SkillFromDb[]) => {
-                const skills: SkillDetails[] = [];
-                skillList.forEach((skillFromDb: SkillFromDb) => skills.push(new SkillDetails(skillFromDb)));
-                return skills;
-            }),
+            map((skillList: SkillFromDb[]) => this.transformSkillFromDbIntoSkillsDetails(skillList)),
             shareReplay(),
             switchMap((skills: SkillDetails[]) => this.sheetService.race$.pipe(
-                map((race: Race) => {
-                    if (!race) return skills.map((skill) => {
-                        skill.raceValue = 0;
-                        return skill;
-                    });
-                    for (let skill of skills) {
-                        let changed = false;
-                        for (let skillModifier of race.skills) {
-                            if (skillModifier.skill === skill.detailsFromDb.name) {
-                                skill.raceValue = skillModifier.mod;
-                                changed = true;
-                                break;
-                            }
-                        }
-                        if (!changed) skill.raceValue = 0;
-                    }
-                    return skills;
-                })
+                map((race: Race) => this.updateSkillsWithRace(skills, race))
             )),
             switchMap((skills: SkillDetails[]) => this.sheetService.getClasseDetails$().pipe(
-                map((classDetails: CharacterClass) => {
-                    if (!classDetails) return skills;
-                    if (classDetails.classSkills.length === 0) return skills;
-                    for (let skill of skills) {
-                        let changed = false;
-                        for (let classSkill of classDetails.classSkills) {
-                            if (skill.detailsFromDb.name === classSkill) {
-                                skill.skillClass = true;
-                                changed = true;
-                                break;
-                            }
-                        }
-                        if (!changed) skill.skillClass = false;
-                    }
-                    return skills;
-                })
+                map((classDetails: CharacterClass) =>
+                    this.updateSkillsWithClass(skills, classDetails)
+                )
             )),
             switchMap((skills: SkillDetails[]) => this.sheetService.getCaracteristics$().pipe(
                 map((stats: StatisticDetails[]) => {
-                    if (!stats) return skills;
-                    for (let skill of skills) {
-                        for (let stat of stats) {
-                            if (skill.detailsFromDb.key === stat.abbr && (skill.ranks || skill.detailsFromDb.innate)) {
-                                skill.statMod = stat.getFinalMod();
-                                break;
-                            }
-                        }
-                    }
-                    return skills;
+
                 })
             ))
         );
+    }
+
+    transformSkillFromDbIntoSkillsDetails(skillList: SkillFromDb[]) {
+        const skills: SkillDetails[] = [];
+        skillList.forEach((skillFromDb: SkillFromDb) => skills.push(new SkillDetails(skillFromDb)));
+        return skills;
+    }
+
+    updateSkillsWithRace(skills: SkillDetails[], race: Race): SkillDetails[] {
+        if (!race) return skills.map((skill) => skill.resetRaceValue());
+        for (let skill of skills) {
+            skill.updateRaceValue(race.skills);
+        }
+        return skills;
+    }
+
+    updateSkillsWithClass(skills: SkillDetails[], classDetails: CharacterClass): SkillDetails[] {
+        if (!classDetails || !classDetails.classSkills.length) return skills.map(skill => skill.resetSkillClass());
+        for (let skill of skills) {
+            skill.updateSkillClass(classDetails.classSkills);
+        }
+        return skills;
+    }
+
+    updateSkillStatMod(skills: SkillDetails[], stats: StatisticDetails[]) {
+        if (!stats) return skills;
+        for (let skill of skills) {
+            skill.setStatMod(stats);
+        }
+        return skills;
     }
 }
