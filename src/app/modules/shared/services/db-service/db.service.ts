@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, share, shareReplay, Subject } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { Race } from '../../../character-sheet/models/types/race.type';
 import { CharacterClass } from '../../../character-sheet/models/types/character-class.type';
 import { Alignment } from '../../../character-sheet/models/types/alignment.type';
@@ -36,7 +36,7 @@ export class DbService {
   }
 
   getClasses$(): Observable<CharacterClass[]> {
-    return this.getEndpoint$(this.CLASSES_ENDPOINT);
+    return this.getEndpoint$(this.CLASSES_ENDPOINT).pipe(shareReplay());
   }
 
   getAlignments$(): Observable<Alignment[]> {
