@@ -2,13 +2,15 @@ import { DestroyRef, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Field } from '../models/types/field.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { StatisticDetails } from '../../models/classes/statistics-details.class';
+import { StatisticDetails } from '../../models/classes/statistic-details.class';
+import { StatField } from '../models/types/stat-field.type';
+import { SkillDetails } from '../../models/classes/skill-details.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListenPlayerActionService {
-  sheetModifiedByPlayer: any = {};
+  sheetModifiedByPlayer: any = { "skills": [] };
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);
 
   constructor(private destroyRef: DestroyRef) { }
@@ -18,7 +20,6 @@ export class ListenPlayerActionService {
       takeUntilDestroyed(this.destroyRef),
     ).subscribe((field: Field) => {
       this.controlField(field);
-
       this.sheetModifiedByPlayer[field.name] = field.value;
       this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
     });
@@ -46,5 +47,23 @@ export class ListenPlayerActionService {
       this.sheetModifiedByPlayer["stats"] = stats;
       this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
     });
+  }
+
+  receiveStatFrom(fromObs$: Observable<StatField>) {
+    fromObs$.pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe((statField: StatField) => {
+      this.sheetModifiedByPlayer["stats"][statField.index] = statField.stat;
+      this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
+    });
+  }
+
+  receiveSkillFrom(fromObs$: Observable<SkillDetails>) {
+    fromObs$.pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe((skill: SkillDetails) => {
+      this.sheetModifiedByPlayer['skills'][skill.id] = { rank: skill.ranks, complement: skill.complement };
+      this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
+    })
   }
 }

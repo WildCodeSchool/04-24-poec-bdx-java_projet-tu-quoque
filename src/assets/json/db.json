@@ -569,5 +569,315 @@
       "name": "F",
       "id": "b58d"
     }
+  ],
+  "skills": [
+    {
+      "name": "Acrobaties",
+      "key": "DEX",
+      "innate": false,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Art de la magie",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Artisanat",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Artisanat",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Artisanat",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Bluff",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Concentration",
+      "key": "CON",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Contrefaçon",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Crochetage",
+      "key": "DEX",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Décryptage",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Déguisement",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Déplacement silencieux",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Désamorçage/Sabotage",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Détection",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Diplomatie",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Discrétion",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Dressage",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Equilibre",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Equitation",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Escalade",
+      "key": "FOR",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Escamotage",
+      "key": "DEX",
+      "innate": false,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Estimation",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Evasion",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Fouille",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Intimidation",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Maîtrise des cordes",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Natation",
+      "key": "FOR",
+      "innate": true,
+      "armorMalus": 2,
+      "choice": false
+    },
+    {
+      "name": "Perception auditive",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Premiers secours",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Profession",
+      "key": "SAG",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Profession",
+      "key": "SAG",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Psychologie",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Renseignements",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Représentation",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Représentation",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Représentation",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Saut",
+      "key": "FOR",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Survie",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Utilisation d'objets magiques",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    }
   ]
 }

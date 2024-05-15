@@ -9,15 +9,8 @@
         </tr>
     </thead>
     <tbody *ngIf="stats$ | async as stats">
-        <tr *ngFor="let stat of stats">
-            <td>
-                {{stat.abbr}}<br>
-                {{stat.name}}
-            </td>
-            <td>{{stat.value}}</td>
-            <td>{{stat.mod}}</td>
-            <td>{{stat.tempValue || ""}}</td>
-            <td>{{stat.tempMod || ""}}</td>
+        <tr *ngFor="let stat of stats, let index=index " trStatistic [stat]="stat" [index]="index">
+            
         </tr>
     </tbody>
 </table>
