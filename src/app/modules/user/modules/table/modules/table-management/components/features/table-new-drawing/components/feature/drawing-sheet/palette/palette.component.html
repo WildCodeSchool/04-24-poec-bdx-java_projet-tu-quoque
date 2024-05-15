@@ -1,7 +1,3 @@
 <div class="palette">
-    <button data-color="blue" onclick="onclick()">o</button>
-    <button data-color="green" onclick="onclick()">o</button>
-    <button data-color="yellow" onclick="onclick()">o</button>
-    <button data-color="red" onclick="onclick()">o</button>
-    <button data-color="black" onclick="onclick()">o</button> 
+    <button *ngFor="let color of colors" [style.background-color]="color" (click)="onClick(color)">o</button>
 </div>

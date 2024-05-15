@@ -11,13 +11,16 @@ export class DrawingSheetComponent implements AfterViewInit{
   private _ctx!: CanvasRenderingContext2D;
   private _currentColor: string = 'black';
 
-  constructor(private colorService: ColorService) {}
+  constructor(private _colorService: ColorService) {}
 
   ngAfterViewInit() {
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
     this._ctx = canvas.getContext('2d')!;
-
+    
     this.initCanvas(canvas);
+    this._colorService.color$.subscribe(color => {
+      this.setColor(color);
+    })
   }
 
   initCanvas(canvas: HTMLCanvasElement): void {

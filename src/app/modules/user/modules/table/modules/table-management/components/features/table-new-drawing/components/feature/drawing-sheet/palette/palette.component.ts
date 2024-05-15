@@ -7,23 +7,28 @@ import { ColorService } from '../../../../../../../../../../../../shared/service
   styleUrl: './palette.component.scss'
 })
 export class PaletteComponent implements OnInit {
-  constructor(private _elementRef: ElementRef, private renderer: Renderer2, private colorService: ColorService) {}
+  constructor(
+    private _elementRef: ElementRef, 
+    private _renderer: Renderer2, 
+    private _colorService: ColorService) {}
 
-  applyPaletteColors(): void {
-    const paletteElements = this._elementRef.nativeElement.querySelectorAll('.palette div');
-    paletteElements.forEach((element: HTMLElement) => {
-      const color = element.getAttribute('data-color');
-      if (color) {
-        this.renderer.setStyle(element, 'background-color', color);
-      }
-    });
-  }
+  colors: string[] = ['blue', 'green', 'yellow', 'red', 'black'];
 
   ngOnInit() {
     this.applyPaletteColors();
   }
 
+  applyPaletteColors(): void {
+    const paletteElements = this._elementRef.nativeElement.querySelectorAll('.palette button');
+    paletteElements.forEach((element: HTMLElement, index: number) => {
+      const color = this.colors[index];
+      this._renderer.setStyle(element, 'background-color', color);
+      element.setAttribute('data-color', color);
+    });
+  }
+
+
   onClick(color: string): void {
-    this.colorService.setColor(color);
+    this._colorService.setColor(color);
   }
 }
