@@ -22,7 +22,7 @@ export class ListOfElementComponent {
   isForDrawing: boolean = false
 
   @Output()
-  sendDrawingUrl: EventEmitter<any> = new EventEmitter()
+  sendDrawingUrl: EventEmitter<string> = new EventEmitter()
 
 
   onClick(event: any): void {

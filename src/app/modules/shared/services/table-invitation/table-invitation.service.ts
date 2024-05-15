@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { TableService } from '../table/table.service';
+import { tableInvitaition } from '../../models/types/users/table-invitation.type';
+import { Table } from '../../models/types/users/table.type';
 
 @Injectable({
   providedIn: 'root'
@@ -16,29 +18,29 @@ export class TableInvitationService {
     private _HTTP: HttpClient, 
     private _tableService: TableService) { }
 
-  getTableInvitationList$(): Observable<any> {
-    return this._HTTP.get("http://localhost:3000/user_table_invitations")
+  getTableInvitationList$(): Observable<tableInvitaition[]> {
+    return this._HTTP.get<tableInvitaition[]>("http://localhost:3000/user_table_invitations")
   }
 
-  getTableInvitationListByUser$(id: number): Observable<any> {
+  getTableInvitationListByUser$(id: number): Observable<number[]> {
     return this.getTableInvitationList$()
     .pipe(
-      map((tableInvitationList: any) => tableInvitationList
-      .filter((invitation : any) => Number(invitation.user_id) === id)),
-      map((invitationArray :any) => invitationArray.map((invit: any) => invit.table_id))
+      map((tableInvitationList: tableInvitaition[]) => tableInvitationList
+      .filter((invitation : tableInvitaition) => Number(invitation.user_id) === id)),
+      map((invitationArray:tableInvitaition[]) => invitationArray.map((invit: tableInvitaition) => invit.table_id))
     )
   }
     
-    getTableInvitationListNames$(id: number) {
+    getTableInvitationListNames$(id: number): Observable<Table[]> {
       return this.getTableInvitationListByUser$(id)
         .pipe(
-          switchMap(tableId => this._tableService.getTableList$()
+          switchMap((tableIdList: number[]) => this._tableService.getTableList$()
             .pipe(
-              map(tableList => tableList.filter(table => Number(table.id) === Number(tableId))))
+              map((tableList: Table[]) => tableList.filter((table: Table) => Number(table.id) === Number(tableIdList))))
             ))
     }
 
-  getUserTableInvitationList$(): Observable<any> {
+  getUserTableInvitationList$(): Observable<tableInvitaition[]> {
     return this.userTableInvitationList$.value.length ? 
       this.userTableInvitationList$.asObservable() 
       : this.getTableInvitationListNames$(this._userId)

@@ -2,66 +2,63 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, map, switchMap, tap } from 'rxjs';
+import { User } from '../../models/types/users/user.types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class userService {
-
   // using JSON server
-  private readonly _BASE_URL: string = "http://localhost:3000/users"
+  private readonly _BASE_URL: string = 'http://localhost:3000/users';
 
-  // private _BASE_URL: string = "/assets/json/users.json" 
+  constructor(private _http: HttpClient, private router: Router) {}
 
-  constructor(private _http: HttpClient, private router: Router) { }
+  userListFilteredByName$: Subject<string[]> = new Subject();
+  userListFilteredByEmail$: Subject<User[]> = new Subject();
 
-  userListFilteredByName$: Subject<any> = new Subject()
-  userListFilteredByEmail$: Subject<any> = new Subject()
-
-  getUserList$(): Observable<any> {
-    return this._http.get(this._BASE_URL)
+  getUserList$(): Observable<User[]> {
+    return this._http.get<User[]>(this._BASE_URL);
   }
 
-  getUserByName$(letters: string): Observable<any> {
-    return this._http.get(this._BASE_URL)
-    .pipe(
-      map((userList: any) => userList.map((user: any) => user.name)),
-      map(result => 
-        result.filter((user: any) => 
-          user.toLowerCase().startsWith(letters.toLowerCase())),
+  getUserByName$(letters: string): Observable<string[]> {
+    return this.getUserList$().pipe(
+      map((userList: User[]) => userList.map((user: User) => user.name)),
+      map((result: string[]) =>
+        result.filter((user: string) =>
+          user.toLowerCase().startsWith(letters.toLowerCase())
+        )
       ),
-      tap(result => this.userListFilteredByName$.next(result))
-    )
+      tap((result: string[]) => this.userListFilteredByName$.next(result))
+    );
   }
 
-  getUserByEmail$(email: string): Observable<any> {
-    return this.getUserList$()
-      .pipe(
-        map((userList: any) => userList.filter((user: any) => user.email === email)),
-      );
+  getUserByEmail$(email: string): Observable<User[]> {
+    return this.getUserList$().pipe(
+      map((userList: User[]) =>
+        userList.filter((user: User) => user.email === email)
+      )
+    );
   }
 
-  getUserListFilteredByName$(): Observable<any> {
-    return this.userListFilteredByName$.asObservable()
+  getUserListFilteredByName$(): Observable<string[]> {
+    return this.userListFilteredByName$.asObservable();
   }
 
-  checkUserInfos(email: string, password: string): Observable<any> { {
-    return this.getUserByEmail$(email)
-    .pipe(
-      map(response => 
-        {
-          if(response.length){
-            if(response[0].password === password){
-              return(true)
+  checkUserInfos(email: string, password: string): Observable<Boolean> {
+    {
+      return this.getUserByEmail$(email).pipe(
+        map((response: User[]) => {
+          if (response.length) {
+            if (response[0].password === password) {
+              return true;
             } else {
-              return (false)
+              return false;
             }
           } else {
-            return (false)
+            return false;
           }
-        }
-      ),
-    )
+        })
+      );
+    }
   }
-  } 
 }

@@ -10,15 +10,11 @@ import { Note } from '../../../../../../../shared/models/types/users/note.type';
   styleUrl: './user-notes.component.scss'
 })
 export class UserNotesComponent {
-  noteList$!: Observable<Note[]>
+  
+  noteList$: Observable<Note[]> = this._notesService.getNoteListByUser()
 
   constructor(
     private _notesService: NoteService, 
     private _route: ActivatedRoute
   ){}
-  
-  ngOnInit(): void {
-    this.noteList$ = this._notesService.getNoteListByUser()
-    }
-
 }
