@@ -1,4 +1,4 @@
-import { map, Observable, shareReplay, switchMap, tap } from "rxjs";
+import { map, Observable, shareReplay, switchMap } from "rxjs";
 import { DbService } from "../../../shared/services/db-service/db.service";
 import { SkillDetails } from "./skill-details.class";
 import { SkillFromDb } from "../types/skill-from-db.type";
@@ -30,9 +30,7 @@ export class CharacterSkills {
                 )
             )),
             switchMap((skills: SkillDetails[]) => this.sheetService.getCaracteristics$().pipe(
-                map((stats: StatisticDetails[]) => {
-
-                })
+                map((stats: StatisticDetails[]) => this.updateSkillStatMod(skills, stats)),
             ))
         );
     }
