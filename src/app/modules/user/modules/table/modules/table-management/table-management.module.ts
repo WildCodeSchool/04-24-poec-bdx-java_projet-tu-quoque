@@ -10,9 +10,9 @@ import { TableNewPlayerComponent } from './components/features/table-new-player/
 import { FormsModule } from '@angular/forms';
 import { DrawingDisplayComponent } from './components/ui/drawing-display/drawing-display.component';
 import { TableNewDrawingComponent } from './components/features/table-new-drawing/table-new-drawing.component';
-import { ColorPickerComponent } from './components/features/table-new-drawing/components/feature/color-picker/color-picker.component';
-import { ColorSliderComponent } from './components/features/table-new-drawing/components/feature/color-picker/color-slider/color-slider.component';
-import { ColorPaletteComponent } from './components/features/table-new-drawing/components/feature/color-picker/color-palette/color-palette.component';
+import { DrawingSheetComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/drawing-sheet.component';
+import { PaletteComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/palette/palette.component';
+import { ToolsComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/tools/tools.component';
 
 
 @NgModule({
@@ -23,9 +23,9 @@ import { ColorPaletteComponent } from './components/features/table-new-drawing/c
     TableNewPlayerComponent,
     DrawingDisplayComponent,
     TableNewDrawingComponent,
-    ColorPickerComponent,
-    ColorSliderComponent,
-    ColorPaletteComponent
+    DrawingSheetComponent,
+    PaletteComponent,
+    ToolsComponent
   ],
   imports: [
     CommonModule,

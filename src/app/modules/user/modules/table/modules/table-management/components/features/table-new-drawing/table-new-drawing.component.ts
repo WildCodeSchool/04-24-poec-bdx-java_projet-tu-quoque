@@ -6,9 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './table-new-drawing.component.scss'
 })
 export class TableNewDrawingComponent {
-  currentColor: string = 'black';
 
-  changeColor(color: string) {
-    this.currentColor = color;
-  }
 }
