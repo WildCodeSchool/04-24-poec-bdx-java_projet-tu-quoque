@@ -9,7 +9,6 @@
     [elementList]="tableInvitationList"
     [elementIcon]="'assets/images/table-icon.svg'"
     (tableIdSelected)="getTableSelected($event)"
-    (characterIdSelected)="getCharacterSelected($event)"
   ></app-available-character-list>
 </ng-container>
 <app-custom-area-title
@@ -19,6 +18,7 @@
   <app-available-character-list
     [elementList]="availableCharacterList"
     [elementIcon]="'assets/images/character-icon.svg'"
+    (characterIdSelected)="getCharacterSelected($event)"
   ></app-available-character-list>
 </ng-container>
 <footer class="page-footer">
