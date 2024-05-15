@@ -1,15 +1,17 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
+import { Observable, Subscription, map } from 'rxjs';
 
 @Component({
   selector: 'app-drawing-sheet',
   templateUrl: './drawing-sheet.component.html',
   styleUrl: './drawing-sheet.component.scss'
 })
-export class DrawingSheetComponent implements AfterViewInit{
+export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   @ViewChild('canvas', {static: true}) canvasRef!: ElementRef<HTMLCanvasElement>;
   private _ctx!: CanvasRenderingContext2D;
   private _currentColor: string = 'black';
+  private _colorObservable$!: Subscription;
 
   constructor(private _colorService: ColorService) {}
 
@@ -18,11 +20,15 @@ export class DrawingSheetComponent implements AfterViewInit{
     this._ctx = canvas.getContext('2d')!;
     
     this.initCanvas(canvas);
-    this._colorService.color$.subscribe(color => {
-      this.setColor(color);
-    })
+    this._colorObservable$ = this._colorService.color$.pipe
+    (map(color => {
+      this.setColor(color)})).subscribe()
   }
 
+  ngOnDestroy(): void {
+    this._colorObservable$.unsubscribe();
+  }
+  
   initCanvas(canvas: HTMLCanvasElement): void {
     let draw = false;
     let prevX = 0;
