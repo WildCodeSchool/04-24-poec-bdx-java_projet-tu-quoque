@@ -9,6 +9,8 @@ import { TablePresentationComponent } from './components/ui/table-presentation/t
 import { TableNewPlayerComponent } from './components/features/table-new-player/table-new-player.component';
 import { FormsModule } from '@angular/forms';
 import { DrawingDisplayComponent } from './components/ui/drawing-display/drawing-display.component';
+import { CharactersToAcceptComponent } from './components/features/characters-to-accept/characters-to-accept.component';
+import { CharacterCardComponent } from './components/ui/character-card/character-card.component';
 import { TableNewDrawingComponent } from './components/features/table-new-drawing/table-new-drawing.component';
 import { DrawingSheetComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/drawing-sheet.component';
 import { PaletteComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/palette/palette.component';
@@ -22,6 +24,8 @@ import { ToolsComponent } from './components/features/table-new-drawing/componen
     TablePresentationComponent,
     TableNewPlayerComponent,
     DrawingDisplayComponent,
+    CharactersToAcceptComponent,
+    CharacterCardComponent,
     TableNewDrawingComponent,
     DrawingSheetComponent,
     PaletteComponent,

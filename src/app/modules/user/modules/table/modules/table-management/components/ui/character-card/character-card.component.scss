@@ -1,0 +1,27 @@
+:host {
+    display: flex;
+    width: 90%;
+    height: 250px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: 1px solid #c29b0f;
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .img-container {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        
+        .character-img {
+            // display: inline-block;
+            height: 100% ;
+        }
+    }
+}

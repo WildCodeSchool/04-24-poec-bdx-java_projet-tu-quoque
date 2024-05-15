@@ -23,6 +23,10 @@ import { ThirdLineInputsComponent } from './components/character-informations-co
 import { StatComponent } from './components/statistics-components/features/stat/stat.component';
 import { StatisticsComponent } from './components/statistics-components/ui/statistics/statistics.component';
 import { SkillsComponent } from './components/skills-components/ui/skills/skills.component';
+import { StatisticComponent } from './components/statistics-components/ui/statistic/statistic.component';
+import { SkillListComponent } from './components/skills-components/features/skill-list/skill-list.component';
+import { SkillRowComponent } from './components/skills-components/ui/skill-row/skill-row.component';
+import { LevelListComponent } from './components/character-informations-components/feature/lists/level-list/level-list.component';
 
 
 @NgModule({
@@ -47,6 +51,10 @@ import { SkillsComponent } from './components/skills-components/ui/skills/skills
     StatComponent,
     StatisticsComponent,
     SkillsComponent,
+    StatisticComponent,
+    SkillListComponent,
+    SkillRowComponent,
+    LevelListComponent,
 
   ],
   imports: [

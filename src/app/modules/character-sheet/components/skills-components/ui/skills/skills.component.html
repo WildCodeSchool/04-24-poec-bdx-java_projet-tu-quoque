@@ -1,1 +1,21 @@
-<p>skills works!</p>
+<table>
+    <caption>COMPETENCES</caption>
+    <thead>
+        <tr>
+            <th class="classSkill">Classe?</th>
+            <th>Nom de la compétence</th>
+            <th>Key Ability</th>
+            
+            <th>Skill modifier</th>
+            <th>Ability Modifier</th>
+            <th>Ranks</th>
+            <th>Misc. Modifier</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="skills$ |async as skills">
+        <tr *ngFor="let skill of skills" skill-row 
+        [skill]="skill"> 
+        </tr>
+    </tbody>
+</table>
+

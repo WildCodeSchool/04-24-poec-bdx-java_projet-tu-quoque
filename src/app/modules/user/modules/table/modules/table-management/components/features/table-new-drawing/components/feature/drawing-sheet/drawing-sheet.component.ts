@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -7,13 +8,14 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class DrawingSheetComponent implements AfterViewInit{
   @ViewChild('canvas', {static: true}) canvasRef!: ElementRef<HTMLCanvasElement>;
-  private ctx!: CanvasRenderingContext2D;
- 
-  constructor() {}
+  private _ctx!: CanvasRenderingContext2D;
+  private _currentColor: string = 'black';
+
+  constructor(private colorService: ColorService) {}
 
   ngAfterViewInit() {
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-    this.ctx = canvas.getContext('2d')!;
+    this._ctx = canvas.getContext('2d')!;
 
     this.initCanvas(canvas);
   }
@@ -23,8 +25,8 @@ export class DrawingSheetComponent implements AfterViewInit{
     let prevX = 0;
     let prevY = 0;
 
-    this.ctx.strokeStyle = 'black';
-    this.ctx.lineWidth = 2;
+    this._ctx.strokeStyle = 'black';
+    this._ctx.lineWidth = 2;
 
     // Ajoutez l'événement de clic de la souris pour commencer à dessiner
     canvas.addEventListener('mousedown', (e) => {
@@ -56,11 +58,16 @@ export class DrawingSheetComponent implements AfterViewInit{
   }
 
   draw(depX: number, depY: number, destX: number, destY: number): void {
-    this.ctx.beginPath();
-    this.ctx.moveTo(depX, depY);
-    this.ctx.lineTo(destX, destY);
-    this.ctx.closePath();
-    this.ctx.stroke();
+    this._ctx.beginPath();
+    this._ctx.moveTo(depX, depY);
+    this._ctx.lineTo(destX, destY);
+    this._ctx.closePath();
+    this._ctx.stroke();
+  }
+
+  setColor(color: string) {
+    this._currentColor = color;
+    this._ctx.strokeStyle = color;
   }
 
 }

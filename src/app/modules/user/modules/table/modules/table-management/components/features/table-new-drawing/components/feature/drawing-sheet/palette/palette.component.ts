@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { ColorService } from '../../../../../../../../../../../../shared/services/drawing/color.service';
 
 @Component({
   selector: 'app-palette',
@@ -6,7 +7,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
   styleUrl: './palette.component.scss'
 })
 export class PaletteComponent implements OnInit {
-  constructor(private _elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(private _elementRef: ElementRef, private renderer: Renderer2, private colorService: ColorService) {}
 
   applyPaletteColors(): void {
     const paletteElements = this._elementRef.nativeElement.querySelectorAll('.palette div');
@@ -22,8 +23,7 @@ export class PaletteComponent implements OnInit {
     this.applyPaletteColors();
   }
 
-
-
-
-
+  onClick(color: string): void {
+    this.colorService.setColor(color);
+  }
 }

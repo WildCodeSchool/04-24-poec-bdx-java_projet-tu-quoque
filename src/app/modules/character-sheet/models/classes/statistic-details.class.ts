@@ -18,16 +18,24 @@ export class StatisticDetails {
         this.mod = this.calcMod();
     }
 
-    calcMod(statValue: number = this.value) {
+    calcMod(statValue: number = this.value): number {
         return Math.floor((statValue - 10) / 2);
     }
 
-    setMod() {
+    setMod(): void {
         this.mod = this.calcMod();
     }
 
-    setStatTempValue(value: number) {
+    setStatTempValue(value: number): void {
         this.tempValue = value;
-        this.tempMod = this.calcMod(this.tempValue);
+        if (value) this.tempMod = this.calcMod(this.tempValue);
+        else this.tempMod = 0;
+    }
+
+    getFinalMod(): number {
+        if (this.tempValue) {
+            return this.tempMod;
+        }
+        return this.mod;
     }
 }

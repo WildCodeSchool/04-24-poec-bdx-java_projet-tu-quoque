@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CharacterClass } from '../../../../../models/types/character-class.type';
 import { DbService } from '../../../../../../shared/services/db-service/db.service';
