@@ -1,0 +1,29 @@
+td {
+    text-align: center;
+    font-size: 24px;
+    border: 1px solid black;
+    min-width: 4ch;
+}
+
+td:first-of-type {
+    background-color: black;
+    color: white;
+}
+
+td:nth-of-type(4),
+td:nth-of-type(5) {
+    border: 8px solid grey;
+
+}
+
+.stat-name {
+    display: block;
+    font-size: 16px;
+}
+
+input[type=number] {
+    width: 6ch;
+    font-size: 24px;
+    border: none;
+    text-align: center;
+}
