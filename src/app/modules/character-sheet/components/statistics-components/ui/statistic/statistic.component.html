@@ -4,6 +4,5 @@
 </td>
 <td>{{stat.value}}</td>
 <td>{{stat.mod}}</td>
-<!-- <td>{{stat.tempValue}}</td> -->
 <td><input type="number" name="temp-{{stat.abbr}}" id="temp-{{stat.abbr}}" [(ngModel)]="playerInput" (ngModelDebounceChange)="updateTempValue()"></td>
 <td>{{stat.tempValue ? stat.tempMod : ""}}</td>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DbService } from '../../../shared/services/db-service/db.service';
-import { map, Observable, Subject, switchMap, tap } from 'rxjs';
+import { map, Observable, Subject, switchMap } from 'rxjs';
 import { Race } from '../../models/types/race.type';
 import { ListenPlayerActionService } from './listen-player-action.service';
 import { CharacterClass } from '../../models/types/character-class.type';
@@ -144,5 +144,4 @@ export class CharacterSheetService {
       map((sheet: any) => sheet.stats)
     )
   }
-
 }
