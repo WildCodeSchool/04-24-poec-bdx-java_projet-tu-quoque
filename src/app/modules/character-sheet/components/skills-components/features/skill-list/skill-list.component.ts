@@ -4,7 +4,6 @@ import { CharacterSkills } from '../../../../models/classes/character-skills.cla
 import { distinctUntilChanged, distinctUntilKeyChanged, Observable, Subject } from 'rxjs';
 import { DbService } from '../../../../../shared/services/db-service/db.service';
 import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
-import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
 
 @Component({
   selector: 'app-skill-list',
@@ -13,13 +12,11 @@ import { ListenPlayerActionService } from '../../../../shared/services/listen-pl
 })
 export class SkillListComponent implements OnInit {
   characterSkills!: CharacterSkills;
-  //characterSkills$: Subject<CharacterSkills> = new Subject();
 
   constructor(
     private dbService: DbService,
     private sheetService: CharacterSheetService,
   ) {
-
   }
 
   ngOnInit(): void {
