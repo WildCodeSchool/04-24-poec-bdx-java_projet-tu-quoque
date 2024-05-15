@@ -8,8 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class AvailableCharacterListComponent {
 
   tableSelected!: number;
-  characterSelected!: number;
-  
+
   @Input()
   elementList!: any;
 
