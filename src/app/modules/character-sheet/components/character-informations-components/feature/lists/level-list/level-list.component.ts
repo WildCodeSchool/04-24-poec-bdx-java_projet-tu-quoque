@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { from, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Level } from '../../../../../models/types/level.type';
 
 @Component({
