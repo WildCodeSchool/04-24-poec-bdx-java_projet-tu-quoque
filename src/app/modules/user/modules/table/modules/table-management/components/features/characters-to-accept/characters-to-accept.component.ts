@@ -21,7 +21,6 @@ export class CharactersToAcceptComponent implements OnInit {
   ngOnInit(): void {
       const id = Number(this._route.snapshot.paramMap.get('id'))
       this.characterList$ = this._characterService.getCharacterToAcceptByTable$(id)
-      this._characterService.getCharacterToAcceptByTable$(id).subscribe(res => console.log(res))
     }
 
 }
