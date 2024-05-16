@@ -1,14 +1,20 @@
-<div class="tools">
-    <div>
-        <img [src]="addIcon" alt="">
-    </div>
-    <div>
-        <img [src]="minusIcon" alt="">
-    </div>
-    <div>
-        <img [src]="eraseIcon" alt="">
-    </div>
-    <div>
-        <img [src]="closeIcon" alt="">
-    </div>
-</div>
+<section class="tools">
+    <button type="button" (click)="drawLine()">
+        <img [src]="lineIcon" alt="Ligne">
+    </button>
+    <button type="button" (click)="drawTriangle()">
+        <img [src]="triangleIcon" alt="Triangle">
+    </button>
+    <button type="button" (click)="drawCirle()">
+        <img [src]="circleIcon" alt="Rond">
+    </button>
+    <button type="button" (click)="drawSquare()">
+        <img [src]="squareIcon" alt="Carré">
+    </button>
+    <button type="button" (click)="errase(color)">
+        <img [src]="eraseIcon" alt="Gomme">
+    </button>
+    <button type="button" (click)="return()">
+        <img [src]="returnIcon" alt="Effacer">
+    </button>
+</section>

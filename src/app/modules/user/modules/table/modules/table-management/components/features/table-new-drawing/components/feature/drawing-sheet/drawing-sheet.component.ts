@@ -28,7 +28,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   ngOnDestroy(): void {
     this._colorObservable$.unsubscribe();
   }
-  
+
   initCanvas(canvas: HTMLCanvasElement): void {
     let draw = false;
     let prevX = 0;
@@ -78,5 +78,6 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     this._currentColor = color;
     this._ctx.strokeStyle = color;
   }
+
 
 }
