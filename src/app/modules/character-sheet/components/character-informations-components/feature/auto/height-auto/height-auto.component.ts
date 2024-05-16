@@ -1,31 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { distinctUntilChanged, map, Observable } from 'rxjs';
-import { CharacterSheetService } from '../../../../../shared/services/character-sheet.service';
-import { ListenPlayerActionService } from '../../../../../shared/services/listen-player-action.service';
+import { Component } from '@angular/core';
+import { AbstractSelfFilledComponent } from '../abstract-self-filled-component.component';
 
 @Component({
   selector: 'app-height-auto',
   templateUrl: './height-auto.component.html',
   styleUrl: './height-auto.component.scss'
 })
-export class HeightAutoComponent implements OnInit {
-  height$: Observable<string> = this.characterSheetService.setHeight$();
-  unit: string = "cm";
-  label: string = "TAILLE";
-
-  constructor(
-    private characterSheetService: CharacterSheetService,
-    private listener: ListenPlayerActionService
-  ) {
-  }
-
-  ngOnInit() {
-    this.listener.receiveInfoFrom(this.height$.pipe(
-      distinctUntilChanged(),
-      map(heightValue => {
-        return { name: "height", value: heightValue }
-      })
-    ));
-  }
+export class HeightAutoComponent extends AbstractSelfFilledComponent {
+  protected override label: string = "TAILLE";
+  protected override name: string = "height";
+  protected override unit: string = "cm";
 }
-

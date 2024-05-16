@@ -24,6 +24,12 @@ export abstract class AbstractSelfFilledComponent implements OnInit {
         switch (this.name) {
             case "sizeCategory":
                 return this.characterSheetService.setSizeCategory$();
+            case "age":
+                return this.characterSheetService.setAge$();
+            case "height":
+                return this.characterSheetService.setHeight$();
+            case "weight":
+                return this.characterSheetService.setWeight$();
             default: throw new Error("bad observable name")
         };
     }
@@ -31,8 +37,8 @@ export abstract class AbstractSelfFilledComponent implements OnInit {
     sendInfo() {
         this.listener.receiveInfoFrom(this.category$.pipe(
             distinctUntilChanged(),
-            map(value => {
-                return { name: this.name, value: value }
+            map(valueSent => {
+                return { name: this.name, value: valueSent }
             })
         ));
     }
