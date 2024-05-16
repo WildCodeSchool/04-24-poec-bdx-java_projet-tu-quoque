@@ -8,7 +8,7 @@ import { CharacterClass } from "../types/character-class.type";
 import { StatisticDetails } from "./statistic-details.class";
 
 export class CharacterSkills {
-    skills$!: Observable<any>;
+    skills$!: Observable<SkillDetails[]>;
 
     constructor(
         private dbService: DbService,
