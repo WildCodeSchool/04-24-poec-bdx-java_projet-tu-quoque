@@ -13,7 +13,7 @@ export class DrawingService {
   constructor(private _http: HttpClient) { }
 
   getDrawingList(): Observable<Drawing[]> {
-    return this._http.get<any>(this._BASE_URL)
+    return this._http.get<Drawing[]>(this._BASE_URL)
   }
 
   getDrawingListByTable(tableId: number): Observable<Drawing[]> {

@@ -13,7 +13,7 @@ import { debounceTime, distinctUntilChanged, skip } from 'rxjs/operators';
  */
 export class NgModelDebounceChangeDirective implements OnInit {
     /** Emit event when model has changed. */
-    @Output() ngModelDebounceChange = new EventEmitter<any>();
+    @Output() ngModelDebounceChange = new EventEmitter<String>();
 
     constructor(private ngModel: NgModel, private destroyRef: DestroyRef) { }
 

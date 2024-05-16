@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TableInvitationService } from '../../../../../../shared/services/table-invitation/table-invitation.service';
 import { Observable } from 'rxjs';
 import { CharacterService } from '../../../../../../shared/services/character/character.service';
+import { Character } from '../../../../../../shared/models/types/users/character.type';
+import { tableInvitaition } from '../../../../../../shared/models/types/users/table-invitation.type';
 
 @Component({
   selector: 'app-table-invitation',
@@ -10,8 +12,8 @@ import { CharacterService } from '../../../../../../shared/services/character/ch
 })
 export class TableInvitationComponent {
 
-  tableInvitationList$: Observable<any> = this._tableInvitationService.getUserTableInvitationList$();
-  availableCharacterList$ : Observable<any> = this._characterService.getUserCharacterWithoutTableList$();
+  tableInvitationList$: Observable<tableInvitaition[]> = this._tableInvitationService.getUserTableInvitationList$();
+  availableCharacterList$ : Observable<Character[]> = this._characterService.getUserCharacterWithoutTableList$();
   
   tableSelected!: number;
   characterSelected!: number;

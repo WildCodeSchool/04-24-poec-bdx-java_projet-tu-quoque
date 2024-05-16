@@ -33,7 +33,6 @@ export class TableService {
   getTableById$(id: Number): Observable<Table> {
     return this.getTableList$()
     .pipe(
-      //tap(res => console.log(res)), POURQUOI L4ID EST EN FORMAT STRING ???
       map((response: Table[]) => response.find((table: Table) => Number(table.id) === Number(id)) as Table)
     )
   }

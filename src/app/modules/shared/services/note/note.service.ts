@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { Note } from '../../models/types/users/note.type';
 
 @Injectable({
   providedIn: 'root'
@@ -14,28 +15,28 @@ export class NoteService {
   constructor(private _http: HttpClient) { }
 
 
-  getNoteList(): Observable<any> {
-    return this._http.get(this._BASE_URL)
+  getNoteList(): Observable<Note[]> {
+    return this._http.get<Note[]>(this._BASE_URL)
   }
 
-  getNoteListByUser(): Observable<any> {
+  getNoteListByUser(): Observable<Note[]> {
     return this.getNoteList()
     .pipe(
-      map((result: any) => result.filter((discussion: any) => Number(discussion.user_id) === this._USER_CONECTED))
+      map((result: Note[]) => result.filter((note: Note) => Number(note.user_id) === this._USER_CONECTED))
     )
   }
 
-  getNoteListByCharacter(id: number): Observable<any> {
+  getNoteListByCharacter(id: number): Observable<Note[]> {
     return this.getNoteList()
     .pipe(
-      map((result: any) => result.filter((discussion: any) => Number(discussion.character_id) === id))
+      map((result: Note[]) => result.filter((note: Note) => Number(note.character_id) === id))
     )
   }
 
-  getNoteById(id: number): Observable<any> {
+  getNoteById(id: number): Observable<Note> {
     return this.getNoteList()
     .pipe(
-      map((result: any) => result.find((note: any) => Number(note.id) === id))
+      map((result: Note[]) => result.find((note: any) => Number(note.id) === id) as Note)
     )
   }
 }

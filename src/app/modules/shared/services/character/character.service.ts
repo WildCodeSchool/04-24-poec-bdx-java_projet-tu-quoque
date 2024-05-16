@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { Character } from '../../models/types/users/character.type';
 import { userApiResponse } from '../../models/types/users/user-api-response.type';
+import { User } from '../../models/types/users/user.types';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,12 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
-  getAllUsers$(): Observable<any> {
-    return this.http.get<any>(this._BASE_URL)
+  getAllCharacters$(): Observable<Character[]> {
+    return this.http.get<Character[]>(this._BASE_URL)
   }
 
   getUserCharacterList$(): Observable<Character[]> {
-    return this.getAllUsers$()
+    return this.getAllCharacters$()
     .pipe(
       map((response: Character[]) => 
         response.filter((res: Character) => res.user_id === this._USER_CONECTED)
@@ -43,7 +44,7 @@ export class CharacterService {
   }
 
   getCharactersByTable$(tableId: number): Observable<Character[]> { //A modifier : joueurs invités + personnages acceptés
-    return this.getAllUsers$()
+    return this.getAllCharacters$()
     .pipe(
       map((characters: Character[]) => characters.filter((character: Character) => Number(character.table_id) === tableId))
     )

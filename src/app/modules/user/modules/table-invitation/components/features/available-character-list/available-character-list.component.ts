@@ -22,7 +22,7 @@ export class AvailableCharacterListComponent {
   tableIdSelected: EventEmitter<number> = new EventEmitter();
 
   @Output()
-  characterIdSelected: EventEmitter<any> = new EventEmitter();
+  characterIdSelected: EventEmitter<number> = new EventEmitter();
 
   selectTable(id: number): void {
     this.tableIdSelected.emit(id)
