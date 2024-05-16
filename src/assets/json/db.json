@@ -194,7 +194,7 @@
       "id": "4",
       "table_id": null,
       "user_id": null,
-      "character_id": 2,
+      "character_id": 1,
       "name": "Pas d'inspi",
       "text": "Mur"
     },
@@ -202,7 +202,7 @@
       "id": "5",
       "table_id": null,
       "user_id": null,
-      "character_id": 2,
+      "character_id": 1,
       "name": "Météo",
       "text": "Beau temps"
     },
@@ -210,7 +210,7 @@
       "id": "6",
       "table_id": null,
       "user_id": null,
-      "character_id": 2,
+      "character_id": 1,
       "name": "secret inavouable",
       "text": "oublié"
     }

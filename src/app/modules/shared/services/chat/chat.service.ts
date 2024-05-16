@@ -16,14 +16,14 @@ export class ChatService {
     return this._http.get<Chat[]>(this._BASE_URL)
   }
 
-  getChatListByTable(tableId: number): Observable<any> {
+  getChatListByTable(tableId: number): Observable<Chat[]> {
     return this.getChatList$()
       .pipe(
         map((result: Chat[]) => result.filter((chat: Chat) => Number(chat.table_id) === tableId))
       )
   }
 
-  getChatListByCharacter(characterId: number): Observable<any> {
+  getChatListByCharacter(characterId: number): Observable<Chat[]> {
     return this.getChatList$()
       .pipe(
         map((result: Chat[]) => result.filter((chat: Chat) => Number(chat.character_id) === characterId))

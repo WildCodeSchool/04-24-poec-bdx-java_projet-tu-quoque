@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { TableInvitationService } from '../../../../shared/services/table-invitation/table-invitation.service';
 import { Observable, map } from 'rxjs';
+import { PageNavigation } from '../../../../shared/models/types/navigation/page-navigation.type';
+import { tableInvitaition } from '../../../../shared/models/types/users/table-invitation.type';
 
 @Component({
   selector: 'app-user-homepage',
@@ -9,12 +11,12 @@ import { Observable, map } from 'rxjs';
 })
 export class UserHomepageComponent {
 
-  invitationArray$: Observable<any> = this._tableInvitation.getUserTableInvitationList$();
+  invitationArray$: Observable<tableInvitaition[]> = this._tableInvitation.getUserTableInvitationList$();
 
   constructor(private _tableInvitation: TableInvitationService) {}
 
-  buttonOptionList$: Observable<any> = this.invitationArray$.pipe(
-    map((invitationArray: any) =>
+  buttonOptionList$: Observable<PageNavigation[]> = this.invitationArray$.pipe(
+    map((invitationArray: tableInvitaition[]) =>
       invitationArray.length
         ? [
             { name: 'Personnages', url: '../characters' },

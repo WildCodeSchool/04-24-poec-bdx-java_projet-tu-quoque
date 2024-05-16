@@ -21,10 +21,6 @@ export class HeaderComponent {
     this.navService.setSidebarVisible();
   }
 
-  openNotesPage(): void {
-    console.log("open")
-  }
-
   closeNotePage(): void {
     this.notesVisible = false
   }

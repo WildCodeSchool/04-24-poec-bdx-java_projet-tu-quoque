@@ -2,6 +2,7 @@ import { Component, Input, Renderer2 } from '@angular/core';
 import { NavigationService } from '../../../../shared/services/navigation.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Observable } from 'rxjs';
+import { PageNavigation } from '../../../../shared/models/types/navigation/page-navigation.type';
 
 @Component({
   selector: 'app-menu-sidebar',
@@ -34,7 +35,7 @@ import { Observable } from 'rxjs';
 export class MenuSidebarComponent {
 
 
-  pagesToNavigateList: any = [
+  pagesToNavigateList: PageNavigation[] = [
     {name: "Accueil", url: "user"},
     {name: "Personnages", url: "user/characters"},
     {name: "Tables", url: "user/tables"},
@@ -44,12 +45,14 @@ export class MenuSidebarComponent {
 
   isSidebarOpen$: Observable<boolean> = this.navService.getSidebarIsVisible$()
 
-  constructor(private navService: NavigationService, private _renderer: Renderer2){}
+  constructor(
+    private navService: NavigationService, 
+    private _renderer: Renderer2
+  ){}
 
 
   ngOnInit(): void {
-    // this.navService.getSidebarIsVisible$().subscribe(res => console.log(res))
-    this.navService.getSidebarIsVisible$().subscribe(res => 
+    this.navService.getSidebarIsVisible$().subscribe((res: boolean) => 
       {if(res) {
         this._renderer.setStyle(document.body, 'overflow', 'hidden')
       } else {

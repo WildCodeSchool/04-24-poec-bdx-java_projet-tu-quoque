@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NoteService } from '../../services/note/note.service';
 import { ActivatedRoute } from '@angular/router';
+import { Note } from '../../models/types/users/note.type';
 
 @Component({
   selector: 'app-show-comment-page',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './show-comment-page.component.scss'
 })
 export class ShowCommentPageComponent {
-  note$!: Observable<any>
+  note$!: Observable<Note>
 
   constructor(private _noteService: NoteService, private _route: ActivatedRoute){}
 
