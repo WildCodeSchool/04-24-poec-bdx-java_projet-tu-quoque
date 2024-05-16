@@ -1,10 +1,13 @@
 p {
   width: 100vw;
-  height: 3rem;
+  padding: 0.4rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   // transform: translateX(-5%);
   background-color: #30495b;
   color: #fff;
+  text-align: center;
+  line-height: 2;
+  white-space: pre-line;
 }
