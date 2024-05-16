@@ -22,14 +22,14 @@ export class NoteService {
   getNoteListByUser(): Observable<Note[]> {
     return this.getNoteList()
     .pipe(
-      map((result: Note[]) => result.filter((note: Note) => Number(note.user_id) === this._USER_CONECTED))
+      map((result: Note[]) => result.filter((note: Note) => Number(note.userId) === this._USER_CONECTED))
     )
   }
 
   getNoteListByCharacter(id: number): Observable<Note[]> {
     return this.getNoteList()
     .pipe(
-      map((result: Note[]) => result.filter((note: Note) => Number(note.character_id) === id))
+      map((result: Note[]) => result.filter((note: Note) => Number(note.characterId) === id))
     )
   }
 

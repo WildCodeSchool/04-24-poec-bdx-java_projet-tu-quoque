@@ -22,7 +22,7 @@ export class TableService {
     return this.getTableList$().pipe(
       map((response: any) =>
         response.filter(
-          (response: Table) => response.user_id === this._USER_CONECTED
+          (response: Table) => response.userId === this._USER_CONECTED
         )
       )
     );

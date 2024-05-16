@@ -26,8 +26,8 @@ export class TableInvitationService {
     return this.getTableInvitationList$()
     .pipe(
       map((tableInvitationList: TableInvitaition[]) => tableInvitationList
-      .filter((invitation : TableInvitaition) => Number(invitation.user_id) === id)),
-      map((invitationArray:TableInvitaition[]) => invitationArray.map((invit: TableInvitaition) => invit.table_id))
+      .filter((invitation : TableInvitaition) => Number(invitation.userId) === id)),
+      map((invitationArray:TableInvitaition[]) => invitationArray.map((invit: TableInvitaition) => invit.tableId))
     )
   }
     

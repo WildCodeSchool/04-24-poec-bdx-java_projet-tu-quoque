@@ -19,7 +19,7 @@ export class DrawingService {
   getDrawingListByTable(tableId: number): Observable<Drawing[]> {
     return this.getDrawingList()
     .pipe(
-      map((result: Drawing[]) => result.filter((drawing: Drawing) => Number(drawing.table_id) === tableId))
+      map((result: Drawing[]) => result.filter((drawing: Drawing) => Number(drawing.tableId) === tableId))
     )
   }
 }

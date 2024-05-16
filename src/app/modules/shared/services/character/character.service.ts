@@ -24,7 +24,7 @@ export class CharacterService {
     return this.getAllCharacters$()
     .pipe(
       map((response: Character[]) => 
-        response.filter((res: Character) => res.user_id === this._USER_CONECTED)
+        response.filter((res: Character) => res.userId === this._USER_CONECTED)
       )
     )
   }
@@ -32,7 +32,7 @@ export class CharacterService {
   getUserCharacterWithoutTableList$(): Observable<Character[]> {
     return this.getUserCharacterList$()
     .pipe(
-      map((response: Character[]) => response.filter((character: Character) => character.table_id === null))
+      map((response: Character[]) => response.filter((character: Character) => character.tableId === null))
     )
   }
 
@@ -46,7 +46,7 @@ export class CharacterService {
   getCharactersByTable$(tableId: number): Observable<Character[]> { //A modifier : joueurs invités + personnages acceptés
     return this.getAllCharacters$()
     .pipe(
-      map((characters: Character[]) => characters.filter((character: Character) => Number(character.table_id) === tableId))
+      map((characters: Character[]) => characters.filter((character: Character) => Number(character.tableId) === tableId))
     )
   }
 
