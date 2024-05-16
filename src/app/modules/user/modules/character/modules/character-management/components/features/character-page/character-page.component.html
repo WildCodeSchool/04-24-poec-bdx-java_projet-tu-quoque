@@ -11,6 +11,7 @@
     <ng-container *ngIf="chatList$|async as chatList">
     <app-list-of-element [baseUrl]="''" [elementIcon]="'assets/images/discussion-icon.svg'" [elementList]="chatList" ></app-list-of-element>
     </ng-container>
+    <app-custom-add-button></app-custom-add-button>
     <footer class="page-footer">
         <app-custom-button [style]="'gold'" [name]="'Retour'" PreviousPage></app-custom-button>
         <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
