@@ -8,7 +8,7 @@ import { User } from '../../models/types/users/user.types';
   providedIn: 'root',
 })
 export class userService {
-
+  
   private readonly _BASE_URL: string = 'http://localhost:3000/users';
 
   constructor(private _http: HttpClient, private router: Router) {}

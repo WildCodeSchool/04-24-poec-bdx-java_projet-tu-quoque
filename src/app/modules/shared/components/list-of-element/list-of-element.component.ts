@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './list-of-element.component.scss',
 })
 export class ListOfElementComponent {
+  
   @Input()
   elementList!: any;
 
@@ -19,17 +20,15 @@ export class ListOfElementComponent {
   baseUrl!: string;
 
   @Input()
-  isForDrawing: boolean = false
+  isForDrawing: boolean = false;
 
   @Output()
-  sendDrawingUrl: EventEmitter<string> = new EventEmitter()
-
+  sendDrawingUrl: EventEmitter<string> = new EventEmitter();
 
   onClick(event: any): void {
-    this.sendDrawingUrl.emit(event)
+    this.sendDrawingUrl.emit(event);
   }
   deleteElement(): void {
-    alert("On supprime vraiment ?")
-    console.log('delete');
+    alert('On supprime vraiment ?');
   }
 }

@@ -33,9 +33,5 @@ export class TableInvitationComponent {
     this.characterSelected = Number(event);
   }
 
-  attributeCharacterToTable(): void {
-    console.log(
-      ` table n°: ${this.tableSelected}, personnage n°: ${this.characterSelected}`
-    );
-  }
+  attributeCharacterToTable(): void {}
 }

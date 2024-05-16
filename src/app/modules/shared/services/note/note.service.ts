@@ -4,39 +4,44 @@ import { Observable, map } from 'rxjs';
 import { Note } from '../../models/types/users/note.type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NoteService {
   
-  private readonly _BASE_URL: string = "http://localhost:3000/notes"
+  private readonly _BASE_URL: string = 'http://localhost:3000/notes';
 
-  private readonly _USER_CONECTED = 1
+  private readonly _USER_CONECTED = 1;
 
-  constructor(private _http: HttpClient) { }
-
+  constructor(private _http: HttpClient) {}
 
   getNoteList(): Observable<Note[]> {
-    return this._http.get<Note[]>(this._BASE_URL)
+    return this._http.get<Note[]>(this._BASE_URL);
   }
 
   getNoteListByUser(): Observable<Note[]> {
-    return this.getNoteList()
-    .pipe(
-      map((result: Note[]) => result.filter((note: Note) => Number(note.userId) === this._USER_CONECTED))
-    )
+    return this.getNoteList().pipe(
+      map((result: Note[]) =>
+        result.filter(
+          (note: Note) => Number(note.userId) === this._USER_CONECTED
+        )
+      )
+    );
   }
 
   getNoteListByCharacter(id: number): Observable<Note[]> {
-    return this.getNoteList()
-    .pipe(
-      map((result: Note[]) => result.filter((note: Note) => Number(note.characterId) === id))
-    )
+    return this.getNoteList().pipe(
+      map((result: Note[]) =>
+        result.filter((note: Note) => Number(note.characterId) === id)
+      )
+    );
   }
 
   getNoteById(id: number): Observable<Note> {
-    return this.getNoteList()
-    .pipe(
-      map((result: Note[]) => result.find((note: any) => Number(note.id) === id) as Note)
-    )
+    return this.getNoteList().pipe(
+      map(
+        (result: Note[]) =>
+          result.find((note: any) => Number(note.id) === id) as Note
+      )
+    );
   }
 }

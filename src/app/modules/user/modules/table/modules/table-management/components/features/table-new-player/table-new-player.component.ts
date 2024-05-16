@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   styleUrl: './table-new-player.component.scss',
 })
 export class TableNewPlayerComponent {
+  
   selectedUser!: string;
   inputText: string = '';
 
