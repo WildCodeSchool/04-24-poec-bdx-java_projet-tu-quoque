@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { TableService } from '../table/table.service';
-import { tableInvitaition } from '../../models/types/users/table-invitation.type';
+import { TableInvitaition } from '../../models/types/users/table-invitation.type';
 import { Table } from '../../models/types/users/table.type';
 
 @Injectable({
@@ -18,16 +18,16 @@ export class TableInvitationService {
     private _HTTP: HttpClient, 
     private _tableService: TableService) { }
 
-  getTableInvitationList$(): Observable<tableInvitaition[]> {
-    return this._HTTP.get<tableInvitaition[]>("http://localhost:3000/user_table_invitations")
+  getTableInvitationList$(): Observable<TableInvitaition[]> {
+    return this._HTTP.get<TableInvitaition[]>("http://localhost:3000/user_table_invitations")
   }
 
   getTableInvitationListByUser$(id: number): Observable<number[]> {
     return this.getTableInvitationList$()
     .pipe(
-      map((tableInvitationList: tableInvitaition[]) => tableInvitationList
-      .filter((invitation : tableInvitaition) => Number(invitation.user_id) === id)),
-      map((invitationArray:tableInvitaition[]) => invitationArray.map((invit: tableInvitaition) => invit.table_id))
+      map((tableInvitationList: TableInvitaition[]) => tableInvitationList
+      .filter((invitation : TableInvitaition) => Number(invitation.user_id) === id)),
+      map((invitationArray:TableInvitaition[]) => invitationArray.map((invit: TableInvitaition) => invit.table_id))
     )
   }
     
@@ -40,7 +40,7 @@ export class TableInvitationService {
             ))
     }
 
-  getUserTableInvitationList$(): Observable<tableInvitaition[]> {
+  getUserTableInvitationList$(): Observable<TableInvitaition[]> {
     return this.userTableInvitationList$.value.length ? 
       this.userTableInvitationList$.asObservable() 
       : this.getTableInvitationListNames$(this._userId)

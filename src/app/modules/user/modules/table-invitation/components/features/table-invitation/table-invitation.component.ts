@@ -3,7 +3,7 @@ import { TableInvitationService } from '../../../../../../shared/services/table-
 import { Observable } from 'rxjs';
 import { CharacterService } from '../../../../../../shared/services/character/character.service';
 import { Character } from '../../../../../../shared/models/types/users/character.type';
-import { tableInvitaition } from '../../../../../../shared/models/types/users/table-invitation.type';
+import { TableInvitaition } from '../../../../../../shared/models/types/users/table-invitation.type';
 
 @Component({
   selector: 'app-table-invitation',
@@ -12,7 +12,7 @@ import { tableInvitaition } from '../../../../../../shared/models/types/users/ta
 })
 export class TableInvitationComponent {
 
-  tableInvitationList$: Observable<tableInvitaition[]> = this._tableInvitationService.getUserTableInvitationList$();
+  tableInvitationList$: Observable<TableInvitaition[]> = this._tableInvitationService.getUserTableInvitationList$();
   availableCharacterList$ : Observable<Character[]> = this._characterService.getUserCharacterWithoutTableList$();
   
   tableSelected!: number;
