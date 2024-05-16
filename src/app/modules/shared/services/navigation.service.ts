@@ -1,5 +1,5 @@
-import { Injectable, Input } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { PageNavigation } from '../models/types/navigation/page-navigation.type';
 
 @Injectable({
