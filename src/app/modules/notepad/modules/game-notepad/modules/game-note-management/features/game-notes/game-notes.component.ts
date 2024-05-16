@@ -20,7 +20,6 @@ export class GameNotesComponent {
   
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'))
-    console.log(id)
      this.noteList$ = this._notesService.getNoteListByCharacter(id)
   }
 

@@ -10,7 +10,6 @@ export class NotepadMainPageComponent {
   fakeUserId: number = 1
 
   fakeCharacterId: number = 1
-  // fakeCharacterId!: number --> Test pour voir le cas ou pas de notes de perso
 
   isUserSelected!: number
 

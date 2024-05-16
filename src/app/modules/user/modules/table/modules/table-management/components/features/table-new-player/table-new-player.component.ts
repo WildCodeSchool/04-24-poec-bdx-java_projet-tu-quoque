@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { userService } from '../../../../../../../../shared/services/users/user.service';
 import { Observable } from 'rxjs';
-import { User } from '../../../../../../../../shared/models/types/users/user.types';
 
 @Component({
   selector: 'app-table-new-player',
