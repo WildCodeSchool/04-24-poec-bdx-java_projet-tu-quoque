@@ -34,8 +34,8 @@ export class CharacterPageComponent implements OnInit {
     this.character$ = this._characterService.getCharacterById$(id);
     this.table$ =this._characterService.getCharacterById$(id)
     .pipe(
-      switchMap((res: any) => 
-        { return this._tableService.getTableById$(res.table_id)})) 
+      switchMap((res: Character) => 
+        { return this._tableService.getTableById$(res.table_id as Number)})) 
     this.chatList$ = this._chatService.getChatListByCharacter(id)
   }
 
