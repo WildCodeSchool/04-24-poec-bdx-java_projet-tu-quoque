@@ -8,32 +8,34 @@ import { TableInvitaition } from '../../../../../../shared/models/types/users/ta
 @Component({
   selector: 'app-table-invitation',
   templateUrl: './table-invitation.component.html',
-  styleUrl: './table-invitation.component.scss'
+  styleUrl: './table-invitation.component.scss',
 })
 export class TableInvitationComponent {
-
-  tableInvitationList$: Observable<TableInvitaition[]> = this._tableInvitationService.getUserTableInvitationList$();
-  availableCharacterList$ : Observable<Character[]> = this._characterService.getUserCharacterWithoutTableList$();
   
-  tableSelected!: number;
-  characterSelected!: number;
+  tableInvitationList$: Observable<TableInvitaition[]> =
+    this._tableInvitationService.getUserTableInvitationList$();
+  availableCharacterList$: Observable<Character[]> =
+    this._characterService.getUserCharacterWithoutTableList$();
+
+  private tableSelected!: number;
+  private characterSelected!: number;
 
   constructor(
     private _tableInvitationService: TableInvitationService,
     private _characterService: CharacterService
-  ){}
+  ) {}
 
-  getTableSelected(event: number) {
-    console.log(event)
-    this.tableSelected = event
+  getTableSelected(event: number): void {
+    this.tableSelected = Number(event);
   }
 
-  getCharacterSelected(event: any) {
-    console.log(event)
-    this.characterSelected = event
+  getCharacterSelected(event: number): void {
+    this.characterSelected = Number(event);
   }
 
   attributeCharacterToTable(): void {
-    console.log(` table n°: ${this.tableSelected}, personnage n°: ${this.characterSelected}`)
+    console.log(
+      ` table n°: ${this.tableSelected}, personnage n°: ${this.characterSelected}`
+    );
   }
 }
