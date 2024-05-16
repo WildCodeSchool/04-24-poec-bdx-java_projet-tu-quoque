@@ -7,12 +7,9 @@ import { ListenPlayerActionService } from '../../../../shared/services/listen-pl
   styleUrl: './character-informations.component.scss'
 })
 export class CharacterInformationsComponent implements OnInit {
-  constructor(private listener: ListenPlayerActionService) {
-
-  }
+  constructor(private listener: ListenPlayerActionService) { }
 
   ngOnInit(): void {
     this.listener.sendInfos().subscribe(data => console.log(data, "FROM CHARACTER_INFORMATIONS"));
   }
-
 }

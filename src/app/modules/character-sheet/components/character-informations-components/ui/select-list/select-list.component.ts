@@ -18,9 +18,7 @@ export class SelectListComponent implements OnInit {
 
   playerChoice$: Subject<Field> = new Subject();
 
-  constructor(private listener: ListenPlayerActionService) {
-
-  }
+  constructor(private listener: ListenPlayerActionService) { }
 
   ngOnInit(): void {
     this.listener.receiveInfoFrom(this.playerChoice$);
@@ -33,5 +31,4 @@ export class SelectListComponent implements OnInit {
     }
     this.playerChoice$.next(field);
   }
-
 }

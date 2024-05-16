@@ -16,9 +16,7 @@ export class InputFieldComponent implements OnInit {
   playerInput: string = "";
   playerInput$: Subject<Field> = new Subject();
 
-  constructor(private listener: ListenPlayerActionService) {
-
-  }
+  constructor(private listener: ListenPlayerActionService) { }
 
   ngOnInit(): void {
     this.listener.receiveInfoFrom(this.playerInput$);

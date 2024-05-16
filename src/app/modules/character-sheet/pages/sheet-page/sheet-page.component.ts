@@ -13,13 +13,10 @@ export class SheetPageComponent implements OnInit {
   raceList$!: Observable<Race[]>;
   classList$!: Observable<CharacterClass[]>;
 
-  constructor(private dbService: DbService) {
-
-  }
+  constructor(private dbService: DbService) { }
 
   ngOnInit(): void {
     this.raceList$ = this.dbService.getRaces$();
     this.classList$ = this.dbService.getClasses$();
   }
-
 }

@@ -55,7 +55,6 @@ import { LevelListComponent } from './components/character-informations-componen
     SkillListComponent,
     SkillRowComponent,
     LevelListComponent,
-
   ],
   imports: [
     CommonModule,

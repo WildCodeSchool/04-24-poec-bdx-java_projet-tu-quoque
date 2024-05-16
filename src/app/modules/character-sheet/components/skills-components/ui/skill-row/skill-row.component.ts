@@ -16,9 +16,7 @@ export class SkillRowComponent implements OnInit {
   complement!: string;
   playerInput$: Subject<SkillDetails> = new Subject();
 
-  constructor(private listener: ListenPlayerActionService) {
-
-  }
+  constructor(private listener: ListenPlayerActionService) { }
 
   ngOnInit(): void {
     this.listener.receiveSkillFrom(this.playerInput$);
