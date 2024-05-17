@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { distinctUntilChanged, map, Observable } from "rxjs";
-import { CharacterSheetService } from "../../../../shared/services/character-sheet.service";
-import { ListenPlayerActionService } from "../../../../shared/services/listen-player-action.service";
+import { CharacterSheetService } from "../services/character-sheet.service";
+import { ListenPlayerActionService } from "../services/listen-player-action.service";
 
 @Component({ template: "" })
 export abstract class AbstractSelfFilledComponent implements OnInit {

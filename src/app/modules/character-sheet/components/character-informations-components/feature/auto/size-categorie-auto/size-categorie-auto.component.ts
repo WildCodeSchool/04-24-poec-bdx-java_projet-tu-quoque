@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractSelfFilledComponent } from '../abstract-self-filled-component.component';
+import { AbstractSelfFilledComponent } from '../../../../../shared/abstract-components/abstract-self-filled-component.component';
 
 @Component({
   selector: 'app-size-categorie-auto',
