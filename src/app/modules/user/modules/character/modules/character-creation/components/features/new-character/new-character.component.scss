@@ -12,14 +12,6 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    input {
-      // Temporaire, à remplacer par l'input de Nelia
-      margin: 1.5em auto;
-      height: 2.5em;
-      width: 90%;
-      background-color: #0b202f;
-      border: solid 1px #c29b0f;
-    }
     .add-image-area {
       display: flex;
       justify-content: center;
