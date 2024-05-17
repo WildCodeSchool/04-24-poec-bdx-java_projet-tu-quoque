@@ -19,9 +19,11 @@ export class DbService {
   private readonly SKILLS_ENDPOINT: string = "skills";
 
   private race$: Observable<Race[]>;
+  private classCharacter$: Observable<CharacterClass[]>;
 
   constructor(private http: HttpClient) {
     this.race$ = this.setRaces$();
+    this.classCharacter$ = this.setClasses$();
   }
 
   getEndpoint$(endpoint: string): Observable<any> {
@@ -35,8 +37,11 @@ export class DbService {
     return this.race$;
   }
 
-  getClasses$(): Observable<CharacterClass[]> {
+  setClasses$(): Observable<CharacterClass[]> {
     return this.getEndpoint$(this.CLASSES_ENDPOINT).pipe(shareReplay());
+  }
+  getClasses$(): Observable<CharacterClass[]> {
+    return this.classCharacter$;
   }
 
   getAlignments$(): Observable<Alignment[]> {
