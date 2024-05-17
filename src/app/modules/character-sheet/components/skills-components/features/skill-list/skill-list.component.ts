@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SkillDetails } from '../../../../models/classes/skill-details.class';
-import { CharacterSkills } from '../../../../models/classes/character-skills.class';
-import { distinctUntilChanged, distinctUntilKeyChanged, Observable, Subject } from 'rxjs';
 import { DbService } from '../../../../../shared/services/db-service/db.service';
 import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
+import { SkillsService } from '../../../../shared/services/skills.service';
 
 @Component({
   selector: 'app-skill-list',
@@ -11,7 +9,7 @@ import { CharacterSheetService } from '../../../../shared/services/character-she
   styleUrl: './skill-list.component.scss'
 })
 export class SkillListComponent implements OnInit {
-  characterSkills!: CharacterSkills;
+  characterSkills!: SkillsService;
 
   constructor(
     private dbService: DbService,
@@ -20,6 +18,6 @@ export class SkillListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.characterSkills = new CharacterSkills(this.dbService, this.sheetService);
+    this.characterSkills = new SkillsService(this.dbService, this.sheetService);
   }
 }
