@@ -10,8 +10,9 @@ import { Observable } from 'rxjs';
 export class HeaderComponent {
   
   title: string = 'tu quoque';
-
   notesVisible: boolean = false;
+  userConected: boolean = true;
+  UrlLink: string = this.userConected ? '/user/home':'/visitor/home';
 
   constructor(private navService: NavigationService) {}
 
