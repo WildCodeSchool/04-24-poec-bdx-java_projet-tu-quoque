@@ -11,7 +11,8 @@ import { TableInvitaition } from '../../../../shared/models/types/users/table-in
 })
 export class UserHomepageComponent {
 
-  invitationArray$: Observable<TableInvitaition[]> = this._tableInvitation.getUserTableInvitationList$();
+  private invitationArray$: Observable<TableInvitaition[]> =
+    this._tableInvitation.getUserTableInvitationList$();
 
   constructor(private _tableInvitation: TableInvitationService) {}
 

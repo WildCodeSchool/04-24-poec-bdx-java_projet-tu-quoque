@@ -1,8 +1,8 @@
 export type Note = {
   id: number;
-  table_id?: number;
-  user_id?: number;
-  character_id?: number;
+  tableId?: number;
+  userId?: number;
+  characterId?: number;
   name: string;
   text: string;
 };

@@ -29,7 +29,7 @@ import { BackToPreviousPageDirective } from './directives/back-to-previous-page.
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterLink,  // permet aux composants réutilisables de faire du routing à travers les différents modules
+    RouterLink,
     HttpClientModule,
     FileUploadModule,
     AutoCompleteModule

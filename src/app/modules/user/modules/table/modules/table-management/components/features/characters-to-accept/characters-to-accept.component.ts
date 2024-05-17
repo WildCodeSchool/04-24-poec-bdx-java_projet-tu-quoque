@@ -7,21 +7,20 @@ import { Character } from '../../../../../../../../shared/models/types/users/cha
 @Component({
   selector: 'app-characters-to-accept',
   templateUrl: './characters-to-accept.component.html',
-  styleUrl: './characters-to-accept.component.scss'
+  styleUrl: './characters-to-accept.component.scss',
 })
 export class CharactersToAcceptComponent implements OnInit {
-
-  characterList$!: Observable<Character[]>
+  
+  characterList$!: Observable<Character[]>;
 
   constructor(
     private _characterService: CharacterService,
     private _route: ActivatedRoute
-  ){}
+  ) {}
 
   ngOnInit(): void {
-      const id = Number(this._route.snapshot.paramMap.get('id'))
-      this.characterList$ = this._characterService.getCharacterToAcceptByTable$(id)
-      this._characterService.getCharacterToAcceptByTable$(id).subscribe(res => console.log(res))
-    }
-
+    const id = Number(this._route.snapshot.paramMap.get('id'));
+    this.characterList$ =
+      this._characterService.getCharacterToAcceptByTable$(id);
+  }
 }

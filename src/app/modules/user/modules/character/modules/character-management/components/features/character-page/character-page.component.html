@@ -2,14 +2,16 @@
     <app-page-header [elementIcon]="'assets/images/user-icon.svg'" [title]="character.name"></app-page-header>
     <app-character-presentation [character]="character" (isCharachterSheetVisible)="toggleCharacterSheetVisible($event)"></app-character-presentation>
     <ng-container *ngIf="table$|async as table; else noTable">
-    <app-custom-area-title [title]="table.name"></app-custom-area-title>
+    <app-custom-area-title [title]="'Table :\n'+ table.name"></app-custom-area-title>
     </ng-container>
     <ng-template #noTable>
         <app-custom-area-title title="Aucune table"></app-custom-area-title>
       </ng-template>
+    <app-custom-area-title [title]="'Discussions'"></app-custom-area-title>
     <ng-container *ngIf="chatList$|async as chatList">
     <app-list-of-element [baseUrl]="''" [elementIcon]="'assets/images/discussion-icon.svg'" [elementList]="chatList" ></app-list-of-element>
     </ng-container>
+    <app-custom-add-button></app-custom-add-button>
     <footer class="page-footer">
         <app-custom-button [style]="'gold'" [name]="'Retour'" PreviousPage></app-custom-button>
         <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
