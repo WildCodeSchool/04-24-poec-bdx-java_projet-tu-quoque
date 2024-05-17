@@ -12,7 +12,7 @@ export class TableInvitationService {
 
   private _userId = 1;
   private readonly _BASE_URL = "http://localhost:3000/user_table_invitations";
-  userTableInvitationList$: BehaviorSubject<any> = new BehaviorSubject([])
+  private _userTableInvitationList$: BehaviorSubject<any> = new BehaviorSubject([])
 
   constructor(
     private _HTTP: HttpClient, 
@@ -26,8 +26,8 @@ export class TableInvitationService {
     return this.getTableInvitationList$()
     .pipe(
       map((tableInvitationList: TableInvitaition[]) => tableInvitationList
-      .filter((invitation : TableInvitaition) => Number(invitation.user_id) === id)),
-      map((invitationArray:TableInvitaition[]) => invitationArray.map((invit: TableInvitaition) => invit.table_id))
+      .filter((invitation : TableInvitaition) => Number(invitation.userId) === id)),
+      map((invitationArray:TableInvitaition[]) => invitationArray.map((invit: TableInvitaition) => invit.tableId))
     )
   }
     
@@ -41,8 +41,8 @@ export class TableInvitationService {
     }
 
   getUserTableInvitationList$(): Observable<TableInvitaition[]> {
-    return this.userTableInvitationList$.value.length ? 
-      this.userTableInvitationList$.asObservable() 
+    return this._userTableInvitationList$.value.length ? 
+      this._userTableInvitationList$.asObservable() 
       : this.getTableInvitationListNames$(this._userId)
   }
 }

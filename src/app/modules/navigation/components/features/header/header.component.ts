@@ -8,21 +8,19 @@ import { Observable } from 'rxjs';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
+  
   title: string = 'tu quoque';
 
-  notesVisible: boolean = false
-  
+  notesVisible: boolean = false;
 
   constructor(private navService: NavigationService) {}
 
   onClick() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     this.navService.setSidebarVisible();
   }
 
   closeNotePage(): void {
-    this.notesVisible = false
+    this.notesVisible = false;
   }
-
 }

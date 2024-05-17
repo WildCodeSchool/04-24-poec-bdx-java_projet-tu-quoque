@@ -4,25 +4,34 @@ import { NotepadMainPageComponent } from './features/notepad-main-page/notepad-m
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: NotepadMainPageComponent,
     children: [
       {
-        path: "user/:id/notes",
-        loadChildren: () => import('./modules/user-notepad/user-notepad.module')
-        .then(m => m.UserNotepadModule)
+        path: '',
+        redirectTo: 'user/notes',
+        pathMatch: 'full',
       },
       {
-        path: "game/:id/notes",
-        loadChildren: () => import('./modules/game-notepad/game-notepad.module')
-        .then(m => m.GameNotepadModule)
-      }
-    ]
-  }
+        path: 'user/notes',
+        loadChildren: () =>
+          import('./modules/user-notepad/user-notepad.module').then(
+            (m) => m.UserNotepadModule
+          ),
+      },
+      {
+        path: 'game/notes',
+        loadChildren: () =>
+          import('./modules/game-notepad/game-notepad.module').then(
+            (m) => m.GameNotepadModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class NotepadRoutingModule { }
+export class NotepadRoutingModule {}
