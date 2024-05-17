@@ -2,9 +2,9 @@
 class="error-message"
 *ngIf="control.errors && (control.dirty || control.touched)"
 >
-    <span *ngIf="control.hasError('required')">Le champ est requis</span>
-    <span *ngIf="control.hasError('minlength')">Le champ doit être de {{ control.errors['minlength'].requiredLength }} caractères</span>
-    <span *ngIf="control.hasError('maxlength')">Le champ ne peut pas posséder plus de {{ control.errors['maxlength'].requiredLength }} caractères</span>
-    <span *ngIf="control.hasError('pattern')">Le champ est invalide</span>
+    <span *ngIf="control.hasError('required')">Le champ est requis.</span>
+    <span *ngIf="control.hasError('minlength')">Le champ doit être de {{ control.errors['minlength'].requiredLength }} caractères, , doit contenir une majuscule et un caractère spécial.</span>
+    <span *ngIf="control.hasError('maxlength')">Le champ ne peut pas posséder plus de {{ control.errors['maxlength'].requiredLength }} caractères.</span>
+    <span *ngIf="control.hasError('pattern')">Le champ est invalide.</span>
 
 </div>

@@ -1,11 +1,12 @@
 import { Component, Input, forwardRef, inject } from '@angular/core';
-import { FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputErrorComponent } from '../../errors/input-error/input-error.component';
 import { CommonModule } from '@angular/common';
 import { TextAreaField } from '../../../../models/types/fields/textarea-field.type';
 import { SharedModule } from '../../../../shared.module';
 import { InputTextModule } from 'primeng/inputtext';
+import { BaseInputComponent } from '../base-input/base-input.component';
 
 @Component({
   selector: 'app-input-textarea',
@@ -21,47 +22,8 @@ import { InputTextModule } from 'primeng/inputtext';
     }
   ]
 })
-export class InputTextareaComponent {
+export class InputTextareaComponent extends BaseInputComponent {
 
-  @Input() field!: TextAreaField;
-  @Input() control!: FormControl;
-
-  private _onChanged = (value: string) => {};
-    private _onTouched = () => {};
-
-  onInputChange(value: string): void {
-    this.field.value = value;
-    this._onChanged(value);
-  }
-
-  writeValue(value: any): void {
-    if (value !== undefined && this.control.value !== value) {
-      this.control.setValue(value, { emitEvent: false });
-  }
-  }
-
-  registerOnChange(fn: any): void {
-    this._onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this._onTouched = fn;
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    if (isDisabled) {
-      this.control.disable();
-    } else {
-      this.control.enable();
-    }
-  }
-
-  updateChanges(value: any): void {
-    this._onChanged(value);
-  }
-  
-
-  onBlur(): void {
-    this._onTouched();
-  }
+  @Input() override field!: TextAreaField;
+  @Input() override control!: FormControl;
 }

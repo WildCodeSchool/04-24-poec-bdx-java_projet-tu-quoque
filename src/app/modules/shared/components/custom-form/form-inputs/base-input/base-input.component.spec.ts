@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputFileComponent } from './input-file.component';
+import { BaseInputComponent } from './base-input.component';
 
-describe('InputFileComponent', () => {
-  let component: InputFileComponent;
-  let fixture: ComponentFixture<InputFileComponent>;
+describe('BaseInputComponent', () => {
+  let component: BaseInputComponent;
+  let fixture: ComponentFixture<BaseInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InputFileComponent]
+      declarations: [BaseInputComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(InputFileComponent);
+    fixture = TestBed.createComponent(BaseInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
