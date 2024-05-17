@@ -55,6 +55,4 @@ export class DbService {
   getSkills$(): Observable<SkillFromDb[]> {
     return this.getEndpoint$(this.SKILLS_ENDPOINT);
   }
-
-
 }
