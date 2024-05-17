@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { DbService } from '../../../../../shared/services/db-service/db.service';
-import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
+import { Component } from '@angular/core';
 import { SkillsService } from '../../../../shared/services/skills.service';
 
 @Component({
@@ -8,16 +6,9 @@ import { SkillsService } from '../../../../shared/services/skills.service';
   templateUrl: './skill-list.component.html',
   styleUrl: './skill-list.component.scss'
 })
-export class SkillListComponent implements OnInit {
-  characterSkills!: SkillsService;
-
+export class SkillListComponent {
   constructor(
-    private dbService: DbService,
-    private sheetService: CharacterSheetService,
+    protected characterSkills: SkillsService
   ) {
-  }
-
-  ngOnInit(): void {
-    this.characterSkills = new SkillsService(this.dbService, this.sheetService);
   }
 }
