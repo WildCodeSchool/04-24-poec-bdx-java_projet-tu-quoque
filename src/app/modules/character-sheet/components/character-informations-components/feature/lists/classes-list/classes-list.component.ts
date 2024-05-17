@@ -13,6 +13,4 @@ export class ClassesListComponent extends AbstractListComponent {
   classList$: Observable<CharacterClass[]> = this.dbService.getClasses$();
   selectName: string = "characterClass";
   selectLabel: string = "CLASSE";
-
-
 }

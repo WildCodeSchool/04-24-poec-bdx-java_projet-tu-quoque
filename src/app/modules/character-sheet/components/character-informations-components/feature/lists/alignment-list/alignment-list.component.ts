@@ -14,7 +14,4 @@ export class AlignmentListComponent extends AbstractListComponent {
   list$: Observable<Alignment[]> = this.dbService.getAlignments$();
   selectName: string = "alignment";
   selectLabel: string = "ALIGNEMENT";
-
-  // constructor(private dbService: DbService) {
-  // }
 }

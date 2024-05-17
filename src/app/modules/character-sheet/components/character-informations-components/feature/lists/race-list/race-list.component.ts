@@ -13,5 +13,4 @@ export class RaceListComponent extends AbstractListComponent {
   raceList$: Observable<Race[]> = this.dbService.getRaces$();
   selectName: string = "characterRace";
   selectLabel: string = "RACE";
-
 }

@@ -13,6 +13,4 @@ export class GenderListComponent extends AbstractListComponent {
   list$: Observable<Gender[]> = this.dbService.getGenders$();
   selectName: string = "gender";
   selectLabel: string = "SEXE";
-
-
 }
