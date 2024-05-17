@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { AbstractListenerComponent } from '../../../../shared/abstract-components/asbtract-listener-component.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-character-informations',
   templateUrl: './character-informations.component.html',
   styleUrl: './character-informations.component.scss'
 })
-export class CharacterInformationsComponent implements OnInit {
-  constructor(private listener: ListenPlayerActionService) { }
+export class CharacterInformationsComponent extends AbstractListenerComponent implements OnInit {
 
   ngOnInit(): void {
-    this.listener.sendInfos().subscribe(data => console.log(data, "FROM CHARACTER_INFORMATIONS"));
+    const destroyRef = inject(DestroyRef);
+    this.listener.sendInfos().pipe(
+      takeUntilDestroyed(destroyRef),
+    ).subscribe(data => console.log(data, "FROM CHARACTER_INFORMATIONS"));
   }
 }
