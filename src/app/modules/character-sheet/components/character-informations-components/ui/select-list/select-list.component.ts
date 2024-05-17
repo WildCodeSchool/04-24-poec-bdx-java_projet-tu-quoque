@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
 import { Field } from '../../../../shared/models/types/field.type';
+import { AbstractListenerComponent } from '../../../../shared/abstract-components/asbtract-listener-component.component';
 
 @Component({
   selector: 'app-select-list',
   templateUrl: './select-list.component.html',
   styleUrl: './select-list.component.scss'
 })
-export class SelectListComponent implements OnInit {
+export class SelectListComponent extends AbstractListenerComponent implements OnInit {
   @Input()
   list$!: Observable<any>;
   @Input()
@@ -17,8 +17,6 @@ export class SelectListComponent implements OnInit {
   selectLabel!: string;
 
   playerChoice$: Subject<Field> = new Subject();
-
-  constructor(private listener: ListenPlayerActionService) { }
 
   ngOnInit(): void {
     this.listener.receiveInfoFrom(this.playerChoice$);

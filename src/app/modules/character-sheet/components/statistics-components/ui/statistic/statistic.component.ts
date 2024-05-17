@@ -1,15 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StatisticDetails } from '../../../../models/classes/statistic-details.class';
 import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
 import { Subject } from 'rxjs';
 import { StatField } from '../../../../shared/models/types/stat-field.type';
+import { AbstractListenerComponent } from '../../../../shared/abstract-components/asbtract-listener-component.component';
 
 @Component({
   selector: '[trStatistic]',
   templateUrl: './statistic.component.html',
   styleUrl: './statistic.component.scss'
 })
-export class StatisticComponent {
+export class StatisticComponent extends AbstractListenerComponent implements OnInit {
   @Input()
   stat!: StatisticDetails;
   @Input()
@@ -19,7 +20,7 @@ export class StatisticComponent {
   playerInput: any;
   playerInput$: Subject<StatField> = new Subject();
 
-  constructor(private listener: ListenPlayerActionService) {
+  ngOnInit(): void {
     this.listener.receiveStatFrom(this.playerInput$);
   }
 
