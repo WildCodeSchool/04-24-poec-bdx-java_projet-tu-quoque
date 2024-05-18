@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { distinctUntilChanged, map, Observable } from "rxjs";
+import { distinctUntilChanged, distinctUntilKeyChanged, map, Observable } from "rxjs";
 import { CharacterSheetService } from "../services/character-sheet.service";
 import { ListenPlayerActionService } from "../services/listen-player-action.service";
 import { BasicField } from "../models/types/basic-field.type";
@@ -46,7 +46,8 @@ export abstract class AbstractSelfFilledComponent implements OnInit {
                     value: valueSent
                 };
                 return field;
-            })
+            }),
+            distinctUntilKeyChanged("value")
         ));
     }
 }
