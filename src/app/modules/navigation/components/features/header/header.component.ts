@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   
   title: string = 'tu quoque';
-  notesVisible: boolean = false;
   userConected: boolean = true;
   homeLink: string = this.userConected ? '/user/home':'/visitor/home';
   urlToGoBack!: string
@@ -26,10 +25,4 @@ export class HeaderComponent {
     window.scrollTo(0, 0);
     this._navService.setSidebarVisible();
   }
-
-  closeNotePage(): void {
-    this.notesVisible = false;
-  }
-
-
 }

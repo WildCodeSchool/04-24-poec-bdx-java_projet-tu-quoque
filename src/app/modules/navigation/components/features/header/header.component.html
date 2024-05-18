@@ -4,7 +4,4 @@
     <app-header-button class="header-btn" [picture]="('assets/images/profile-img-test.jpg')"></app-header-button>
 </header>
 <app-notes-button (click)="storeActualUrl()" [routerLink]="'../notepad'"></app-notes-button>
-@if (notesVisible) {
-        <app-notepad-main-page (areNotesVisible)="closeNotePage()"></app-notepad-main-page>
-}
 <app-menu-sidebar></app-menu-sidebar>
