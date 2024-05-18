@@ -4,8 +4,7 @@ import { GetFieldsService } from '../../services/form-field/get-fields.service';
 
 @Component({
   selector: 'app-parent-form',
-  templateUrl: './parent-form.component.html',
-  styleUrl: './parent-form.component.scss'
+  templateUrl: './parent-form.component.html'
 })
 export abstract class ParentFormComponent {
   
