@@ -1,5 +1,5 @@
 import { DestroyRef, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { BasicField } from '../models/types/basic-field.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
@@ -50,7 +50,7 @@ export class ListenPlayerActionService {
   }
 
   receiveBasicField(field: BasicField): void {
-    this.controlField(field);
+    //this.controlField(field);
     this.sheetModifiedByPlayer[field.index] = field.value;
     this.updateSheetStream();
   }
