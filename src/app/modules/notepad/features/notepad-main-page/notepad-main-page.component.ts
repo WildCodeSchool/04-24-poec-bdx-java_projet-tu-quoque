@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './notepad-main-page.component.scss',
 })
 export class NotepadMainPageComponent {
-  
+
   fakeCharacterConnected$: Observable<Character> =
     this._connectionService.getCharacterConnected$();
 
@@ -20,7 +20,7 @@ export class NotepadMainPageComponent {
 
   isUserSelected: Boolean = true;
 
-  urlBeforeNotepad!: string;
+  private _urlBeforeNotepad!: string;
 
   constructor(
     private _connectionService: ConnectionService,
@@ -28,8 +28,11 @@ export class NotepadMainPageComponent {
   ) {}
 
   closeNotes(): void {
-    this.urlBeforeNotepad = localStorage.getItem('routeToGoBack') as string;
-    this._router.navigateByUrl(this.urlBeforeNotepad);
+    localStorage.getItem('routeToGoBack') 
+    ? this._urlBeforeNotepad = localStorage.getItem('routeToGoBack') as string
+    : this._urlBeforeNotepad = "/"
+    this._router.navigateByUrl(this._urlBeforeNotepad);
+    localStorage.removeItem('routeToGoBack')
   }
 
   setUserSelected(event: boolean) {
