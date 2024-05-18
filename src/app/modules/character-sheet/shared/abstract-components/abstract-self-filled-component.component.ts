@@ -1,14 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { distinctUntilChanged, distinctUntilKeyChanged, map, Observable } from "rxjs";
+import { distinctUntilKeyChanged, map, Observable, switchMap } from "rxjs";
 import { CharacterSheetService } from "../services/character-sheet.service";
-import { ListenPlayerActionService } from "../services/listen-player-action.service";
 import { BasicField } from "../models/types/basic-field.type";
+import { AbstractSendToListenerComponent } from "./abstract-send-to-listener-component.component";
 
 @Component({
     selector: "abstract-self-field",
     template: ""
 })
-export abstract class AbstractSelfFilledComponent implements OnInit {
+export abstract class AbstractSelfFilledComponent extends AbstractSendToListenerComponent implements OnInit {
     protected category$!: Observable<string>;
     protected unit: string = "";
     protected label: string = "";
@@ -16,15 +16,16 @@ export abstract class AbstractSelfFilledComponent implements OnInit {
 
     constructor(
         protected characterSheetService: CharacterSheetService,
-        protected listener: ListenPlayerActionService
-    ) { }
-
-    ngOnInit(): void {
-        this.category$ = this.findObservable();
-        this.sendInfo();
+    ) {
+        super();
     }
 
-    findObservable() {
+    override ngOnInit(): void {
+        this.category$ = this.findObservable();
+        this.configureStream();
+    }
+
+    findObservable(): Observable<string> {
         switch (this.name) {
             case "sizeCategory":
                 return this.characterSheetService.setSizeCategory$();
@@ -38,16 +39,20 @@ export abstract class AbstractSelfFilledComponent implements OnInit {
         };
     }
 
-    sendInfo() {
-        this.listener.receiveFieldFrom(this.category$.pipe(
-            map(valueSent => {
-                const field: BasicField = {
-                    index: this.name,
-                    value: valueSent
-                };
-                return field;
-            }),
-            distinctUntilKeyChanged("value")
-        ));
+    override updateStream(): void {
+        this.fieldChangeStream$.pipe(
+            switchMap(field => this.category$.pipe(
+                map(valueSent => this.updateField(valueSent)),
+                distinctUntilKeyChanged("value")
+            )),
+        )
+    }
+
+    updateField(valueSent: string): BasicField {
+        const field: BasicField = {
+            index: this.name,
+            value: valueSent
+        };
+        return field;
     }
 }

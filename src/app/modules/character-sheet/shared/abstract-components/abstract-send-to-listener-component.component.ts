@@ -12,16 +12,20 @@ export abstract class AbstractSendToListenerComponent extends AbstractListenerCo
     protected fieldChangeStream$: Subject<Field> = new Subject();
 
     ngOnInit(): void {
-        this.listener.receiveFieldFrom(this.fieldChangeStream$);
+        this.configureStream()
     }
 
-    sendChanges(value: string = "") {
+    sendChanges(value: string = ""): void {
         this.updateStream(this.updateField(value));
     }
 
     abstract updateField(value: string): Field;
 
-    updateStream(field: Field) {
+    updateStream(field: Field): void {
         this.fieldChangeStream$.next(field);
+    }
+
+    configureStream(): void {
+        this.listener.receiveFieldFrom(this.fieldChangeStream$.asObservable());
     }
 }
