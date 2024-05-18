@@ -30,7 +30,7 @@ import { BaseInputComponent } from './components/custom-form/form-inputs/base-in
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterLink,  // permet aux composants réutilisables de faire du routing à travers les différents modules
+    RouterLink,
     HttpClientModule,
     FileUploadModule,
     AutoCompleteModule

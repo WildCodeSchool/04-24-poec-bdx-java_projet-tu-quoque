@@ -8,10 +8,12 @@ import { Observable } from 'rxjs';
   styleUrl: './table-new-player.component.scss',
 })
 export class TableNewPlayerComponent {
-
-  inputText: string = '';
+  
   selectedUser!: string;
-  suggestions$: Observable<any> = this._userService.getUserListFilteredByName$();
+  inputText: string = '';
+
+  suggestions$: Observable<any> =
+    this._userService.getUserListFilteredByName$();
 
   constructor(private _userService: userService) {}
 
@@ -19,7 +21,5 @@ export class TableNewPlayerComponent {
     this._userService.getUserByName$(event.query).subscribe();
   }
 
-  addNewUser(): void {
-    console.log(`${this.selectedUser} à reçu une invitation !`);
-  }
+  addNewUser(): void {}
 }

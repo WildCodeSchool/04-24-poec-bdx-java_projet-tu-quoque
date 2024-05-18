@@ -5,14 +5,10 @@ import { NotepadMainPageComponent } from './features/notepad-main-page/notepad-m
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-  
-    NotepadMainPageComponent
-  ],
+  declarations: [NotepadMainPageComponent],
   imports: [
-    CommonModule,
-    NotepadRoutingModule,
-    SharedModule
-  ]
+    CommonModule, 
+    NotepadRoutingModule, 
+    SharedModule],
 })
-export class NotepadModule { }
+export class NotepadModule {}

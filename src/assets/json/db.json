@@ -54,76 +54,76 @@
       "id": "1",
       "name": "Elric",
       "avatar": "/assets/images/profile-img-test.jpg",
-      "user_id": 1,
-      "table_id": 4,
-      "characterSheet_id": 1,
+      "userId": 1,
+      "tableId": 4,
+      "characterSheetId": 1,
       "accepted": false,
-      "schedule_id": 1
+      "scheduleId": 1
     },
     {
       "id": "2",
       "name": "Boromir",
       "avatar": "",
-      "user_id": 1,
-      "table_id": null,
-      "characterSheet_id": 1,
+      "userId": 1,
+      "tableId": null,
+      "characterSheetId": 1,
       "accepted": false,
-      "schedule_id": 1
+      "scheduleId": 1
     },
     {
       "id": "3",
       "name": "Willow",
       "avatar": "",
-      "user_id": 1,
-      "table_id": null,
-      "characterSheet_id": 1,
+      "userId": 1,
+      "tableId": null,
+      "characterSheetId": 1,
       "accepted": false,
-      "schedule_id": 1
+      "scheduleId": 1
     },
     {
       "id": 4,
       "name": "Gimli",
       "avatar": "/assets/images/user-profile-images/user3.png",
-      "user_id": 2,
-      "table_id": 1,
-      "characterSheet_id": 1,
+      "userId": 2,
+      "tableId": 1,
+      "characterSheetId": 1,
       "accepted": false,
-      "schedule_id": 1
+      "scheduleId": 1
     },
     {
       "id": 5,
       "name": "Freyr",
       "avatar": "",
-      "user_id": 3,
-      "table_id": 1,
-      "characterSheet_id": 1,
+      "userId": 3,
+      "tableId": 1,
+      "characterSheetId": 1,
       "accepted": true,
-      "schedule_id": 1
+      "scheduleId": 1
     },
     {
       "id": 6,
       "name": "Néo",
       "avatar": "/assets/images/user-profile-images/user1.jpg",
-      "user_id": 4,
-      "table_id": 1,
-      "characterSheet_id": 1,
+      "userId": 4,
+      "tableId": 1,
+      "characterSheetId": 1,
       "accepted": false,
-      "schedule_id": 1
+      "scheduleId": 1
     }
 
   ],
   "user_table_invitations": [
     {
-      "user_id": 2,
-      "table_id": 1
+      "userId": 2,
+      "tableId": 1
     },
     {
-      "user_id": 3,
-      "table_id": 1
+      "userId": 3,
+      "tableId": 1
     },
     {
-      "user_id": 1,
-      "table_id": 4
+      "userId": 1,
+      "tableId": 4
     }
 
   ],
@@ -132,85 +132,85 @@
       "id": "1",
       "avatar": "/assets/images/profile-img-test.jpg",
       "name": "table ronde",
-      "user_id": 1
+      "userId": 1
     },
     {
       "id": "2",
       "avatar": "",
       "name": "imbattable",
-      "user_id": 1
+      "userId": 1
     },
     {
       "id": "3",
       "avatar": "",
       "name": "évitable",
-      "user_id": 1
+      "userId": 1
     },
     {
       "id": "4",
       "avatar": "",
-      "name": "Acceptable",
-      "user_id": 2
+      "name": "La table des héros",
+      "userId": 2
     },
     {
       "id": "5",
       "avatar": "",
       "name": "Ajustable",
-      "user_id": 1
+      "userId": 1
     }
   ],
   "schedules": [
     {
       "id": "1",
-      "tables_id": 1
+      "tablesId": 1
     }
   ],
   "notes": [
     {
       "id": "1",
-      "table_id": null,
-      "user_id": 1,
-      "character_id": null,
+      "tableId": null,
+      "userId": 1,
+      "characterId": null,
       "name": "Question",
       "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
     },
     {
       "id": "2",
-      "table_id": null,
-      "user_id": 1,
-      "character_id": null,
+      "tableId": null,
+      "userId": 1,
+      "characterId": null,
       "name": "Eureka",
       "text": "42"
     },
     {
       "id": "3",
-      "table_id": 1,
-      "user_id": null,
-      "character_id": null,
+      "tableId": 1,
+      "userId": null,
+      "characterId": null,
       "name": "mot de passe",
       "text": "Ha Ha Ha !!!"
     },
     {
       "id": "4",
-      "table_id": null,
-      "user_id": null,
-      "character_id": 1,
+      "tableId": null,
+      "userId": null,
+      "characterId": 1,
       "name": "Pas d'inspi",
       "text": "Mur"
     },
     {
       "id": "5",
-      "table_id": null,
-      "user_id": null,
-      "character_id": 1,
+      "tableId": null,
+      "userId": null,
+      "characterId": 1,
       "name": "Météo",
       "text": "Beau temps"
     },
     {
       "id": "6",
-      "table_id": null,
-      "user_id": null,
-      "character_id": 1,
+      "tableId": null,
+      "userId": null,
+      "characterId": 1,
       "name": "secret inavouable",
       "text": "oublié"
     }
@@ -220,57 +220,57 @@
       "id": "1",
       "name": "papy",
       "content": "/assets/images/user-profile-images/user1.jpg",
-      "table_id": 1
+      "tableId": 1
     },
     {
       "id": "2",
       "name": "maman sexy",
       "content": "/assets/images/user-profile-images/user2.png",
-      "table_id": 1
+      "tableId": 1
     },
     {
       "id": "3",
       "name": "papa",
       "content": "/assets/images/user-profile-images/user3.png",
-      "table_id": 1
+      "tableId": 1
     }
   ],
   "chats": [
     {
       "id": "1",
       "name": "vas te cacher sous l'escalier",
-      "table_id": 1,
-      "character_id": null
+      "tableId": 1,
+      "characterId": null
     },
     {
       "id": "2",
       "name": "Tu es maintenant un vampire",
-      "table_id": 1,
-      "character_id": null
+      "tableId": 1,
+      "characterId": null
     },
     {
       "id": "3",
       "name": "Sylvain est un [complète cette phrase] <3",
-      "table_id": 1,
-      "character_id": null
+      "tableId": 1,
+      "characterId": null
     },
     {
       "id": "4",
       "name": "Un magicien n'est jamais en retard...",
-      "table_id": null,
-      "character_id": 1
+      "tableId": null,
+      "characterId": 1
     },
     {
       "id": "5",
       "name": "T'es où ???",
-      "table_id": null,
-      "character_id": 1
+      "tableId": null,
+      "characterId": 1
     },
     {
       "id": "6",
       "name": "Apéro ?",
-      "table_id": null,
-      "character_id": 1
+      "tableId": null,
+      "characterId": 1
     }
   ],
   "messages": [
@@ -285,13 +285,13 @@
   ],
   "chatsMessages": [
     {
-      "chat_id": 1,
-      "message_id": 1,
+      "chatId": 1,
+      "messageId": 1,
       "id": "fc07"
     },
     {
-      "chat_id": 1,
-      "message_id": 2,
+      "chatId": 1,
+      "messageId": 2,
       "id": "e62e"
     }
   ],
@@ -302,15 +302,15 @@
   ],
   "charactersChats": [
     {
-      "character_id": 1,
-      "chat_id": 1,
+      "characterId": 1,
+      "chatId": 1,
       "id": "efd3"
     }
   ],
   "tablesChats": [
     {
-      "table_id": 1,
-      "chat_id": 2,
+      "tableId": 1,
+      "chatId": 2,
       "id": "2c2d"
     }
   ],

@@ -6,12 +6,11 @@ import { Table } from '../../../../../../../../shared/models/types/users/table.t
 @Component({
   selector: 'app-user-tables',
   templateUrl: './user-tables.component.html',
-  styleUrl: './user-tables.component.scss'
+  styleUrl: './user-tables.component.scss',
 })
 export class UserTablesComponent {
-
-  userTableList$: Observable<Table[]> = this._tableService.getUserTableList$()
   
-  constructor(private _tableService: TableService){}
+  userTableList$: Observable<Table[]> = this._tableService.getUserTableList$();
 
+  constructor(private _tableService: TableService) {}
 }

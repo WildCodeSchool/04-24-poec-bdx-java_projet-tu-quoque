@@ -14,17 +14,17 @@
   ></app-page-header>
   <nav class="notes-navbar">
     <app-custom-button
-      [style]="isUserSelected === 1 ? 'dblue-gold' : 'gold'"
+      [style]="isUserSelected ? 'dblue-gold' : 'gold'"
       [name]="'Notes personnelles'"
-      [routerLink]="['user', fakeUserId, 'notes']"
-      (click)="setUserSelected(1)"
+      [routerLink]="['user/notes']"
+      (click)="setUserSelected(true)"
     ></app-custom-button>
     @if (fakeCharacterId) {
     <app-custom-button
-      [style]="isUserSelected === 2 ? 'dblue-gold' : 'gold'"
+      [style]="!isUserSelected ? 'dblue-gold' : 'gold'"
       [name]="'Notes de table'"
-      [routerLink]="['game', fakeCharacterId, 'notes']"
-      (click)="setUserSelected(2)"
+      [routerLink]="['game/notes']"
+      (click)="setUserSelected(false)"
     ></app-custom-button>
     }
   </nav>

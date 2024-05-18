@@ -17,7 +17,7 @@ export class CharacterPageComponent implements OnInit {
   
   character$!: Observable<Character>;
   table$!: Observable<Table>;
-  chatList$!: Observable<Chat[]>
+  chatList$!: Observable<Chat[]>;
 
   isCharacterSheetVisible: boolean = false;
 
@@ -32,20 +32,21 @@ export class CharacterPageComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
     this.character$ = this._characterService.getCharacterById$(id);
-    this.table$ =this._characterService.getCharacterById$(id)
-    .pipe(
-      switchMap((res: any) => 
-        { return this._tableService.getTableById$(res.table_id)})) 
-    this.chatList$ = this._chatService.getChatListByCharacter(id)
+    this.table$ = this._characterService.getCharacterById$(id).pipe(
+      switchMap((res: Character) => {
+        return this._tableService.getTableById$(res.tableId as Number);
+      })
+    );
+    this.chatList$ = this._chatService.getChatListByCharacter(id);
   }
 
   toggleCharacterSheetVisible(event: boolean): void {
-    window.scrollTo(0, 0)
-    this.isCharacterSheetVisible = !this.isCharacterSheetVisible
-    if(this.isCharacterSheetVisible) {
-      this._renderer.setStyle(document.body, 'overflow', 'hidden')
+    window.scrollTo(0, 0);
+    this.isCharacterSheetVisible = !this.isCharacterSheetVisible;
+    if (this.isCharacterSheetVisible) {
+      this._renderer.setStyle(document.body, 'overflow', 'hidden');
     } else {
-      this._renderer.setStyle(document.body, 'overflow', 'auto')
+      this._renderer.setStyle(document.body, 'overflow', 'auto');
     }
   }
 }

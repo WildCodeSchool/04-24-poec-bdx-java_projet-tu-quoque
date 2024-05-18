@@ -9,11 +9,9 @@ import { Character } from '../../../../../../../../shared/models/types/users/cha
   styleUrl: './user-characters.component.scss',
 })
 export class UserCharactersComponent {
+  
+  userCharacterList$: Observable<Character[]> =
+    this._characterService.getUserCharacterList$();
 
-
-
-  userCharacterList$: Observable<Character[]> = this._characterService.getUserCharacterList$()
-
-  constructor(private _characterService: CharacterService){}
-
+  constructor(private _characterService: CharacterService) {}
 }

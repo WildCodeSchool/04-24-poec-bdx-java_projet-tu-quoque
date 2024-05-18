@@ -7,20 +7,19 @@ import { Note } from '../../../../../../../shared/models/types/users/note.type';
 @Component({
   selector: 'app-game-notes',
   templateUrl: './game-notes.component.html',
-  styleUrl: './game-notes.component.scss'
+  styleUrl: './game-notes.component.scss',
 })
 export class GameNotesComponent {
-
-  noteList$!: Observable<Note[]>
+  
+  noteList$!: Observable<Note[]>;
 
   constructor(
-    private _notesService: NoteService, 
+    private _notesService: NoteService,
     private _route: ActivatedRoute
-  ){}
-  
-  ngOnInit(): void {
-    const id = Number(this._route.snapshot.paramMap.get('id'))
-     this.noteList$ = this._notesService.getNoteListByCharacter(id)
-  }
+  ) {}
 
+  ngOnInit(): void {
+    const id = Number(this._route.snapshot.paramMap.get('id'));
+    this.noteList$ = this._notesService.getNoteListByCharacter(id);
+  }
 }
