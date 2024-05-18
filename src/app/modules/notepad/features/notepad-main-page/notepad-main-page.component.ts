@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ConnectionService } from '../../../shared/services/connection/connection.service';
 import { Observable } from 'rxjs';
-import { UserBasicInfos } from '../../../shared/models/types/users/userBasicInfos.type';
 import { Character } from '../../../shared/models/types/users/character.type';
 import { Table } from '../../../shared/models/types/users/table.type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notepad-main-page',
@@ -11,7 +11,7 @@ import { Table } from '../../../shared/models/types/users/table.type';
   styleUrl: './notepad-main-page.component.scss',
 })
 export class NotepadMainPageComponent {
-  
+
   fakeCharacterConnected$: Observable<Character> =
     this._connectionService.getCharacterConnected$();
 
@@ -20,13 +20,20 @@ export class NotepadMainPageComponent {
 
   isUserSelected: Boolean = true;
 
+  urlBeforeNotepad!: string
+
   @Output()
   areNotesVisible: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private _connectionService: ConnectionService) {}
+  constructor(
+    private _connectionService: ConnectionService,
+    private _router: Router
+  ) {}
 
   closeNotes(): void {
-    this.areNotesVisible.emit(false);
+    this.urlBeforeNotepad = localStorage.getItem("routeToGoBack") as string;
+    this._router.navigateByUrl(this.urlBeforeNotepad)
+    // this.areNotesVisible.emit(false);
   }
 
   setUserSelected(event: boolean) {
