@@ -34,6 +34,7 @@ export class StatComponent {
       map((modifiers: StatModifier[]) =>
         this.statService.applyRaceModifiers(modifiers)
       ),
+      distinctUntilChanged()
     )
   }
 
