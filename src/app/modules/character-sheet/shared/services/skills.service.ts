@@ -24,7 +24,6 @@ export class SkillsService {
   init() {
     this.skills$ = this.dbService.getSkills$().pipe(
       map((skillList: SkillFromDb[]) => this.transformSkillFromDbIntoSkillsDetails(skillList)),
-      shareReplay(),
       switchMap((skills: SkillDetails[]) => this.sheetService.race$.pipe(
         map((race: Race) => this.updateSkillsWithRace(skills, race))
       )),
@@ -35,7 +34,8 @@ export class SkillsService {
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getCaracteristics$().pipe(
         map((stats: StatisticDetails[]) => this.updateSkillStatMod(skills, stats)),
-      ))
+      )),
+      shareReplay(),
     );
   }
 
