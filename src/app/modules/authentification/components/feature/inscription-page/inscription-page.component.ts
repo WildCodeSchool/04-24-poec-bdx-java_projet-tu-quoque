@@ -7,6 +7,8 @@ import { Observable, map } from 'rxjs';
 import { TextField } from '../../../../shared/models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../../../shared/services/form-field/get-fields.service';
 import { RouterLink } from '@angular/router';
+import { RegexPatterns } from '../../../../shared/models/class/regex-patterns';
+import { ParentFormComponent } from '../../../../shared/components/parent-form/parent-form.component';
 
 @Component({
   selector: 'app-inscription-page',
@@ -15,9 +17,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './inscription-page.component.scss',
   imports: [InputTextComponent, FormsModule, ReactiveFormsModule, CommonModule, SharedModule, RouterLink]
 })
-export class InscriptionPageComponent implements OnInit {
+export class InscriptionPageComponent extends ParentFormComponent implements OnInit {
 
-  form!: FormGroup;
   usernameField$!: Observable<TextField>;
   usernameControl!: FormControl;
   emailField$!: Observable<TextField>;
@@ -28,35 +29,13 @@ export class InscriptionPageComponent implements OnInit {
   passwordVerificationControl!: FormControl;
   connexionIcon: string = 'assets/icons/inscription.svg';
 
-  constructor(private _fieldsService: GetFieldsService, private _fb: FormBuilder) {
-    this.form = this._fb.group({
-      username: ['', [
-        Validators.required,  
-        Validators.minLength(2), 
-        Validators.maxLength(50),
-        Validators.pattern("[a-zA-Z0-9 ]*")
-      ]],
-      email: ['', [
-        Validators.required, 
-        Validators.email, 
-        Validators.minLength(2), 
-        Validators.maxLength(50),
-        Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
-      ]],
-      password: ['', [
-        Validators.required, 
-        Validators.minLength(8), 
-        Validators.maxLength(50),
-        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")
-      ]],
-      passwordVerification: ['', [
-        Validators.required, 
-        Validators.minLength(8), 
-        Validators.maxLength(50),
-        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")
-      ]]
-    }, 
-  );
+  constructor(
+    _fieldsService: GetFieldsService, 
+    _fb: FormBuilder
+  ) {
+    super();
+    this.buildForm(); 
+    this.initializeFormControls();
   }
 
   ngOnInit() {
@@ -75,7 +54,53 @@ export class InscriptionPageComponent implements OnInit {
     this.passwordVerificationField$ = this._fieldsService.getFields$().pipe(
       map(fields => fields.find(field => field.name === 'passwordVerification') as TextField)
     );
+  }
 
+  protected onSubmit() {
+    if (this.form.valid) {
+      console.log('Form Value:', this.form.value);
+    } else {
+      console.log('Form is not valid:', 
+      this.form.get('username')?.errors,
+      this.form.get('email')?.errors, 
+      this.form.get('password')?.errors,
+      this.form.get('passwordVerification')?.errors,
+    );
+    }
+  }
+
+  protected buildForm() {
+    this.form = this._fb.group({
+      username: ['', [
+        Validators.required,  
+        Validators.minLength(2), 
+        Validators.maxLength(50),
+        Validators.pattern(RegexPatterns.textPattern)
+      ]],
+      email: ['', [
+        Validators.required, 
+        Validators.email, 
+        Validators.minLength(2), 
+        Validators.maxLength(50),
+        Validators.pattern(RegexPatterns.emailPattern)
+      ]],
+      password: ['', [
+        Validators.required, 
+        Validators.minLength(8), 
+        Validators.maxLength(50),
+        Validators.pattern(RegexPatterns.passwordPattern)
+      ]],
+      passwordVerification: ['', [
+        Validators.required, 
+        Validators.minLength(8), 
+        Validators.maxLength(50),
+        Validators.pattern(RegexPatterns.passwordPattern)
+      ]]
+    }, 
+  );
+  }
+
+  protected initializeFormControls() {
     this.usernameControl = this.form.get('username') as FormControl;
     if (!this.usernameControl) {
       console.error('Username control is missing!');
@@ -94,20 +119,6 @@ export class InscriptionPageComponent implements OnInit {
     this.passwordVerificationControl = this.form.get('passwordVerification') as FormControl;
     if (!this.passwordControl) {
       console.error('passwordVerification control is missing!');
-    }
-  }
-
-
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Form Value:', this.form.value);
-    } else {
-      console.log('Form is not valid:', 
-      this.form.get('username')?.errors,
-      this.form.get('email')?.errors, 
-      this.form.get('password')?.errors,
-      this.form.get('passwordVerification')?.errors,
-    );
     }
   }
 }
