@@ -2,8 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { distinctUntilChanged, map, Observable } from "rxjs";
 import { CharacterSheetService } from "../services/character-sheet.service";
 import { ListenPlayerActionService } from "../services/listen-player-action.service";
+import { BasicField } from "../models/types/basic-field.type";
 
-@Component({ template: "" })
+@Component({
+    selector: "abstract-self-field",
+    template: ""
+})
 export abstract class AbstractSelfFilledComponent implements OnInit {
     protected category$!: Observable<string>;
     protected unit: string = "";
@@ -35,10 +39,13 @@ export abstract class AbstractSelfFilledComponent implements OnInit {
     }
 
     sendInfo() {
-        this.listener.receiveInfoFrom(this.category$.pipe(
-            distinctUntilChanged(),
+        this.listener.receiveFieldFrom(this.category$.pipe(
             map(valueSent => {
-                return { name: this.name, value: valueSent }
+                const field: BasicField = {
+                    index: this.name,
+                    value: valueSent
+                };
+                return field;
             })
         ));
     }
