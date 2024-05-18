@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationService } from '../../../../shared/services/navigation.service';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -12,16 +13,23 @@ export class HeaderComponent {
   title: string = 'tu quoque';
   notesVisible: boolean = false;
   userConected: boolean = true;
-  UrlLink: string = this.userConected ? '/user/home':'/visitor/home';
+  homeLink: string = this.userConected ? '/user/home':'/visitor/home';
+  urlToGoBack!: string
 
-  constructor(private navService: NavigationService) {}
+  constructor(private _navService: NavigationService, private router: Router) {}
 
+
+  storeActualUrl(): void {
+    localStorage.setItem("routeToGoBack", this.router.url)
+  }
   onClick() {
     window.scrollTo(0, 0);
-    this.navService.setSidebarVisible();
+    this._navService.setSidebarVisible();
   }
 
   closeNotePage(): void {
     this.notesVisible = false;
   }
+
+
 }
