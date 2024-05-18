@@ -7,6 +7,7 @@ import { InputTextComponent } from '../../../../../../../../shared/components/cu
 import { Observable, map } from 'rxjs';
 import { TextField } from '../../../../../../../../shared/models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../../../../../../../shared/services/form-field/get-fields.service';
+import { ParentFormComponent } from '../../../../../../../../shared/components/parent-form/parent-form.component';
 
 @Component({
   selector: 'app-new-table',
@@ -15,13 +16,37 @@ import { GetFieldsService } from '../../../../../../../../shared/services/form-f
   styleUrl: './new-table.component.scss',
   imports: [InputTextComponent, FormsModule, ReactiveFormsModule, CommonModule, SharedModule, RouterLink]
 })
-export class NewTableComponent implements OnInit{
+export class NewTableComponent extends ParentFormComponent implements OnInit{
 
-  form!: FormGroup;
   tableNameField$!: Observable<TextField>;
   tableNameControl!: FormControl;
 
-  constructor(private _fieldsService: GetFieldsService, private _fb: FormBuilder) {
+  constructor(
+    _fieldsService: GetFieldsService, 
+    _fb: FormBuilder
+  ) {
+    super();
+    this.buildForm();
+    this.initializeFormControls();
+  }
+
+  ngOnInit() {
+    this.tableNameField$ = this._fieldsService.getFields$().pipe(
+      map(fields => fields.find(field => field.name === 'tableName') as TextField)
+    );
+  }
+
+  protected onSubmit() {
+    if (this.form.valid) {
+      console.log('Form Value:', this.form.value);
+    } else {
+      console.log('Form is not valid:', 
+      this.form.get('tableName')?.errors,
+    );
+    }
+  }
+
+  protected buildForm() {
     this.form = this._fb.group({
       tableName: ['', [
         Validators.required,  
@@ -33,24 +58,10 @@ export class NewTableComponent implements OnInit{
   );
   }
 
-  ngOnInit() {
-    this.tableNameField$ = this._fieldsService.getFields$().pipe(
-      map(fields => fields.find(field => field.name === 'tableName') as TextField)
-    );
-
+  protected initializeFormControls() {
     this.tableNameControl = this.form.get('tableName') as FormControl;
     if (!this.tableNameControl) {
       console.error('tableName control is missing!');
-    }
-  }
-
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Form Value:', this.form.value);
-    } else {
-      console.log('Form is not valid:', 
-      this.form.get('tableName')?.errors,
-    );
     }
   }
 }

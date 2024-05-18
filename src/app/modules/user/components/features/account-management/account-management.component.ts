@@ -7,6 +7,7 @@ import { InputTextComponent } from '../../../../shared/components/custom-form/fo
 import { Observable, map } from 'rxjs';
 import { TextField } from '../../../../shared/models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../../../shared/services/form-field/get-fields.service';
+import { ParentFormComponent } from '../../../../shared/components/parent-form/parent-form.component';
 
 @Component({
   selector: 'app-account-management',
@@ -15,15 +16,38 @@ import { GetFieldsService } from '../../../../shared/services/form-field/get-fie
   styleUrl: './account-management.component.scss',
   imports: [InputTextComponent, FormsModule, ReactiveFormsModule, CommonModule, SharedModule, RouterLink]
 })
-export class AccountManagementComponent implements OnInit {
+export class AccountManagementComponent extends ParentFormComponent implements OnInit {
 
-  form!: FormGroup;
   usernameChangeField$!: Observable<TextField>;
   usernameChangeControl!: FormControl;
   connexionIcon: string = 'assets/icons/connexion.svg';
   userAvatar: string = '/assets/images/user-profile-images/user1.jpg';
 
-  constructor(private _fieldsService: GetFieldsService, private _fb: FormBuilder) {
+  constructor(
+  _fieldsService: GetFieldsService, 
+  _fb: FormBuilder
+  ) {
+    super();
+    this.buildForm();
+    this.initializeFormControls();
+  }
+
+  ngOnInit() {
+    this.usernameChangeField$ = this._fieldsService.getFields$()
+    .pipe(
+      map(fields => fields.find(field => field.name === 'usernameChange') as TextField)
+    );
+  }
+
+  protected onSubmit() {
+    if (this.form.valid) {
+      console.log('Form Value:', this.form.value);
+    } else {
+      console.log('Form is not valid:', this.form.get('usernameChange')?.errors);
+    }
+  }
+
+  protected buildForm() {
     this.form = this._fb.group({
       usernameChange: ['', [
         Validators.required, 
@@ -35,22 +59,10 @@ export class AccountManagementComponent implements OnInit {
   );
   }
 
-  ngOnInit() {
-    this.usernameChangeField$ = this._fieldsService.getFields$().pipe(
-      map(fields => fields.find(field => field.name === 'usernameChange') as TextField)
-    );
-
+  protected initializeFormControls() {
     this.usernameChangeControl = this.form.get('usernameChange') as FormControl;
     if (!this.usernameChangeControl) {
       console.error('usernameChange control is missing!');
-    }
-  }
-
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Form Value:', this.form.value);
-    } else {
-      console.log('Form is not valid:', this.form.get('usernameChange')?.errors);
     }
   }
 }
