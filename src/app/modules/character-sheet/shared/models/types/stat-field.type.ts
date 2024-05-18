@@ -2,5 +2,5 @@ import { StatisticDetails } from "../../../models/classes/statistic-details.clas
 
 export type StatField = {
     index: number;
-    stat: StatisticDetails
+    value: StatisticDetails
 }
