@@ -13,51 +13,48 @@ import { Drawing } from '../../../../../../../../shared/models/types/users/drawi
 @Component({
   selector: 'app-table-page',
   templateUrl: './table-page.component.html',
-  styleUrl: './table-page.component.scss'
+  styleUrl: './table-page.component.scss',
 })
 export class TablePageComponent {
-
-  id!: number
+  
+  id!: number;
   drawingToShow!: string;
-  isDrawingVisible: boolean = false
+  isDrawingVisible: boolean = false;
 
-  table$!: Observable<Table>
-  userList$!: Observable<Character[]>
-  chatList$!: Observable<Chat[]>
-  drawingList$!: Observable<Drawing[]>
-
+  table$!: Observable<Table>;
+  userList$!: Observable<Character[]>;
+  chatList$!: Observable<Chat[]>;
+  drawingList$!: Observable<Drawing[]>;
 
   constructor(
     private _tableService: TableService,
-    private _characterService: CharacterService, 
+    private _characterService: CharacterService,
     private _chatService: ChatService,
     private _drawingService: DrawingService,
     private _route: ActivatedRoute,
     private _renderer: Renderer2
-  ){}
+  ) {}
 
   ngOnInit(): void {
     this.id = Number(this._route.snapshot.paramMap.get('id'));
-    this.table$ = this._tableService.getTableById$(this.id)
-    this.userList$ = this._characterService.getCharactersByTable$(this.id)
-    this.chatList$ = this._chatService.getChatListByTable(this.id)
-    this.drawingList$ = this._drawingService.getDrawingListByTable(this.id)
+    this.table$ = this._tableService.getTableById$(this.id);
+    this.userList$ = this._characterService.getCharactersByTable$(this.id);
+    this.chatList$ = this._chatService.getChatListByTable(this.id);
+    this.drawingList$ = this._drawingService.getDrawingListByTable(this.id);
   }
 
-  toggleDrawingVisible(event: boolean) :void {
-    window.scrollTo(0, 0)
-    this.isDrawingVisible = !this.isDrawingVisible
-    if(this.isDrawingVisible) {
-      this._renderer.setStyle(document.body, 'overflow', 'hidden')
+  toggleDrawingVisible(event: boolean): void {
+    window.scrollTo(0, 0);
+    this.isDrawingVisible = !this.isDrawingVisible;
+    if (this.isDrawingVisible) {
+      this._renderer.setStyle(document.body, 'overflow', 'hidden');
     } else {
-      this._renderer.setStyle(document.body, 'overflow', 'auto')
+      this._renderer.setStyle(document.body, 'overflow', 'auto');
     }
   }
 
   showDrawing(event: string): void {
-    this.drawingToShow = event
-    this.toggleDrawingVisible(true)
-    
+    this.drawingToShow = event;
+    this.toggleDrawingVisible(true);
   }
 }
-

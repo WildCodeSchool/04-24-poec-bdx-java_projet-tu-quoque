@@ -6,10 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './drawing-display.component.scss',
 })
 export class DrawingDisplayComponent {
-
+  
   @Input()
   drawingToShow!: string;
-  
+
   @Output()
   isDrawingVisible: EventEmitter<boolean> = new EventEmitter<boolean>();
 

@@ -1,4 +1,4 @@
-export type tableInvitaition = {
-    user_id: number;
-    table_id: number;
+export type TableInvitaition = {
+    userId: number;
+    tableId: number;
 }
