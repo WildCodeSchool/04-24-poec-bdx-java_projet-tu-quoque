@@ -10,21 +10,21 @@ export class StatisticsService {
   stats: StatisticDetails[] = [];
   constructor() { }
 
-  generate() {
+  generate(): StatisticDetails[] {
     while (!this.isViable()) {
       this.tryGenerateStatistics();
     }
     return this.stats;
   }
 
-  tryGenerateStatistics() {
+  tryGenerateStatistics(): void {
     this.stats = [];
     for (let key of Object.keys(StatAbbr)) {
       this.stats.push(new StatisticDetails(key as StatAbbrKey));
     }
   }
 
-  isViable() {
+  isViable(): boolean {
     let sum = 0;
     let sup13 = 0;
     for (let stat of this.stats) {
@@ -35,20 +35,9 @@ export class StatisticsService {
     return true;
   }
 
-  applyRaceModifiers(modifiers: StatModifier[]) {
+  applyRaceModifiers(modifiers: StatModifier[]): StatisticDetails[] {
     for (let stat of this.stats) {
-      let changed = false;
-      for (let modifier of modifiers) {
-        if (modifier.stat == stat.abbr) {
-          stat.value = stat.originalValue + modifier.mod;
-          changed = true;
-          stat.setMod();
-        }
-      }
-      if (!changed) {
-        stat.value = stat.originalValue;
-        stat.setMod()
-      }
+      stat.applyModifiers(modifiers);
     }
     return this.stats;
   }

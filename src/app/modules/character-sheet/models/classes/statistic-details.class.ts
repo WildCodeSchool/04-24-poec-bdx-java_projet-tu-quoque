@@ -1,5 +1,6 @@
 import { DiceService } from "../../../shared/services/dice-service/dice.service";
 import { StatAbbr, StatAbbrKey, StatAbbrValue } from "../enums/stats-abbr.enum";
+import { StatModifier } from "../types/stat-modifier.type";
 
 export class StatisticDetails {
     abbr: StatAbbrKey;
@@ -37,5 +38,12 @@ export class StatisticDetails {
             return this.tempMod;
         }
         return this.mod;
+    }
+
+    applyModifiers(modifiers: StatModifier[]): void {
+        this.value = this.originalValue;
+        const mod = modifiers.find(modifier => modifier.stat === this.abbr);
+        if (mod) this.value += mod.mod;
+        this.setMod();
     }
 }
