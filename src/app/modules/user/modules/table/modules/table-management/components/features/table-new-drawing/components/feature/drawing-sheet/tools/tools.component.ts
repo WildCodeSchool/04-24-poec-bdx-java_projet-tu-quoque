@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../../shared/services/drawing/color.service';
+import { DrawingSheetComponent } from '../drawing-sheet.component';
 
 @Component({
   selector: 'app-tools',
@@ -8,7 +9,7 @@ import { ColorService } from '../../../../../../../../../../../../shared/service
 })
 export class ToolsComponent {
 
-  constructor(private _colorService: ColorService ){}
+  constructor(private _colorService: ColorService, private _drawingSheet: DrawingSheetComponent){}
 
   lineIcon: string = 'assets/icons/drawTools/line.svg';
   circleIcon: string = 'assets/icons/drawTools/circle.svg';
@@ -29,6 +30,8 @@ export class ToolsComponent {
     this._colorService.setColor(whiteColor, lineWidthForEraser);
   }
   
-  returnAction(){}
+  undoAction(){
+    this._drawingSheet.undoLastAction();
+  }
 
 }

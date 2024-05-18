@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
-import { Observable, Subscription, fromEvent, map, pairwise, switchMap, takeUntil } from 'rxjs';
+import { Subscription, fromEvent, map, pairwise, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -18,6 +18,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   private _currentLineWidth: number = 2;
   private _colorSubsciption!: Subscription;
   private _eventSubscription: Subscription[] = []; 
+  private _drawnPaths: { color: string, lineWidth: number, path: {x: number, y: number}[] }[] = [];
 
   constructor(private _colorService: ColorService) {}
 
@@ -51,32 +52,49 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   private captureEvents(canvas: HTMLCanvasElement) {
     const draw$ = fromEvent<MouseEvent>(canvas, 'mousedown')
       .pipe(
-        switchMap(() => {
-          return fromEvent<MouseEvent>(canvas, 'mousemove').pipe(
+        switchMap((startEvent) => {
+          let path: { x: number, y: number }[] = [];
+
+          const mouseMove$ = fromEvent<MouseEvent>(canvas, 'mousemove').pipe(
+            pairwise(),
+            map(([prevEvent, currentEvent]) => {
+              const rect = canvas.getBoundingClientRect();
+              const prevPos = {
+                x: prevEvent.clientX - rect.left,
+                y: prevEvent.clientY - rect.top
+              };
+              const currentPos = {
+                x: currentEvent.clientX - rect.left,
+                y: currentEvent.clientY - rect.top
+              };
+              return { prevPos, currentPos };
+            }),
             takeUntil(fromEvent(canvas, 'mouseup')),
-            takeUntil(fromEvent(canvas, 'mouseleave')),
-            pairwise()
+            takeUntil(fromEvent(canvas, 'mouseleave'))
           );
+
+          const mouseMoveSubscription = mouseMove$.subscribe(({ prevPos, currentPos }) => {
+            path.push(currentPos);
+            this.drawOnCanvas(prevPos, currentPos);
+          });
+
+          const mouseUp$ = fromEvent(canvas, 'mouseup').pipe(
+            map(() => {
+              this._drawnPaths.push({
+                color: this._currentColor,
+                lineWidth: this._currentLineWidth,
+                path
+              });
+              mouseMoveSubscription.unsubscribe();
+            })
+          );
+
+          return mouseUp$;
         })
-      )
-      
-      const drawSubscription = draw$.subscribe((res: [MouseEvent, MouseEvent]) => {
-        const rect = canvas.getBoundingClientRect();
+      );
 
-        const prevPos = {
-          x: res[0].clientX - rect.left,
-          y: res[0].clientY - rect.top
-        };
-
-        const currentPos = {
-          x: res[1].clientX - rect.left,
-          y: res[1].clientY - rect.top
-        };
-
-        this.drawOnCanvas(prevPos, currentPos);
-      });
-
-      this._eventSubscription.push(drawSubscription);
+    const drawSubscription = draw$.subscribe();
+    this._eventSubscription.push(drawSubscription);
   }
 
       private drawOnCanvas(
@@ -103,5 +121,32 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this._ctx.strokeStyle = color;
       this._ctx.lineWidth = lineWidth;
     }
+  }
+
+  undoLastAction() {
+    this._drawnPaths.pop();
+    this.redrawAll();
+  }
+
+  private redrawAll() {
+    this._ctx.clearRect(0, 0, this.width, this.height);
+
+    this._drawnPaths.forEach(pathInfo => {
+      this._ctx.strokeStyle = pathInfo.color;
+      this._ctx.lineWidth = pathInfo.lineWidth;
+
+      const path = pathInfo.path;
+      if (path.length > 1) {
+        this._ctx.beginPath();
+        this._ctx.moveTo(path[0].x, path[0].y);
+        for (let i = 1; i < path.length; i++) {
+          this._ctx.lineTo(path[i].x, path[i].y);
+        }
+        this._ctx.stroke();
+      }
+    });
+    
+    this._ctx.strokeStyle = this._currentColor;
+    this._ctx.lineWidth = this._currentLineWidth;
   }
 }
