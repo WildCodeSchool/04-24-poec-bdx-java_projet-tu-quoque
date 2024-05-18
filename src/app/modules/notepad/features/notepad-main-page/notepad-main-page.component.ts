@@ -22,9 +22,6 @@ export class NotepadMainPageComponent {
 
   urlBeforeNotepad!: string
 
-  @Output()
-  areNotesVisible: EventEmitter<boolean> = new EventEmitter();
-
   constructor(
     private _connectionService: ConnectionService,
     private _router: Router
@@ -33,7 +30,6 @@ export class NotepadMainPageComponent {
   closeNotes(): void {
     this.urlBeforeNotepad = localStorage.getItem("routeToGoBack") as string;
     this._router.navigateByUrl(this.urlBeforeNotepad)
-    // this.areNotesVisible.emit(false);
   }
 
   setUserSelected(event: boolean) {
