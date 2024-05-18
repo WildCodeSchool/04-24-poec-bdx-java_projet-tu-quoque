@@ -1,14 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { first, Observable, Subject } from 'rxjs';
+import { BasicField } from '../../../../shared/models/types/basic-field.type';
+import { AbstractListenerComponent } from '../../../../shared/abstract-components/abstract-listener-component.component';
+import { AbstractSendToListenerComponent } from '../../../../shared/abstract-components/abstract-send-to-listener-component.component';
 import { Field } from '../../../../shared/models/types/field.type';
-import { AbstractListenerComponent } from '../../../../shared/abstract-components/asbtract-listener-component.component';
 
 @Component({
   selector: 'app-select-list',
   templateUrl: './select-list.component.html',
   styleUrl: './select-list.component.scss'
 })
-export class SelectListComponent extends AbstractListenerComponent implements OnInit {
+export class SelectListComponent extends AbstractSendToListenerComponent {
   @Input()
   list$!: Observable<any>;
   @Input()
@@ -16,17 +18,24 @@ export class SelectListComponent extends AbstractListenerComponent implements On
   @Input()
   selectLabel!: string;
 
-  playerChoice$: Subject<Field> = new Subject();
-
-  ngOnInit(): void {
-    this.listener.receiveInfoFrom(this.playerChoice$);
-  }
-
-  sendChanges(value: string) {
-    const field: Field = {
-      name: this.selectName,
+  override updateField(value: string): Field {
+    const field: BasicField = {
+      index: this.selectName,
       value: value
     }
-    this.playerChoice$.next(field);
+    return field;
   }
+  // playerChoice$: Subject<BasicField> = new Subject();
+
+  // ngOnInit(): void {
+  //   this.listener.receiveBasicField(this.playerChoice$);
+  // }
+
+  // sendChanges(value: string) {
+  //   const field: BasicField = {
+  //     index: this.selectName,
+  //     value: value
+  //   }
+  //   this.playerChoice$.next(field);
+  // }
 }
