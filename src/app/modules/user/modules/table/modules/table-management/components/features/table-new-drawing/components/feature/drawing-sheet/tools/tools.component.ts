@@ -23,10 +23,12 @@ export class ToolsComponent {
   drawCirle(){}
   drawSquare(){}
 
-  errase(color: string){
-    this._colorService.setColor(color);
+  errase(){
+    const whiteColor = 'white';
+    const lineWidthForEraser = 10;
+    this._colorService.setColor(whiteColor, lineWidthForEraser);
   }
   
-  return(){}
+  returnAction(){}
 
 }

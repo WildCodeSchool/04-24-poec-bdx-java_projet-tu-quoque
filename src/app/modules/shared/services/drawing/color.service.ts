@@ -6,10 +6,10 @@ import { Subject } from 'rxjs';
 })
 export class ColorService {
   
-  private colorSubject = new Subject<string>();
+  private colorSubject = new Subject<{ color: string, lineWidth: number }>();
   color$ = this.colorSubject.asObservable();
 
-  setColor(color: string) {
-    this.colorSubject.next(color);
+  setColor(color: string, lineWidth: number) {
+    this.colorSubject.next({ color, lineWidth });
   }
 }

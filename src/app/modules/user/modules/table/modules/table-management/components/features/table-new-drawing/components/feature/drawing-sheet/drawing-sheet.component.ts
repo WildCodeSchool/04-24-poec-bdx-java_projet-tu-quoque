@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription, fromEvent, map, pairwise, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -8,10 +8,16 @@ import { Observable, Subscription, map } from 'rxjs';
   styleUrl: './drawing-sheet.component.scss'
 })
 export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
-  @ViewChild('canvas', {static: true}) canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('canvas', {static: true}) canvasRef!: ElementRef;
+
+  @Input() public width = 400; 
+  @Input() public height = 400;
+
   private _ctx!: CanvasRenderingContext2D;
   private _currentColor: string = 'black';
-  private _colorObservable$!: Subscription;
+  private _currentLineWidth: number = 2;
+  private _colorSubsciption!: Subscription;
+  private _eventSubscription: Subscription[] = []; 
 
   constructor(private _colorService: ColorService) {}
 
@@ -19,65 +25,83 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
     this._ctx = canvas.getContext('2d')!;
     
-    this.initCanvas(canvas);
-    this._colorObservable$ = this._colorService.color$.pipe
-    (map(color => {
-      this.setColor(color)})).subscribe()
-  }
+    canvas.width = this.width;
+    canvas.height = this.height;
+
+    this._ctx.strokeStyle = this._currentColor;
+    this._ctx.lineWidth = 2;
+    this._ctx.lineCap = 'round';
+
+    this.captureEvents(canvas);
+
+    this._colorSubsciption = this._colorService.color$
+    .pipe(
+      map(({ color, lineWidth }) => this.setColorAndLineWidth(color, lineWidth))
+    )
+    .subscribe();
+}
 
   ngOnDestroy(): void {
-    this._colorObservable$.unsubscribe();
+    if(this._colorSubsciption){
+      this._colorSubsciption.unsubscribe();
+    }
+    this._eventSubscription.forEach(sub => sub.unsubscribe());
   }
 
-  initCanvas(canvas: HTMLCanvasElement): void {
-    let draw = false;
-    let prevX = 0;
-    let prevY = 0;
+  private captureEvents(canvas: HTMLCanvasElement) {
+    const draw$ = fromEvent<MouseEvent>(canvas, 'mousedown')
+      .pipe(
+        switchMap(() => {
+          return fromEvent<MouseEvent>(canvas, 'mousemove').pipe(
+            takeUntil(fromEvent(canvas, 'mouseup')),
+            takeUntil(fromEvent(canvas, 'mouseleave')),
+            pairwise()
+          );
+        })
+      )
+      
+      const drawSubscription = draw$.subscribe((res: [MouseEvent, MouseEvent]) => {
+        const rect = canvas.getBoundingClientRect();
 
-    this._ctx.strokeStyle = 'black';
-    this._ctx.lineWidth = 2;
+        const prevPos = {
+          x: res[0].clientX - rect.left,
+          y: res[0].clientY - rect.top
+        };
 
-    // Ajoutez l'événement de clic de la souris pour commencer à dessiner
-    canvas.addEventListener('mousedown', (e) => {
-      draw = true;
-      prevX = (e.clientX - canvas.offsetLeft) * canvas.width / canvas.clientWidth;
-      prevY = (e.clientY - canvas.offsetTop) * canvas.height / canvas.clientHeight;
-    });
+        const currentPos = {
+          x: res[1].clientX - rect.left,
+          y: res[1].clientY - rect.top
+        };
 
-    // Ajoutez l'événement de mouvement de la souris pour suivre la position du dessin et dessiner
-    canvas.addEventListener('mousemove', (e) => {
-      if (draw) {
-        const currentX = (e.clientX - canvas.offsetLeft) * canvas.width / canvas.clientWidth;
-        const currentY = (e.clientY - canvas.offsetTop) * canvas.height / canvas.clientHeight;
-        this.draw(prevX, prevY, currentX, currentY);
-        prevX = currentX;
-        prevY = currentY;
+        this.drawOnCanvas(prevPos, currentPos);
+      });
+
+      this._eventSubscription.push(drawSubscription);
+  }
+
+      private drawOnCanvas(
+        prevPos: { x: number, y: number }, 
+        currentPos: { x: number, y: number }
+      ) {
+        if (!this._ctx) { 
+          return; 
+        }
+      
+        this._ctx.beginPath();
+      
+        if (prevPos) {
+          this._ctx.moveTo(prevPos.x, prevPos.y);
+          this._ctx.lineTo(currentPos.x, currentPos.y);
+          this._ctx.stroke();
+        }
       }
-    });
-
-    // Ajoutez l'événement de relâchement du clic de la souris pour arrêter de dessiner
-    canvas.addEventListener('mouseup', () => {
-      draw = false;
-    });
-
-    // Ajoutez l'événement pour quitter le canvas pour arrêter de dessiner
-    canvas.addEventListener('mouseleave', () => {
-      draw = false;
-    });
+    
+  setColorAndLineWidth(color: string, lineWidth: number) {
+      this._currentColor = color;
+    this._currentLineWidth = lineWidth;
+    if(this._ctx){
+      this._ctx.strokeStyle = color;
+      this._ctx.lineWidth = lineWidth;
+    }
   }
-
-  draw(depX: number, depY: number, destX: number, destY: number): void {
-    this._ctx.beginPath();
-    this._ctx.moveTo(depX, depY);
-    this._ctx.lineTo(destX, destY);
-    this._ctx.closePath();
-    this._ctx.stroke();
-  }
-
-  setColor(color: string) {
-    this._currentColor = color;
-    this._ctx.strokeStyle = color;
-  }
-
-
 }
