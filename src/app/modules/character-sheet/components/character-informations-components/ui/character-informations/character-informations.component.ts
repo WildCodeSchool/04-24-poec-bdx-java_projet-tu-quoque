@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { AbstractListenerComponent } from '../../../../shared/abstract-components/asbtract-listener-component.component';
+import { AbstractListenerComponent } from '../../../../shared/abstract-components/abstract-listener-component.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -9,10 +9,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class CharacterInformationsComponent extends AbstractListenerComponent implements OnInit {
 
+  constructor(private destroyRef: DestroyRef) {
+    super();
+  }
+
   ngOnInit(): void {
-    const destroyRef = inject(DestroyRef);
     this.listener.sendInfos().pipe(
-      takeUntilDestroyed(destroyRef),
+      takeUntilDestroyed(this.destroyRef),
     ).subscribe(data => console.log(data, "FROM CHARACTER_INFORMATIONS"));
   }
 }
