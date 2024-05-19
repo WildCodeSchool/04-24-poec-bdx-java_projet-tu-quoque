@@ -21,7 +21,7 @@ export class SkillsService {
     this.init();
   }
 
-  init() {
+  init(): void {
     this.skills$ = this.dbService.getSkills$().pipe(
       map((skillList: SkillFromDb[]) => this.transformSkillFromDbIntoSkillsDetails(skillList)),
       switchMap((skills: SkillDetails[]) => this.sheetService.race$.pipe(
@@ -39,7 +39,7 @@ export class SkillsService {
     );
   }
 
-  transformSkillFromDbIntoSkillsDetails(skillList: SkillFromDb[]) {
+  transformSkillFromDbIntoSkillsDetails(skillList: SkillFromDb[]): SkillDetails[] {
     const skills: SkillDetails[] = [];
     skillList.forEach((skillFromDb: SkillFromDb) => skills.push(new SkillDetails(skillFromDb)));
     return skills;
@@ -61,7 +61,7 @@ export class SkillsService {
     return skills;
   }
 
-  updateSkillStatMod(skills: SkillDetails[], stats: StatisticDetails[]) {
+  updateSkillStatMod(skills: SkillDetails[], stats: StatisticDetails[]): SkillDetails[] {
     if (!stats) return skills;
     for (let skill of skills) {
       skill.setStatMod(stats);

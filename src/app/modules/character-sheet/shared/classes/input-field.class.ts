@@ -3,8 +3,5 @@ export class InputField {
         public name: string,
         public label: string,
         public sizeClass: string,
-    ) {
-
-    }
-
+    ) { }
 }

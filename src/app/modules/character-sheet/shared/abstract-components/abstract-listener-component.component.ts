@@ -9,8 +9,4 @@ import { Field } from "../models/types/field.type";
 })
 export abstract class AbstractListenerComponent {
     protected listener = inject(ListenPlayerActionService);
-    // constructor(protected listener: ListenPlayerActionService) {
-
-    // }
-
 }

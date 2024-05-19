@@ -18,11 +18,11 @@ export class ListenPlayerActionService {
 
   constructor(private destroyRef: DestroyRef) { }
 
-  sendInfos() {
+  sendInfos(): Observable<any> {
     return this.sheetModifiedListener$.asObservable();
   }
 
-  receiveFieldFrom(fromObs$: Observable<Field>) {
+  receiveFieldFrom(fromObs$: Observable<Field>): void {
     fromObs$.pipe(
       takeUntilDestroyed(this.destroyRef)
     ).subscribe((field: Field) => {
@@ -38,7 +38,7 @@ export class ListenPlayerActionService {
     })
   }
 
-  controlField(field: BasicField) {
+  controlField(field: BasicField): void {
     if (['characterRace', 'gender'].includes(field.index)) {
       this.sheetModifiedByPlayer.heightModifierRolled = '';
       this.sheetModifiedByPlayer.weightModifierRolled = '';
@@ -54,18 +54,18 @@ export class ListenPlayerActionService {
     this.updateSheetStream();
   }
 
-  receiveStatListField(field: StatListField) {
+  receiveStatListField(field: StatListField): void {
     const statList: StatisticDetails[] = field.value;
     this.sheetModifiedByPlayer["stats"] = statList;
     this.updateSheetStream();
   }
 
-  receiveStatField(statField: StatField) {
+  receiveStatField(statField: StatField): void {
     this.sheetModifiedByPlayer["stats"][statField.index] = statField.value;
     this.updateSheetStream()
   }
 
-  receiveSkillField(field: SkillField) {
+  receiveSkillField(field: SkillField): void {
     this.sheetModifiedByPlayer['skills'][field.value.id] =
     {
       rank: field.value.ranks,
@@ -74,7 +74,7 @@ export class ListenPlayerActionService {
     this.updateSheetStream();
   }
 
-  updateSheetStream() {
+  updateSheetStream(): void {
     this.sheetModifiedListener$.next(this.sheetModifiedByPlayer);
   }
 }

@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { first, Observable, Subject } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BasicField } from '../../../../shared/models/types/basic-field.type';
-import { AbstractListenerComponent } from '../../../../shared/abstract-components/abstract-listener-component.component';
 import { AbstractSendToListenerComponent } from '../../../../shared/abstract-components/abstract-send-to-listener-component.component';
 import { Field } from '../../../../shared/models/types/field.type';
 
@@ -25,17 +24,4 @@ export class SelectListComponent extends AbstractSendToListenerComponent {
     }
     return field;
   }
-  // playerChoice$: Subject<BasicField> = new Subject();
-
-  // ngOnInit(): void {
-  //   this.listener.receiveBasicField(this.playerChoice$);
-  // }
-
-  // sendChanges(value: string) {
-  //   const field: BasicField = {
-  //     index: this.selectName,
-  //     value: value
-  //   }
-  //   this.playerChoice$.next(field);
-  // }
 }

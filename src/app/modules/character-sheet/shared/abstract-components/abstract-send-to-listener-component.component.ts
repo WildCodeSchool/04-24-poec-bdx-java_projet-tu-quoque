@@ -15,11 +15,11 @@ export abstract class AbstractSendToListenerComponent extends AbstractListenerCo
         this.configureStream()
     }
 
+    abstract updateField(value: string): Field;
+
     sendChanges(value: string = ""): void {
         this.updateStream(this.updateField(value));
     }
-
-    abstract updateField(value: string): Field;
 
     updateStream(field: Field): void {
         this.fieldChangeStream$.next(field);
