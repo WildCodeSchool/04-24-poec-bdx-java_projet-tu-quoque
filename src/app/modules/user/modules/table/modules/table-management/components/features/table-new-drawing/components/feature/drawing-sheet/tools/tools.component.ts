@@ -41,6 +41,7 @@ export class ToolsComponent {
 
   drawCirle(){
     this.restorePreviousSettings();
+    this._drawingSheet.drawCircle();
   }
 
   drawSquare(){

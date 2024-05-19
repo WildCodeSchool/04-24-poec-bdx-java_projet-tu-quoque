@@ -183,7 +183,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
             const width = currentX - startX;
             const height = currentY - startY;
-            
+
             this._ctx.strokeStyle = this._colorService.getCurrentColor();
             this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
 
@@ -228,8 +228,88 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     this._eventSubscription.push(squareSubscription);
   }
 
+  drawCircle() {
+    this.unsubscribeAllEvents();
+    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
+
+    const circle$ = fromEvent<MouseEvent>(canvas, 'mousedown')
+      .pipe(
+        switchMap((startEvent) => {
+          const startX = startEvent.clientX - canvas.getBoundingClientRect().left;
+          const startY = startEvent.clientY - canvas.getBoundingClientRect().top;
+
+          const mouseMove$ = fromEvent<MouseEvent>(canvas, 'mousemove').pipe(
+            map((moveEvent) => {
+              const currentX = moveEvent.clientX - canvas.getBoundingClientRect().left;
+              const currentY = moveEvent.clientY - canvas.getBoundingClientRect().top;
+              return { startX, startY, currentX, currentY };
+            }),
+            takeUntil(fromEvent(canvas, 'mouseup')),
+            takeUntil(fromEvent(canvas, 'mouseleave'))
+          );
+
+          const mouseMoveSubscription = mouseMove$.subscribe(({ startX, startY, currentX, currentY }) => {
+            this._ctx.clearRect(0, 0, this.width, this.height);
+            this.redrawAll();
+
+            const radiusX = (currentX - startX) / 2;
+            const radiusY = (currentY - startY) / 2;
+            const centerX = startX + radiusX;
+            const centerY = startY + radiusY;
+
+            this._ctx.strokeStyle = this._colorService.getCurrentColor();
+            this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
+
+            this._ctx.beginPath();
+            this._ctx.ellipse(centerX, centerY, Math.abs(radiusX), Math.abs(radiusY), 0, 0, 2 * Math.PI);
+            this._ctx.stroke();
+          });
+
+          const mouseUp$ = fromEvent<MouseEvent>(canvas, 'mouseup').pipe(
+            map((endEvent) => {
+              const rect = canvas.getBoundingClientRect();
+              const startX = startEvent.clientX - rect.left;
+              const startY = startEvent.clientY - rect.top;
+              const endX = endEvent.clientX - rect.left;
+              const endY = endEvent.clientY - rect.top;
+              const radiusX = (endX - startX) / 2;
+              const radiusY = (endY - startY) / 2;
+              const centerX = startX + radiusX;
+              const centerY = startY + radiusY;
+
+              const path = [];
+              const step = 2 * Math.PI / 100;
+              for (let theta = 0; theta < 2 * Math.PI; theta += step) {
+                path.push({
+                  x: centerX + radiusX * Math.cos(theta),
+                  y: centerY + radiusY * Math.sin(theta)
+                });
+              }
+
+              this._drawnPaths.push({
+                color: this._currentColor,
+                lineWidth: this._currentLineWidth,
+                path
+              });
+
+              mouseMoveSubscription.unsubscribe();
+            })
+          );
+
+          return mouseUp$;
+        })
+      );
+
+    const circleSubscription = circle$.subscribe();
+    this._eventSubscription.push(circleSubscription);
+  }
+
+
+  
   private unsubscribeAllEvents() {
     this._eventSubscription.forEach(sub => sub.unsubscribe());
     this._eventSubscription = [];
   }
+
+
 }
