@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { InputErrorComponent } from '../../errors/input-error/input-error.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { SharedModule } from '../../../../shared.module';
+import { BaseInputComponent } from '../base-input/base-input.component';
 
 @Component({
   selector: 'app-input-text',
@@ -20,48 +21,8 @@ import { SharedModule } from '../../../../shared.module';
     }
   ]
 })
-export class InputTextComponent implements ControlValueAccessor {
+export class InputTextComponent extends BaseInputComponent {
 
-    @Input() field!: TextField;
-    @Input() control!: FormControl;
-
-    private _onChanged = (value: string) => {};
-    private _onTouched = () => {};
-
-  onInputChange(value: string): void {
-    this.field.value = value;
-    this._onChanged(value);
-  }
-
-  writeValue(value: any): void {
-    if (value !== undefined && this.control.value !== value) {
-      this.control.setValue(value, { emitEvent: false });
-  }
-  }
-
-  registerOnChange(fn: any): void {
-    this._onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this._onTouched = fn;
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    if (isDisabled) {
-      this.control.disable();
-    } else {
-      this.control.enable();
-    }
-  }
-
-  updateChanges(value: any): void {
-    this._onChanged(value);
-  }
-  
-
-  onBlur(): void {
-    this._onTouched();
-  }
-
+    @Input() override field!: TextField;
+    @Input() override control!: FormControl;
 }

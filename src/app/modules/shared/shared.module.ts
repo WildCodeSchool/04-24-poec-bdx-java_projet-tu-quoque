@@ -12,6 +12,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete'; // import primeNG
 import { CustomAddButtonComponent } from './components/custom-add-button/custom-add-button.component';
 import { ShowCommentPageComponent } from './components/show-comment-page/show-comment-page.component';
 import { BackToPreviousPageDirective } from './directives/back-to-previous-page.directive';
+import { BaseInputComponent } from './components/custom-form/form-inputs/base-input/base-input.component';
 
 
 
@@ -23,7 +24,7 @@ import { BackToPreviousPageDirective } from './directives/back-to-previous-page.
     CustomAreaTitleComponent,
     CustomAddButtonComponent,
     ShowCommentPageComponent,
-    BackToPreviousPageDirective,
+    BackToPreviousPageDirective
   ],
   imports: [
     CommonModule,
@@ -33,7 +34,6 @@ import { BackToPreviousPageDirective } from './directives/back-to-previous-page.
     HttpClientModule,
     FileUploadModule,
     AutoCompleteModule
-
   ],
   exports: [
     CustomButtonComponent,

@@ -10,24 +10,25 @@ import { TableInvitaition } from '../../../../shared/models/types/users/table-in
   styleUrl: './user-homepage.component.scss',
 })
 export class UserHomepageComponent {
-
   private invitationArray$: Observable<TableInvitaition[]> =
     this._tableInvitation.getUserTableInvitationList$();
 
   constructor(private _tableInvitation: TableInvitationService) {}
 
   buttonOptionList$: Observable<PageNavigation[]> = this.invitationArray$.pipe(
-    map((invitationArray: TableInvitaition[]) =>
-      invitationArray.length
-        ? [
-            { name: 'Personnages', url: '../characters' },
-            { name: 'tables', url: '../tables' },
-            { name: 'invitations', url: '../table-invitation' },
-          ]
-        : [
-            { name: 'Personnages', url: '../characters' },
-            { name: 'tables', url: '../tables' },
-          ]
-    )
+    map((invitationArray: TableInvitaition[]) => {
+      const baseOptionButtonList: PageNavigation[] = [
+        { name: 'Personnages', url: '../characters' },
+        { name: 'tables', url: '../tables' },
+      ];
+
+      if (invitationArray.length) {
+        baseOptionButtonList.push({
+          name: 'invitations',
+          url: '../table-invitation',
+        });
+      }
+      return baseOptionButtonList;
+    })
   );
 }

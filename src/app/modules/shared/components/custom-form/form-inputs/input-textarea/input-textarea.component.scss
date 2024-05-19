@@ -4,7 +4,6 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  //   transform: translateX(-5%);
   background-color: #30495b;
   color: #fff;
 }
@@ -30,4 +29,14 @@ label {
     font-family: alice;
     color: white;
   }
+  ::placeholder {
+    font-size: 12px;
+  }
+}
+
+.error-input {
+  display: flex;
+  height: 3rem;
+  margin-bottom: 1rem;
+  justify-content: center;
 }

@@ -1,32 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ListenPlayerActionService } from '../../../../../shared/services/listen-player-action.service';
-import { distinctUntilChanged, map, Observable } from 'rxjs';
-import { CharacterSheetService } from '../../../../../shared/services/character-sheet.service';
-
+import { Component } from '@angular/core';
+import { AbstractSelfFilledComponent } from '../../../../../shared/abstract-components/abstract-self-filled-component.component';
 
 @Component({
   selector: 'app-size-categorie-auto',
   templateUrl: './size-categorie-auto.component.html',
   styleUrl: './size-categorie-auto.component.scss'
 })
-export class SizeCategorieAutoComponent implements OnInit {
-  sizeCategory$: Observable<string> = this.characterSheetService.setSizeCategory$()
-  unit: string = "";
-  label: string = "CATEGORIE DE TAILLE";
-
-  constructor(
-    private characterSheetService: CharacterSheetService,
-    private listener: ListenPlayerActionService
-  ) {
-
-  }
-
-  ngOnInit() {
-    this.listener.receiveInfoFrom(this.sizeCategory$.pipe(
-      distinctUntilChanged(),
-      map(sizeValue => {
-        return { name: "sizeCategory", value: sizeValue }
-      })
-    ));
-  }
+export class SizeCategorieAutoComponent extends AbstractSelfFilledComponent {
+  protected override label: string = "CATEGORIE DE TAILLE";
+  protected override name: string = "sizeCategory";
 }

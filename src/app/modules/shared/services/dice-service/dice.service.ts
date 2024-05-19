@@ -7,8 +7,6 @@ import { ParseDiceService } from '../parse-dice/parse-dice.service';
 })
 export class DiceService {
 
-  constructor() { }
-
   static throwOneDice(nbFaces: PossibleDice): number {
     return Math.ceil(Math.random() * nbFaces);
   }
@@ -30,7 +28,7 @@ export class DiceService {
       .reduce((accum, e) => accum + e, 0);
   }
 
-  static roll(dice: string) {
+  static roll(dice: string): number {
     const dices = ParseDiceService.parseDiceDeclaration(dice);
     return this.throwDices(dices.nbDices, dices.diceType, dices.modifier);
   }
