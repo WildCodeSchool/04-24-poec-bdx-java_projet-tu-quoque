@@ -183,6 +183,9 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
             const width = currentX - startX;
             const height = currentY - startY;
+            
+            this._ctx.strokeStyle = this._colorService.getCurrentColor();
+            this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
 
             this._ctx.beginPath();
             this._ctx.rect(startX, startY, width, height);
