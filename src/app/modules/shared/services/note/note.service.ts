@@ -12,7 +12,7 @@ import { ApiRessourceService } from '../api-ressource/api-ressource.service';
   providedIn: 'root',
 })
 export class NoteService extends ApiRessourceService<Note> {
-
+  
   private readonly _BASE_URL: string = 'http://localhost:3000/notes';
 
   private readonly _userConnected$: Observable<UserBasicInfos> =
@@ -28,11 +28,11 @@ export class NoteService extends ApiRessourceService<Note> {
     protected override _http: HttpClient,
     private _connectionService: ConnectionService
   ) {
-    super(_http)
+    super(_http);
   }
 
   override getRessourceUrl(): string {
-      return this._BASE_URL
+    return this._BASE_URL;
   }
 
   getNoteListByUser(): Observable<Note[]> {
@@ -67,15 +67,6 @@ export class NoteService extends ApiRessourceService<Note> {
             noteList.filter((note: Note) => note.tableId === table.id)
           )
         )
-      )
-    );
-  }
-
-  getNoteById(id: number): Observable<Note> {
-    return this.getAll$().pipe(
-      map(
-        (result: Note[]) =>
-          result.find((note: any) => Number(note.id) === id) as Note
       )
     );
   }

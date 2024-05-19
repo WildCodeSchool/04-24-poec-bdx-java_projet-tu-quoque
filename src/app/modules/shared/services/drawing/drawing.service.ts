@@ -12,12 +12,13 @@ export class DrawingService extends ApiRessourceService<Drawing> {
   private readonly _BASE_URL: string = 'http://localhost:3000/drawings';
 
   constructor(protected override _http: HttpClient) {
-    super(_http)
+    super(_http);
   }
 
   override getRessourceUrl(): string {
-      return this._BASE_URL
+    return this._BASE_URL;
   }
+
   getDrawingListByTable(tableId: number): Observable<Drawing[]> {
     return this.getAll$().pipe(
       map((result: Drawing[]) =>

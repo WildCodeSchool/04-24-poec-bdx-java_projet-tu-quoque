@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, switchMap } from 'rxjs';
 import { Character } from '../../models/types/users/character.type';
-import { User } from '../../models/types/users/user.types';
 import { ConnectionService } from '../connection/connection.service';
 import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
@@ -11,6 +10,7 @@ import { ApiRessourceService } from '../api-ressource/api-ressource.service';
   providedIn: 'root',
 })
 export class CharacterService extends ApiRessourceService<Character> {
+  
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
 
   private readonly _userConnected$: Observable<UserBasicInfos> =
@@ -45,17 +45,6 @@ export class CharacterService extends ApiRessourceService<Character> {
     return this.getUserCharacterList$().pipe(
       map((response: Character[]) =>
         response.filter((character: Character) => character.tableId === null)
-      )
-    );
-  }
-
-  getCharacterById$(characterId: number): Observable<Character> {
-    return this.getUserCharacterList$().pipe(
-      map(
-        (characters: Character[]) =>
-          characters.find(
-            (character: Character) => Number(character.id) === characterId
-          ) as Character
       )
     );
   }

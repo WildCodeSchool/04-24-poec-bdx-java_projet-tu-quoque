@@ -20,10 +20,6 @@ export class userService extends ApiRessourceService<User> {
     return this._BASE_URL;
   }
 
-  getUserList$(): Observable<User[]> {
-    return this._http.get<User[]>(this._BASE_URL);
-  }
-
   getUserByName$(letters: string): Observable<string[]> {
     return this.getAll$().pipe(
       map((userList: User[]) => userList.map((user: User) => user.name)),

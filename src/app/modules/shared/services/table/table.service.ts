@@ -36,15 +36,4 @@ export class TableService extends ApiRessourceService<Table> {
       )
     );
   }
-
-  getTableById$(id: Number): Observable<Table> {
-    return this.getAll$().pipe(
-      map(
-        (response: Table[]) =>
-          response.find(
-            (table: Table) => Number(table.id) === Number(id)
-          ) as Table
-      )
-    );
-  }
 }
