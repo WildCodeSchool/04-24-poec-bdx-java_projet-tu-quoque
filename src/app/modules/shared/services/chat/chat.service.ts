@@ -2,22 +2,25 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Chat } from '../../models/types/users/chat.type';
+import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ChatService {
+export class ChatService extends ApiRessourceService<Chat> {
   
   private readonly _BASE_URL: string = 'http://localhost:3000/chats';
 
-  constructor(private _http: HttpClient) {}
+  constructor(protected override _http: HttpClient) {
+    super(_http);
+  }
 
-  getChatList$(): Observable<Chat[]> {
-    return this._http.get<Chat[]>(this._BASE_URL);
+  override getRessourceUrl(): string {
+    return this._BASE_URL;
   }
 
   getChatListByTable(tableId: number): Observable<Chat[]> {
-    return this.getChatList$().pipe(
+    return this.getAll$().pipe(
       map((result: Chat[]) =>
         result.filter((chat: Chat) => Number(chat.tableId) === tableId)
       )
@@ -25,7 +28,7 @@ export class ChatService {
   }
 
   getChatListByCharacter(characterId: number): Observable<Chat[]> {
-    return this.getChatList$().pipe(
+    return this.getAll$().pipe(
       map((result: Chat[]) =>
         result.filter((chat: Chat) => Number(chat.characterId) === characterId)
       )
