@@ -33,6 +33,7 @@ export class ToolsComponent {
 
   drawLine(){
     this.restorePreviousSettings();
+    this._drawingSheet.drawLine();
   }
 
   drawTriangle(){
@@ -51,9 +52,6 @@ export class ToolsComponent {
   }
 
   errase(){
-    const previousColor = this._colorService.getCurrentColor();
-    const previousLineWidth = this._colorService.getCurrentLineWidth();
-
     const whiteColor = 'white';
     const lineWidthForEraser = 10;
     this._colorService.setColor(whiteColor, lineWidthForEraser);
