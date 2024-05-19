@@ -7,8 +7,6 @@ import { DiceDeclaration } from '../../models/types/dice-declaration.type';
 })
 export class ParseDiceService {
 
-  constructor() { }
-
   static transformStringToDice(dice: string): PossibleDice {
     switch (dice) {
       case "d3":
@@ -57,7 +55,7 @@ export class ParseDiceService {
     return res !== null;
   }
 
-  private static extractDiceDeclaration(nbDices: string[], restOfDeclaration: string, modOperation: string) {
+  private static extractDiceDeclaration(nbDices: string[], restOfDeclaration: string, modOperation: string): DiceDeclaration {
     let diceType: string;
     let modifier: string = "0";
     if (modOperation.length == 0) {
@@ -74,7 +72,7 @@ export class ParseDiceService {
     return diceDeclaration;
   }
 
-  private static getModOperation(declaration: string) {
+  private static getModOperation(declaration: string): string {
     let modOperation = "";
     if (declaration.includes("+")) {
       modOperation = "+";

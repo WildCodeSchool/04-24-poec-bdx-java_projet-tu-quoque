@@ -18,7 +18,7 @@ export class SkillDetails {
         SkillDetails.counter += 1;
     }
 
-    calcValue() {
+    calcValue(): number {
         // TODO real calcul
         return this.statMod + (this.ranks || 0) + this.raceValue;
     }
@@ -39,7 +39,7 @@ export class SkillDetails {
         return this;
     }
 
-    updateSkillClass(classSkills: Skills[]) {
+    updateSkillClass(classSkills: Skills[]): this {
         this.resetSkillClass();
         if (classSkills.includes(this.detailsFromDb.name)) {
             this.skillClass = true;

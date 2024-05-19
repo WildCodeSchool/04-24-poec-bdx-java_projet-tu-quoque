@@ -26,7 +26,7 @@ export class StatisticComponent extends AbstractSendToListenerComponent {
     return statField;
   }
 
-  updateTempValue() {
+  updateTempValue(): void {
     this.stat.setStatTempValue(this.playerInput);
     this.sendChanges();
   }

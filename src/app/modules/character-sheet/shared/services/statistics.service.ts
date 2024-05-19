@@ -8,7 +8,6 @@ import { StatModifier } from '../../models/types/stat-modifier.type';
 })
 export class StatisticsService {
   stats: StatisticDetails[] = [];
-  constructor() { }
 
   generate(): StatisticDetails[] {
     while (!this.isViable()) {
