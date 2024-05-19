@@ -11,6 +11,11 @@ import { Table } from '../../../../../../../../shared/models/types/users/table.t
 export class UserTablesComponent {
   
   userTableList$: Observable<Table[]> = this._tableService.getUserTableList$();
-
   constructor(private _tableService: TableService) {}
+
+  // ngOnInit(): void {
+  //   this._tableService.getAll$().subscribe(res => console.log(res))
+  //    ;
+    
+  // }
 }

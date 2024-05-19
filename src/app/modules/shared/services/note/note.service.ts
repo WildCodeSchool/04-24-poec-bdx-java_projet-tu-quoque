@@ -6,11 +6,12 @@ import { ConnectionService } from '../connection/connection.service';
 import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
 import { Table } from '../../models/types/users/table.type';
 import { Character } from '../../models/types/users/character.type';
+import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NoteService {
+export class NoteService extends ApiRessourceService<Note> {
 
   private readonly _BASE_URL: string = 'http://localhost:3000/notes';
 
@@ -24,16 +25,18 @@ export class NoteService {
     this._connectionService.getCharacterConnected$();
 
   constructor(
-    private _http: HttpClient,
+    protected override _http: HttpClient,
     private _connectionService: ConnectionService
-  ) {}
+  ) {
+    super(_http)
+  }
 
-  getNoteList(): Observable<Note[]> {
-    return this._http.get<Note[]>(this._BASE_URL);
+  override getRessourceUrl(): string {
+      return this._BASE_URL
   }
 
   getNoteListByUser(): Observable<Note[]> {
-    return this.getNoteList().pipe(
+    return this.getAll$().pipe(
       switchMap((noteList: Note[]) =>
         this._userConnected$.pipe(
           map((user: UserBasicInfos) =>
@@ -45,7 +48,7 @@ export class NoteService {
   }
 
   getNoteListByCharacter(): Observable<Note[]> {
-    return this.getNoteList().pipe(
+    return this.getAll$().pipe(
       switchMap((noteList: Note[]) =>
         this._characterConnected$.pipe(
           map((character: Character) =>
@@ -57,7 +60,7 @@ export class NoteService {
   }
 
   getNoteListByTable(): Observable<Note[]> {
-    return this.getNoteList().pipe(
+    return this.getAll$().pipe(
       switchMap((noteList: Note[]) =>
         this._tableConected$.pipe(
           map((table: Table) =>
@@ -69,7 +72,7 @@ export class NoteService {
   }
 
   getNoteById(id: number): Observable<Note> {
-    return this.getNoteList().pipe(
+    return this.getAll$().pipe(
       map(
         (result: Note[]) =>
           result.find((note: any) => Number(note.id) === id) as Note
