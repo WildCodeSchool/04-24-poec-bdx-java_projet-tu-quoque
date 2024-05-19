@@ -9,6 +9,7 @@ import { TextField } from '../../models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../services/form-field/get-fields.service';
 import { InputTextareaComponent } from '../custom-form/form-inputs/input-textarea/input-textarea.component';
 import { TextAreaField } from '../../models/types/fields/textarea-field.type';
+import { ParentFormComponent } from '../parent-form/parent-form.component';
 
 @Component({
   selector: 'app-add-note-page',
@@ -17,15 +18,41 @@ import { TextAreaField } from '../../models/types/fields/textarea-field.type';
   styleUrl: './add-note-page.component.scss',
   imports: [InputTextComponent, InputTextareaComponent, FormsModule, ReactiveFormsModule, CommonModule, SharedModule, RouterLink]
 })
-export class AddNotePageComponent implements OnInit {
+export class AddNotePageComponent extends ParentFormComponent implements OnInit {
 
-  form!: FormGroup;
   noteTitleField$!: Observable<TextField>;
   noteTitleControl!: FormControl;
   noteDescriptionField$!: Observable<TextAreaField>;
   noteDescriptionControl!: FormControl;
 
-  constructor(private _fieldsService: GetFieldsService, private _fb: FormBuilder) {
+  constructor(
+    _fieldsService: GetFieldsService, 
+    _fb: FormBuilder
+  ) {
+    super();
+    this.buildForm();
+    this.initializeFormControls();
+  }
+
+  ngOnInit() {
+    this.noteTitleField$ = this._fieldsService.getFields$().pipe(
+      map(fields => fields.find(field => field.name === 'noteTitle') as TextField)
+    );
+
+    this.noteDescriptionField$ = this._fieldsService.getFields$().pipe(
+      map(fields => fields.find(field => field.name === 'noteDescription') as TextAreaField)
+    );    
+  }
+
+  protected onSubmit() {
+    if (this.form.valid) {
+      console.log('Form Value:', this.form.value);
+    } else {
+      console.log('Form is not valid:', this.form.get('noteTitle')?.errors, this.form.get('noteDescription'));
+    }
+  }
+
+  protected buildForm(){
     this.form = this._fb.group({
       noteTitle: ['', [
         Validators.required, 
@@ -40,33 +67,14 @@ export class AddNotePageComponent implements OnInit {
   );
   }
 
-  ngOnInit() {
-    this.noteTitleField$ = this._fieldsService.getFields$().pipe(
-      map(fields => fields.find(field => field.name === 'noteTitle') as TextField)
-    );
-
+  protected initializeFormControls() {
     this.noteTitleControl = this.form.get('noteTitle') as FormControl;
     if (!this.noteTitleControl) {
       console.error('noteTitle control is missing!');
     }
-
-    this.noteDescriptionField$ = this._fieldsService.getFields$().pipe(
-      map(fields => fields.find(field => field.name === 'noteDescription') as TextAreaField)
-    );
-  
     this.noteDescriptionControl = this.form.get('noteDescription') as FormControl;
     if (!this.noteDescriptionControl) {
       console.error('noteDescription control is missing!');
-    }
-    
-  }
-
-
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Form Value:', this.form.value);
-    } else {
-      console.log('Form is not valid:', this.form.get('noteTitle')?.errors, this.form.get('noteDescription'));
     }
   }
 }

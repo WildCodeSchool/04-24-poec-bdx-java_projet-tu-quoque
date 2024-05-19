@@ -32,7 +32,7 @@
         "type": "password",
         "value": "",
         "autocomplete": false,
-        "placeholder": "Entrez de nouveau votre mot de passe",
+        "placeholder": "De nouveau votre mot de passe",
         "required": true,
         "disabled": false
       },
