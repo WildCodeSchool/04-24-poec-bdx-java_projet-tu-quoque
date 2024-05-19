@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BasicField } from '../../../../shared/models/types/basic-field.type';
+import { AbstractSendToListenerComponent } from '../../../../shared/abstract-components/abstract-send-to-listener-component.component';
 import { Field } from '../../../../shared/models/types/field.type';
 
 @Component({
@@ -8,7 +9,7 @@ import { Field } from '../../../../shared/models/types/field.type';
   templateUrl: './select-list.component.html',
   styleUrl: './select-list.component.scss'
 })
-export class SelectListComponent implements OnInit {
+export class SelectListComponent extends AbstractSendToListenerComponent {
   @Input()
   list$!: Observable<any>;
   @Input()
@@ -16,22 +17,11 @@ export class SelectListComponent implements OnInit {
   @Input()
   selectLabel!: string;
 
-  playerChoice$: Subject<Field> = new Subject();
-
-  constructor(private listener: ListenPlayerActionService) {
-
-  }
-
-  ngOnInit(): void {
-    this.listener.receiveInfoFrom(this.playerChoice$);
-  }
-
-  sendChanges(value: string) {
-    const field: Field = {
-      name: this.selectName,
+  override updateField(value: string): Field {
+    const field: BasicField = {
+      index: this.selectName,
       value: value
     }
-    this.playerChoice$.next(field);
+    return field;
   }
-
 }

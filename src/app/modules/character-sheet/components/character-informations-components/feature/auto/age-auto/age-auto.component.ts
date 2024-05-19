@@ -1,30 +1,13 @@
 import { Component } from '@angular/core';
-import { distinctUntilChanged, map, Observable } from 'rxjs';
-import { CharacterSheetService } from '../../../../../shared/services/character-sheet.service';
-import { ListenPlayerActionService } from '../../../../../shared/services/listen-player-action.service';
+import { AbstractSelfFilledComponent } from '../../../../../shared/abstract-components/abstract-self-filled-component.component';
 
 @Component({
   selector: 'app-age-auto',
   templateUrl: './age-auto.component.html',
   styleUrl: './age-auto.component.scss'
 })
-export class AgeAutoComponent {
-  age$: Observable<string> = this.characterSheetService.setAge$();
-  unit: string = "ans";
-  label: string = "AGE";
-
-  constructor(
-    private characterSheetService: CharacterSheetService,
-    private listener: ListenPlayerActionService
-  ) {
-  }
-
-  ngOnInit() {
-    this.listener.receiveInfoFrom(this.age$.pipe(
-      distinctUntilChanged(),
-      map(ageValue => {
-        return { name: "age", value: ageValue }
-      })
-    ));
-  }
+export class AgeAutoComponent extends AbstractSelfFilledComponent {
+  protected override label: string = "AGE";
+  protected override name: string = "age";
+  protected override unit: string = "ans";
 }
