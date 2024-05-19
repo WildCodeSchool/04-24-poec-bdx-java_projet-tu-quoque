@@ -92,7 +92,12 @@ export class CharacterSheetService {
       character.heightModifierRolled = DiceService.roll(race.modHeight).toString();
       this.pushOnStream('heightModifierRolled', character.heightModifierRolled.toString())
     }
-    return (race.baseHeight[gender] + Number(character.heightModifierRolled)).toString();
+    return this.calcHeight(race, gender, character.heightModifierRolled).toString();
+  }
+
+  calcHeight(race: Race, gender: GenderEnum, heightModifier: string) {
+    const baseHeight: number = race.baseHeight[gender];
+    return baseHeight + Number(heightModifier);
   }
 
   setWeight$() {
@@ -118,7 +123,16 @@ export class CharacterSheetService {
       character.weightModifierRolled = DiceService.roll(race.modWeight).toString();
       this.pushOnStream("weightModifierRolled", character.weightModifierRolled)
     }
-    return (race.baseWeight[gender] + (Number(character.heightModifierRolled)) * Number(character.weightModifierRolled) / 5).toFixed(0);
+    // return (race.baseWeight[gender] + (Number(character.heightModifierRolled)) * Number(character.weightModifierRolled) / 5).toFixed(0);
+    return this.calcWeight(character, race, gender);
+  }
+
+  calcWeight(character: any, race: Race, gender: GenderEnum): string {
+    const baseWeight: number = race.baseWeight[gender];
+    const heightModifier: number = Number(character.heightModifierRolled);
+    const weightModifier: number = Number(character.weightModifierRolled);
+    // return (race.baseWeight[gender] + (Number(character.heightModifierRolled)) * Number(character.weightModifierRolled) / 5).toFixed(0);
+    return (baseWeight + heightModifier * weightModifier / 5).toFixed(0);
   }
 
   setAge$() {
@@ -129,19 +143,21 @@ export class CharacterSheetService {
         return sheet.characterClass;
       }),
       switchMap(() => this.race$.pipe(
-        map((race: Race) => {
-          if (character.age) {
-            return character.age;
-          } else if (character.characterClass && character.characterRace) {
-            const age = this.calcAge(character, race);
-            this.pushOnStream("age", age);
-            return age;
-          }
-          return "";
-        })
+        map((race: Race) => this.setAge(character, race))
       )
       )
     )
+  }
+
+  setAge(character: any, race: Race) {
+    if (character.age) {
+      return character.age;
+    } else if (character.characterClass && character.characterRace) {
+      const age = this.calcAge(character, race);
+      this.pushOnStream("age", age);
+      return age;
+    }
+    return "";
   }
 
   calcAge(character: any, race: Race) {
