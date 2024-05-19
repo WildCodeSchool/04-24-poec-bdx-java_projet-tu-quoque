@@ -27,6 +27,8 @@ import { StatisticComponent } from './components/statistics-components/ui/statis
 import { SkillListComponent } from './components/skills-components/features/skill-list/skill-list.component';
 import { SkillRowComponent } from './components/skills-components/ui/skill-row/skill-row.component';
 import { LevelListComponent } from './components/character-informations-components/feature/lists/level-list/level-list.component';
+import { DomChangedDirective } from './shared/directives/dom-changed-directive.directive';
+import { MetamorphosisComponent } from './shared/components/metamorphosis/metamorphosis.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { LevelListComponent } from './components/character-informations-componen
     SkillListComponent,
     SkillRowComponent,
     LevelListComponent,
+    DomChangedDirective,
+    MetamorphosisComponent
   ],
   imports: [
     CommonModule,
