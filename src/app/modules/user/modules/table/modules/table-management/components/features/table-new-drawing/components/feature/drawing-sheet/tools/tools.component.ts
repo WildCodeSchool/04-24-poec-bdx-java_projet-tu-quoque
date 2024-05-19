@@ -11,6 +11,7 @@ export class ToolsComponent {
 
   constructor(private _colorService: ColorService, private _drawingSheet: DrawingSheetComponent){}
 
+  drawfreeIcon:string = 'assets/icons/drawTools/drawfree.svg';
   lineIcon: string = 'assets/icons/drawTools/line.svg';
   circleIcon: string = 'assets/icons/drawTools/circle.svg';
   squareIcon: string = 'assets/icons/drawTools/square.svg';
@@ -18,11 +19,14 @@ export class ToolsComponent {
   eraseIcon: string = 'assets/icons/drawTools/erase.svg';
   returnIcon: string = 'assets/icons/drawTools/return.svg';
 
-  
+ 
+
   drawLine(){}
   drawTriangle(){}
   drawCirle(){}
-  drawSquare(){}
+  drawSquare(){
+    this._drawingSheet.drawSquare();
+  }
 
   errase(){
     const whiteColor = 'white';

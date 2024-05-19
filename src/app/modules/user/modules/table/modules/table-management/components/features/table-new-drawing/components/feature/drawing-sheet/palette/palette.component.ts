@@ -27,7 +27,6 @@ export class PaletteComponent implements OnInit {
     });
   }
 
-
   onClick(color: string): void {
     const defaultLineWidth = 2;
     this._colorService.setColor(color, defaultLineWidth);

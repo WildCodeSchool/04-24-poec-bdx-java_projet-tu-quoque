@@ -149,4 +149,79 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     this._ctx.strokeStyle = this._currentColor;
     this._ctx.lineWidth = this._currentLineWidth;
   }
+
+  drawSquare() {
+    this.unsubscribeAllEvents();
+    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
+
+    const square$ = fromEvent<MouseEvent>(canvas, 'mousedown')
+      .pipe(
+        switchMap((startEvent) => {
+          const startX = startEvent.clientX - canvas.getBoundingClientRect().left;
+          const startY = startEvent.clientY - canvas.getBoundingClientRect().top;
+
+          const mouseMove$ = fromEvent<MouseEvent>(canvas, 'mousemove').pipe(
+            map((moveEvent) => {
+              const currentX = moveEvent.clientX - canvas.getBoundingClientRect().left;
+              const currentY = moveEvent.clientY - canvas.getBoundingClientRect().top;
+              return { startX, startY, currentX, currentY };
+            }),
+            takeUntil(fromEvent(canvas, 'mouseup')),
+            takeUntil(fromEvent(canvas, 'mouseleave'))
+          );
+
+          const mouseMoveSubscription = mouseMove$.subscribe(({ startX, startY, currentX, currentY }) => {
+            this._ctx.clearRect(0, 0, this.width, this.height);
+            this.redrawAll();
+
+            const width = currentX - startX;
+            const height = currentY - startY;
+
+            this._ctx.beginPath();
+            this._ctx.rect(startX, startY, width, height);
+            this._ctx.stroke();
+          });
+
+          const mouseUp$ = fromEvent<MouseEvent>(canvas, 'mouseup').pipe(
+            map((endEvent) => {
+              const rect = canvas.getBoundingClientRect();
+              const startX = startEvent.clientX - rect.left;
+              const startY = startEvent.clientY - rect.top;
+              const endX = endEvent.clientX - rect.left;
+              const endY = endEvent.clientY - rect.top;
+              const width = endX - startX;
+              const height = endY - startY;
+
+              const path = [
+                { x: startX, y: startY },
+                { x: startX + width, y: startY },
+                { x: startX + width, y: startY + height },
+                { x: startX, y: startY + height },
+                { x: startX, y: startY }
+              ];
+
+              this._drawnPaths.push({
+                color: this._currentColor,
+                lineWidth: this._currentLineWidth,
+                path
+              });
+
+              mouseMoveSubscription.unsubscribe();
+            })
+          );
+
+          return mouseUp$;
+        })
+      );
+
+    const squareSubscription = square$.subscribe();
+    this._eventSubscription.push(squareSubscription);
+  }
+
+  private unsubscribeAllEvents() {
+    this._eventSubscription.forEach(sub => sub.unsubscribe());
+    this._eventSubscription = [];
+  }
+
+  
 }
