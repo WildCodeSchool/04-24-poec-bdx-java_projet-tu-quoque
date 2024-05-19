@@ -50,6 +50,13 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
 
   private captureEvents(canvas: HTMLCanvasElement) {
+    this.drawFree();
+  }
+
+  drawFree() {
+    this.unsubscribeAllEvents();
+ const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
+
     const draw$ = fromEvent<MouseEvent>(canvas, 'mousedown')
       .pipe(
         switchMap((startEvent) => {
@@ -222,6 +229,4 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     this._eventSubscription.forEach(sub => sub.unsubscribe());
     this._eventSubscription = [];
   }
-
-  
 }

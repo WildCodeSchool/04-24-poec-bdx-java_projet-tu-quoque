@@ -19,8 +19,9 @@ export class ToolsComponent {
   eraseIcon: string = 'assets/icons/drawTools/erase.svg';
   returnIcon: string = 'assets/icons/drawTools/return.svg';
 
- 
-
+  drawFree() {
+    this._drawingSheet.drawFree();
+  }
   drawLine(){}
   drawTriangle(){}
   drawCirle(){}
