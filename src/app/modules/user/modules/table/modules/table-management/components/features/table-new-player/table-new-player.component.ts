@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { userService } from '../../../../../../../../shared/services/users/user.service';
 import { Observable } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-table-new-player',
@@ -18,7 +19,9 @@ export class TableNewPlayerComponent {
   constructor(private _userService: userService) {}
 
   searchUser(event: any): void {
-    this._userService.getUserByName$(event.query).subscribe();
+    this._userService.getUserByName$(event.query)
+    .pipe(takeUntilDestroyed())
+    .subscribe();
   }
 
   addNewUser(): void {}
