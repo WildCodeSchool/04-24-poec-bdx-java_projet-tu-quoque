@@ -9,7 +9,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './table-new-player.component.scss',
 })
 export class TableNewPlayerComponent {
-  
   selectedUser!: string;
   inputText: string = '';
 
@@ -19,9 +18,7 @@ export class TableNewPlayerComponent {
   constructor(private _userService: userService) {}
 
   searchUser(event: any): void {
-    this._userService.getUserByName$(event.query)
-    .pipe(takeUntilDestroyed())
-    .subscribe();
+    this._userService.getUserByName$(event.query).subscribe();
   }
 
   addNewUser(): void {}
