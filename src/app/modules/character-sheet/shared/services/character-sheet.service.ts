@@ -44,82 +44,6 @@ export class CharacterSheetService {
       ));
   }
 
-  setSizeCategory$() {
-    return this.race$.pipe(
-      map((race: Race) =>
-        race ? race.sizeCategorie : ""
-      ),
-    )
-  }
-
-  setHeight$(): Observable<string> {
-    let tmpSheet: any;
-    let heightModifierRolled: number;
-    return this.listener.sendInfos().pipe(
-      map((sheet: any) => {
-        tmpSheet = sheet;
-        return sheet.gender;
-      }),
-      switchMap((gender: GenderEnum) => this.race$.pipe(
-        map((race: Race) => {
-          if (race && gender) {
-            if (!tmpSheet.heightModifierRolled) {
-              heightModifierRolled = DiceService.roll(race.modHeight);
-              this.pushOnStream('heightModifierRolled', heightModifierRolled.toString())
-            }
-            return (race.baseHeight[gender] + heightModifierRolled).toString();
-          }
-          return "";
-        }),
-      ))
-    );
-  }
-
-  setWeight$() {
-    let tmpSheet: any;
-    return this.listener.sendInfos().pipe(
-      map((sheet: any) => {
-        tmpSheet = sheet;
-        return sheet.gender;
-      }),
-      switchMap((gender: GenderEnum) => this.race$.pipe(
-        map((race: Race) => {
-          if (race && gender && tmpSheet.heightModifierRolled) {
-            if (!tmpSheet.weightModifierRolled) {
-              tmpSheet.weightModifierRolled = DiceService.roll(race.modWeight).toString();
-              this.pushOnStream("weightModifierRolled", tmpSheet.weightModifierRolled)
-            }
-            return (race.baseWeight[gender] + (Number(tmpSheet.heightModifierRolled)) * Number(tmpSheet.weightModifierRolled) / 5).toFixed(0);
-          }
-          return "";
-        })
-      ))
-    );
-  }
-
-  setAge$() {
-    let tmpSheet: any;
-    return this.listener.sendInfos().pipe(
-      map((sheet: any) => {
-        tmpSheet = sheet;
-        return sheet.characterClass;
-      }),
-      switchMap(() => this.race$.pipe(
-        map((race: Race) => {
-          if (tmpSheet.age) {
-            return tmpSheet.age;
-          } else if (tmpSheet.characterClass && tmpSheet.characterRace) {
-            const age = (race.adultAge + DiceService.roll(race.ageModifier[tmpSheet.characterClass as ClassEnum])).toString();
-            this.pushOnStream("age", age);
-            return age;
-          }
-          return "";
-        })
-      )
-      )
-    )
-  }
-
   getRaceStatsModifiers$(): Observable<StatModifier[]> {
     return this.race$.pipe(
       map((race: Race) => {
@@ -135,6 +59,93 @@ export class CharacterSheetService {
     return this.listener.sendInfos().pipe(
       map((sheet: any) => sheet.stats)
     )
+  }
+
+  setSizeCategory$() {
+    return this.race$.pipe(
+      map((race: Race) =>
+        race ? race.sizeCategorie : ""
+      ),
+    )
+  }
+
+  setHeight$(): Observable<string> {
+    let character: any;
+    return this.listener.sendInfos().pipe(
+      map((sheet: any) => {
+        character = sheet;
+        return sheet.gender;
+      }),
+      switchMap((gender: GenderEnum) => this.race$.pipe(
+        map((race: Race) => {
+          if (race && gender) {
+            return this.setHeight(character, race, gender);
+          }
+          return "";
+        }),
+      ))
+    );
+  }
+
+  setHeight(character: any, race: Race, gender: GenderEnum) {
+    if (!character.heightModifierRolled) {
+      character.heightModifierRolled = DiceService.roll(race.modHeight).toString();
+      this.pushOnStream('heightModifierRolled', character.heightModifierRolled.toString())
+    }
+    return (race.baseHeight[gender] + Number(character.heightModifierRolled)).toString();
+  }
+
+  setWeight$() {
+    let character: any;
+    return this.listener.sendInfos().pipe(
+      map((sheet: any) => {
+        character = sheet;
+        return sheet.gender;
+      }),
+      switchMap((gender: GenderEnum) => this.race$.pipe(
+        map((race: Race) => {
+          if (race && gender && character.heightModifierRolled) {
+            return this.setWeight(character, race, gender);
+          }
+          return "";
+        })
+      ))
+    );
+  }
+
+  setWeight(character: any, race: Race, gender: GenderEnum) {
+    if (!character.weightModifierRolled) {
+      character.weightModifierRolled = DiceService.roll(race.modWeight).toString();
+      this.pushOnStream("weightModifierRolled", character.weightModifierRolled)
+    }
+    return (race.baseWeight[gender] + (Number(character.heightModifierRolled)) * Number(character.weightModifierRolled) / 5).toFixed(0);
+  }
+
+  setAge$() {
+    let character: any;
+    return this.listener.sendInfos().pipe(
+      map((sheet: any) => {
+        character = sheet;
+        return sheet.characterClass;
+      }),
+      switchMap(() => this.race$.pipe(
+        map((race: Race) => {
+          if (character.age) {
+            return character.age;
+          } else if (character.characterClass && character.characterRace) {
+            const age = this.calcAge(character, race);
+            this.pushOnStream("age", age);
+            return age;
+          }
+          return "";
+        })
+      )
+      )
+    )
+  }
+
+  calcAge(character: any, race: Race) {
+    return (race.adultAge + DiceService.roll(race.ageModifier[character.characterClass as ClassEnum])).toString()
   }
 
   pushOnStream(key: string, valueSent: string) {
