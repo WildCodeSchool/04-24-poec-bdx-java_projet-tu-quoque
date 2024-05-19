@@ -1,0 +1,13 @@
+.bgred {
+    animation: changebgcolor 2s;
+}
+
+@keyframes changebgcolor {
+    from {
+        background-color: red;
+    }
+
+    to {
+        background-color: white;
+    }
+}
