@@ -40,9 +40,8 @@ export class ListenPlayerActionService {
 
   controlField(field: BasicField) {
     if (['characterRace', 'gender'].includes(field.index)) {
-      this.sheetModifiedByPlayer.height = '';
-      this.sheetModifiedByPlayer.weight = '';
       this.sheetModifiedByPlayer.heightModifierRolled = '';
+      this.sheetModifiedByPlayer.weightModifierRolled = '';
     }
     if (['characterRace', 'characterClass'].includes(field.index)) {
       this.sheetModifiedByPlayer.age = '';
@@ -50,7 +49,7 @@ export class ListenPlayerActionService {
   }
 
   receiveBasicField(field: BasicField): void {
-    //this.controlField(field);
+    this.controlField(field);
     this.sheetModifiedByPlayer[field.index] = field.value;
     this.updateSheetStream();
   }
