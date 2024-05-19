@@ -37,6 +37,7 @@ export class ToolsComponent {
 
   drawTriangle(){
     this.restorePreviousSettings();
+    this._drawingSheet.drawTriangle();
   }
 
   drawCirle(){

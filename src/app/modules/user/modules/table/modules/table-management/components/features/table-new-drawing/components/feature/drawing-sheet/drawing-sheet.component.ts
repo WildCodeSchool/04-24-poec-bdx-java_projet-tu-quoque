@@ -304,8 +304,77 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     this._eventSubscription.push(circleSubscription);
   }
 
+  drawTriangle() {
+    this.unsubscribeAllEvents();
+    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
 
-  
+    const triangle$ = fromEvent<MouseEvent>(canvas, 'mousedown')
+      .pipe(
+        switchMap((startEvent) => {
+          const startX = startEvent.clientX - canvas.getBoundingClientRect().left;
+          const startY = startEvent.clientY - canvas.getBoundingClientRect().top;
+
+          const mouseMove$ = fromEvent<MouseEvent>(canvas, 'mousemove').pipe(
+            map((moveEvent) => {
+              const currentX = moveEvent.clientX - canvas.getBoundingClientRect().left;
+              const currentY = moveEvent.clientY - canvas.getBoundingClientRect().top;
+              return { startX, startY, currentX, currentY };
+            }),
+            takeUntil(fromEvent(canvas, 'mouseup')),
+            takeUntil(fromEvent(canvas, 'mouseleave'))
+          );
+
+          const mouseMoveSubscription = mouseMove$.subscribe(({ startX, startY, currentX, currentY }) => {
+            this._ctx.clearRect(0, 0, this.width, this.height);
+            this.redrawAll();
+
+            const height = currentY - startY;
+            const width = currentX - startX;
+
+            this._ctx.strokeStyle = this._colorService.getCurrentColor();
+            this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
+
+            this._ctx.beginPath();
+            this._ctx.moveTo(startX, startY);
+            this._ctx.lineTo(startX + width / 2, startY + height);
+            this._ctx.lineTo(startX - width / 2, startY + height);
+            this._ctx.closePath();
+            this._ctx.stroke();
+          });
+
+          const mouseUp$ = fromEvent<MouseEvent>(canvas, 'mouseup').pipe(
+            map((endEvent) => {
+              const rect = canvas.getBoundingClientRect();
+              const startX = startEvent.clientX - rect.left;
+              const startY = startEvent.clientY - rect.top;
+              const endX = endEvent.clientX - rect.left;
+              const endY = endEvent.clientY - rect.top;
+
+              const path = [
+                { x: startX, y: startY },
+                { x: startX + (endX - startX) / 2, y: endY },
+                { x: startX - (endX - startX) / 2, y: endY },
+                { x: startX, y: startY }
+              ];
+
+              this._drawnPaths.push({
+                color: this._currentColor,
+                lineWidth: this._currentLineWidth,
+                path
+              });
+
+              mouseMoveSubscription.unsubscribe();
+            })
+          );
+
+          return mouseUp$;
+        })
+      );
+
+    const triangleSubscription = triangle$.subscribe();
+    this._eventSubscription.push(triangleSubscription);
+  }
+
   private unsubscribeAllEvents() {
     this._eventSubscription.forEach(sub => sub.unsubscribe());
     this._eventSubscription = [];
