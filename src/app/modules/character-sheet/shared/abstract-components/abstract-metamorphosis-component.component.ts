@@ -16,7 +16,7 @@ export abstract class AbstractMetamorphosisComponent {
     }
 
     runExplosion() {
-        const source = interval(3000);
+        const source = interval(2000);
         source
             .pipe(
                 takeUntilDestroyed(this.destroyRef),
