@@ -5,7 +5,7 @@ import { Subscription, fromEvent, merge } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DrawingService {
+export class DrawingUtilitiesService {
   private subscriptions: Subscription[] = [];
 
   constructor() { }

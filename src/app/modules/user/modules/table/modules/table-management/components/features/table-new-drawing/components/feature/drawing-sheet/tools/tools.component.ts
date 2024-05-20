@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../../shared/services/drawing/color.service';
 import { DrawingSheetComponent } from '../drawing-sheet.component';
 import { fromEvent } from 'rxjs';
-import { DrawingService } from '../../../../../../../../../../../../shared/services/drawing.service';
+import { DrawingUtilitiesService } from '../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service';
 
 @Component({
   selector: 'app-tools',
@@ -17,7 +17,7 @@ export class ToolsComponent {
   constructor(
     private _colorService: ColorService, 
     private _drawingSheet: DrawingSheetComponent,
-    private _drawingService : DrawingService
+    private _drawingService : DrawingUtilitiesService
   ) {
     this.previousColor = this._colorService.getCurrentColor();
     this.previousLineWidth = this._colorService.getCurrentLineWidth();
@@ -58,7 +58,7 @@ export class ToolsComponent {
     this._drawingSheet.drawSquare();
   }
 
-  errase(){
+  erase(){
     const whiteColor = 'white';
     const lineWidthForEraser = 10;
     this._colorService.setColor(whiteColor, lineWidthForEraser);
@@ -74,5 +74,9 @@ export class ToolsComponent {
 
   private restorePreviousSettings(){ 
   this._colorService.setColor(this.previousColor, this.previousLineWidth);
+  }
+
+  eraseAll(){
+    this._drawingSheet.eraseAll();
   }
 }

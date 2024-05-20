@@ -1,7 +1,11 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
 import { Observable, Subscription, fromEvent, map, merge, pairwise, switchMap, takeUntil } from 'rxjs';
-import { DrawingService } from '../../../../../../../../../../../shared/services/drawing.service';
+import { DrawingUtilitiesService } from '../../../../../../../../../../../shared/services/drawing/drawing-utilities.service';
+import { drawSquare } from './drawing-utilities/drawing-square';
+import { drawCircle } from './drawing-utilities/drawing-circle';
+import { drawTriangle } from './drawing-utilities/drawing-triangle';
+import { drawLine } from './drawing-utilities/drawing-line';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -25,7 +29,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
   constructor(
     private _colorService: ColorService,
-    private _drawingService: DrawingService
+    private _drawingService: DrawingUtilitiesService
   ) { }
 
   ngAfterViewInit() {
@@ -59,7 +63,6 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
     this.drawFree(start$, move$, end$);
   }
-
 
   drawFree(
     start$: Observable<MouseEvent | TouchEvent>, 
@@ -154,330 +157,65 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     this._ctx.strokeStyle = this._currentColor;
     this._ctx.lineWidth = this._currentLineWidth;
   }
-
-  private unsubscribeAllEvents() {
-    this._eventSubscriptions.forEach(sub => sub.unsubscribe());
-    this._eventSubscriptions = [];
-  }
-
-  private handleShapeDrawing(start$: any, move$: any, end$: any, drawShape: Function) {
-    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-
-    const shape$ = start$
-      .pipe(
-        switchMap((startEvent: MouseEvent | TouchEvent) => {
-          const getCoordinates = (event: MouseEvent | TouchEvent) => {
-            const rect = canvas.getBoundingClientRect();
-            if (event instanceof MouseEvent) {
-              return {
-                x: event.clientX - rect.left,
-                y: event.clientY - rect.top
-              };
-            } else {
-              return {
-                x: event.touches[0].clientX - rect.left,
-                y: event.touches[0].clientY - rect.top
-              };
-            }
-          };
-
-          const startPos = getCoordinates(startEvent);
-
-          const moveSubscription = move$
-            .pipe(
-              map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = getCoordinates(moveEvent);
-                return { startX: startPos.x, startY: startPos.y, currentX: currentPos.x, currentY: currentPos.y };
-              }),
-              takeUntil(end$)
-            )
-            .subscribe(({ startX, startY, currentX, currentY }: { startX: number, startY: number, currentX: number, currentY: number }) => {
-              this._ctx.clearRect(0, 0, this.width, this.height);
-              this.redrawAll();
-
-              drawShape(startX, startY, currentX, currentY);
-            });
-
-          return end$
-            .pipe(
-              map(() => {
-                moveSubscription.unsubscribe();
-              })
-            );
-        })
-      );
-
-    const shapeSubscription = shape$.subscribe();
-    this._eventSubscriptions.push(shapeSubscription);
-  }
   
   drawSquare() {
-    this._drawingService.unsubscribeAllEvents();
-    const canvas = this.canvasRef.nativeElement;
-  
-    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-    const square$ = start$
-      .pipe(
-        switchMap((startEvent: MouseEvent | TouchEvent) => {
-          const startPos = this._drawingService.getCoordinates(canvas, startEvent);
-          let finalPos = startPos;
-  
-          const moveSubscription = move$
-            .pipe(
-              map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = this._drawingService.getCoordinates(canvas, moveEvent);
-                finalPos = currentPos;
-                const width = currentPos.x - startPos.x;
-                const height = currentPos.y - startPos.y;
-                const squareSize = Math.max(Math.abs(width), Math.abs(height));
-  
-                this._ctx.clearRect(0, 0, this.width, this.height);
-                this.redrawAll();
-  
-                this._ctx.strokeStyle = this._colorService.getCurrentColor();
-                this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
-                this._ctx.strokeRect(startPos.x, startPos.y, squareSize, squareSize);
-  
-                return currentPos;
-              }),
-              takeUntil(end$)
-            )
-            .subscribe();
-  
-          return end$
-            .pipe(
-              map(() => {
-                const width = finalPos.x - startPos.x;
-                const height = finalPos.y - startPos.y;
-                const squareSize = Math.max(Math.abs(width), Math.abs(height));
-  
-                this._drawnPaths.push({
-                  color: this._currentColor,
-                  lineWidth: this._currentLineWidth,
-                  path: [
-                    { x: startPos.x, y: startPos.y },
-                    { x: startPos.x + squareSize, y: startPos.y },
-                    { x: startPos.x + squareSize, y: startPos.y + squareSize },
-                    { x: startPos.x, y: startPos.y + squareSize },
-                    { x: startPos.x, y: startPos.y }
-                  ]
-                });
-  
-                this.redrawAll();
-                moveSubscription.unsubscribe();
-              })
-            );
-        })
-      );
-  
-    const squareSubscription = square$.subscribe();
-    this._drawingService.addSubscription(squareSubscription);
+    drawSquare(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._currentColor,
+      this._currentLineWidth,
+      this._drawnPaths,
+      this.redrawAll.bind(this)
+    );
   }
   
-  
-
-
   drawCircle() {
-    this._drawingService.unsubscribeAllEvents();
-    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-  
-    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-  
-    let startPos: { x: number; y: number };
-    let radius: number;
-  
-    const circle$ = start$
-      .pipe(
-        switchMap((startEvent: MouseEvent | TouchEvent) => {
-          startPos = this._drawingService.getCoordinates(canvas, startEvent);
-  
-          const moveSubscription = move$
-            .pipe(
-              map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = this._drawingService.getCoordinates(canvas, moveEvent);
-                radius = Math.sqrt(
-                  Math.pow(currentPos.x - startPos.x, 2) +
-                  Math.pow(currentPos.y - startPos.y, 2)
-                );
-                return { startPos, currentPos };
-              }),
-              takeUntil(end$)
-            )
-            .subscribe(({ startPos, currentPos }) => {
-              this._ctx.clearRect(0, 0, this.width, this.height);
-              this.redrawAll();
-  
-              this._ctx.strokeStyle = this._colorService.getCurrentColor();
-              this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
-  
-              this._ctx.beginPath();
-              this._ctx.arc(startPos.x, startPos.y, radius, 0, 2 * Math.PI);
-              this._ctx.stroke();
-            });
-  
-          return end$
-            .pipe(
-              map(() => {
-                const centerX = startPos.x;
-                const centerY = startPos.y;
-  
-                const path = [];
-                const step = 2 * Math.PI / 100;
-                for (let theta = 0; theta < 2 * Math.PI; theta += step) {
-                  path.push({
-                    x: centerX + radius * Math.cos(theta),
-                    y: centerY + radius * Math.sin(theta)
-                  });
-                }
-  
-                this._drawnPaths.push({
-                  color: this._currentColor,
-                  lineWidth: this._currentLineWidth,
-                  path
-                });
-  
-                this.redrawAll();
-                moveSubscription.unsubscribe();
-              })
-            );
-        })
-      );
-  
-    const circleSubscription = circle$.subscribe();
-    this._drawingService.addSubscription(circleSubscription);
+    drawCircle(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._currentColor,
+      this._currentLineWidth,
+      this._drawnPaths,
+      this.redrawAll.bind(this)
+    )
   }
-  
   
   drawTriangle() {
-    this._drawingService.unsubscribeAllEvents();
-    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-  
-    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-  
-    const triangle$ = start$
-      .pipe(
-        switchMap((startEvent: MouseEvent | TouchEvent) => {
-          const startPos = this._drawingService.getCoordinates(canvas, startEvent);
-          let lastMovePos = { ...startPos };
-  
-          const moveSubscription = move$
-            .pipe(
-              map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = this._drawingService.getCoordinates(canvas, moveEvent);
-                lastMovePos = currentPos;
-                return { startX: startPos.x, startY: startPos.y, currentX: currentPos.x, currentY: currentPos.y };
-              }),
-              takeUntil(end$)
-            )
-            .subscribe(({ startX, startY, currentX, currentY }) => {
-              this._ctx.clearRect(0, 0, this.width, this.height);
-              this.redrawAll();
-  
-              const height = currentY - startY;
-              const width = currentX - startX;
-  
-              this._ctx.strokeStyle = this._colorService.getCurrentColor();
-              this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
-  
-              this._ctx.beginPath();
-              this._ctx.moveTo(startX, startY);
-              this._ctx.lineTo(startX + width / 2, startY + height);
-              this._ctx.lineTo(startX - width / 2, startY + height);
-              this._ctx.closePath();
-              this._ctx.stroke();
-            });
-  
-          return end$
-            .pipe(
-              map((endEvent: MouseEvent | TouchEvent) => {
-                const currentPos = lastMovePos;
-                const height = currentPos.y - startPos.y;
-                const width = currentPos.x - startPos.x;
-  
-                const path = [
-                  { x: startPos.x, y: startPos.y },
-                  { x: startPos.x + width / 2, y: startPos.y + height },
-                  { x: startPos.x - width / 2, y: startPos.y + height },
-                  { x: startPos.x, y: startPos.y }
-                ];
-  
-                this._drawnPaths.push({
-                  color: this._currentColor,
-                  lineWidth: this._currentLineWidth,
-                  path
-                });
-  
-                this.redrawAll();
-                moveSubscription.unsubscribe();
-              })
-            );
-        })
-      );
-  
-    const triangleSubscription = triangle$.subscribe();
-    this._drawingService.addSubscription(triangleSubscription);
+    drawTriangle(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._currentColor,
+      this._currentLineWidth,
+      this._drawnPaths,
+      this.redrawAll.bind(this)
+    );
   }
   
-
   drawLine() {
-    this._drawingService.unsubscribeAllEvents();
-    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-  
-    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-  
-    const line$ = start$
-      .pipe(
-        switchMap((startEvent: MouseEvent | TouchEvent) => {
-          const startPos = this._drawingService.getCoordinates(canvas, startEvent);
-          let currentX: number;
-          let currentY: number;
-  
-          const moveSubscription = move$
-            .pipe(
-              map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = this._drawingService.getCoordinates(canvas, moveEvent);
-                currentX = currentPos.x;
-                currentY = currentPos.y;
-                return { startX: startPos.x, startY: startPos.y, currentX: currentPos.x, currentY: currentPos.y };
-              }),
-              takeUntil(end$)
-            )
-            .subscribe(({ startX, startY, currentX, currentY }) => {
-              this._ctx.clearRect(0, 0, this.width, this.height);
-              this.redrawAll();
-  
-              this._ctx.strokeStyle = this._colorService.getCurrentColor();
-              this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
-  
-              this._ctx.beginPath();
-              this._ctx.moveTo(startX, startY);
-              this._ctx.lineTo(currentX, currentY);
-              this._ctx.stroke();
-            });
-  
-          return end$
-            .pipe(
-              map(() => {
-                const path = [
-                  { x: startPos.x, y: startPos.y },
-                  { x: currentX, y: currentY }
-                ];
-  
-                this._drawnPaths.push({
-                  color: this._currentColor,
-                  lineWidth: this._currentLineWidth,
-                  path
-                });
-  
-                this.redrawAll();
-                moveSubscription.unsubscribe();
-              })
-            );
-        })
-      );
-  
-    const lineSubscription = line$.subscribe();
-    this._drawingService.addSubscription(lineSubscription);
+    drawLine(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._currentColor,
+      this._currentLineWidth,
+      this._drawnPaths,
+      this.redrawAll.bind(this)
+    )
   } 
 
   eraseAll() {

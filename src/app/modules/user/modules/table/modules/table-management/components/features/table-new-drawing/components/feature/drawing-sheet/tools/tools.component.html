@@ -14,10 +14,13 @@
     <button type="button" (click)="drawSquare()">
         <img [src]="squareIcon" alt="Carré">
     </button>
-    <button type="button" (click)="errase()">
+    <button type="button" (click)="erase()">
         <img [src]="eraseIcon" alt="Gomme">
     </button>
     <button type="button" (click)="undoAction()">
         <img [src]="returnIcon" alt="Effacer">
+    </button>
+    <button type="button" (click)="eraseAll()">
+        Réinitialise
     </button>
 </section>
