@@ -1,5 +1,7 @@
 import { PossibleDice } from "../../../shared/models/enums/possible-dice.enum"
+import { AttackBaseBonusType } from "../enums/attack-base-bonus-type.enum"
 import { Skills } from "../enums/skills.enum"
+import { SavingThrows } from "./saving-throws.type"
 
 export type CharacterClass = {
     name: string,
@@ -9,6 +11,8 @@ export type CharacterClass = {
     skillPointsPerLevel: string,
     weapons: string[],
     shields: string,
-    armors: string[]
+    armors: string[],
+    attackBaseBonus: AttackBaseBonusType,
+    savingThrowsBonus: SavingThrows
     special: any[]
 }

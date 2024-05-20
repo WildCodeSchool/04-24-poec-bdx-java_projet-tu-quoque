@@ -110,7 +110,6 @@
       "accepted": false,
       "scheduleId": 1
     }
-
   ],
   "user_table_invitations": [
     {
@@ -125,7 +124,6 @@
       "userId": 1,
       "tableId": 4
     }
-
   ],
   "tables": [
     {
@@ -466,6 +464,12 @@
         "lègere",
         "intermédiaire"
       ],
+      "attackBaseBonus": "high",
+      "savingThrowsBonus": {
+        "Réflexes": "low",
+        "Vigueur": "high",
+        "Volonté": "low"
+      },
       "special": [],
       "id": "68d2"
     },
@@ -517,6 +521,12 @@
       "armors": [
         "lègere"
       ],
+      "attackBaseBonus": "medium",
+      "savingThrowsBonus": {
+        "Réflexes": "high",
+        "Vigueur": "low",
+        "Volonté": "low"
+      },
       "special": [],
       "id": "1c9a"
     }
