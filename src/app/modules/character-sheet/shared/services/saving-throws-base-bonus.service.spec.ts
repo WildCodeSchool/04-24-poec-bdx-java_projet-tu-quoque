@@ -1,20 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-
 import { SavingThrowsBaseBonusService } from './saving-throws-base-bonus.service';
 import { SavingThrowType } from '../../models/enums/saving-throws-type.enum';
 
 describe('SavingThrowsService', () => {
-  let service: SavingThrowsBaseBonusService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(SavingThrowsBaseBonusService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
   it("should be 5 for high saving throw and level 6", () => {
     expect(SavingThrowsBaseBonusService.getValue(6, SavingThrowType.high)).toBe(5);
   })

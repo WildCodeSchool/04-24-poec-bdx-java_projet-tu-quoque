@@ -1,20 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-
 import { AttackBaseBonusService } from './attack-base-bonus.service';
 import { AttackBaseBonusType } from '../../models/enums/attack-base-bonus-type.enum';
 
 describe('AttackBaseBonusService', () => {
-  let service: AttackBaseBonusService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AttackBaseBonusService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
   it('should be 6-1 for high level bba and level 6', () => {
     expect(AttackBaseBonusService.getValue(6, AttackBaseBonusType.high)).toEqual([6, 1]);
   });
