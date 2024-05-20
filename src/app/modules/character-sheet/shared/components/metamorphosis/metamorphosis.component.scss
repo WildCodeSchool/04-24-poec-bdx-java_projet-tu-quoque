@@ -47,7 +47,7 @@
 
 .explode {
     display: block;
-    animation: grow var(--animation-time);
+    animation: grow var(--animation-time) ease-in-out;
 }
 
 .shape {

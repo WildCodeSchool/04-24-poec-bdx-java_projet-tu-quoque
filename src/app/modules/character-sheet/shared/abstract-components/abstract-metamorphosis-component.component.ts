@@ -1,6 +1,7 @@
 import { Component, DestroyRef } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { interval, takeWhile } from "rxjs";
+import { ANIMATION_DURATION } from "../constants/constants.constant";
 
 @Component({ template: "" })
 export abstract class AbstractMetamorphosisComponent {
@@ -16,7 +17,7 @@ export abstract class AbstractMetamorphosisComponent {
     }
 
     runExplosion() {
-        const source = interval(2000);
+        const source = interval(ANIMATION_DURATION);
         source
             .pipe(
                 takeUntilDestroyed(this.destroyRef),
