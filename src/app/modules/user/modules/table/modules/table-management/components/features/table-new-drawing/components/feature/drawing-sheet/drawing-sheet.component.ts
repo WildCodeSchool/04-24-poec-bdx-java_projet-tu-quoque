@@ -2,10 +2,10 @@ import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } fro
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
 import { Observable, Subscription, fromEvent, map, merge, pairwise, switchMap, takeUntil } from 'rxjs';
 import { DrawingUtilitiesService } from '../../../../../../../../../../../shared/services/drawing/drawing-utilities.service';
-import { drawSquare } from './drawing-utilities/drawing-square';
-import { drawCircle } from './drawing-utilities/drawing-circle';
-import { drawTriangle } from './drawing-utilities/drawing-triangle';
-import { drawLine } from './drawing-utilities/drawing-line';
+import { CircleSape } from './drawing-utilities/CircleShape';
+import { LineShape } from './drawing-utilities/LineShape';
+import { SquareShape } from './drawing-utilities/SquareShape';
+import { TriangleShape } from './drawing-utilities/TriangleShape';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -159,60 +159,52 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
   
   drawSquare() {
-    drawSquare(
+    new SquareShape(
       this.canvasRef,
       this._drawingService,
       this._colorService,
       this._ctx,
       this.width,
       this.height,
-      this._currentColor,
-      this._currentLineWidth,
       this._drawnPaths,
       this.redrawAll.bind(this)
     );
   }
   
   drawCircle() {
-    drawCircle(
+    new CircleSape(
       this.canvasRef,
       this._drawingService,
       this._colorService,
       this._ctx,
       this.width,
       this.height,
-      this._currentColor,
-      this._currentLineWidth,
       this._drawnPaths,
       this.redrawAll.bind(this)
     )
   }
   
   drawTriangle() {
-    drawTriangle(
+    new TriangleShape(
       this.canvasRef,
       this._drawingService,
       this._colorService,
       this._ctx,
       this.width,
       this.height,
-      this._currentColor,
-      this._currentLineWidth,
       this._drawnPaths,
       this.redrawAll.bind(this)
     );
   }
   
   drawLine() {
-    drawLine(
+    new LineShape(
       this.canvasRef,
       this._drawingService,
       this._colorService,
       this._ctx,
       this.width,
       this.height,
-      this._currentColor,
-      this._currentLineWidth,
       this._drawnPaths,
       this.redrawAll.bind(this)
     )
