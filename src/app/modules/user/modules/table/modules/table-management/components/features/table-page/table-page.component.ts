@@ -22,7 +22,7 @@ export class TablePageComponent {
   isDrawingVisible: boolean = false;
 
   table$!: Observable<Table>;
-  userList$!: Observable<Character[]>;
+  participantList$!: Observable<Character[]>;
   chatList$!: Observable<Chat[]>;
   drawingList$!: Observable<Drawing[]>;
 
@@ -38,9 +38,9 @@ export class TablePageComponent {
   ngOnInit(): void {
     this.id = Number(this._route.snapshot.paramMap.get('id'));
     this.table$ = this._tableService.getById$(this.id);
-    this.userList$ = this._characterService.getCharactersByTable$(this.id);
-    this.chatList$ = this._chatService.getChatListByTable(this.id);
-    this.drawingList$ = this._drawingService.getDrawingListByTable(this.id);
+    this.participantList$ = this._characterService.getCharactersByTable$(this.id);
+    this.chatList$ = this._chatService.getChatListByTable$(this.id);
+    this.drawingList$ = this._drawingService.getDrawingListByTable$(this.id);
   }
 
   toggleDrawingVisible(event: boolean): void {

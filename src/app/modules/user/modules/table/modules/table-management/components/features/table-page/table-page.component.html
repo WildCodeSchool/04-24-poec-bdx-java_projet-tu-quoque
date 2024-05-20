@@ -2,8 +2,8 @@
     <app-page-header [elementIcon]="'assets/images/table-icon.svg'" [title]="table.name"></app-page-header>
     <app-table-presentation [table]="table"></app-table-presentation>
     <app-custom-area-title [title]="'Liste des joueurs'"></app-custom-area-title>
-    <ng-container *ngIf="userList$|async as users">
-        <app-list-of-element [elementList]="users" [elementIcon]="'assets/images/character-icon.svg'" [replacementIcon]="'assets/images/hourglass-icon.svg'"></app-list-of-element>
+    <ng-container *ngIf="participantList$|async as participants">
+        <app-list-of-element [elementList]="participants" [elementIcon]="'assets/images/character-icon.svg'" [replacementIcon]="'assets/images/hourglass-icon.svg'"></app-list-of-element>
     </ng-container>
     <app-custom-add-button [routerLink]="'new-player'" ></app-custom-add-button>
     <app-custom-button [style]="'gold'" [name]="'Persos à valider'" [routerLink]="'accept-characters'"></app-custom-button>

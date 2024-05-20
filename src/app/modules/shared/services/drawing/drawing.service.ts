@@ -19,7 +19,7 @@ export class DrawingService extends ApiRessourceService<Drawing> {
     return this._BASE_URL;
   }
 
-  getDrawingListByTable(tableId: number): Observable<Drawing[]> {
+  getDrawingListByTable$(tableId: number): Observable<Drawing[]> {
     return this.getAll$().pipe(
       map((result: Drawing[]) =>
         result.filter((drawing: Drawing) => Number(drawing.tableId) === tableId)
