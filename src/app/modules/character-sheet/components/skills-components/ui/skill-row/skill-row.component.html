@@ -1,7 +1,11 @@
 <td>{{skill.skillClass ? "&#9632;" : "&#9634;" }}</td>
 <td>{{skill.detailsFromDb.name}} <input type="text" *ngIf="skill.detailsFromDb.choice" [(ngModel)]="complement" (ngModelDebounceChange)="sendChanges()"></td>
 <td>{{skill.detailsFromDb.key}}&nbsp;{{skill.detailsFromDb.innate ? "•" : ""}}</td>
-<td>{{skill.calcValue()}}</td>
+<td>
+    <app-metamorphosis
+    [value]="skill.calcValue().toString()"
+    ></app-metamorphosis>
+</td>
 <td>{{skill.statMod}}</td>
 <td><input type="number" value="{{skill.ranks || 0}}" [(ngModel)]="ranks" (ngModelChange)="sendChanges()" min="0"></td>
 <td>{{skill.raceValue}}</td>
