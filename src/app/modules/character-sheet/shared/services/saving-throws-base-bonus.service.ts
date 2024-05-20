@@ -4,7 +4,7 @@ import { SavingThrowType } from '../../models/enums/saving-throws-type.enum';
 @Injectable({
   providedIn: 'root'
 })
-export class SavingThrowsService {
+export class SavingThrowsBaseBonusService {
   constructor() { }
 
   static getValue(level: number, savingType: SavingThrowType) {
