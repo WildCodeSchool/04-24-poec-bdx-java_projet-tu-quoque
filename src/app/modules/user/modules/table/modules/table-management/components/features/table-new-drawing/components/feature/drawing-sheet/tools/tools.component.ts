@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../../shared/services/drawing/color.service';
 import { DrawingSheetComponent } from '../drawing-sheet.component';
 import { fromEvent } from 'rxjs';
+import { DrawingService } from '../../../../../../../../../../../../shared/services/drawing.service';
 
 @Component({
   selector: 'app-tools',
@@ -13,7 +14,11 @@ export class ToolsComponent {
   private previousColor: string;
   private previousLineWidth: number;
 
-  constructor(private _colorService: ColorService, private _drawingSheet: DrawingSheetComponent){
+  constructor(
+    private _colorService: ColorService, 
+    private _drawingSheet: DrawingSheetComponent,
+    private _drawingService : DrawingService
+  ) {
     this.previousColor = this._colorService.getCurrentColor();
     this.previousLineWidth = this._colorService.getCurrentLineWidth();
   }
@@ -28,7 +33,9 @@ export class ToolsComponent {
 
   drawFree() {
     this.restorePreviousSettings();
-    this._drawingSheet.drawFree();
+    const canvas = this._drawingSheet.canvasRef.nativeElement;
+    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
+    this._drawingSheet.drawFree(start$, move$, end$);
   }
 
   drawLine(){
@@ -56,7 +63,9 @@ export class ToolsComponent {
     const lineWidthForEraser = 10;
     this._colorService.setColor(whiteColor, lineWidthForEraser);
     
-    this._drawingSheet.drawFree();
+    const canvas = this._drawingSheet.canvasRef.nativeElement;
+    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
+    this._drawingSheet.drawFree(start$, move$, end$);
   }
   
   undoAction(){

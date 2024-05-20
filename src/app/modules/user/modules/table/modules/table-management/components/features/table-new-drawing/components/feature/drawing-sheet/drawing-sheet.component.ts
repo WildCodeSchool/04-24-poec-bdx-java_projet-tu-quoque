@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
-import { Subscription, fromEvent, map, merge, pairwise, switchMap, takeUntil } from 'rxjs';
+import { Observable, Subscription, fromEvent, map, merge, pairwise, switchMap, takeUntil } from 'rxjs';
+import { DrawingService } from '../../../../../../../../../../../shared/services/drawing.service';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -22,7 +23,10 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
   private lastMoveEvent!: MouseEvent | TouchEvent;
 
-  constructor(private _colorService: ColorService) { }
+  constructor(
+    private _colorService: ColorService,
+    private _drawingService: DrawingService
+  ) { }
 
   ngAfterViewInit() {
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
@@ -52,97 +56,68 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
 
   private captureEvents(canvas: HTMLCanvasElement) {
-    this.drawFree();
+    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
+    this.drawFree(start$, move$, end$);
   }
 
 
-  drawFree() {
+  drawFree(
+    start$: Observable<MouseEvent | TouchEvent>, 
+    move$: Observable<MouseEvent | TouchEvent>, 
+    end$: Observable<MouseEvent | TouchEvent>
+  ) {
     this.unsubscribeAllEvents();
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-
-    const start$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousedown'),
-      fromEvent<TouchEvent>(canvas, 'touchstart')
-    );
-
-    const move$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousemove'),
-      fromEvent<TouchEvent>(canvas, 'touchmove')
-    );
-
-    const end$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mouseup'),
-      fromEvent<TouchEvent>(canvas, 'touchend'),
-      fromEvent<TouchEvent>(canvas, 'touchcancel')
-    );
-
+  
     const draw$ = start$
       .pipe(
         switchMap((startEvent: MouseEvent | TouchEvent) => {
           let path: { x: number, y: number }[] = [];
-
-          const getCoordinates = (event: MouseEvent | TouchEvent) => {
-            const rect = canvas.getBoundingClientRect();
-            if (event instanceof MouseEvent) {
-              return {
-                x: event.clientX - rect.left,
-                y: event.clientY - rect.top
-              };
-            } else {
-              return {
-                x: event.touches[0].clientX - rect.left,
-                y: event.touches[0].clientY - rect.top
-              };
-            }
-          };
-
-          const startPos = getCoordinates(startEvent);
+          const startPos = this._drawingService.getCoordinates(canvas, startEvent);
           path.push(startPos);
-
+  
           const moveSubscription = move$
-          .pipe(
-            map((moveEvent: MouseEvent | TouchEvent) => 
-              getCoordinates(moveEvent)),
+            .pipe(
+              map((moveEvent: MouseEvent | TouchEvent) => this._drawingService.getCoordinates(canvas, moveEvent)),
               takeUntil(end$)
             )
             .subscribe(currentPos => {
               path.push(currentPos);
               this.drawOnCanvas(path[path.length - 2], currentPos);
             });
-
-          return end$
-            .pipe(
-              map(() => {
-                this._drawnPaths.push({
-                  color: this._currentColor,
-                  lineWidth: this._currentLineWidth,
-                  path
-                });
-                moveSubscription.unsubscribe();
-              })
-            );
+  
+          return end$.pipe(
+            map(() => {
+              this._drawnPaths.push({
+                color: this._currentColor,
+                lineWidth: this._currentLineWidth,
+                path
+              });
+              moveSubscription.unsubscribe();
+            })
+          );
         })
       );
-
+  
     const drawSubscription = draw$.subscribe();
-    this._eventSubscriptions.push(drawSubscription);
+    this._drawingService.addSubscription(drawSubscription);
   }
 
-      private drawOnCanvas(
-        prevPos: { x: number, y: number }, 
-        currentPos: { x: number, y: number }
-      ) {
-        if (!this._ctx) { 
-          return; 
-        }
-      
-        this._ctx.beginPath();
-        if (prevPos) {
-          this._ctx.moveTo(prevPos.x, prevPos.y);
-          this._ctx.lineTo(currentPos.x, currentPos.y);
-          this._ctx.stroke();
-        }
+  private drawOnCanvas(
+      prevPos: { x: number, y: number }, 
+      currentPos: { x: number, y: number }
+    ) {
+      if (!this._ctx) { 
+        return; 
       }
+      
+      this._ctx.beginPath();
+      if (prevPos) {
+         this._ctx.moveTo(prevPos.x, prevPos.y);
+        this._ctx.lineTo(currentPos.x, currentPos.y);
+        this._ctx.stroke();
+      }
+     }
     
   setColorAndLineWidth(color: string, lineWidth: number) {
     this._currentColor = color;
@@ -178,6 +153,11 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     
     this._ctx.strokeStyle = this._currentColor;
     this._ctx.lineWidth = this._currentLineWidth;
+  }
+
+  private unsubscribeAllEvents() {
+    this._eventSubscriptions.forEach(sub => sub.unsubscribe());
+    this._eventSubscriptions = [];
   }
 
   private handleShapeDrawing(start$: any, move$: any, end$: any, drawShape: Function) {
@@ -232,57 +212,21 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
   
   drawSquare() {
-    this.unsubscribeAllEvents();
-    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
+    this._drawingService.unsubscribeAllEvents();
+    const canvas = this.canvasRef.nativeElement;
   
-    const start$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousedown'),
-      fromEvent<TouchEvent>(canvas, 'touchstart')
-    );
-  
-    const move$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousemove'),
-      fromEvent<TouchEvent>(canvas, 'touchmove')
-    );
-  
-    const end$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mouseup'),
-      fromEvent<TouchEvent>(canvas, 'touchend'),
-      fromEvent<TouchEvent>(canvas, 'touchcancel')
-    );
-  
+    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
     const square$ = start$
       .pipe(
         switchMap((startEvent: MouseEvent | TouchEvent) => {
-          const getCoordinates = (event: MouseEvent | TouchEvent) => {
-            const rect = canvas.getBoundingClientRect();
-            if (event instanceof MouseEvent) {
-              return {
-                x: event.clientX - rect.left,
-                y: event.clientY - rect.top
-              };
-            } else if (event.touches && event.touches.length > 0) {
-              return {
-                x: event.touches[0].clientX - rect.left,
-                y: event.touches[0].clientY - rect.top
-              };
-            } else {
-              return { x: 0, y: 0 };
-            }
-          };
-  
-          const startPos = getCoordinates(startEvent);
-  
-          let squarePath: { x: number; y: number }[] = [];
-          squarePath.push(startPos);
-  
-          let finalPos = startPos;  // Store the final position
+          const startPos = this._drawingService.getCoordinates(canvas, startEvent);
+          let finalPos = startPos;
   
           const moveSubscription = move$
             .pipe(
               map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = getCoordinates(moveEvent);
-                finalPos = currentPos;  // Update the final position on each move
+                const currentPos = this._drawingService.getCoordinates(canvas, moveEvent);
+                finalPos = currentPos;
                 const width = currentPos.x - startPos.x;
                 const height = currentPos.y - startPos.y;
                 const squareSize = Math.max(Math.abs(width), Math.abs(height));
@@ -298,7 +242,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
               }),
               takeUntil(end$)
             )
-            .subscribe(() => {});
+            .subscribe();
   
           return end$
             .pipe(
@@ -327,58 +271,30 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       );
   
     const squareSubscription = square$.subscribe();
-    this._eventSubscriptions.push(squareSubscription);
+    this._drawingService.addSubscription(squareSubscription);
   }
+  
   
 
 
   drawCircle() {
-    this.unsubscribeAllEvents();
+    this._drawingService.unsubscribeAllEvents();
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
   
-    const start$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousedown'),
-      fromEvent<TouchEvent>(canvas, 'touchstart')
-    );
-  
-    const move$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousemove'),
-      fromEvent<TouchEvent>(canvas, 'touchmove')
-    );
-  
-    const end$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mouseup'),
-      fromEvent<TouchEvent>(canvas, 'touchend'),
-      fromEvent<TouchEvent>(canvas, 'touchcancel')
-    );
+    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
   
     let startPos: { x: number; y: number };
-    let radius: number; // Variable pour stocker le rayon
+    let radius: number;
   
     const circle$ = start$
       .pipe(
         switchMap((startEvent: MouseEvent | TouchEvent) => {
-          const getCoordinates = (event: MouseEvent | TouchEvent) => {
-            const rect = canvas.getBoundingClientRect();
-            if (event instanceof MouseEvent) {
-              return {
-                x: event.clientX - rect.left,
-                y: event.clientY - rect.top
-              };
-            } else {
-              return {
-                x: event.touches[0].clientX - rect.left,
-                y: event.touches[0].clientY - rect.top
-              };
-            }
-          };
-  
-          startPos = getCoordinates(startEvent);
+          startPos = this._drawingService.getCoordinates(canvas, startEvent);
   
           const moveSubscription = move$
             .pipe(
               map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = getCoordinates(moveEvent);
+                const currentPos = this._drawingService.getCoordinates(canvas, moveEvent);
                 radius = Math.sqrt(
                   Math.pow(currentPos.x - startPos.x, 2) +
                   Math.pow(currentPos.y - startPos.y, 2)
@@ -428,57 +344,27 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       );
   
     const circleSubscription = circle$.subscribe();
-    this._eventSubscriptions.push(circleSubscription);
+    this._drawingService.addSubscription(circleSubscription);
   }
   
+  
   drawTriangle() {
-    this.unsubscribeAllEvents();
+    this._drawingService.unsubscribeAllEvents();
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
   
-    const start$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousedown'),
-      fromEvent<TouchEvent>(canvas, 'touchstart')
-    );
-  
-    const move$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousemove'),
-      fromEvent<TouchEvent>(canvas, 'touchmove')
-    );
-  
-    const end$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mouseup'),
-      fromEvent<TouchEvent>(canvas, 'touchend'),
-      fromEvent<TouchEvent>(canvas, 'touchcancel')
-    );
-  
-    const getCoordinates = (event: MouseEvent | TouchEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      if (event instanceof MouseEvent) {
-        return {
-          x: event.clientX - rect.left,
-          y: event.clientY - rect.top
-        };
-      } else if (event.touches && event.touches.length > 0) {
-        return {
-          x: event.touches[0].clientX - rect.left,
-          y: event.touches[0].clientY - rect.top
-        };
-      } else {
-        return { x: 0, y: 0 };
-      }
-    };
+    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
   
     const triangle$ = start$
       .pipe(
         switchMap((startEvent: MouseEvent | TouchEvent) => {
-          const startPos = getCoordinates(startEvent);
-          let lastMovePos = { ...startPos }; // Keep track of the last move position
+          const startPos = this._drawingService.getCoordinates(canvas, startEvent);
+          let lastMovePos = { ...startPos };
   
           const moveSubscription = move$
             .pipe(
               map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = getCoordinates(moveEvent);
-                lastMovePos = currentPos; // Update last move position
+                const currentPos = this._drawingService.getCoordinates(canvas, moveEvent);
+                lastMovePos = currentPos;
                 return { startX: startPos.x, startY: startPos.y, currentX: currentPos.x, currentY: currentPos.y };
               }),
               takeUntil(end$)
@@ -504,7 +390,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
           return end$
             .pipe(
               map((endEvent: MouseEvent | TouchEvent) => {
-                const currentPos = lastMovePos; // Use the last move position
+                const currentPos = lastMovePos;
                 const height = currentPos.y - startPos.y;
                 const width = currentPos.x - startPos.x;
   
@@ -529,58 +415,28 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       );
   
     const triangleSubscription = triangle$.subscribe();
-    this._eventSubscriptions.push(triangleSubscription);
+    this._drawingService.addSubscription(triangleSubscription);
   }
   
-  
-  
+
   drawLine() {
-    this.unsubscribeAllEvents();
+    this._drawingService.unsubscribeAllEvents();
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-
-    const start$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousedown'),
-      fromEvent<TouchEvent>(canvas, 'touchstart')
-    );
-
-    const move$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mousemove'),
-      fromEvent<TouchEvent>(canvas, 'touchmove')
-    );
-
-    const end$ = merge(
-      fromEvent<MouseEvent>(canvas, 'mouseup'),
-      fromEvent<TouchEvent>(canvas, 'touchend'),
-      fromEvent<TouchEvent>(canvas, 'touchcancel')
-    );
-
+  
+    const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
+  
     const line$ = start$
       .pipe(
         switchMap((startEvent: MouseEvent | TouchEvent) => {
-          const getCoordinates = (event: MouseEvent | TouchEvent) => {
-            const rect = canvas.getBoundingClientRect();
-            if (event instanceof MouseEvent) {
-              return {
-                x: event.clientX - rect.left,
-                y: event.clientY - rect.top
-              };
-            } else {
-              return {
-                x: event.touches[0].clientX - rect.left,
-                y: event.touches[0].clientY - rect.top
-              };
-            }
-          };
-
-          const startPos = getCoordinates(startEvent);
+          const startPos = this._drawingService.getCoordinates(canvas, startEvent);
           let currentX: number;
           let currentY: number;
-
+  
           const moveSubscription = move$
             .pipe(
               map((moveEvent: MouseEvent | TouchEvent) => {
-                const currentPos = getCoordinates(moveEvent);
-                currentX = currentPos.x; // Stockez les coordonnées actuelles
+                const currentPos = this._drawingService.getCoordinates(canvas, moveEvent);
+                currentX = currentPos.x;
                 currentY = currentPos.y;
                 return { startX: startPos.x, startY: startPos.y, currentX: currentPos.x, currentY: currentPos.y };
               }),
@@ -589,43 +445,38 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
             .subscribe(({ startX, startY, currentX, currentY }) => {
               this._ctx.clearRect(0, 0, this.width, this.height);
               this.redrawAll();
-
+  
               this._ctx.strokeStyle = this._colorService.getCurrentColor();
               this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
-
+  
               this._ctx.beginPath();
               this._ctx.moveTo(startX, startY);
               this._ctx.lineTo(currentX, currentY);
               this._ctx.stroke();
             });
-
+  
           return end$
             .pipe(
               map(() => {
                 const path = [
                   { x: startPos.x, y: startPos.y },
-                  { x: currentX, y: currentY } 
+                  { x: currentX, y: currentY }
                 ];
-
+  
                 this._drawnPaths.push({
                   color: this._currentColor,
                   lineWidth: this._currentLineWidth,
                   path
                 });
-
+  
                 this.redrawAll();
                 moveSubscription.unsubscribe();
               })
             );
         })
       );
-
+  
     const lineSubscription = line$.subscribe();
-    this._eventSubscriptions.push(lineSubscription);
-  }
-
-  private unsubscribeAllEvents() {
-    this._eventSubscriptions.forEach(sub => sub.unsubscribe());
-    this._eventSubscriptions = [];
-  }
+    this._drawingService.addSubscription(lineSubscription);
+  } 
 }
