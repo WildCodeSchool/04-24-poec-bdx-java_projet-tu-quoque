@@ -1,16 +1,3 @@
-// .bgred {
-//     animation: changebgcolor 2s;
-// }
-
-// @keyframes changebgcolor {
-//     from {
-//         background-color: red;
-//     }
-
-//     to {
-//         background-color: white;
-//     }
-// }
 :host {
     --animation-time: 2s;
     --supernova-width: 80px;
@@ -71,8 +58,6 @@
         left: var(--supernova-left-center);
         width: var(--supernova-full-size);
         height: var(--supernova-full-size);
-        // width: var(--supernova-full-size);
-        // height: var(--supernova-full-size);
         background: #e9f2f9;
         border-radius: 100%;
         -webkit-box-shadow: 0 0 var(--supernova-full-size-plus) var(--supernova-full-size-minus) #e9f2f9;
