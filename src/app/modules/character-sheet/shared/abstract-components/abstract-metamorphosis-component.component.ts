@@ -11,7 +11,6 @@ export abstract class AbstractMetamorphosisComponent {
     constructor(private destroyRef: DestroyRef) { }
 
     handleDomChange(event: any) {
-        console.log(event.target.classList)
         this.isbgred = true;
         this.runExplosion();
     }
