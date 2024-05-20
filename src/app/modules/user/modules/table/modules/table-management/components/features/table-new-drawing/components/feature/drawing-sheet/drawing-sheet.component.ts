@@ -66,7 +66,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     move$: Observable<MouseEvent | TouchEvent>, 
     end$: Observable<MouseEvent | TouchEvent>
   ) {
-    this.unsubscribeAllEvents();
+    this._drawingService.unsubscribeAllEvents();
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
   
     const draw$ = start$
@@ -479,4 +479,13 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     const lineSubscription = line$.subscribe();
     this._drawingService.addSubscription(lineSubscription);
   } 
+
+  eraseAll() {
+    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
+    const context = canvas.getContext('2d');
+    if (context) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      this._drawnPaths = [];
+    }
+  }
 }
