@@ -6,6 +6,7 @@ import { CircleSape } from './drawing-utilities/CircleShape';
 import { LineShape } from './drawing-utilities/LineShape';
 import { SquareShape } from './drawing-utilities/SquareShape';
 import { TriangleShape } from './drawing-utilities/TriangleShape';
+import { FreeShape } from './drawing-utilities/FreeShape';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -64,64 +65,22 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     this.drawFree(start$, move$, end$);
   }
 
-  drawFree(
-    start$: Observable<MouseEvent | TouchEvent>, 
-    move$: Observable<MouseEvent | TouchEvent>, 
-    end$: Observable<MouseEvent | TouchEvent>
-  ) {
-    this._drawingService.unsubscribeAllEvents();
-    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-  
-    const draw$ = start$
-      .pipe(
-        switchMap((startEvent: MouseEvent | TouchEvent) => {
-          let path: { x: number, y: number }[] = [];
-          const startPos = this._drawingService.getCoordinates(canvas, startEvent);
-          path.push(startPos);
-  
-          const moveSubscription = move$
-            .pipe(
-              map((moveEvent: MouseEvent | TouchEvent) => this._drawingService.getCoordinates(canvas, moveEvent)),
-              takeUntil(end$)
-            )
-            .subscribe(currentPos => {
-              path.push(currentPos);
-              this.drawOnCanvas(path[path.length - 2], currentPos);
-            });
-  
-          return end$.pipe(
-            map(() => {
-              this._drawnPaths.push({
-                color: this._currentColor,
-                lineWidth: this._currentLineWidth,
-                path
-              });
-              moveSubscription.unsubscribe();
-            })
-          );
-        })
-      );
-  
-    const drawSubscription = draw$.subscribe();
-    this._drawingService.addSubscription(drawSubscription);
+  drawFree(start$: Observable<MouseEvent | TouchEvent>, move$: Observable<MouseEvent | TouchEvent>, end$: Observable<MouseEvent | TouchEvent>) {
+    new FreeShape(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._drawnPaths,
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
+    ).drawShape(start$, move$, end$);
   }
 
-  private drawOnCanvas(
-      prevPos: { x: number, y: number }, 
-      currentPos: { x: number, y: number }
-    ) {
-      if (!this._ctx) { 
-        return; 
-      }
-      
-      this._ctx.beginPath();
-      if (prevPos) {
-         this._ctx.moveTo(prevPos.x, prevPos.y);
-        this._ctx.lineTo(currentPos.x, currentPos.y);
-        this._ctx.stroke();
-      }
-     }
-    
+   
   setColorAndLineWidth(color: string, lineWidth: number) {
     this._currentColor = color;
     this._currentLineWidth = lineWidth;
@@ -167,7 +126,9 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this.width,
       this.height,
       this._drawnPaths,
-      this.redrawAll.bind(this)
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
     );
   }
   
@@ -180,7 +141,9 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this.width,
       this.height,
       this._drawnPaths,
-      this.redrawAll.bind(this)
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
     )
   }
   
@@ -193,7 +156,9 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this.width,
       this.height,
       this._drawnPaths,
-      this.redrawAll.bind(this)
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
     );
   }
   
@@ -206,7 +171,9 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this.width,
       this.height,
       this._drawnPaths,
-      this.redrawAll.bind(this)
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
     )
   } 
 

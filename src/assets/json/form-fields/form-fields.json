@@ -8,7 +8,7 @@
         "type": "email",
         "value": "",
         "autocomplete": false,
-        "placeholder": "Entrez votre email",
+        "placeholder": "Email",
         "required": true,
         "disabled": false
       },
@@ -20,13 +20,13 @@
         "type": "password",
         "value": "",
         "autocomplete": false, 
-        "placeholder": "Entrez votre mot de passe",
+        "placeholder": "Mot de passe",
         "required": true,
         "disabled": false
       },
       {
         "fieldType": "text",
-        "label": "Vérification de mot de passe",
+        "label": "Mot de passe",
         "id": "passwordVerification",
         "name": "passwordVerification",
         "type": "password",
@@ -44,7 +44,7 @@
         "type": "text",
         "value": "",
         "autocomplete": false,
-        "placeholder": "Entrez votre pseudo",
+        "placeholder": "Pseudonyme",
         "required": true,
         "disabled": false
       },
@@ -56,7 +56,7 @@
         "type": "file",
         "value": "",
         "autocomplete": "off",
-        "placeholder": "Choisissez un fichier",
+        "placeholder": "Fichier",
         "required": false,
         "accept": "image/jpeg",
         "disabled": false,
@@ -70,7 +70,7 @@
         "type": "text",
         "value": "",
         "autocomplete": false,
-        "placeholder": "Entrez le nom de votre personnage",
+        "placeholder": "Nom",
         "required": true,
         "disabled": false
       },
@@ -82,7 +82,7 @@
         "type": "file",
         "value": "",
         "autocomplete": "off",
-        "placeholder": "Choisissez un fichier",
+        "placeholder": "Fichier",
         "required": false,
         "accept": "image/jpeg",
         "disabled": false,
@@ -96,7 +96,7 @@
         "type": "text",
         "value": "",
         "autocomplete": false,
-        "placeholder": "Entrez le nom de votre table",
+        "placeholder": "Nom",
         "required": true,
         "disabled": false
       },
@@ -108,7 +108,7 @@
         "type": "file",
         "value": "",
         "autocomplete": "off",
-        "placeholder": "Choisissez un fichier",
+        "placeholder": "Fichier",
         "required": false,
         "accept": "image/jpeg",
         "disabled": false,
@@ -122,7 +122,7 @@
         "type": "text",
         "value": "",
         "autocomplete": false,
-        "placeholder": "Entrez le titre de votre note",
+        "placeholder": "Titre",
         "disabled": false
       },
       {
@@ -145,7 +145,7 @@
         "type": "text",
         "value": "",
         "autocomplete": false,
-        "placeholder": "Entrez votre pseudo",
+        "placeholder": "Pseudonyme",
         "disabled": false
       }
     ]
