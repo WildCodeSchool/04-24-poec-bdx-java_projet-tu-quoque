@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SavingThrowsService } from '../../../../shared/services/saving-throws.service';
+import { Observable } from 'rxjs';
+import { CharacterSavingThrows } from '../../../../models/classes/character-saving-throws.class';
 
 @Component({
   selector: 'app-saving-throws-feature',
@@ -6,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './saving-throws-feature.component.scss'
 })
 export class SavingThrowsFeatureComponent {
-
+  savingThrowsService: SavingThrowsService = inject(SavingThrowsService);
+  savingThrows$: Observable<CharacterSavingThrows> = this.savingThrowsService.getCharacterSavingThrows$();
 }
