@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SavingThrowType } from '../../models/enums/saving-throws-type.enum';
+import { SavingThrowType, SavingThrowTypeKey } from '../../models/enums/saving-throws-type.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +7,13 @@ import { SavingThrowType } from '../../models/enums/saving-throws-type.enum';
 export class SavingThrowsBaseBonusService {
   constructor() { }
 
-  static getValue(level: number, savingType: SavingThrowType) {
-    if (savingType == SavingThrowType.low) {
+  static getValue(level: number, savingType: SavingThrowTypeKey) {
+    if (savingType == "low") {
       return this.getLowValue(level);
-    } else {
+    } else if (savingType == "high") {
       return this.getHighValue(level);
     }
+    throw new Error("There's a problem with SavingThrowType in SavingThrowBaseBonus.getValue")
   }
 
   private static getLowValue(level: number) {
