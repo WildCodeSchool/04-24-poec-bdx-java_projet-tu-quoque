@@ -1,4 +1,4 @@
-export type TableInvitaition = {
+export type TableInvitation = {
     userId: number;
     tableId: number;
 }

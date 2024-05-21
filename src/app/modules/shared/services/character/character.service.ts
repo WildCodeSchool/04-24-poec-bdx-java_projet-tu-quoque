@@ -1,29 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { Character } from '../../models/types/users/character.type';
-import { userApiResponse } from '../../models/types/users/user-api-response.type';
-import { User } from '../../models/types/users/user.types';
+import { ConnectionService } from '../connection/connection.service';
+import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
+import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CharacterService {
+export class CharacterService extends ApiRessourceService<Character> {
   
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
 
-  private readonly _USER_CONECTED: number = 1;
+  private readonly _userConnected$: Observable<UserBasicInfos> =
+    this.connectionService.getUserConected$();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    protected override _http: HttpClient,
+    private connectionService: ConnectionService
+  ) {
+    super(_http);
+  }
 
-  getAllCharacters$(): Observable<Character[]> {
-    return this.http.get<Character[]>(this._BASE_URL);
+  override getRessourceUrl(): string {
+    return this._BASE_URL;
   }
 
   getUserCharacterList$(): Observable<Character[]> {
-    return this.getAllCharacters$().pipe(
-      map((response: Character[]) =>
-        response.filter((res: Character) => res.userId === this._USER_CONECTED)
+    return this.getAll$().pipe(
+      switchMap((CharacterList: Character[]) =>
+        this._userConnected$.pipe(
+          map((user: UserBasicInfos) =>
+            CharacterList.filter(
+              (character: Character) => character.userId === user.id
+            )
+          )
+        )
       )
     );
   }
@@ -36,19 +49,8 @@ export class CharacterService {
     );
   }
 
-  getCharacterById$(characterId: number): Observable<Character> {
-    return this.getUserCharacterList$().pipe(
-      map(
-        (characters: Character[]) =>
-          characters.find(
-            (character: Character) => Number(character.id) === characterId
-          ) as Character
-      )
-    );
-  }
-
   getCharactersByTable$(tableId: number): Observable<Character[]> {
-    return this.getAllCharacters$().pipe(
+    return this.getAll$().pipe(
       map((characters: Character[]) =>
         characters.filter(
           (character: Character) => Number(character.tableId) === tableId
