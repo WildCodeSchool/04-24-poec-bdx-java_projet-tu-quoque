@@ -466,9 +466,9 @@
       ],
       "attackBaseBonus": "high",
       "savingThrowsBonus": {
-        "Réflexes": "low",
-        "Vigueur": "high",
-        "Volonté": "low"
+        "reflexes": "low",
+        "fortitude": "high",
+        "will": "low"
       },
       "special": [],
       "id": "68d2"
@@ -523,9 +523,9 @@
       ],
       "attackBaseBonus": "medium",
       "savingThrowsBonus": {
-        "Réflexes": "high",
-        "Vigueur": "low",
-        "Volonté": "low"
+        "reflexes": "high",
+        "fortitude": "low",
+        "will": "low"
       },
       "special": [],
       "id": "1c9a"
