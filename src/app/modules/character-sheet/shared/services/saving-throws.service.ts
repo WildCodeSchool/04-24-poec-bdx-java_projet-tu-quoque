@@ -7,6 +7,7 @@ import { SavingThrows } from '../../models/types/saving-throws.type';
 import { CharacterSavingThrows } from '../../models/classes/character-saving-throws.class';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SavingThrowType } from '../../models/enums/saving-throws-type.enum';
+import { SavingThrowsEnum } from '../../models/enums/saving-throw-enum.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -44,16 +45,22 @@ export class SavingThrowsService {
   }
 
   init(): void {
+    this.update();
+  }
+
+  update() {
     this.updateLevel();
     this.updateClass();
+    this.updateStatsMod();
+    this.updateStream();
   }
 
   updateLevel(): void {
     this.level$.pipe(
       takeUntilDestroyed(this.destroyRef))
       .subscribe((level: number) => {
-        this.characterSavingThrows.setLevel(level),
-          this.updateStream();
+        this.characterSavingThrows.setLevel(level)
+
       })
   }
 
@@ -62,9 +69,23 @@ export class SavingThrowsService {
       takeUntilDestroyed(this.destroyRef))
       .subscribe((classSavingThrows: SavingThrows) => {
         this.characterSavingThrows.classSavingThrows = classSavingThrows;
-        this.updateStream();
-      })
 
+      })
+  }
+
+  updateStatsMod(): void {
+    this.caracs$.pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((stats: StatisticDetails[]) => {
+      if (stats) {
+        const fortitudeMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.fortitude) as StatisticDetails).getFinalMod();
+        const reflexesMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.reflexes) as StatisticDetails).getFinalMod();
+        const willMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.will) as StatisticDetails).getFinalMod();
+        console.log(fortitudeMod, reflexesMod, willMod, "FROM CHARACTER SAVING THROWS")
+        this.characterSavingThrows.updateModValues(fortitudeMod, reflexesMod, willMod);
+
+      }
+    })
   }
 
   getCharacterSavingThrows$(): Observable<CharacterSavingThrows> {

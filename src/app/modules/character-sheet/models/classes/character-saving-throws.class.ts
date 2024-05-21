@@ -13,16 +13,24 @@ export class CharacterSavingThrows {
 
     public setLevel(level: number) {
         if (level) this.level = level;
+        else this.level = 0;
     }
 
     public toString() {
         return `level : ${this.level}`;
     }
 
-    public updateSavingThrows() {
+    public updateSavingThrows(): void {
         this.fortitude.setBaseValue(this.level, this.classSavingThrows.fortitude);
         this.reflexes.setBaseValue(this.level, this.classSavingThrows.reflexes);
         this.will.setBaseValue(this.level, this.classSavingThrows.will);
+    }
+
+    updateModValues(fortitudeMod: number, reflexesMod: number, willMod: number): void {
+        console.log(fortitudeMod, reflexesMod, willMod, "FROM UPDATEVALUES")
+        this.fortitude.setStatMod(fortitudeMod);
+        this.reflexes.setStatMod(reflexesMod);
+        this.will.setStatMod(willMod);
     }
 
 }
