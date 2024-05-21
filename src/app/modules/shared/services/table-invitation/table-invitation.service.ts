@@ -2,47 +2,71 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { TableService } from '../table/table.service';
-import { TableInvitaition } from '../../models/types/users/table-invitation.type';
+import { TableInvitation } from '../../models/types/users/table-invitation.type';
 import { Table } from '../../models/types/users/table.type';
+import { ConnectionService } from '../connection/connection.service';
+import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
+import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class TableInvitationService {
-
-  private _userId = 1;
-  private readonly _BASE_URL = "http://localhost:3000/user_table_invitations";
-  private _userTableInvitationList$: BehaviorSubject<any> = new BehaviorSubject([])
+export class TableInvitationService extends ApiRessourceService<TableInvitation> {
+  private _userConnected$ = this._connectionService.getUserConected$();
+  private readonly _BASE_URL = 'http://localhost:3000/user_table_invitations';
+  private _userTableInvitationList$: BehaviorSubject<any> = new BehaviorSubject(
+    []
+  );
 
   constructor(
-    private _HTTP: HttpClient, 
-    private _tableService: TableService) { }
-
-  getTableInvitationList$(): Observable<TableInvitaition[]> {
-    return this._HTTP.get<TableInvitaition[]>("http://localhost:3000/user_table_invitations")
+    protected override _http: HttpClient,
+    private _tableService: TableService,
+    private _connectionService: ConnectionService
+  ) {
+    super(_http);
   }
 
-  getTableInvitationListByUser$(id: number): Observable<number[]> {
-    return this.getTableInvitationList$()
-    .pipe(
-      map((tableInvitationList: TableInvitaition[]) => tableInvitationList
-      .filter((invitation : TableInvitaition) => Number(invitation.userId) === id)),
-      map((invitationArray:TableInvitaition[]) => invitationArray.map((invit: TableInvitaition) => invit.tableId))
-    )
+  override getRessourceUrl(): string {
+    return this._BASE_URL;
   }
-    
-    getTableInvitationListNames$(id: number): Observable<Table[]> {
-      return this.getTableInvitationListByUser$(id)
-        .pipe(
-          switchMap((tableIdList: number[]) => this._tableService.getTableList$()
-            .pipe(
-              map((tableList: Table[]) => tableList.filter((table: Table) => Number(table.id) === Number(tableIdList))))
-            ))
-    }
 
-  getUserTableInvitationList$(): Observable<TableInvitaition[]> {
-    return this._userTableInvitationList$.value.length ? 
-      this._userTableInvitationList$.asObservable() 
-      : this.getTableInvitationListNames$(this._userId)
+  getTableInvitationListByUser$(): Observable<number[]> {
+    return this.getAll$().pipe(
+      switchMap((tableInvitationList: TableInvitation[]) =>
+        this._userConnected$.pipe(
+          map((user: UserBasicInfos) =>
+            tableInvitationList.filter(
+              (tableInvitation: TableInvitation) =>
+                tableInvitation.userId === user.id
+            )
+          )
+        )
+      ),
+      map((invitationArray: TableInvitation[]) =>
+        invitationArray.map((invit: TableInvitation) => invit.tableId)
+      )
+    );
+  }
+
+  getTableInvitationListNames$(): Observable<Table[]> {
+    return this.getTableInvitationListByUser$().pipe(
+      switchMap((tableIdList: number[]) =>
+        this._tableService
+          .getAll$()
+          .pipe(
+            map((tableList: Table[]) =>
+              tableList.filter((table: Table) =>
+                tableIdList.includes(Number(table.id))
+              )
+            )
+          )
+      )
+    );
+  }
+
+  getUserTableInvitationList$(): Observable<TableInvitation[]> {
+    return this._userTableInvitationList$.value.length
+      ? this._userTableInvitationList$.asObservable()
+      : this.getTableInvitationListNames$();
   }
 }

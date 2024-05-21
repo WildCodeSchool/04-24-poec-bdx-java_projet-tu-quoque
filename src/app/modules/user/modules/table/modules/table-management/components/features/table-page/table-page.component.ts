@@ -37,7 +37,7 @@ export class TablePageComponent {
 
   ngOnInit(): void {
     this.id = Number(this._route.snapshot.paramMap.get('id'));
-    this.table$ = this._tableService.getTableById$(this.id);
+    this.table$ = this._tableService.getById$(this.id);
     this.userList$ = this._characterService.getCharactersByTable$(this.id);
     this.chatList$ = this._chatService.getChatListByTable(this.id);
     this.drawingList$ = this._drawingService.getDrawingListByTable(this.id);

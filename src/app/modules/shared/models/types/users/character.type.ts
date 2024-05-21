@@ -6,7 +6,7 @@ export type Character = {
   userId: number;
   tableId?: number;
   avatar: string;
-  characterSheet: number;
-  accepted: boolean; //enum
-  scheduleId: number;
+  characterSheetId?: number;
+  accepted: boolean;
+  scheduleId?: number;
 };
