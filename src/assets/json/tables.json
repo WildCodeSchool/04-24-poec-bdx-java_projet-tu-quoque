@@ -1,0 +1,62 @@
+{
+    "tables": [
+        {
+          "id": 1,
+          "name": "Table ronde",
+          "avatar": "assets/images/profile-img-test.jpg",
+          "players": [
+            {
+              "id": 1,
+              "name": "Player1 as Elric",
+              "accepted": true
+            },
+            {
+              "id": 2,
+              "name": "Player2 as Elrond",
+              "accepted": true
+            },
+            {
+              "id": 3,
+              "name": "Player3 as Cartman",
+              "accepted": false
+            }
+          ],
+          "discussions": [
+            {
+              "name":"Why ?",
+              "text": "why ?"
+            },
+            {
+              "name": "When ?",
+              "text": "When ?"
+            }
+          ],
+          "drawings": [
+            {
+              "id": 1,
+              "name": "dessin1"
+            },
+            {
+              "id": 2,
+              "name": "dessin2"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Imbattable"
+        },
+        {
+          "id":3,
+          "name":"Acceptable"
+        },
+        {
+          "id":4,
+          "name":"Ajustable"
+        },
+        {
+          "id":5,
+          "name": "Évitable"
+        }
+      ]
+}

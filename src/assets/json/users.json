@@ -1,0 +1,74 @@
+{
+  "users": [
+        {
+          "id": 1,
+          "userName":"SkyWalker22",
+          "password":"1234",
+          "avatar":"/assets/images/user-profile-images/user1.jpg",
+          "characters": [
+            {
+              "id": 1,
+              "name": "Elric",
+              "table": "Tu quoque mi fili",
+              "avatar":"/assets/images/profile-img-test.jpg"
+            },
+            {
+              "id": 2,
+              "name": "Boromir",
+              "table": "Tu quoque mi fili",
+              "avatar":""
+            },
+            {
+              "id": 3,
+              "name":"Willow",
+              "table": "Tu quoque mi fili",
+              "avatar":""
+            }
+          ],
+          "notes": [
+            {
+              "id": 1,
+              "title": "What is the meaning of life ?",
+              "writerId": 1,
+              "writerRole": "character",
+              "content": "42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "userName":"Moussay",
+          "password":"1234",
+          "avatar":"/assets/images/user-profile-images/user2.png",
+          "characters": [
+            {
+              "id": 1,
+              "name": "Elric",
+              "table": "Tu quoque mi fili",
+              "avatar":"/assets/images/profile-img-test.jpg"
+            },
+            {
+              "id": 2,
+              "name": "Boromir",
+              "table": "Tu quoque mi fili",
+              "avatar":""
+            },
+            {
+              "id": 3,
+              "name":"Willow",
+              "table": "Tu quoque mi fili",
+              "avatar":""
+            }
+          ],
+          "notes": [
+            {
+              "id": 1,
+              "title": "What is the meaning of life ?",
+              "writerId": 1,
+              "writerRole": "character",
+              "content": "42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42"
+            }
+          ]
+        }
+      ]
+}

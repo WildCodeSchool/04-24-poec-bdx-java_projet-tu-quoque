@@ -1,0 +1,19 @@
+  <header class="header">
+    <h2>{{character.name}}</h2>
+    <app-custom-button [style]="'gold'" [name]="'Accepter'"></app-custom-button>
+    <app-custom-button [style]="'gold'" [name]="'Refuser'"></app-custom-button>
+  </header>
+  <div class="img-container">
+    <img
+      class="character-img"
+      [src]="character.avatar ? character.avatar : 'assets/images/user-icon.svg'"
+      alt="character-picture"
+    />
+        <!-- <img
+      class="character-img"
+      src="assets/images/user-profile-images/user3.png"
+      alt="character-picture"
+    /> -->
+
+  </div>
+

@@ -1,0 +1,42 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button {
+    width: 45vw;
+
+    font-family: alice;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    border: 1px solid #C29B0F;
+    transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.lblue-gold {
+        background-color: #30495B;
+        color: #fff;
+    }
+    &.dblue-gold {
+        background-color: #0B202F;
+        color: #fff;
+    }
+    &.gold {
+        background-color: #C29B0F;
+        color: #0B202F;
+        &:hover {
+            opacity: 80%;
+        }
+    }
+    &:hover {
+        background-color: #C29B0F;
+        color: #0B202F;
+        opacity: 80%;
+    }
+    &.bgSquare {
+        width: 130px;
+        height: 130px;
+    }
+}

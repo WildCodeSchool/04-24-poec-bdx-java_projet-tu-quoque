@@ -1,0 +1,9 @@
+<app-page-header [elementIcon]="'assets/images/dice-icon.svg'" [title]="'Acceptation de joueurs'"></app-page-header>
+<body>
+    <ng-container *ngIf="characterList$|async as characterList">
+        <app-character-card *ngFor="let character of characterList" [character]="character"></app-character-card>
+    </ng-container>
+</body>
+<footer class="bottom-part">
+    <app-custom-button [style]="'gold'" [name]="'retour'" PreviousPage></app-custom-button>
+</footer>

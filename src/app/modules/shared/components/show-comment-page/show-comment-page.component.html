@@ -1,0 +1,9 @@
+<ng-container *ngIf="note$|async as note">
+    <app-custom-area-title [title]="note.name"></app-custom-area-title>
+    <article class="main-note-area">
+        <div class="note-text-area">
+            <p class="text">{{note.text}}</p>
+        </div>
+        <app-custom-button [style]="'gold'" [name]="'Retour'" PreviousPage></app-custom-button>
+    </article>
+</ng-container>

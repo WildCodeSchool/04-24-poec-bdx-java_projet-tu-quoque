@@ -1,0 +1,27 @@
+<ul class="element-list">
+  <li
+    class="element-line"
+    *ngFor="let element of elementList"
+  >
+    @if (!element?.accepted && replacementIcon) {
+    <img [src]="replacementIcon" alt="element" />
+    } @else {
+    <img [src]="elementIcon" alt="element"/>
+    }
+    @if (isForDrawing) {
+      <p class="element-name" (click)="onClick(element.content)">
+        {{ element.name }}
+      </p>
+    } @else {
+      <p class="element-name" [routerLink]="[baseUrl, element.id]">
+        {{ element.name }}
+      </p>
+    }
+    <img [src]="'assets/images/modify-icon.svg'" alt="modify" [routerLink]="" />
+    <img
+      [src]="'assets/images/garbage-icon.svg'"
+      alt="delete"
+      (click)="deleteElement()"
+    />
+  </li>
+</ul>

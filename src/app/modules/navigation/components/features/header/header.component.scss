@@ -1,0 +1,37 @@
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  height: 90px;
+  width: 100vw;
+  background-color: #0b202f;
+  z-index: 100;
+
+  &::after{
+    content: "";
+    width:90%;
+    height: 0.5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .app-title {
+    color: #fff;
+    font-family: cinzel;
+    font-weight: 100;
+    font-size: 1.5em;
+  }
+
+ .header-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+ }
+
+}

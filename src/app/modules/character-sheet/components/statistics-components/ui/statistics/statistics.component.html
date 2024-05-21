@@ -1,0 +1,14 @@
+<table>
+    <thead>
+        <tr>
+            <td>CARACTERISTIQUES</td>
+            <td>SCORE</td>
+            <td>MODIF.</td>
+            <td>SCORE<br>TEMPORAIRE</td>
+            <td>MOD.<br>TEMPORAIRE</td>
+        </tr>
+    </thead>
+    <tbody *ngIf="stats$ | async as stats">
+        <tr *ngFor="let stat of stats, let index=index " trStatistic [stat]="stat" [index]="index"></tr>
+    </tbody>
+</table>

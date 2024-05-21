@@ -1,0 +1,12 @@
+<div class="img-container">
+  <img
+    class="character-img"
+    [src]="character.avatar ? character.avatar : 'assets/images/user-icon.svg'"
+    alt="character"
+  />
+</div>
+<app-custom-button
+  [style]="'dblue-gold'"
+  [name]="'Fiche personnage'"
+  (click)="showCharacterSheet()"
+></app-custom-button>

@@ -1,0 +1,30 @@
+<app-page-header
+  [elementIcon]="'assets/images/magician-hat-icon.svg'"
+  [title]="'Création de personnage'"
+></app-page-header>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ng-container *ngIf="characterNameField$ | async as characterNameField">
+    <app-input-text
+      [field]="characterNameField"
+      formControlName="characterName"
+      [control]="characterNameControl"
+    >
+    </app-input-text>
+  </ng-container>
+
+  <app-custom-area-title
+    [title]="'Télécharger un avatar'"
+  ></app-custom-area-title>
+  <div class="add-image-area">
+    <app-custom-add-button></app-custom-add-button>
+  </div>
+  <footer class="page-footer">
+    <app-custom-button
+      [style]="'gold'"
+      [name]="'Retour'"
+      PreviousPage
+    ></app-custom-button>
+    <app-custom-button [style]="'gold'" [name]="'Suivant'"></app-custom-button>
+  </footer>
+</form>

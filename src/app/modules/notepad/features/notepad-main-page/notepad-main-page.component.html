@@ -1,0 +1,32 @@
+<div class="note-body">
+  <div class="close-btn-container">
+    <img
+      class="close-btn"
+      [src]="'assets/images/cross-golden-icon.svg'"
+      (click)="closeNotes()"
+      [routerLink]="'../user'"
+      alt="close"
+    />
+  </div>
+  <app-page-header
+    [elementIcon]="'assets/images/note-gold-icon.svg'"
+    [title]="'Mes notes'"
+  ></app-page-header>
+  <nav class="notes-navbar">
+    <app-custom-button
+      [style]="isUserSelected ? 'dblue-gold' : 'gold'"
+      [name]="'Notes personnelles'"
+      [routerLink]="['user/notes']"
+      (click)="setUserSelected(true)"
+    ></app-custom-button>
+    @if (fakeCharacterId) {
+    <app-custom-button
+      [style]="!isUserSelected ? 'dblue-gold' : 'gold'"
+      [name]="'Notes de table'"
+      [routerLink]="['game/notes']"
+      (click)="setUserSelected(false)"
+    ></app-custom-button>
+    }
+  </nav>
+  <router-outlet></router-outlet>
+</div>

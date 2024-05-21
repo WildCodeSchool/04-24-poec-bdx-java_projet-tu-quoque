@@ -1,0 +1,883 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "SkyWalker22",
+      "email": "skywalker22@gmail.com",
+      "password": "Bonjour33!",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "role": "user"
+    },
+    {
+      "id": "2",
+      "name": "Moussay",
+      "email": "moussay@gmail.com",
+      "password": "Bonjour33!",
+      "avatar": "/assets/images/user-profile-images/user2.png",
+      "role": "admin"
+    },
+    {
+      "id": "3",
+      "name": "SkyIsTheLimit",
+      "email": "SkyIsTheLimit@gmail.com",
+      "password": "Bonjour33!",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "role": "user"
+    },
+    {
+      "id": "4",
+      "name": "MoussaillonDeMalheur",
+      "email": "MoussaillonDeMalheur@gmail.com",
+      "password": "Bonjour33!",
+      "avatar": "/assets/images/user-profile-images/user2.png",
+      "role": "user"
+    },
+    {
+      "id": "5",
+      "name": "MimirOfMimisbrunn",
+      "email": "MimirOfMimisbrunn@gmail.com",
+      "password": "Bonjour33!",
+      "avatar": "/assets/images/user-profile-images/user2.png",
+      "role": "user"
+    },
+    {
+      "id": "6",
+      "name": "Sigyn33",
+      "email": "Sigyn33@gmail.com",
+      "password": "_=",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "role": "user"
+    }
+  ],
+  "characters": [
+    {
+      "id": "1",
+      "name": "Elric",
+      "avatar": "/assets/images/profile-img-test.jpg",
+      "userId": 1,
+      "tableId": 4,
+      "characterSheetId": 1,
+      "accepted": false,
+      "scheduleId": 1
+    },
+    {
+      "id": "2",
+      "name": "Boromir",
+      "avatar": "",
+      "userId": 1,
+      "tableId": null,
+      "characterSheetId": 1,
+      "accepted": false,
+      "scheduleId": 1
+    },
+    {
+      "id": "3",
+      "name": "Willow",
+      "avatar": "",
+      "userId": 1,
+      "tableId": null,
+      "characterSheetId": 1,
+      "accepted": false,
+      "scheduleId": 1
+    },
+    {
+      "id": 4,
+      "name": "Gimli",
+      "avatar": "/assets/images/user-profile-images/user3.png",
+      "userId": 2,
+      "tableId": 1,
+      "characterSheetId": 1,
+      "accepted": false,
+      "scheduleId": 1
+    },
+    {
+      "id": 5,
+      "name": "Freyr",
+      "avatar": "",
+      "userId": 3,
+      "tableId": 1,
+      "characterSheetId": 1,
+      "accepted": true,
+      "scheduleId": 1
+    },
+    {
+      "id": 6,
+      "name": "Néo",
+      "avatar": "/assets/images/user-profile-images/user1.jpg",
+      "userId": 4,
+      "tableId": 1,
+      "characterSheetId": 1,
+      "accepted": false,
+      "scheduleId": 1
+    }
+
+  ],
+  "user_table_invitations": [
+    {
+      "userId": 2,
+      "tableId": 1
+    },
+    {
+      "userId": 3,
+      "tableId": 1
+    },
+    {
+      "userId": 1,
+      "tableId": 4
+    }
+
+  ],
+  "tables": [
+    {
+      "id": "1",
+      "avatar": "/assets/images/profile-img-test.jpg",
+      "name": "table ronde",
+      "userId": 1
+    },
+    {
+      "id": "2",
+      "avatar": "",
+      "name": "imbattable",
+      "userId": 1
+    },
+    {
+      "id": "3",
+      "avatar": "",
+      "name": "évitable",
+      "userId": 1
+    },
+    {
+      "id": "4",
+      "avatar": "",
+      "name": "La table des héros",
+      "userId": 2
+    },
+    {
+      "id": "5",
+      "avatar": "",
+      "name": "Ajustable",
+      "userId": 1
+    }
+  ],
+  "schedules": [
+    {
+      "id": "1",
+      "tablesId": 1
+    }
+  ],
+  "notes": [
+    {
+      "id": "1",
+      "tableId": null,
+      "userId": 1,
+      "characterId": null,
+      "name": "Question",
+      "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
+    },
+    {
+      "id": "2",
+      "tableId": null,
+      "userId": 1,
+      "characterId": null,
+      "name": "Eureka",
+      "text": "42"
+    },
+    {
+      "id": "3",
+      "tableId": 1,
+      "userId": null,
+      "characterId": null,
+      "name": "mot de passe",
+      "text": "Ha Ha Ha !!!"
+    },
+    {
+      "id": "4",
+      "tableId": null,
+      "userId": null,
+      "characterId": 1,
+      "name": "Pas d'inspi",
+      "text": "Mur"
+    },
+    {
+      "id": "5",
+      "tableId": null,
+      "userId": null,
+      "characterId": 1,
+      "name": "Météo",
+      "text": "Beau temps"
+    },
+    {
+      "id": "6",
+      "tableId": null,
+      "userId": null,
+      "characterId": 1,
+      "name": "secret inavouable",
+      "text": "oublié"
+    }
+  ],
+  "drawings": [
+    {
+      "id": "1",
+      "name": "papy",
+      "content": "/assets/images/user-profile-images/user1.jpg",
+      "tableId": 1
+    },
+    {
+      "id": "2",
+      "name": "maman sexy",
+      "content": "/assets/images/user-profile-images/user2.png",
+      "tableId": 1
+    },
+    {
+      "id": "3",
+      "name": "papa",
+      "content": "/assets/images/user-profile-images/user3.png",
+      "tableId": 1
+    }
+  ],
+  "chats": [
+    {
+      "id": "1",
+      "name": "vas te cacher sous l'escalier",
+      "tableId": 1,
+      "characterId": null
+    },
+    {
+      "id": "2",
+      "name": "Tu es maintenant un vampire",
+      "tableId": 1,
+      "characterId": null
+    },
+    {
+      "id": "3",
+      "name": "Sylvain est un [complète cette phrase] <3",
+      "tableId": 1,
+      "characterId": null
+    },
+    {
+      "id": "4",
+      "name": "Un magicien n'est jamais en retard...",
+      "tableId": null,
+      "characterId": 1
+    },
+    {
+      "id": "5",
+      "name": "T'es où ???",
+      "tableId": null,
+      "characterId": 1
+    },
+    {
+      "id": "6",
+      "name": "Apéro ?",
+      "tableId": null,
+      "characterId": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "1",
+      "text": "Mais pourquoi ?"
+    },
+    {
+      "id": "2",
+      "text": "Voilà, voilà"
+    }
+  ],
+  "chatsMessages": [
+    {
+      "chatId": 1,
+      "messageId": 1,
+      "id": "fc07"
+    },
+    {
+      "chatId": 1,
+      "messageId": 2,
+      "id": "e62e"
+    }
+  ],
+  "characterSheets": [
+    {
+      "id": "1"
+    }
+  ],
+  "charactersChats": [
+    {
+      "characterId": 1,
+      "chatId": 1,
+      "id": "efd3"
+    }
+  ],
+  "tablesChats": [
+    {
+      "tableId": 1,
+      "chatId": 2,
+      "id": "2c2d"
+    }
+  ],
+  "races": [
+    {
+      "name": "elfe",
+      "statsModifiers": [
+        {
+          "stat": "DEX",
+          "mod": 2
+        },
+        {
+          "stat": "CON",
+          "mod": -2
+        }
+      ],
+      "sizeCategorie": "M",
+      "skills": [
+        {
+          "skill": "Détection",
+          "mod": 2
+        },
+        {
+          "skill": "Fouille",
+          "mod": 2
+        },
+        {
+          "skill": "Perception auditive",
+          "mod": 2
+        }
+      ],
+      "languages": {
+        "systemically": [
+          "commun",
+          "elfe"
+        ],
+        "additional": [
+          "draconien",
+          "gnoll",
+          "gnome",
+          "gobelin",
+          "orque",
+          "sylvestre"
+        ]
+      },
+      "adultAge": 110,
+      "ageModifier": {
+        "Barbare": "4d6",
+        "Ensorceleur": "4d6",
+        "Roublard": "4d6",
+        "Barde": "6d6",
+        "Guerrier": "6d6",
+        "Paladin": "6d6",
+        "Rôdeur": "6d6",
+        "Druide": "10d6",
+        "Magicien": "10d6",
+        "Moine": "10d6",
+        "Prêtre": "10d6"
+      },
+      "baseHeight": {
+        "M": 135,
+        "F": 135
+      },
+      "modHeight": "5d6",
+      "baseWeight": {
+        "M": 42,
+        "F": 40
+      },
+      "modWeight": "1d6",
+      "id": "5bf3"
+    },
+    {
+      "name": "demi-orque",
+      "statsModifiers": [
+        {
+          "stat": "FOR",
+          "mod": 2
+        },
+        {
+          "stat": "INT",
+          "mod": -2
+        },
+        {
+          "stat": "CHA",
+          "mod": -2
+        }
+      ],
+      "sizeCategorie": "M",
+      "skills": [],
+      "languages": {
+        "systemically": [
+          "commun",
+          "orque"
+        ],
+        "additional": [
+          "abyssal",
+          "draconien",
+          "géant",
+          "gnoll",
+          "gobelin"
+        ]
+      },
+      "adultAge": 14,
+      "ageModifier": {
+        "Barbare": "1d4",
+        "Ensorceleur": "1d4",
+        "Roublard": "1d4",
+        "Barde": "1d6",
+        "Guerrier": "1d6",
+        "Paladin": "1d6",
+        "Rôdeur": "1d6",
+        "Druide": "2d6",
+        "Magicien": "2d6",
+        "Moine": "2d6",
+        "Prêtre": "2d6"
+      },
+      "baseHeight": {
+        "M": 150,
+        "F": 135
+      },
+      "modHeight": "5d12",
+      "baseWeight": {
+        "M": 75,
+        "F": 55
+      },
+      "modWeight": "2d6",
+      "id": "7e29"
+    }
+  ],
+  "classes": [
+    {
+      "name": "Barbare",
+      "DV": "d12",
+      "classSkills": [
+        "Artisanat",
+        "Dressage",
+        "Equitation",
+        "Escalade",
+        "Intimidation",
+        "Natation",
+        "Perception auditive",
+        "Saut",
+        "Survie"
+      ],
+      "baseSkillPoints": "(4 + mod INT) * 4",
+      "skillPointsPerLevel": "4 + mod INT",
+      "weapons": [
+        "courante",
+        "guerre"
+      ],
+      "shields": "toutes sauf pavois",
+      "armors": [
+        "lègere",
+        "intermédiaire"
+      ],
+      "special": [],
+      "id": "68d2"
+    },
+    {
+      "name": "Roublard",
+      "DV": "d6",
+      "classSkills": [
+        "Acrobaties",
+        "Artisanat",
+        "Bluff",
+        "Connaissance (Folklore local)",
+        "Contrefaçon",
+        "Crochetage",
+        "Décryptage",
+        "Déguisement",
+        "Déplacement silencieux",
+        "Désamorçage/sabotage",
+        "Détection",
+        "Diplomatie",
+        "Discrétion",
+        "Equilibre",
+        "Escalade",
+        "Escamotage",
+        "Estimation",
+        "Evasion",
+        "Fouille",
+        "Intimidation",
+        "Maîtrise des cordes",
+        "Natation",
+        "Perception auditive",
+        "Profession",
+        "Psychologie",
+        "Renseignement",
+        "Représentation",
+        "Saut",
+        "Utilisation d'objets magiques"
+      ],
+      "baseSkillPoints": "(8 + mod INT) * 4",
+      "skillPointsPerLevel": "8 + mod INT",
+      "weapons": [
+        "courante",
+        "arbalète de poing",
+        "arc court (normal et composite)",
+        "épée courte",
+        "matraque",
+        "rapière"
+      ],
+      "shields": "",
+      "armors": [
+        "lègere"
+      ],
+      "special": [],
+      "id": "1c9a"
+    }
+  ],
+  "classBaseBonus": [],
+  "alignments": [
+    {
+      "name": "Loyal Bon",
+      "id": "0e18"
+    },
+    {
+      "name": "Loyal Neutre",
+      "id": "5aef"
+    },
+    {
+      "name": "Loyal Mauvais",
+      "id": "d6b8"
+    },
+    {
+      "name": "Neutre Bon",
+      "id": "0c30"
+    },
+    {
+      "name": "Neutre",
+      "id": "ebb9"
+    },
+    {
+      "name": "Neutre Mauvais",
+      "id": "d7eb"
+    },
+    {
+      "name": "Chaotique Bon",
+      "id": "e8d3"
+    },
+    {
+      "name": "Chaotique Neutre",
+      "id": "37ed"
+    },
+    {
+      "name": "Chaotique Mauvais",
+      "id": "20d0"
+    }
+  ],
+  "genders": [
+    {
+      "name": "M",
+      "id": "6be0"
+    },
+    {
+      "name": "F",
+      "id": "b58d"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Acrobaties",
+      "key": "DEX",
+      "innate": false,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Art de la magie",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Artisanat",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Artisanat",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Artisanat",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Bluff",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Concentration",
+      "key": "CON",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Connaissances",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Contrefaçon",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Crochetage",
+      "key": "DEX",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Décryptage",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Déguisement",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Déplacement silencieux",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Désamorçage/Sabotage",
+      "key": "INT",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Détection",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Diplomatie",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Discrétion",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Dressage",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Equilibre",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Equitation",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Escalade",
+      "key": "FOR",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Escamotage",
+      "key": "DEX",
+      "innate": false,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Estimation",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Evasion",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Fouille",
+      "key": "INT",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Intimidation",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Maîtrise des cordes",
+      "key": "DEX",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Natation",
+      "key": "FOR",
+      "innate": true,
+      "armorMalus": 2,
+      "choice": false
+    },
+    {
+      "name": "Perception auditive",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Premiers secours",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Profession",
+      "key": "SAG",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Profession",
+      "key": "SAG",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Psychologie",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Renseignements",
+      "key": "CHA",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Représentation",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Représentation",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Représentation",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": true
+    },
+    {
+      "name": "Saut",
+      "key": "FOR",
+      "innate": true,
+      "armorMalus": 1,
+      "choice": false
+    },
+    {
+      "name": "Survie",
+      "key": "SAG",
+      "innate": true,
+      "armorMalus": 0,
+      "choice": false
+    },
+    {
+      "name": "Utilisation d'objets magiques",
+      "key": "CHA",
+      "innate": false,
+      "armorMalus": 0,
+      "choice": false
+    }
+  ]
+}

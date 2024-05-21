@@ -1,0 +1,16 @@
+<div *ngIf="isSidebarOpen$ | async" [@inOutAnimation]>
+  <ul class="navigation-list">
+    <li
+      class="navigation-list-element"
+      *ngFor="let page of pagesToNavigateList"
+    >
+      <app-custom-button
+        class="navigation-button"
+        [routerLink]="page.url"
+        [name]="page.name"
+        [style]="'lblue-gold'"
+        (click)="onClick()"
+      ></app-custom-button>
+    </li>
+  </ul>
+</div>

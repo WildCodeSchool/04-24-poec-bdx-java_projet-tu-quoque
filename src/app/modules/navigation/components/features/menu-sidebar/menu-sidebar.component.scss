@@ -1,0 +1,26 @@
+:host {
+    position: absolute;
+}
+
+
+.navigation-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 90px 0 0 0;
+    height: calc(100vh - 90px);
+    width: 100vw;
+    padding-inline-start: 0;
+    gap: 0.5em;
+    background-color: #30495B;
+    position: absolute;
+    z-index: 300;
+
+    &.hidden {
+        display: none;
+    }
+    .navigation-list-element {
+        list-style-type: none;
+    }
+}

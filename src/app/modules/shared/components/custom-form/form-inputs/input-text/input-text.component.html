@@ -1,0 +1,17 @@
+<label [for]="field.id">{{ field.label }}</label>
+    <div class="input-container">
+    <input
+        [id]="field.id"
+        [name]="field.name"
+        [type]="field.type"
+        [formControl]="control"
+        [placeholder]="field.placeholder"
+        (blur)="onBlur()"
+    />
+    </div>
+
+    <div class="error-input">
+        <app-input-error 
+            [control]="control">
+        </app-input-error>
+    </div>
