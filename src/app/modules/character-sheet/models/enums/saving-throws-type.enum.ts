@@ -1,4 +1,6 @@
 export enum SavingThrowType {
-    "low",
-    "high"
+    low = "low",
+    high = "high"
 }
+
+export type SavingThrowTypeKey = keyof typeof SavingThrowType;
