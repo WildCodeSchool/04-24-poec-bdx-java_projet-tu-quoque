@@ -27,10 +27,8 @@ export class CharacterSavingThrows {
     }
 
     updateModValues(fortitudeMod: number, reflexesMod: number, willMod: number): void {
-        console.log(fortitudeMod, reflexesMod, willMod, "FROM UPDATEVALUES")
         this.fortitude.setStatMod(fortitudeMod);
         this.reflexes.setStatMod(reflexesMod);
         this.will.setStatMod(willMod);
     }
-
 }
