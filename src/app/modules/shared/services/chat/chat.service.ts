@@ -19,7 +19,7 @@ export class ChatService extends ApiRessourceService<Chat> {
     return this._BASE_URL;
   }
 
-  getChatListByTable(tableId: number): Observable<Chat[]> {
+  getChatListByTable$(tableId: number): Observable<Chat[]> {
     return this.getAll$().pipe(
       map((result: Chat[]) =>
         result.filter((chat: Chat) => Number(chat.tableId) === tableId)
@@ -27,7 +27,7 @@ export class ChatService extends ApiRessourceService<Chat> {
     );
   }
 
-  getChatListByCharacter(characterId: number): Observable<Chat[]> {
+  getChatListByCharacter$(characterId: number): Observable<Chat[]> {
     return this.getAll$().pipe(
       map((result: Chat[]) =>
         result.filter((chat: Chat) => Number(chat.characterId) === characterId)

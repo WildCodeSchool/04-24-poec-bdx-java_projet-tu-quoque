@@ -37,7 +37,7 @@ export class CharacterPageComponent implements OnInit {
         return this._tableService.getById$(res.tableId as number);
       })
     );
-    this.chatList$ = this._chatService.getChatListByCharacter(id);
+    this.chatList$ = this._chatService.getChatListByCharacter$(id);
   }
 
   toggleCharacterSheetVisible(event: boolean): void {
