@@ -1,7 +1,22 @@
 <td class="stat-name">{{savingThrow.name}}<br>{{savingThrow.caracName}}</td>
-<td>{{savingThrow.totalValue}}</td>
-<td>{{savingThrow.baseValue}}</td>
-<td>{{savingThrow.statMod}}</td>
+<td>
+    <app-metamorphosis
+    [value] = "savingThrow.totalValue.toString()"
+    >
+    </app-metamorphosis> 
+</td>
+<td>
+    <app-metamorphosis
+    [value] = "savingThrow.baseValue.toString()"
+    >
+    </app-metamorphosis> 
+</td>
+<td>
+    <app-metamorphosis
+    [value] = "savingThrow.statMod.toString()"
+    >
+    </app-metamorphosis> 
+</td>
 <td></td>
 <td></td>
 <td></td>
