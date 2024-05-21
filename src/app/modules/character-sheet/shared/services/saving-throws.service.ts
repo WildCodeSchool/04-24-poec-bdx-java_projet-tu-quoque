@@ -1,6 +1,6 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { CharacterSheetService } from './character-sheet.service';
-import { BehaviorSubject, map, Observable, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { CharacterClass } from '../../models/types/character-class.type';
 import { SavingThrows } from '../../models/types/saving-throws.type';
@@ -8,6 +8,7 @@ import { CharacterSavingThrows } from '../../models/classes/character-saving-thr
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SavingThrowType } from '../../models/enums/saving-throws-type.enum';
 import { SavingThrowsEnum } from '../../models/enums/saving-throw-enum.enum';
+import { Race } from '../../models/types/race.type';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class SavingThrowsService {
   private level$: Observable<number> = this.sheetService.getLevel$();
   private caracs$: Observable<StatisticDetails[]> = this.sheetService.getCaracteristics$();
   private classSavingThrows$: Observable<SavingThrows> = this.getClassSavingThrows();
+  private race$: Observable<Race> = this.sheetService.getRaceDetails$();
 
   private characterSavingThrows = new CharacterSavingThrows();
 
@@ -49,10 +51,17 @@ export class SavingThrowsService {
   }
 
   update() {
+    this.observeRace();
     this.updateLevel();
     this.updateClass();
     this.updateStatsMod();
     this.updateStream();
+  }
+
+  observeRace() {
+    this.race$.pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(race => this.updateStatsMod());
   }
 
   updateLevel(): void {
@@ -81,9 +90,8 @@ export class SavingThrowsService {
         const fortitudeMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.fortitude) as StatisticDetails).getFinalMod();
         const reflexesMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.reflexes) as StatisticDetails).getFinalMod();
         const willMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.will) as StatisticDetails).getFinalMod();
-        console.log(fortitudeMod, reflexesMod, willMod, "FROM CHARACTER SAVING THROWS")
         this.characterSavingThrows.updateModValues(fortitudeMod, reflexesMod, willMod);
-
+        this.updateStream();
       }
     })
   }
