@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DbService } from '../../../shared/services/db-service/db.service';
-import { map, Observable, Subject, switchMap } from 'rxjs';
+import { distinctUntilChanged, map, Observable, Subject, switchMap } from 'rxjs';
 import { Race } from '../../models/types/race.type';
 import { ListenPlayerActionService } from './listen-player-action.service';
 import { CharacterClass } from '../../models/types/character-class.type';
@@ -55,10 +55,17 @@ export class CharacterSheetService {
     );
   }
 
+  getLevel$(): Observable<number> {
+    return this.listener.sendInfos().pipe(
+      map((sheet: any) => sheet.level),
+      distinctUntilChanged()
+    );
+  }
+
   getCaracteristics$(): Observable<StatisticDetails[]> {
     return this.listener.sendInfos().pipe(
       map((sheet: any) => sheet.stats)
-    )
+    );
   }
 
   setSizeCategory$(): Observable<string> {
@@ -66,7 +73,7 @@ export class CharacterSheetService {
       map((race: Race) =>
         race ? race.sizeCategorie : ""
       ),
-    )
+    );
   }
 
   setHeight$(): Observable<string> {
