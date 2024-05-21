@@ -12,3 +12,10 @@
         </tr>
     </thead>
 </table>
+
+<div *ngIf="savingThrows$ | async as savingThrows">
+{{savingThrows.toString()}}<br>
+{{savingThrows.reflexes.toString()}}<br>
+{{savingThrows.fortitude.toString()}}<br>
+{{savingThrows.will.toString()}}<br>
+</div>
