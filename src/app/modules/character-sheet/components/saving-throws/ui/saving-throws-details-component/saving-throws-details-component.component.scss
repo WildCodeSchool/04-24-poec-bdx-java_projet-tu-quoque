@@ -1,0 +1,16 @@
+td {
+    text-align: center;
+    font-size: 24px;
+    border: 1px solid black;
+    min-width: 4ch;
+}
+
+td:first-of-type {
+    background-color: black;
+    color: white;
+}
+
+.stat-name {
+    display: block;
+    font-size: 16px;
+}

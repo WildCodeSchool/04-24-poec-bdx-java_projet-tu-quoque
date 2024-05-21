@@ -1,1 +1,8 @@
-<p>saving-throws-details-component works!</p>
+<td class="stat-name">{{savingThrow.name}}<br>{{savingThrow.caracName}}</td>
+<td>{{savingThrow.totalValue}}</td>
+<td>{{savingThrow.baseValue}}</td>
+<td>{{savingThrow.statMod}}</td>
+<td></td>
+<td></td>
+<td></td>
+<td rowspan="3" *ngIf="savingThrow.caracName == 'DEX'"></td>
