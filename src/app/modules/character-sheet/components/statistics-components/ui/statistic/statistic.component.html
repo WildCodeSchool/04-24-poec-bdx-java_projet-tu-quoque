@@ -2,7 +2,15 @@
     {{stat.abbr}}
     <span class="stat-name">{{stat.name}}</span>
 </td>
-<td>{{stat.value}}</td>
-<td>{{stat.mod}}</td>
+<td>
+    <app-metamorphosis
+    [value]="stat.value.toString()"
+    ></app-metamorphosis>
+</td>
+<td>
+    <app-metamorphosis
+    [value]="stat.mod.toString()"
+    ></app-metamorphosis>
+</td>
 <td><input type="number" name="temp-{{stat.abbr}}" id="temp-{{stat.abbr}}" [(ngModel)]="playerInput" (ngModelDebounceChange)="updateTempValue()"></td>
 <td>{{stat.tempValue ? stat.tempMod : ""}}</td>

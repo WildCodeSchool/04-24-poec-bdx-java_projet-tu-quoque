@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NoteService } from '../../../../../../../shared/services/note/note.service';
-import { ActivatedRoute } from '@angular/router';
 import { Note } from '../../../../../../../shared/models/types/users/note.type';
 
 @Component({
@@ -15,6 +14,5 @@ export class UserNotesComponent {
 
   constructor(
     private _notesService: NoteService,
-    private _route: ActivatedRoute
   ) {}
 }

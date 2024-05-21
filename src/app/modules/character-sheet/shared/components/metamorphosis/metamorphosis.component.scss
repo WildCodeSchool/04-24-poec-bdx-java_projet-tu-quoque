@@ -1,0 +1,19 @@
+:host {
+    --animation-time: 2.5s;
+}
+
+.explode {
+    animation: change var(--animation-time);
+}
+
+@keyframes change {
+    from {
+        background-color: #0b202f;
+        color: white;
+    }
+
+    to {
+        background-color: white;
+        color: black;
+    }
+}
