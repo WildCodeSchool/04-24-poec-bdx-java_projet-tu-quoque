@@ -87,7 +87,7 @@
       "userId": 2,
       "tableId": 1,
       "characterSheetId": 1,
-      "accepted": false,
+      "accepted": true,
       "scheduleId": 1
     },
     {
