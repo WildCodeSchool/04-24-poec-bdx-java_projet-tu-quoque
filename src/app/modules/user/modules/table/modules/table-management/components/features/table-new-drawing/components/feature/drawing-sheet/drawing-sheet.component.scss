@@ -1,9 +1,25 @@
-canvas {
-  width: 26rem;
-  height: 26rem;
-  border: 1px solid black;
-}
-
-.draw {
+:host {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  .accessory {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0b202f;
+    .tools {
+      display: flex;
+    }
+  }
+  canvas {
+    width: 23.5rem;
+    height: 24rem;
+    border: 1px solid black;
+  }
+  footer {
+    background-color: #0b202f;
+    flex-grow: 1;
+  }
 }

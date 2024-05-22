@@ -1,4 +1,4 @@
-<section class="tools">
+<section>
     <button type="button" (click)="drawFree()">
         <img [src]="drawfreeIcon" alt="Dessin libre">
     </button>
@@ -14,13 +14,15 @@
     <button type="button" (click)="drawSquare()">
         <img [src]="squareIcon" alt="Carré">
     </button>
+</section>
+<section>
+    <button type="button" (click)="eraseAll()">
+        Reset
+    </button>
     <button type="button" (click)="erase()">
         <img [src]="eraseIcon" alt="Gomme">
     </button>
     <button type="button" (click)="undoAction()">
         <img [src]="returnIcon" alt="Effacer">
-    </button>
-    <button type="button" (click)="eraseAll()">
-        Réinitialise
     </button>
 </section>
