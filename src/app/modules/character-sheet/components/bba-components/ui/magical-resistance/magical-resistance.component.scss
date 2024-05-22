@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.title-case {
+    padding: 4px 48px;
+}
+
+.major {
+    max-width: 200px;
+}
