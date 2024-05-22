@@ -35,7 +35,7 @@ export class ToolsComponent {
     this.restorePreviousSettings();
     const canvas = this._drawingSheet.canvasRef.nativeElement;
     const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-    this._drawingSheet.drawFree(start$, move$, end$);
+    this._drawingSheet.drawFree();
   }
 
   drawLine(){
@@ -65,7 +65,7 @@ export class ToolsComponent {
     
     const canvas = this._drawingSheet.canvasRef.nativeElement;
     const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-    this._drawingSheet.drawFree(start$, move$, end$);
+    this._drawingSheet.drawFree();
   }
   
   undoAction(){

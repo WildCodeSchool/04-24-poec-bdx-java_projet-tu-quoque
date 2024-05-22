@@ -26,7 +26,6 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   private _eventSubscriptions: Subscription[] = []; 
   private _drawnPaths: { color: string, lineWidth: number, path: {x: number, y: number}[] }[] = [];
 
-  private lastMoveEvent!: MouseEvent | TouchEvent;
 
   constructor(
     private _colorService: ColorService,
@@ -62,10 +61,10 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
   private captureEvents(canvas: HTMLCanvasElement) {
     const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-    this.drawFree(start$, move$, end$);
+    this.drawFree();
   }
 
-  drawFree(start$: Observable<MouseEvent | TouchEvent>, move$: Observable<MouseEvent | TouchEvent>, end$: Observable<MouseEvent | TouchEvent>) {
+  drawFree() {
     new FreeShape(
       this.canvasRef,
       this._drawingService,
@@ -77,7 +76,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this.redrawAll.bind(this),
       this._currentColor,
       this._currentLineWidth
-    ).drawShape(start$, move$, end$);
+    )
   }
 
    
