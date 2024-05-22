@@ -43,6 +43,12 @@ import { HpUiComponentComponent } from './components/hp-ac/ui/hp-ui-component/hp
 import { CaUiComponentComponent } from './components/hp-ac/ui/ca-ui-component/ca-ui-component.component';
 import { ReduceDamageUiComponentComponent } from './components/hp-ac/ui/reduce-damage-ui-component/reduce-damage-ui-component.component';
 import { InitUiComponentComponent } from './components/hp-ac/ui/init-ui-component/init-ui-component.component';
+import { BbaComponentComponent } from './components/bba-components/features/bba-component/bba-component.component';
+import { BbaUiComponent } from './components/bba-components/ui/bba-ui/bba-ui.component';
+import { MagicalResistanceComponent } from './components/bba-components/ui/magical-resistance/magical-resistance.component';
+import { WrestlingComponent } from './components/bba-components/ui/wrestling/wrestling.component';
+import { AttacksComponent } from './components/attacks/features/attacks/attacks.component';
+import { AttackComponent } from './components/attacks/ui/attack/attack.component';
 
 
 @NgModule({
@@ -86,7 +92,13 @@ import { InitUiComponentComponent } from './components/hp-ac/ui/init-ui-componen
     HpUiComponentComponent,
     CaUiComponentComponent,
     ReduceDamageUiComponentComponent,
-    InitUiComponentComponent
+    InitUiComponentComponent,
+    BbaComponentComponent,
+    BbaUiComponent,
+    MagicalResistanceComponent,
+    WrestlingComponent,
+    AttacksComponent,
+    AttackComponent
   ],
   imports: [
     CommonModule,

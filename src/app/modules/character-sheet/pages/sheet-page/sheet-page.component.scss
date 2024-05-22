@@ -27,10 +27,20 @@ app-hp-ac-component {
 
 app-saving-throws-feature {
     grid-column: 1/16;
-    grid-row: 8/12;
+    grid-row: 8/10;
 }
 
 app-skill-list {
     grid-column: 16/25;
     grid-row: 5/17;
+}
+
+app-bba-component {
+    grid-column: 1/16;
+    grid-row: 10/11;
+}
+
+app-attacks {
+    grid-column: 1/16;
+    grid-row: 11/auto;
 }
