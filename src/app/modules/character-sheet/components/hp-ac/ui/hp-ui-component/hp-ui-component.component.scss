@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    &>div {
+        align-self: flex-end;
+    }
+}
+
+.long-case {
+    min-width: 300px;
+}
