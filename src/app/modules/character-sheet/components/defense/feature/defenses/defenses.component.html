@@ -1,0 +1,10 @@
+<app-armor-ui
+[armor]="armor"
+></app-armor-ui>
+<app-shield-ui
+[shield]="shield"
+></app-shield-ui>
+<app-protection-ui
+*ngFor="let item of [].constructor(2); let i = index;"
+[protection]="protections[i]"
+></app-protection-ui>

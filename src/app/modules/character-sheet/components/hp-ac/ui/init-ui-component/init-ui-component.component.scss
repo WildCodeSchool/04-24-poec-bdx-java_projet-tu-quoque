@@ -1,0 +1,28 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.title-case {
+    padding-top: 16px;
+    height: fit-content;
+}
+
+.case {
+    position: relative;
+}
+
+.case.total::after {
+    position: absolute;
+    top: 12px;
+    right: -18px;
+    content: "=";
+}
+
+.case.dex::after {
+    position: absolute;
+    top: 12px;
+    right: -18px;
+    content: "+";
+}

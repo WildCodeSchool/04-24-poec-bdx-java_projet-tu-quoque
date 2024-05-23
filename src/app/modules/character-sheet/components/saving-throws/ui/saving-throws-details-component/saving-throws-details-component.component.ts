@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SavingThrow } from '../../../../models/classes/saving-throw.class';
 
 @Component({
-  selector: 'app-saving-throws-details-component',
+  selector: '[saving-throws-row]',
   templateUrl: './saving-throws-details-component.component.html',
   styleUrl: './saving-throws-details-component.component.scss'
 })
 export class SavingThrowsDetailsComponentComponent {
-
+  @Input()
+  savingThrow!: SavingThrow;
 }

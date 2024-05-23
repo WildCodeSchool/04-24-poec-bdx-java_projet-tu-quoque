@@ -1,1 +1,23 @@
-<p>saving-throws-details-component works!</p>
+<td class="stat-name">{{savingThrow.name}}<br>{{savingThrow.caracName}}</td>
+<td>
+    <app-metamorphosis
+    [value] = "savingThrow.totalValue.toString()"
+    >
+    </app-metamorphosis> 
+</td>
+<td>
+    <app-metamorphosis
+    [value] = "savingThrow.baseValue.toString()"
+    >
+    </app-metamorphosis> 
+</td>
+<td>
+    <app-metamorphosis
+    [value] = "savingThrow.statMod.toString()"
+    >
+    </app-metamorphosis> 
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td rowspan="3" *ngIf="savingThrow.caracName == 'DEX'"></td>

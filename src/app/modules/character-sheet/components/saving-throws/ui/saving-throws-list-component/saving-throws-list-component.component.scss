@@ -2,6 +2,10 @@ table {
     thead {
         font-size: 12px;
 
+        th {
+            font-weight: 400;
+        }
+
         th.mod {
             width: 4ch;
         }

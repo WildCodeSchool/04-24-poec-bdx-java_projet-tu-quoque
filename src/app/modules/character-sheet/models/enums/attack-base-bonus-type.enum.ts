@@ -3,3 +3,4 @@ export enum AttackBaseBonusType {
     "medium" = 3 / 4,
     "high" = 1
 }
+export type AttackBaseBonusTypeKey = keyof typeof AttackBaseBonusType;

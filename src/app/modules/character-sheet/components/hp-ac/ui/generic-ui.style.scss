@@ -1,0 +1,32 @@
+:host {
+    text-align: center;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.case {
+    border: 1px solid black;
+    font-size: 24px;
+    padding: 12px;
+    min-width: 60px;
+    min-height: 60px;
+    text-align: center;
+}
+
+.title-case {
+    background-color: black;
+    color: white;
+    padding: 4px 8px;
+    min-height: 60px;
+}
+
+.major {
+    font-size: 24px;
+}
+
+.minor {
+    font-size: 12px;
+}
