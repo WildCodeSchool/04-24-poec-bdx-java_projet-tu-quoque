@@ -10,7 +10,7 @@ import { calendarEvent } from '../../models/types/users/calendarEvent.type';
   providedIn: 'root',
 })
 export class EventService extends ApiRessourceService<any> {
-  
+
   private eventList$ = new BehaviorSubject<any[]>([]);
   private readonly _BASE_URL: string = 'http://localhost:3000/events';
 
@@ -54,7 +54,6 @@ export class EventService extends ApiRessourceService<any> {
         allDay: true,
       };
       this.addEvent(newEvent);
-      console.log(newEvent);
     }
   };
 
@@ -65,16 +64,11 @@ export class EventService extends ApiRessourceService<any> {
   showEventDetail = (arg: EventClickArg): void => this.showDetail(arg);
 
   eventResize = (info: EventResizeDoneArg): void => {
-    console.log(info.event.start);
-    console.log(info.event.end);
   };
 
   moveEvent = (info: EventDropArg): void => {
-    console.log(info.event.start);
-    console.log(info.event.end);
     if (!confirm('Etes-vous sûr ?')) {
       info.revert();
     }
-    console.log('Le nouvel élément aura lieu ' + info.event.start);
   };
 }
