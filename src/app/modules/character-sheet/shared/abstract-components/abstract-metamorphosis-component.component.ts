@@ -6,12 +6,12 @@ import { ANIMATION_DURATION } from "../constants/constants.constant";
 @Component({ template: "" })
 export abstract class AbstractMetamorphosisComponent {
 
-    isbgred: boolean = false;
+    hasChanged: boolean = false;
 
     constructor(private destroyRef: DestroyRef) { }
 
     handleDomChange(event: any) {
-        this.isbgred = true;
+        this.hasChanged = true;
         this.runExplosion();
     }
 
@@ -20,10 +20,10 @@ export abstract class AbstractMetamorphosisComponent {
         source
             .pipe(
                 takeUntilDestroyed(this.destroyRef),
-                takeWhile(() => this.isbgred),
+                takeWhile(() => this.hasChanged),
             )
             .subscribe((n) => {
-                this.isbgred = false;
+                this.hasChanged = false;
             });
     }
 }
