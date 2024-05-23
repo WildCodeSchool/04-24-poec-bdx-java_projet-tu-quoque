@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class EraseUtilitiesService {
+export class CanvasEraseService {
 
   eraseAll(
     canvasRef: ElementRef<HTMLCanvasElement>,

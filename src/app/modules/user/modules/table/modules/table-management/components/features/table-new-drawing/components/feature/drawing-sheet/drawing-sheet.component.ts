@@ -2,13 +2,9 @@ import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } fro
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
 import { Subscription, map } from 'rxjs';
 import { DrawingUtilitiesService } from '../../../../../../../../../../../shared/services/drawing/drawing-utilities.service';
-import { CircleShape } from './drawing-utilities/CircleShape';
-import { LineShape } from './drawing-utilities/LineShape';
-import { SquareShape } from './drawing-utilities/SquareShape';
-import { TriangleShape } from './drawing-utilities/TriangleShape';
-import { FreeShape } from './drawing-utilities/FreeShape';
 import { DrawingModel } from '../../../../../../../../../../../shared/models/class/drawing-models';
-import { EraseUtilitiesService } from '../../../../../../../../../../../shared/services/drawing/erase-utilities.service';
+import { CanvasEraseService } from '../../../../../../../../../../../shared/services/drawing/canvas-erase.service';
+import { CanvasRedrawService } from '../../../../../../../../../../../shared/services/drawing/canvas-redraw.service';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -33,7 +29,8 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   constructor(
     private _colorService: ColorService,
     private _drawingService: DrawingUtilitiesService,
-    private _eraseUtilities: EraseUtilitiesService
+    private _canvasEraseService: CanvasEraseService,
+    private _canvasRedrawService: CanvasRedrawService
   ) { }
 
   ngAfterViewInit() {
@@ -126,28 +123,10 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
 
   private redrawAll() {
-    this.ctx.clearRect(0, 0, this.width, this.height);
-
-    this._drawnPaths.forEach(pathInfo => {
-      this.ctx.strokeStyle = pathInfo.color;
-      this.ctx.lineWidth = pathInfo.lineWidth;
-
-      const path = pathInfo.path;
-      if (path.length > 1) {
-        this.ctx.beginPath();
-        this.ctx.moveTo(path[0].x, path[0].y);
-        for (let i = 1; i < path.length; i++) {
-          this.ctx.lineTo(path[i].x, path[i].y);
-        }
-        this.ctx.stroke();
-      }
-    });
-    
-    this.ctx.strokeStyle = this._currentColor;
-    this.ctx.lineWidth = this._currentLineWidth;
+  this._canvasRedrawService.redrawAll(this.ctx, this.width, this.height, this._drawnPaths, this._currentColor, this._currentLineWidth)
   }
 
   eraseAll() {
-  this._eraseUtilities.eraseAll(this.canvasRef, this._drawnPaths, this._eventSubscriptions, this.captureEvents.bind(this));
+  this._canvasEraseService.eraseAll(this.canvasRef, this._drawnPaths, this._eventSubscriptions, this.captureEvents.bind(this));
   }
 }
