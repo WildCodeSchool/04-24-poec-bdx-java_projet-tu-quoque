@@ -12,7 +12,7 @@ export class PaletteComponent implements OnInit {
     private _renderer: Renderer2, 
     private _colorService: ColorService) {}
 
-  colors: string[] = ['#0b202f', '#496F5B', '#FDB833', '#B0281E', 'black'];
+  colors: string[] = ['#71A9F7', '#496F5B', '#FDB833', '#B0281E', 'black'];
 
   ngOnInit() {
     this.applyPaletteColors();

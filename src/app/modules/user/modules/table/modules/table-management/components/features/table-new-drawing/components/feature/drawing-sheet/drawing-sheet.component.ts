@@ -65,7 +65,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
 
   drawFree() {
-    new FreeShape(
+    const drawFree = new FreeShape(
       this.canvasRef,
       this._drawingService,
       this._colorService,
@@ -76,7 +76,8 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this.redrawAll.bind(this),
       this._currentColor,
       this._currentLineWidth
-    )
+    );
+    drawFree.startDrawing();
   }
 
    
@@ -117,7 +118,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
   
   drawSquare() {
-    new SquareShape(
+    const square = new SquareShape(
       this.canvasRef,
       this._drawingService,
       this._colorService,
@@ -129,25 +130,11 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this._currentColor,
       this._currentLineWidth
     );
+    square.startDrawing();
   }
   
   drawCircle() {
-    new CircleSape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    )
-  }
-  
-  drawTriangle() {
-    new TriangleShape(
+    const circle = new CircleSape(
       this.canvasRef,
       this._drawingService,
       this._colorService,
@@ -159,10 +146,11 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this._currentColor,
       this._currentLineWidth
     );
+    circle.startDrawing();
   }
   
-  drawLine() {
-    new LineShape(
+  drawTriangle() {
+   const triangle = new TriangleShape(
       this.canvasRef,
       this._drawingService,
       this._colorService,
@@ -173,7 +161,24 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this.redrawAll.bind(this),
       this._currentColor,
       this._currentLineWidth
-    )
+    );
+    triangle.startDrawing();
+  }
+  
+  drawLine() {
+    const line = new LineShape(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._drawnPaths,
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
+    );
+    line.startDrawing();
   } 
 
   eraseAll() {
@@ -181,7 +186,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     const context = canvas.getContext('2d');
     if (context) {
       context.clearRect(0, 0, canvas.width, canvas.height);
-      this._drawnPaths = [];
     }
+    this._drawnPaths = [];
   }
 }

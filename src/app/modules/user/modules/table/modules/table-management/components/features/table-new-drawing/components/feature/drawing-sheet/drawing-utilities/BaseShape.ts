@@ -20,17 +20,16 @@ export abstract class BaseShape {
         currentColor: string,
         currentLineWidth: number
       ) {
-        this.initDrawing();
+        this.startDrawing();
         this.subscribeToColorChanges();
       }
       
 
-      private initDrawing() {
+      public startDrawing() {
         this._drawingService.unsubscribeAllEvents();
         const canvas = this.canvasRef.nativeElement;
         const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-    
-        this.drawShape(start$, move$, end$);     
+        this.drawShape(start$, move$, end$);       
       }
 
       private subscribeToColorChanges() {

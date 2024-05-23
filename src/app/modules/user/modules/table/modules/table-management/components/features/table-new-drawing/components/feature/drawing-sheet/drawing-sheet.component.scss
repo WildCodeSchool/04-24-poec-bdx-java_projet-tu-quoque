@@ -14,9 +14,13 @@
     }
   }
   canvas {
-    width: 23.5rem;
-    height: 24rem;
+    width: 23rem;
+    height: 25rem;
     border: 1px solid black;
+  }
+  div {
+    display: flex;
+    justify-content: center;
   }
   footer {
     background-color: #0b202f;
