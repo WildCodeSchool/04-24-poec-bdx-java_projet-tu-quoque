@@ -9,10 +9,7 @@ import { BbaService } from '../../../../shared/services/bba.service';
 })
 export class BbaComponentComponent {
   bbaService = inject(BbaService);
-
   bba$: Observable<number[]> = this.bbaService.bbaStream$;
   magicalResistance: number = 0;
   wrestling: number = 0;
-
-
 }
