@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bba-ui',
@@ -11,5 +12,5 @@ import { Component, Input } from '@angular/core';
 })
 export class BbaUiComponent {
   @Input()
-  bba!: number;
+  bba$!: Observable<number[]>;
 }

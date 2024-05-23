@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BbaService } from '../../../../shared/services/bba.service';
 
 @Component({
   selector: 'app-bba-component',
@@ -6,7 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './bba-component.component.scss'
 })
 export class BbaComponentComponent {
-  bba: number = 0;
+  bbaService = inject(BbaService);
+
+  bba$: Observable<number[]> = this.bbaService.bbaStream$;
   magicalResistance: number = 0;
   wrestling: number = 0;
+
+
 }
