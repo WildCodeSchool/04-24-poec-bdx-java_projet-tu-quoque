@@ -109,7 +109,18 @@
       "characterSheetId": 1,
       "accepted": false,
       "scheduleId": 1
+    },
+    {
+      "id": 7,
+      "name": "Morgoth",
+      "avatar": "",
+      "userId": 1,
+      "tableId": null,
+      "characterSheetId": 1,
+      "accepted": false,
+      "scheduleId": 1
     }
+
   ],
   "user_table_invitations": [
     {
