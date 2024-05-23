@@ -5,6 +5,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './bba-ui.component.html',
   styleUrls: [
     './../../../hp-ac/ui/generic-ui.style.scss',
+    './../bba-ui.style.scss',
     './bba-ui.component.scss'
   ]
 })

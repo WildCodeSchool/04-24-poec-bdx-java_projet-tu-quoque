@@ -5,6 +5,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './magical-resistance.component.html',
   styleUrls: [
     './../../../hp-ac/ui/generic-ui.style.scss',
+    './../bba-ui.style.scss',
     './magical-resistance.component.scss'
   ]
 })
