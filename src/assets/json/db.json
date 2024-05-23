@@ -172,13 +172,15 @@
       "id": 1,
       "tableId": 1,
       "title": "dispo Gimli",
-      "date": "2024-05-24"
+      "start": "2024-05-24 00:00:00",
+      "allDay": true
     },
     {
       "id": 2,
       "tableId": 1,
       "title": "dispo Freyr",
-      "date": "2024-05-27" 
+      "start": "2024-05-27 00:00:00" ,
+      "allDay": true
     },
     {
       "id": 3,
