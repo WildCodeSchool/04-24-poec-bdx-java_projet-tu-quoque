@@ -65,9 +65,9 @@
       "name": "Boromir",
       "avatar": "",
       "userId": 1,
-      "tableId": null,
+      "tableId": 2,
       "characterSheetId": 1,
-      "accepted": false,
+      "accepted": true,
       "scheduleId": 1
     },
     {
@@ -132,26 +132,26 @@
   "tables": [
     {
       "id": "1",
-      "avatar": "/assets/images/profile-img-test.jpg",
-      "name": "table ronde",
+      "avatar": "/assets/images/table-profile-images/le-bois-de-la-misericorde.jpg",
+      "name": "le bois de la miséricorde",
       "userId": 1
     },
     {
       "id": "2",
-      "avatar": "",
-      "name": "Les imbattables",
+      "avatar": "/assets/images/table-profile-images/la-communaute.jpg",
+      "name": "La communauté",
       "userId": 2
     },
     {
       "id": "3",
-      "avatar": "",
-      "name": "Les évitables",
+      "avatar": "/assets/images/table-profile-images/le-donjon-des-monts-venteux.jpg",
+      "name": "le donjon des monts venteux",
       "userId": 1
     },
     {
       "id": "4",
-      "avatar": "",
-      "name": "La table des héros",
+      "avatar": "/assets/images/table-profile-images/les-catacombes-oubliees.jpg",
+      "name": "Les catacombes oubliées",
       "userId": 2
     },
     {
@@ -166,6 +166,38 @@
       "id": "1",
       "tablesId": 1
     }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "tableId": 1,
+      "title": "dispo Gimli",
+      "date": "2024-05-24"
+    },
+    {
+      "id": 2,
+      "tableId": 1,
+      "title": "dispo Freyr",
+      "date": "2024-05-27" 
+    },
+    {
+      "id": 3,
+      "tableId": 1,
+      "title": "dispoMJ",
+      "start": "2024-05-28 09:00:00",
+      "end": "2024-05-30 09:00:00",
+      "allDay": true,
+      "color": "#c29b0f"
+    },
+    {
+      "id": 4,
+      "tableId": 2,
+      "title": "table 2 MJ dispo",
+      "start": "2024-05-01 09:00:00",
+      "allDay": true,
+      "color": "#c29b0f"
+    }
+
   ],
   "notes": [
     {
@@ -345,10 +377,7 @@
         }
       ],
       "languages": {
-        "systemically": [
-          "commun",
-          "elfe"
-        ],
+        "systemically": ["commun", "elfe"],
         "additional": [
           "draconien",
           "gnoll",
@@ -403,17 +432,8 @@
       "sizeCategorie": "M",
       "skills": [],
       "languages": {
-        "systemically": [
-          "commun",
-          "orque"
-        ],
-        "additional": [
-          "abyssal",
-          "draconien",
-          "géant",
-          "gnoll",
-          "gobelin"
-        ]
+        "systemically": ["commun", "orque"],
+        "additional": ["abyssal", "draconien", "géant", "gnoll", "gobelin"]
       },
       "adultAge": 14,
       "ageModifier": {
@@ -459,15 +479,9 @@
       ],
       "baseSkillPoints": "(4 + mod INT) * 4",
       "skillPointsPerLevel": "4 + mod INT",
-      "weapons": [
-        "courante",
-        "guerre"
-      ],
+      "weapons": ["courante", "guerre"],
       "shields": "toutes sauf pavois",
-      "armors": [
-        "lègere",
-        "intermédiaire"
-      ],
+      "armors": ["lègere", "intermédiaire"],
       "attackBaseBonus": "high",
       "savingThrowsBonus": {
         "reflexes": "low",
@@ -522,9 +536,7 @@
         "rapière"
       ],
       "shields": "",
-      "armors": [
-        "lègere"
-      ],
+      "armors": ["lègere"],
       "attackBaseBonus": "medium",
       "savingThrowsBonus": {
         "reflexes": "high",
