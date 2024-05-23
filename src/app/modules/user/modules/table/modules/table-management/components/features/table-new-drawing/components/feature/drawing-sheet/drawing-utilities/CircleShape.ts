@@ -1,7 +1,7 @@
 import { Observable, map, switchMap, takeUntil } from "rxjs";
 import { BaseShape } from "./BaseShape";
 
-export class CircleSape extends BaseShape {
+export class CircleShape extends BaseShape {
 
   protected drawShape(
     start$: Observable<MouseEvent | TouchEvent>,

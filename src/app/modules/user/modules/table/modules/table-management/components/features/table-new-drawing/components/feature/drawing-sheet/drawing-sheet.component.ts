@@ -2,11 +2,12 @@ import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } fro
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
 import { Subscription, map } from 'rxjs';
 import { DrawingUtilitiesService } from '../../../../../../../../../../../shared/services/drawing/drawing-utilities.service';
-import { CircleSape } from './drawing-utilities/CircleShape';
+import { CircleShape } from './drawing-utilities/CircleShape';
 import { LineShape } from './drawing-utilities/LineShape';
 import { SquareShape } from './drawing-utilities/SquareShape';
 import { TriangleShape } from './drawing-utilities/TriangleShape';
 import { FreeShape } from './drawing-utilities/FreeShape';
+import { DrawingModel } from '../../../../../../../../../../../shared/models/class/drawing-models';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -19,7 +20,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   @Input() public width = 400; 
   @Input() public height = 400;
 
-  private _ctx!: CanvasRenderingContext2D;
+  private ctx!: CanvasRenderingContext2D;
   private _currentColor: string = 'black';
   private _currentLineWidth: number = 2;
   private _colorSubsciption!: Subscription;
@@ -35,14 +36,14 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
   ngAfterViewInit() {
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-    this._ctx = canvas.getContext('2d')!;
+    this.ctx = canvas.getContext('2d')!;
     
     canvas.width = this.width;
     canvas.height = this.height;
 
-    this._ctx.strokeStyle = this._currentColor;
-    this._ctx.lineWidth = 2;
-    this._ctx.lineCap = 'round';
+    this.ctx.strokeStyle = this._currentColor;
+    this.ctx.lineWidth = 2;
+    this.ctx.lineCap = 'round';
 
     this.captureEvents(canvas);
 
@@ -66,34 +67,12 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
 
   private startCurrentShapeDrawing() {
-    switch (this._currentShape) {
-      case 'free':
-        this.drawFree();
-        break;
-      case 'square':
-        this.drawSquare();
-        break;
-      case 'circle':
-        this.drawCircle();
-        break;
-      case 'triangle':
-        this.drawTriangle();
-        break;
-      case 'line':
-        this.drawLine();
-        break;
-      default:
-        this.drawFree();
-    }
-  }
-
-  drawFree() {
-    this._currentShape = 'free';
-    const drawFree = new FreeShape(
+    const shape = DrawingModel.createShape(
+      this._currentShape,
       this.canvasRef,
       this._drawingService,
       this._colorService,
-      this._ctx,
+      this.ctx,
       this.width,
       this.height,
       this._drawnPaths,
@@ -101,83 +80,41 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this._currentColor,
       this._currentLineWidth
     );
-    drawFree.startDrawing();
+    shape.startDrawing();
+    }
+  
+
+  drawFree() {
+    this._currentShape = 'free';
+    this.startCurrentShapeDrawing();
   }
   
   drawSquare() {
     this._currentShape = 'square';
-    const square = new SquareShape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    );
-    square.startDrawing();
+    this.startCurrentShapeDrawing();
   }
   
   drawCircle() {
     this._currentShape = 'circle';
-    const circle = new CircleSape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    );
-    circle.startDrawing();
+    this.startCurrentShapeDrawing();
   }
   
   drawTriangle() {
     this._currentShape = 'triangle';
-    const triangle = new TriangleShape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    );
-    triangle.startDrawing();
+    this.startCurrentShapeDrawing();
   }
   
   drawLine() {
     this._currentShape = 'line';
-    const line = new LineShape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    );
-    line.startDrawing();
+    this.startCurrentShapeDrawing();
   } 
 
   setColorAndLineWidth(color: string, lineWidth: number) {
     this._currentColor = color;
     this._currentLineWidth = lineWidth;
-    if(this._ctx){
-      this._ctx.strokeStyle = color;
-      this._ctx.lineWidth = lineWidth;
+    if(this.ctx){
+      this.ctx.strokeStyle = color;
+      this.ctx.lineWidth = lineWidth;
     }
   }
 
@@ -187,25 +124,25 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
 
   private redrawAll() {
-    this._ctx.clearRect(0, 0, this.width, this.height);
+    this.ctx.clearRect(0, 0, this.width, this.height);
 
     this._drawnPaths.forEach(pathInfo => {
-      this._ctx.strokeStyle = pathInfo.color;
-      this._ctx.lineWidth = pathInfo.lineWidth;
+      this.ctx.strokeStyle = pathInfo.color;
+      this.ctx.lineWidth = pathInfo.lineWidth;
 
       const path = pathInfo.path;
       if (path.length > 1) {
-        this._ctx.beginPath();
-        this._ctx.moveTo(path[0].x, path[0].y);
+        this.ctx.beginPath();
+        this.ctx.moveTo(path[0].x, path[0].y);
         for (let i = 1; i < path.length; i++) {
-          this._ctx.lineTo(path[i].x, path[i].y);
+          this.ctx.lineTo(path[i].x, path[i].y);
         }
-        this._ctx.stroke();
+        this.ctx.stroke();
       }
     });
     
-    this._ctx.strokeStyle = this._currentColor;
-    this._ctx.lineWidth = this._currentLineWidth;
+    this.ctx.strokeStyle = this._currentColor;
+    this.ctx.lineWidth = this._currentLineWidth;
   }
 
   eraseAll() {

@@ -33,7 +33,6 @@ export class FreeShape extends BaseShape {
                 path
               });
               moveSubscription.unsubscribe();
-              this.redrawAll();
             })
           );
         })
