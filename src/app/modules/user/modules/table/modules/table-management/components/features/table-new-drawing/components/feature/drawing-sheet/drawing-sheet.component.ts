@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { ColorService } from '../../../../../../../../../../../shared/services/drawing/color.service';
-import { Observable, Subscription, fromEvent, map, merge, pairwise, switchMap, takeUntil } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { DrawingUtilitiesService } from '../../../../../../../../../../../shared/services/drawing/drawing-utilities.service';
 import { CircleSape } from './drawing-utilities/CircleShape';
 import { LineShape } from './drawing-utilities/LineShape';
@@ -26,6 +26,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   private _eventSubscriptions: Subscription[] = []; 
   private _drawnPaths: { color: string, lineWidth: number, path: {x: number, y: number}[] }[] = [];
 
+  private _currentShape: string = 'free';
 
   constructor(
     private _colorService: ColorService,
@@ -61,10 +62,33 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
   private captureEvents(canvas: HTMLCanvasElement) {
     const { start$, move$, end$ } = this._drawingService.captureEvents(canvas);
-    this.drawFree();
+    this.startCurrentShapeDrawing();
+  }
+
+  private startCurrentShapeDrawing() {
+    switch (this._currentShape) {
+      case 'free':
+        this.drawFree();
+        break;
+      case 'square':
+        this.drawSquare();
+        break;
+      case 'circle':
+        this.drawCircle();
+        break;
+      case 'triangle':
+        this.drawTriangle();
+        break;
+      case 'line':
+        this.drawLine();
+        break;
+      default:
+        this.drawFree();
+    }
   }
 
   drawFree() {
+    this._currentShape = 'free';
     const drawFree = new FreeShape(
       this.canvasRef,
       this._drawingService,
@@ -79,8 +103,75 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     );
     drawFree.startDrawing();
   }
+  
+  drawSquare() {
+    this._currentShape = 'square';
+    const square = new SquareShape(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._drawnPaths,
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
+    );
+    square.startDrawing();
+  }
+  
+  drawCircle() {
+    this._currentShape = 'circle';
+    const circle = new CircleSape(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._drawnPaths,
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
+    );
+    circle.startDrawing();
+  }
+  
+  drawTriangle() {
+    this._currentShape = 'triangle';
+    const triangle = new TriangleShape(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._drawnPaths,
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
+    );
+    triangle.startDrawing();
+  }
+  
+  drawLine() {
+    this._currentShape = 'line';
+    const line = new LineShape(
+      this.canvasRef,
+      this._drawingService,
+      this._colorService,
+      this._ctx,
+      this.width,
+      this.height,
+      this._drawnPaths,
+      this.redrawAll.bind(this),
+      this._currentColor,
+      this._currentLineWidth
+    );
+    line.startDrawing();
+  } 
 
-   
   setColorAndLineWidth(color: string, lineWidth: number) {
     this._currentColor = color;
     this._currentLineWidth = lineWidth;
@@ -116,70 +207,6 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     this._ctx.strokeStyle = this._currentColor;
     this._ctx.lineWidth = this._currentLineWidth;
   }
-  
-  drawSquare() {
-    const square = new SquareShape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    );
-    square.startDrawing();
-  }
-  
-  drawCircle() {
-    const circle = new CircleSape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    );
-    circle.startDrawing();
-  }
-  
-  drawTriangle() {
-   const triangle = new TriangleShape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    );
-    triangle.startDrawing();
-  }
-  
-  drawLine() {
-    const line = new LineShape(
-      this.canvasRef,
-      this._drawingService,
-      this._colorService,
-      this._ctx,
-      this.width,
-      this.height,
-      this._drawnPaths,
-      this.redrawAll.bind(this),
-      this._currentColor,
-      this._currentLineWidth
-    );
-    line.startDrawing();
-  } 
 
   eraseAll() {
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
@@ -188,5 +215,8 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       context.clearRect(0, 0, canvas.width, canvas.height);
     }
     this._drawnPaths = [];
+    this._eventSubscriptions.forEach(sub => sub.unsubscribe());
+    this._eventSubscriptions = [];
+    this.captureEvents(canvas);
   }
 }
