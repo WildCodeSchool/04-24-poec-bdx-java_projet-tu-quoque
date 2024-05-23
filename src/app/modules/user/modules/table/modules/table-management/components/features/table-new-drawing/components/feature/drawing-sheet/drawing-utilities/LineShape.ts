@@ -29,8 +29,8 @@ export class LineShape extends BaseShape {
             .subscribe(({ startX, startY, currentX, currentY }) => {
               this.clearAndRedraw();
 
-              this._ctx.strokeStyle = this._colorService.getCurrentColor();
-              this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
+              this._ctx.strokeStyle = this._currentColor;
+              this._ctx.lineWidth = this._currentLineWidth; 
 
               this._ctx.beginPath();
               this._ctx.moveTo(startX, startY);
@@ -47,8 +47,8 @@ export class LineShape extends BaseShape {
                 ];
 
                 this._drawnPaths.push({
-                  color: this._colorService.getCurrentColor(),
-                  lineWidth: this._colorService.getCurrentLineWidth(),
+                  color: this._currentColor,
+                  lineWidth: this._currentLineWidth,
                   path
                 });
 

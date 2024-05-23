@@ -20,11 +20,12 @@ export abstract class BaseShape {
         currentColor: string,
         currentLineWidth: number
       ) {
+        this._currentColor = currentColor;
+        this._currentLineWidth = currentLineWidth;
         this.startDrawing();
         this.subscribeToColorChanges();
       }
       
-
       public startDrawing() {
         this._drawingService.unsubscribeAllEvents();
         const canvas = this.canvasRef.nativeElement;
@@ -51,6 +52,4 @@ export abstract class BaseShape {
         this._ctx.clearRect(0, 0, this.width, this.height);
         this.redrawAll();
       }
-
-
 }

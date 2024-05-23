@@ -1,6 +1,7 @@
 import { Observable, map, switchMap, takeUntil } from "rxjs";
 import { BaseShape } from "../../../../../../../../../../../../shared/models/class/BaseShape";
 
+
 export class CircleShape extends BaseShape {
 
   protected drawShape(
@@ -31,8 +32,8 @@ export class CircleShape extends BaseShape {
             .subscribe(({ startPos, currentPos }) => {
               this.clearAndRedraw();
 
-              this._ctx.strokeStyle = this._colorService.getCurrentColor();
-              this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
+              this._ctx.strokeStyle = this._currentColor;
+              this._ctx.lineWidth = this._currentLineWidth; 
 
               this._ctx.beginPath();
               this._ctx.arc(startPos.x, startPos.y, radius, 0, 2 * Math.PI);
@@ -55,8 +56,8 @@ export class CircleShape extends BaseShape {
                 }
 
                 this._drawnPaths.push({
-                  color: this._colorService.getCurrentColor(),
-                  lineWidth: this._colorService.getCurrentLineWidth(),
+                  color: this._currentColor,
+                  lineWidth: this._currentLineWidth,
                   path
                 });
 

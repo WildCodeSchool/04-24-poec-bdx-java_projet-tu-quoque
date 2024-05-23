@@ -9,31 +9,31 @@ import { CircleShape } from "../../../user/modules/table/modules/table-managemen
 
 
 export class DrawingModel {
-    static createShape (
-      shapeType: string,
-      canvasRef: ElementRef,
-      _drawingUtilitiesService: DrawingUtilitiesService,
-      _colorservice: ColorService,
-      ctx: CanvasRenderingContext2D,
-      width: number, 
-      height: number,
-      drawnPaths: { color: string, lineWidth: number, path: {x: number, y: number}[] }[],
-      redrawAll: () => void,
-      currentColor: string,
-      currentLineWidth: number
-    ) {
-      switch (shapeType) {
-        case 'square':
-          return new SquareShape(canvasRef, _drawingUtilitiesService, _colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
-        case 'circle':
-          return new CircleShape(canvasRef, _drawingUtilitiesService, _colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
-        case 'triangle':
-          return new TriangleShape(canvasRef, _drawingUtilitiesService, _colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
-        case 'line':
-          return new LineShape(canvasRef, _drawingUtilitiesService, _colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
-        case 'free':
-        default:
-          return new FreeShape(canvasRef, _drawingUtilitiesService, _colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
-      }
-    }   
+  static createShape(
+    shapeType: string,
+    canvasRef: ElementRef,
+    drawingUtilitiesService: DrawingUtilitiesService,
+    colorservice: ColorService,
+    ctx: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+    drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
+    redrawAll: () => void,
+    currentColor: string,
+    currentLineWidth: number
+  ) {
+    switch (shapeType) {
+      case 'square':
+        return new SquareShape(canvasRef, drawingUtilitiesService, colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
+      case 'circle':
+        return new CircleShape(canvasRef, drawingUtilitiesService, colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
+      case 'triangle':
+        return new TriangleShape(canvasRef, drawingUtilitiesService, colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
+      case 'line':
+        return new LineShape(canvasRef, drawingUtilitiesService, colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
+      case 'free':
+      default:
+        return new FreeShape(canvasRef, drawingUtilitiesService, colorservice, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
+    }
   }
+}

@@ -31,8 +31,8 @@ export class TriangleShape extends BaseShape {
               const triangleWidth = currentY - startY;
               const triangleHeight = currentX - startX;
 
-              this._ctx.strokeStyle = this._colorService.getCurrentColor();
-              this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
+              this._ctx.strokeStyle = this._currentColor;
+              this._ctx.lineWidth = this._currentLineWidth;
 
               this._ctx.beginPath();
               this._ctx.moveTo(startX, startY);
@@ -57,8 +57,8 @@ export class TriangleShape extends BaseShape {
                 ];
 
                 this._drawnPaths.push({
-                  color: this._colorService.getCurrentColor(),
-                  lineWidth: this._colorService.getCurrentLineWidth(),
+                  color: this._currentColor,
+                  lineWidth: this._currentLineWidth,
                   path
                 });
 

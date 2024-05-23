@@ -17,7 +17,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   @Input() public width = 400; 
   @Input() public height = 400;
 
-  private ctx!: CanvasRenderingContext2D;
+  private _ctx!: CanvasRenderingContext2D;
   private _currentColor: string = 'black';
   private _currentLineWidth: number = 2;
   private _colorSubsciption!: Subscription;
@@ -35,22 +35,24 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
   ngAfterViewInit() {
     const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-    this.ctx = canvas.getContext('2d')!;
+    this._ctx = canvas.getContext('2d')!;
     
     canvas.width = this.width;
     canvas.height = this.height;
 
-    this.ctx.strokeStyle = this._currentColor;
-    this.ctx.lineWidth = 2;
-    this.ctx.lineCap = 'round';
+    this._currentColor = this._colorService.getCurrentColor();
+    this._currentLineWidth = this._colorService.getCurrentLineWidth();
+    this._ctx.strokeStyle = this._currentColor;
+    this._ctx.lineWidth = this._currentLineWidth;
+    this._ctx.lineCap = 'round';
 
     this.captureEvents(canvas);
 
-    this._colorSubsciption = this._colorService.color$
-    .pipe(
-      map(({ color, lineWidth }) => this.setColorAndLineWidth(color, lineWidth))
-    )
-    .subscribe();
+    this._colorService.color$.subscribe(({ color, lineWidth }) => {
+      this.setColorAndLineWidth(color, lineWidth);
+      this.startCurrentShapeDrawing();
+    });
+    this.startCurrentShapeDrawing();
 }
 
   ngOnDestroy(): void {
@@ -71,12 +73,12 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
       this.canvasRef,
       this._drawingService,
       this._colorService,
-      this.ctx,
+      this._ctx,
       this.width,
       this.height,
       this._drawnPaths,
       this.redrawAll.bind(this),
-      this._currentColor,
+      this._currentColor, 
       this._currentLineWidth
     );
     shape.startDrawing();
@@ -111,9 +113,9 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   setColorAndLineWidth(color: string, lineWidth: number) {
     this._currentColor = color;
     this._currentLineWidth = lineWidth;
-    if(this.ctx){
-      this.ctx.strokeStyle = color;
-      this.ctx.lineWidth = lineWidth;
+    if(this._ctx){
+      this._ctx.strokeStyle = color;
+      this._ctx.lineWidth = lineWidth;
     }
   }
 
@@ -123,7 +125,7 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
 
   private redrawAll() {
-  this._canvasRedrawService.redrawAll(this.ctx, this.width, this.height, this._drawnPaths, this._currentColor, this._currentLineWidth)
+  this._canvasRedrawService.redrawAll(this._ctx, this.width, this.height, this._drawnPaths, this._currentColor, this._currentLineWidth)
   }
 
   eraseAll() {

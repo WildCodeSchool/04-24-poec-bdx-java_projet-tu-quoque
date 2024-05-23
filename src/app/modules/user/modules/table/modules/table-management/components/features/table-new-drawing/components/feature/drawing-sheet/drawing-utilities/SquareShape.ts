@@ -26,8 +26,8 @@ export class SquareShape extends BaseShape {
 
                 this.clearAndRedraw();
 
-                this._ctx.strokeStyle = this._colorService.getCurrentColor();
-                this._ctx.lineWidth = this._colorService.getCurrentLineWidth();
+                this._ctx.strokeStyle = this._currentColor;
+                this._ctx.lineWidth = this._currentLineWidth;
                 this._ctx.strokeRect(startPos.x, startPos.y, squareSize, squareSize);
 
                 return currentPos;
@@ -44,8 +44,8 @@ export class SquareShape extends BaseShape {
                 const squareSize = Math.max(Math.abs(width), Math.abs(height));
 
                 this._drawnPaths.push({
-                  color: this._colorService.getCurrentColor(),
-                  lineWidth: this._colorService.getCurrentLineWidth(),
+                  color: this._currentColor,
+                  lineWidth: this._currentLineWidth,
                   path: [
                     { x: startPos.x, y: startPos.y },
                     { x: startPos.x + squareSize, y: startPos.y },

@@ -10,7 +10,7 @@ export class PaletteComponent implements OnInit {
   constructor(
     private _elementRef: ElementRef, 
     private _renderer: Renderer2, 
-    private _colorService: ColorService) {}
+    private _colorService: ColorService) { }
 
   colors: string[] = ['#71A9F7', '#496F5B', '#FDB833', '#B0281E', 'black'];
 

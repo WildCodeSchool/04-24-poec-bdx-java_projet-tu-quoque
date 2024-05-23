@@ -52,8 +52,10 @@ export class FreeShape extends BaseShape {
         
         this._ctx.beginPath();
         if (prevPos) {
-           this._ctx.moveTo(prevPos.x, prevPos.y);
+          this._ctx.moveTo(prevPos.x, prevPos.y);
           this._ctx.lineTo(currentPos.x, currentPos.y);
+          this._ctx.strokeStyle = this._currentColor;
+          this._ctx.lineWidth = this._currentLineWidth;
           this._ctx.stroke();
         }
        }
