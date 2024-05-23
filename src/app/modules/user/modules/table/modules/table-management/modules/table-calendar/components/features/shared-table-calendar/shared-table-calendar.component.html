@@ -1,1 +1,14 @@
-<full-calendar [options]="calendarOptions"></full-calendar>
+<app-page-header
+  [elementIcon]="'./assets/images/calendar-icon.svg'"
+  [title]="'Agenda'"
+></app-page-header>
+<ng-container *ngIf="calendarOptions">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+</ng-container>
+<footer>
+  <app-custom-button
+    [name]="'Retour'"
+    [style]="'gold'"
+    PreviousPage
+  ></app-custom-button>
+</footer>

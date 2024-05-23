@@ -1,48 +1,70 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { EventService } from '../../../../../../../../../../shared/services/event/event.service';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-shared-table-calendar',
   templateUrl: './shared-table-calendar.component.html',
-  styleUrl: './shared-table-calendar.component.scss'
+  styleUrl: './shared-table-calendar.component.scss',
 })
 export class SharedTableCalendarComponent {
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin, interactionPlugin],
-    contentHeight:'80vh',
-    headerToolbar: {
-      left: 'prev,next', // rajouter today pour avoir le bouton qui ramene à aujourd'hui
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-    },
-    buttonText: {
-      month: "Mois",
-      week: 'sem.',
-      list: 'list'
-    },
-    eventClick: (arg) => this.handleEventClick(arg),
-    dateClick: (arg) => this.handleDateClick(arg),
-    navLinks: true,
-    editable: true,
-    droppable: true,
-    firstDay: 1,
-    locale: 'fr',
-    events: [
-      {title: 'dispo Gimli', date: '2024-05-24'},
-      {title: 'dispo Freyr', date: '2024-05-27'}
-    ]
+  
+  calendarOptions!: CalendarOptions;
+
+  constructor(
+    private _eventService: EventService,
+    private _route: ActivatedRoute,
+    private _destroyRef: DestroyRef
+  ) {}
+
+  ngOnInit() {
+    const id = Number(this._route.snapshot.paramMap.get('id'));
+    this._eventService
+      .getEventListByTable$(id)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe();
+    this._eventService
+      .getEnventList$()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe((events: Event[]) => this.initializeCalendarOptions(events));
   }
 
+  initializeCalendarOptions(events: Event[]): void {
+    this.calendarOptions = {
+      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+      initialView: 'dayGridMonth',
+      locale: 'fr',
+      contentHeight: '52vh',
 
-  handleDateClick(arg: any) {
-    alert('date click !' + arg.dateStr)
+      headerToolbar: {
+        left: 'title',
+        center: 'dayGridMonth,timeGridDay prev,next',
+        right: 'addEventButton',
+      },
+      buttonText: {
+        month: 'mois',
+        day: 'jour',
+      },
+      customButtons: {
+        addEventButton: {
+          text: 'Ajouter',
+          click: this._eventService.createNewEvent,
+        },
+      },
+      events: events,
+      eventResizableFromStart: true,
+      nowIndicator: true,
+      navLinks: true,
+      editable: true,
+      firstDay: 1,
+      eventDrop: this._eventService.moveEvent,
+      eventResize: this._eventService.eventResize,
+      eventClick: this._eventService.showEventDetail,
+    };
   }
-
-  handleEventClick(arg: any) {
-    alert(arg.event.title)
-  }
-
 }
