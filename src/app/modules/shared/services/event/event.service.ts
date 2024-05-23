@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { EventClickArg, EventDropArg } from '@fullcalendar/core';
 import { EventResizeDoneArg } from '@fullcalendar/interaction';
+import { calendarEvent } from '../../models/types/users/calendarEvent.type';
 
 @Injectable({
   providedIn: 'root',
@@ -21,21 +22,23 @@ export class EventService extends ApiRessourceService<any> {
     return this._BASE_URL;
   }
 
-  getEventListByTable$(tableId: number): Observable<any> {
+  getEventListByTable$(tableId: number): Observable<calendarEvent[]> {
     return this.getAll$().pipe(
-      map((events: any) =>
-        events.filter((event: any) => event.tableId == tableId)
+      map((events: calendarEvent[]) =>
+        events.filter((event: calendarEvent) => event.tableId == tableId)
       ),
-      tap((eventListFiltered: any) => this.eventList$.next(eventListFiltered))
+      tap((eventListFiltered: calendarEvent[]) =>
+        this.eventList$.next(eventListFiltered)
+      )
     );
   }
 
-  getEnventList$(): Observable<any> {
+  getEnventList$(): Observable<calendarEvent[]> {
     return this.eventList$.asObservable();
   }
 
-  addEvent(event: any) {
-    const currentEventList: any = this.eventList$.value;
+  addEvent(event: calendarEvent) {
+    const currentEventList: calendarEvent[] = this.eventList$.value;
     this.eventList$.next([...currentEventList, event]);
   }
 
@@ -45,7 +48,8 @@ export class EventService extends ApiRessourceService<any> {
     const date: Date = new Date(dateStr + 'T00:00:00');
     if (!isNaN(date.valueOf())) {
       const newEvent = {
-        title: title,
+        tableId: 1,
+        title: title ? title : 'non défini',
         start: date,
         allDay: true,
       };
@@ -54,7 +58,7 @@ export class EventService extends ApiRessourceService<any> {
     }
   };
 
-  showDetail(arg: any) {
+  showDetail(arg: EventClickArg) {
     alert(arg.event.title);
   }
 

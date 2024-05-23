@@ -1,11 +1,12 @@
 import { Component, DestroyRef } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
+import { CalendarOptions, EventSourceInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventService } from '../../../../../../../../../../shared/services/event/event.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { calendarEvent } from '../../../../../../../../../../shared/models/types/users/calendarEvent.type';
 
 @Component({
   selector: 'app-shared-table-calendar',
@@ -31,10 +32,10 @@ export class SharedTableCalendarComponent {
     this._eventService
       .getEnventList$()
       .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe((events: Event[]) => this.initializeCalendarOptions(events));
+      .subscribe((events: calendarEvent[]) => this.initializeCalendarOptions(events));
   }
 
-  initializeCalendarOptions(events: Event[]): void {
+  initializeCalendarOptions(events: any): void {
     this.calendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       initialView: 'dayGridMonth',
