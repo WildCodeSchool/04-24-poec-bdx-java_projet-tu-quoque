@@ -1,5 +1,5 @@
 import { Observable, map, switchMap, takeUntil } from "rxjs";
-import { BaseShape } from "./BaseShape";
+import { BaseShape } from "../../../../../../../../../../../../shared/models/class/BaseShape";
 
 export class CircleShape extends BaseShape {
 

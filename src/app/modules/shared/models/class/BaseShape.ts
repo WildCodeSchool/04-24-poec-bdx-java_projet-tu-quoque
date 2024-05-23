@@ -1,6 +1,6 @@
 import { ElementRef } from "@angular/core";
-import { DrawingUtilitiesService } from "../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service";
-import { ColorService } from "../../../../../../../../../../../../shared/services/drawing/color.service";
+import { DrawingUtilitiesService } from "../../services/drawing/drawing-utilities.service";
+import { ColorService } from "../../services/drawing/color.service";
 import { Observable, Subscription } from "rxjs";
 
 export abstract class BaseShape {

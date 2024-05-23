@@ -8,6 +8,7 @@ import { SquareShape } from './drawing-utilities/SquareShape';
 import { TriangleShape } from './drawing-utilities/TriangleShape';
 import { FreeShape } from './drawing-utilities/FreeShape';
 import { DrawingModel } from '../../../../../../../../../../../shared/models/class/drawing-models';
+import { EraseUtilitiesService } from '../../../../../../../../../../../shared/services/drawing/erase-utilities.service';
 
 @Component({
   selector: 'app-drawing-sheet',
@@ -31,7 +32,8 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
 
   constructor(
     private _colorService: ColorService,
-    private _drawingService: DrawingUtilitiesService
+    private _drawingService: DrawingUtilitiesService,
+    private _eraseUtilities: EraseUtilitiesService
   ) { }
 
   ngAfterViewInit() {
@@ -146,14 +148,6 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
   }
 
   eraseAll() {
-    const canvas: HTMLCanvasElement = this.canvasRef.nativeElement;
-    const context = canvas.getContext('2d');
-    if (context) {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-    }
-    this._drawnPaths = [];
-    this._eventSubscriptions.forEach(sub => sub.unsubscribe());
-    this._eventSubscriptions = [];
-    this.captureEvents(canvas);
+  this._eraseUtilities.eraseAll(this.canvasRef, this._drawnPaths, this._eventSubscriptions, this.captureEvents.bind(this));
   }
 }
