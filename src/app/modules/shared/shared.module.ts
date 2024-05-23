@@ -15,8 +15,6 @@ import { BackToPreviousPageDirective } from './directives/back-to-previous-page.
 import { BaseInputComponent } from './components/custom-form/form-inputs/base-input/base-input.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 
-
-
 @NgModule({
   declarations: [
     CustomButtonComponent,
@@ -25,7 +23,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     CustomAreaTitleComponent,
     CustomAddButtonComponent,
     ShowCommentPageComponent,
-    BackToPreviousPageDirective
+    BackToPreviousPageDirective,
   ],
   imports: [
     CommonModule,
@@ -35,7 +33,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     HttpClientModule,
     FileUploadModule,
     AutoCompleteModule,
-    FullCalendarModule
+    FullCalendarModule,
   ],
   exports: [
     CustomButtonComponent,
@@ -47,7 +45,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     AutoCompleteModule,
     ShowCommentPageComponent,
     BackToPreviousPageDirective,
-    FullCalendarModule
-  ]
+    FullCalendarModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
