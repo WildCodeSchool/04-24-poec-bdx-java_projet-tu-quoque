@@ -42,7 +42,15 @@ app-bba-component {
 
 app-attacks {
     grid-column: 1/16;
-    grid-row: 16/26;
+    grid-row: 16/33;
+    display: flex;
+    flex-direction: column;
+
+}
+
+app-defenses {
+    grid-column: 1/16;
+    grid-row: 33/40;
     display: flex;
     flex-direction: column;
 }

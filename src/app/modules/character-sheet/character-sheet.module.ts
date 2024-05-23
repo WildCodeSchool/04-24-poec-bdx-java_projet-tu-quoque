@@ -49,6 +49,10 @@ import { MagicalResistanceComponent } from './components/bba-components/ui/magic
 import { WrestlingComponent } from './components/bba-components/ui/wrestling/wrestling.component';
 import { AttacksComponent } from './components/attacks/features/attacks/attacks.component';
 import { AttackComponent } from './components/attacks/ui/attack/attack.component';
+import { ArmorUiComponent } from './components/defense/ui/armor-ui/armor-ui.component';
+import { ShieldUiComponent } from './components/defense/ui/shield-ui/shield-ui.component';
+import { ProtectionUiComponent } from './components/defense/ui/protection-ui/protection-ui.component';
+import { DefensesComponent } from './components/defense/feature/defenses/defenses.component';
 
 
 @NgModule({
@@ -98,7 +102,11 @@ import { AttackComponent } from './components/attacks/ui/attack/attack.component
     MagicalResistanceComponent,
     WrestlingComponent,
     AttacksComponent,
-    AttackComponent
+    AttackComponent,
+    ArmorUiComponent,
+    ShieldUiComponent,
+    ProtectionUiComponent,
+    DefensesComponent
   ],
   imports: [
     CommonModule,
