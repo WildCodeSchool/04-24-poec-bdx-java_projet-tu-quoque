@@ -1,12 +1,14 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { CharacterSheetService } from './character-sheet.service';
-import { BehaviorSubject, map, Observable, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { CharacterClass } from '../../models/types/character-class.type';
 import { SavingThrows } from '../../models/types/saving-throws.type';
 import { CharacterSavingThrows } from '../../models/classes/character-saving-throws.class';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SavingThrowType } from '../../models/enums/saving-throws-type.enum';
+import { SavingThrowsEnum } from '../../models/enums/saving-throw-enum.enum';
+import { Race } from '../../models/types/race.type';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,7 @@ export class SavingThrowsService {
   private level$: Observable<number> = this.sheetService.getLevel$();
   private caracs$: Observable<StatisticDetails[]> = this.sheetService.getCaracteristics$();
   private classSavingThrows$: Observable<SavingThrows> = this.getClassSavingThrows();
+  private race$: Observable<Race> = this.sheetService.getRaceDetails$();
 
   private characterSavingThrows = new CharacterSavingThrows();
 
@@ -44,16 +47,29 @@ export class SavingThrowsService {
   }
 
   init(): void {
+    this.update();
+  }
+
+  update() {
+    this.observeRace();
     this.updateLevel();
     this.updateClass();
+    this.updateStatsMod();
+    this.updateStream();
+  }
+
+  observeRace() {
+    this.race$.pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(race => this.updateStatsMod());
   }
 
   updateLevel(): void {
     this.level$.pipe(
       takeUntilDestroyed(this.destroyRef))
       .subscribe((level: number) => {
-        this.characterSavingThrows.setLevel(level),
-          this.updateStream();
+        this.characterSavingThrows.setLevel(level)
+
       })
   }
 
@@ -62,9 +78,22 @@ export class SavingThrowsService {
       takeUntilDestroyed(this.destroyRef))
       .subscribe((classSavingThrows: SavingThrows) => {
         this.characterSavingThrows.classSavingThrows = classSavingThrows;
-        this.updateStream();
-      })
 
+      })
+  }
+
+  updateStatsMod(): void {
+    this.caracs$.pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((stats: StatisticDetails[]) => {
+      if (stats) {
+        const fortitudeMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.fortitude) as StatisticDetails).getFinalMod();
+        const reflexesMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.reflexes) as StatisticDetails).getFinalMod();
+        const willMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.will) as StatisticDetails).getFinalMod();
+        this.characterSavingThrows.updateModValues(fortitudeMod, reflexesMod, willMod);
+        this.updateStream();
+      }
+    })
   }
 
   getCharacterSavingThrows$(): Observable<CharacterSavingThrows> {

@@ -32,6 +32,27 @@ import { MetamorphosisComponent } from './shared/components/metamorphosis/metamo
 import { SavingThrowsFeatureComponent } from './components/saving-throws/feature/saving-throws-feature/saving-throws-feature.component';
 import { SavingThrowsListComponentComponent } from './components/saving-throws/ui/saving-throws-list-component/saving-throws-list-component.component';
 import { SavingThrowsDetailsComponentComponent } from './components/saving-throws/ui/saving-throws-details-component/saving-throws-details-component.component';
+import { HpAcComponentComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
+import { HpComponentComponent } from './components/hp-ac/feature/hp-component/hp-component.component';
+import { MovementComponentComponent } from './components/hp-ac/feature/movement-component/movement-component.component';
+import { CaComponentComponent } from './components/hp-ac/feature/ca-component/ca-component.component';
+import { ReduceDamageComponentComponent } from './components/hp-ac/feature/reduce-damage-component/reduce-damage-component.component';
+import { InitComponentComponent } from './components/hp-ac/feature/init-component/init-component.component';
+import { MovementUiComponentComponent } from './components/hp-ac/ui/movement-ui-component/movement-ui-component.component';
+import { HpUiComponentComponent } from './components/hp-ac/ui/hp-ui-component/hp-ui-component.component';
+import { CaUiComponentComponent } from './components/hp-ac/ui/ca-ui-component/ca-ui-component.component';
+import { ReduceDamageUiComponentComponent } from './components/hp-ac/ui/reduce-damage-ui-component/reduce-damage-ui-component.component';
+import { InitUiComponentComponent } from './components/hp-ac/ui/init-ui-component/init-ui-component.component';
+import { BbaComponentComponent } from './components/bba-components/features/bba-component/bba-component.component';
+import { BbaUiComponent } from './components/bba-components/ui/bba-ui/bba-ui.component';
+import { MagicalResistanceComponent } from './components/bba-components/ui/magical-resistance/magical-resistance.component';
+import { WrestlingComponent } from './components/bba-components/ui/wrestling/wrestling.component';
+import { AttacksComponent } from './components/attacks/features/attacks/attacks.component';
+import { AttackComponent } from './components/attacks/ui/attack/attack.component';
+import { ArmorUiComponent } from './components/defense/ui/armor-ui/armor-ui.component';
+import { ShieldUiComponent } from './components/defense/ui/shield-ui/shield-ui.component';
+import { ProtectionUiComponent } from './components/defense/ui/protection-ui/protection-ui.component';
+import { DefensesComponent } from './components/defense/feature/defenses/defenses.component';
 
 
 @NgModule({
@@ -64,7 +85,28 @@ import { SavingThrowsDetailsComponentComponent } from './components/saving-throw
     MetamorphosisComponent,
     SavingThrowsFeatureComponent,
     SavingThrowsListComponentComponent,
-    SavingThrowsDetailsComponentComponent
+    SavingThrowsDetailsComponentComponent,
+    HpAcComponentComponent,
+    HpComponentComponent,
+    MovementComponentComponent,
+    CaComponentComponent,
+    ReduceDamageComponentComponent,
+    InitComponentComponent,
+    MovementUiComponentComponent,
+    HpUiComponentComponent,
+    CaUiComponentComponent,
+    ReduceDamageUiComponentComponent,
+    InitUiComponentComponent,
+    BbaComponentComponent,
+    BbaUiComponent,
+    MagicalResistanceComponent,
+    WrestlingComponent,
+    AttacksComponent,
+    AttackComponent,
+    ArmorUiComponent,
+    ShieldUiComponent,
+    ProtectionUiComponent,
+    DefensesComponent
   ],
   imports: [
     CommonModule,

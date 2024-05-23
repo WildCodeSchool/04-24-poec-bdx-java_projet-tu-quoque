@@ -1,0 +1,57 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    flex-wrap: wrap;
+
+    &>div {
+        align-self: flex-start;
+    }
+}
+
+.minor {
+    font-size: 11px;
+}
+
+.under {
+    font-size: 16px;
+}
+
+.case {
+    position: relative;
+    max-width: 60px;
+}
+
+.no-border {
+    border: none;
+    min-width: 40px;
+    max-width: 40px;
+    padding: 12px 4px;
+}
+
+.case.total::after {
+    position: absolute;
+    top: 12px;
+    right: -18px;
+    content: "=";
+}
+
+.case:is(:not(.total))::after {
+    position: absolute;
+    top: 12px;
+    right: -18px;
+    content: "+";
+}
+
+.case.last::after {
+    position: absolute;
+    content: "";
+}
+
+.case+div {
+    max-width: 60px;
+}
+
+.second-line {
+    max-width: 100px;
+}

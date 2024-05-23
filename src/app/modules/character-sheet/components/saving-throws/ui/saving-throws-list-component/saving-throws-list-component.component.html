@@ -11,11 +11,17 @@
             <th>MODIFICATEURS PARTICULIERS</th>
         </tr>
     </thead>
+    <tbody *ngIf="savingThrows$ | async as savingThrows">
+        <tr saving-throws-row 
+        [savingThrow]="savingThrows.reflexes"
+        ></tr>
+        <tr saving-throws-row 
+        [savingThrow]="savingThrows.fortitude"
+        ></tr>
+        <tr saving-throws-row 
+        [savingThrow]="savingThrows.will"
+        ></tr>
+    </tbody>
 </table>
 
-<div *ngIf="savingThrows$ | async as savingThrows">
-{{savingThrows.toString()}}<br>
-{{savingThrows.reflexes.toString()}}<br>
-{{savingThrows.fortitude.toString()}}<br>
-{{savingThrows.will.toString()}}<br>
-</div>
+

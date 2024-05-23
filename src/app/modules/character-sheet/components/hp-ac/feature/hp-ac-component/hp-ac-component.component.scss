@@ -1,0 +1,31 @@
+:host {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+}
+
+app-hp-component {
+    grid-column: 1/9;
+    grid-row: 1/2;
+}
+
+app-movement-component {
+    grid-column: 9/13;
+    grid-row: 1/2;
+}
+
+app-ca-component {
+    grid-column: 1/11;
+    grid-row: 2/4;
+}
+
+app-reduce-damage-component {
+    grid-column: 11/13;
+    grid-row: 2/3;
+}
+
+app-init-component {
+    grid-column: 1/5;
+    grid-row: 4/5;
+}
