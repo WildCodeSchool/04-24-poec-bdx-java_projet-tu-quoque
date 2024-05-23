@@ -29,7 +29,7 @@ export class AvailableCharacterListComponent {
     this.tableSelected = id;
   }
 
-  selectCharacter(id: any): void {
+  selectCharacter(id: number): void {
     this.characterIdSelected.emit(id);
   }
 
