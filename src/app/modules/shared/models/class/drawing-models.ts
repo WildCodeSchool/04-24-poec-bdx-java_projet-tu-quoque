@@ -1,11 +1,11 @@
 import { ElementRef } from "@angular/core";
 import { DrawingUtilitiesService } from "../../services/drawing/drawing-utilities.service";
 import { ColorService } from "../../services/drawing/color.service";
-import { SquareShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/SquareShape";
-import { FreeShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/FreeShape";
-import { LineShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/LineShape";
-import { TriangleShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/TriangleShape";
-import { CircleShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/CircleShape";
+import { SquareShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/square-shape";
+import { FreeShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/free-shape";
+import { LineShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/line-shape";
+import { TriangleShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/triangle-shape";
+import { CircleShape } from "../../../user/modules/table/modules/table-management/components/features/table-new-drawing/components/feature/drawing-sheet/drawing-utilities/circle-shape";
 
 
 export class DrawingModel {

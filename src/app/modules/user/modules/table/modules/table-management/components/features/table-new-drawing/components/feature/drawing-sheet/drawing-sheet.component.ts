@@ -83,7 +83,6 @@ export class DrawingSheetComponent implements AfterViewInit, OnDestroy{
     );
     shape.startDrawing();
     }
-  
 
   drawFree() {
     this._currentShape = 'free';

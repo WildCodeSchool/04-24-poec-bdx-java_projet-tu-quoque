@@ -16,7 +16,6 @@ import { DrawingSheetComponent } from './components/features/table-new-drawing/c
 import { PaletteComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/palette/palette.component';
 import { ToolsComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/tools/tools.component';
 
-
 @NgModule({
   declarations: [
     UserTablesComponent,
