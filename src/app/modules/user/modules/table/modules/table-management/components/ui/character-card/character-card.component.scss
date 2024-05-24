@@ -14,9 +14,11 @@
   .img-container {
     height: 100%;
     width: 50%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     align-items: flex-end;
 
     .character-img {

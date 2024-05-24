@@ -13,8 +13,7 @@ import { CustomAddButtonComponent } from './components/custom-add-button/custom-
 import { ShowCommentPageComponent } from './components/show-comment-page/show-comment-page.component';
 import { BackToPreviousPageDirective } from './directives/back-to-previous-page.directive';
 import { BaseInputComponent } from './components/custom-form/form-inputs/base-input/base-input.component';
-
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,7 @@ import { BaseInputComponent } from './components/custom-form/form-inputs/base-in
     CustomAreaTitleComponent,
     CustomAddButtonComponent,
     ShowCommentPageComponent,
-    BackToPreviousPageDirective
+    BackToPreviousPageDirective,
   ],
   imports: [
     CommonModule,
@@ -33,7 +32,8 @@ import { BaseInputComponent } from './components/custom-form/form-inputs/base-in
     RouterLink,
     HttpClientModule,
     FileUploadModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    FullCalendarModule,
   ],
   exports: [
     CustomButtonComponent,
@@ -44,7 +44,8 @@ import { BaseInputComponent } from './components/custom-form/form-inputs/base-in
     FileUploadModule,
     AutoCompleteModule,
     ShowCommentPageComponent,
-    BackToPreviousPageDirective
-  ]
+    BackToPreviousPageDirective,
+    FullCalendarModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
