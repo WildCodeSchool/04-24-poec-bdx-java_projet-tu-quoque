@@ -16,6 +16,7 @@ import { calendarEvent } from '../../../../../../../../../../shared/models/types
 export class SharedTableCalendarComponent {
   
   calendarOptions!: CalendarOptions;
+  tableId!: number;
 
   constructor(
     private _eventService: EventService,
@@ -24,15 +25,17 @@ export class SharedTableCalendarComponent {
   ) {}
 
   ngOnInit() {
-    const id = Number(this._route.snapshot.paramMap.get('id'));
+    this.tableId = Number(this._route.snapshot.paramMap.get('id'));
     this._eventService
-      .getEventListByTable$(id)
+      .getEventListByTable$(this.tableId)
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe();
     this._eventService
       .getEnventList$()
       .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe((events: calendarEvent[]) => this.initializeCalendarOptions(events));
+      .subscribe((events: calendarEvent[]) =>
+        this.initializeCalendarOptions(events)
+      );
   }
 
   initializeCalendarOptions(events: any): void {
@@ -54,7 +57,20 @@ export class SharedTableCalendarComponent {
       customButtons: {
         addEventButton: {
           text: 'Ajouter',
-          click: this._eventService.createNewEvent,
+          click: (): void => {
+            const dateStr = prompt('Ajoutez une date au format YYYY-MM-DD');
+            const title = prompt('Ajoutez votre titre');
+            const date: Date = new Date(dateStr + 'T00:00:00');
+            if (!isNaN(date.valueOf())) {
+              const newEvent: calendarEvent = {
+                tableId: this.tableId,
+                title: title ? title : 'non défini',
+                start: date,
+                allDay: true,
+              };
+              this._eventService.addEvent(newEvent);
+            }
+          },
         },
       },
       events: events,

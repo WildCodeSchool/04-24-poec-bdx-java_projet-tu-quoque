@@ -10,7 +10,7 @@ import { calendarEvent } from '../../models/types/users/calendarEvent.type';
   providedIn: 'root',
 })
 export class EventService extends ApiRessourceService<any> {
-
+  
   private eventList$ = new BehaviorSubject<any[]>([]);
   private readonly _BASE_URL: string = 'http://localhost:3000/events';
 
@@ -42,29 +42,13 @@ export class EventService extends ApiRessourceService<any> {
     this.eventList$.next([...currentEventList, event]);
   }
 
-  createNewEvent = (): void => {
-    const dateStr = prompt('Ajoutez une date au format YYYY-MM-DD');
-    const title = prompt('Ajoutez votre titre');
-    const date: Date = new Date(dateStr + 'T00:00:00');
-    if (!isNaN(date.valueOf())) {
-      const newEvent = {
-        tableId: 1,
-        title: title ? title : 'non défini',
-        start: date,
-        allDay: true,
-      };
-      this.addEvent(newEvent);
-    }
-  };
-
   showDetail(arg: EventClickArg) {
     alert(arg.event.title);
   }
 
   showEventDetail = (arg: EventClickArg): void => this.showDetail(arg);
 
-  eventResize = (info: EventResizeDoneArg): void => {
-  };
+  eventResize = (info: EventResizeDoneArg): void => {};
 
   moveEvent = (info: EventDropArg): void => {
     if (!confirm('Etes-vous sûr ?')) {
