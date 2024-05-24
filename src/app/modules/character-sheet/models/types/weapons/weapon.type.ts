@@ -3,6 +3,7 @@ import { Damages } from "./damages.type"
 
 export type Weapon = {
   "name": string,
+  "category": string,
   "price": string,
   "damages": Damages
   "critic": string,
