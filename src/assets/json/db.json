@@ -120,7 +120,6 @@
       "accepted": false,
       "scheduleId": 1
     }
-
   ],
   "user_table_invitations": [
     {
@@ -190,7 +189,7 @@
       "id": 2,
       "tableId": 1,
       "title": "dispo Freyr",
-      "start": "2024-05-27 00:00:00" ,
+      "start": "2024-05-27 00:00:00",
       "allDay": true
     },
     {
@@ -210,7 +209,6 @@
       "allDay": true,
       "color": "#c29b0f"
     }
-
   ],
   "notes": [
     {
