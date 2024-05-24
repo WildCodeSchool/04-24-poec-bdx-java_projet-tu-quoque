@@ -26,6 +26,11 @@ const routes: Routes = [
   {
     path: "my-tables/:id/accept-characters",
     component: CharactersToAcceptComponent
+  },
+  {
+    path: "my-tables/:id/shared-calendar",
+    loadChildren: () => import('./modules/table-calendar/table-calendar.module')
+    .then(m => m.TableCalendarModule)
   }
 ];
 

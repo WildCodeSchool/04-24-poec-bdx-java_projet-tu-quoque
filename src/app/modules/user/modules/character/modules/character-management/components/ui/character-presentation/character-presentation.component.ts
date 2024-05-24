@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Character } from '../../../../../../../../shared/models/types/users/character.type';
 
 @Component({
   selector: 'app-character-presentation',
@@ -8,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CharacterPresentationComponent {
   
   @Input()
-  character!: any;
+  character!: Character;
 
   @Output()
   isCharachterSheetVisible: EventEmitter<boolean> = new EventEmitter<boolean>();
