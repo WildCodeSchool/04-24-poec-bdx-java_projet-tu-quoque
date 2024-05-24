@@ -1,0 +1,21 @@
+:host {
+    font-size: 20px;
+}
+
+.title {
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+ul,
+li {
+    list-style: none;
+
+    span.coin {
+        display: inline-block;
+        width: 6ch,
+    }
+}
