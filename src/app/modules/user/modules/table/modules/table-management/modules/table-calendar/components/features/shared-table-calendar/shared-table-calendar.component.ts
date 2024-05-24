@@ -1,5 +1,5 @@
 import { Component, DestroyRef } from '@angular/core';
-import { CalendarOptions, EventSourceInput } from '@fullcalendar/core';
+import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
