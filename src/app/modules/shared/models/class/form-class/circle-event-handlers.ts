@@ -1,8 +1,10 @@
-import { Observable, Subscription, map, takeUntil, switchMap } from "rxjs";
+import { Observable, Subscription, map, takeUntil } from "rxjs";
 import { DrawingUtilitiesService } from "../../../services/drawing/drawing-utilities.service";
 import { ElementRef } from "@angular/core";
 
 export class CircleShapeEventHandlers {
+  private radius: number = 0;
+
   constructor(
     private canvasRef: ElementRef,
     private _drawingService: DrawingUtilitiesService,
@@ -11,28 +13,27 @@ export class CircleShapeEventHandlers {
     private _currentLineWidth: number,
     private _drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
     private redrawAll: () => void,
-    private clearAndRedraw: () => void,
-    private radius: number
+    private clearAndRedraw: () => void
   ) {}
 
   handleStartEvent(
     startEvent: MouseEvent | TouchEvent,
-    canvas: HTMLCanvasElement,
     move$: Observable<MouseEvent | TouchEvent>,
     end$: Observable<MouseEvent | TouchEvent>
-  ) {
-    const startPos = this._drawingService.getCoordinates(canvas, startEvent);
-
+  ): Observable<void> {
+    const startPos = this._drawingService.getCoordinates(this.canvasRef.nativeElement, startEvent);
+    
     const moveSubscription = move$.pipe(
       map(moveEvent => this.calculateRadiusAndPositions(moveEvent, startPos)),
       takeUntil(end$)
     ).subscribe(({ startPos, currentPos, radius }) => {
+      this.radius = radius;
       this.clearAndRedraw();
       this.drawCircle(startPos, radius);
     });
 
     return end$.pipe(
-      map(() => this.handleEndEvent(startPos, moveSubscription))
+      map(() => this.handleEndEvent(startPos, this.radius, moveSubscription))
     );
   }
 
@@ -53,8 +54,8 @@ export class CircleShapeEventHandlers {
     this._ctx.stroke();
   }
 
-  private handleEndEvent(startPos: { x: number; y: number }, moveSubscription: Subscription) {
-    const path = this.generateCirclePath(startPos, this.radius);
+  private handleEndEvent(startPos: { x: number; y: number }, radius: number, moveSubscription: Subscription): void {
+    const path = this.generateCirclePath(startPos, radius);
 
     this._drawnPaths.push({
       color: this._currentColor,
