@@ -20,12 +20,12 @@ export class UserHomepageComponent {
     map((invitationArray: TableInvitation[]) => {
       const baseOptionButtonList: PageNavigation[] = [
         { name: 'Personnages', url: '../characters' },
-        { name: 'tables', url: '../tables' },
+        { name: 'Tables', url: '../tables' },
       ];
 
       if (invitationArray.length) {
         baseOptionButtonList.push({
-          name: 'invitations',
+          name: 'Invitations',
           url: '../table-invitation',
         });
       }
