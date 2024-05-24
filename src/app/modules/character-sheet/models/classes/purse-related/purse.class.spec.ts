@@ -19,7 +19,6 @@ describe("test purse", () => {
         expect(purse.convert('50 Pc, 3 PO, 6 Pa')).toEqual([3, 6, 50]);
     });
 
-
     it('should a 1po purse > 1pc purse', () => {
         expect(new Purse('1po') > new Purse('1pc')).toBeTrue();
     });
