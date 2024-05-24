@@ -18,7 +18,7 @@ div {
             &.first {
                 font-size: 24px;
                 border-right: 1px solid white;
-                width: 50%;
+                width: 40%;
                 border-radius: 8px 8px 0 0;
             }
 
@@ -37,6 +37,10 @@ div {
 
             &:is(:not(.blank)):last-of-type {
                 border-right: 1px solid black;
+            }
+
+            &.damages {
+                width: 25%;
             }
         }
 

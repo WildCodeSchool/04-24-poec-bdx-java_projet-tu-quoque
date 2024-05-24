@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { WeaponsService } from '../../../../shared/services/weapons.service';
 
 @Component({
   selector: 'app-attacks',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AttacksComponent {
   weapons: string[] = ["épée", "arc", "dague"];
+
+  weaponsAllowed$ = inject(WeaponsService).getAuthorizedWeapons$();
 }

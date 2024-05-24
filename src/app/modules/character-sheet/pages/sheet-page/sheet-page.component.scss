@@ -32,7 +32,7 @@ app-saving-throws-feature {
 
 app-skill-list {
     grid-column: 16/25;
-    grid-row: 7/auto;
+    grid-row: 7/31;
 }
 
 app-bba-component {
@@ -45,7 +45,6 @@ app-attacks {
     grid-row: 16/33;
     display: flex;
     flex-direction: column;
-
 }
 
 app-defenses {
@@ -53,4 +52,9 @@ app-defenses {
     grid-row: 33/40;
     display: flex;
     flex-direction: column;
+}
+
+app-market-place {
+    grid-column: 16/25;
+    grid-row: 31/auto
 }
