@@ -4,6 +4,7 @@ import { UserTablesComponent } from './components/features/user-tables/user-tabl
 import { TablePageComponent } from './components/features/table-page/table-page.component';
 import { TableNewPlayerComponent } from './components/features/table-new-player/table-new-player.component';
 import { CharactersToAcceptComponent } from './components/features/characters-to-accept/characters-to-accept.component';
+import { TableNewDrawingComponent } from './components/features/table-new-drawing/table-new-drawing.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
     path: "my-tables/:id/shared-calendar",
     loadChildren: () => import('./modules/table-calendar/table-calendar.module')
     .then(m => m.TableCalendarModule)
+  },
+  {
+    path: "my-tables/:id/new-drawing",
+    component: TableNewDrawingComponent
   }
 ];
 
