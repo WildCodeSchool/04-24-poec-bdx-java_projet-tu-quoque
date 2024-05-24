@@ -6,7 +6,6 @@ import { CircleShapeEventHandlers } from "../../../../../../../../../../../../sh
 import { DrawingUtilitiesService } from "../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service";
 import { ColorService } from "../../../../../../../../../../../../shared/services/drawing/color.service";
 
-
 export class CircleShape extends BaseShape {
   private circleShapeEventHandlers: CircleShapeEventHandlers;
 
