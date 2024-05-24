@@ -53,6 +53,9 @@ import { ArmorUiComponent } from './components/defense/ui/armor-ui/armor-ui.comp
 import { ShieldUiComponent } from './components/defense/ui/shield-ui/shield-ui.component';
 import { ProtectionUiComponent } from './components/defense/ui/protection-ui/protection-ui.component';
 import { DefensesComponent } from './components/defense/feature/defenses/defenses.component';
+import { MarketPlaceComponent } from './components/market/feature/market-place/market-place.component';
+import { BuyWeaponsComponent } from './components/market/ui/buy-weapons/buy-weapons.component';
+import { PurseComponent } from './components/market/ui/purse/purse.component';
 
 
 @NgModule({
@@ -106,7 +109,10 @@ import { DefensesComponent } from './components/defense/feature/defenses/defense
     ArmorUiComponent,
     ShieldUiComponent,
     ProtectionUiComponent,
-    DefensesComponent
+    DefensesComponent,
+    MarketPlaceComponent,
+    BuyWeaponsComponent,
+    PurseComponent
   ],
   imports: [
     CommonModule,
