@@ -1,17 +1,20 @@
 <ng-container *ngIf="table$ |async as table">
     <app-page-header [elementIcon]="'assets/images/table-icon.svg'" [title]="table.name"></app-page-header>
     <app-table-presentation [table]="table"></app-table-presentation>
+    <app-custom-button [style]="'gold'" [name]="'Agenda'" [routerLink]="['shared-calendar']"></app-custom-button>
     <app-custom-area-title [title]="'Liste des joueurs'"></app-custom-area-title>
     <ng-container *ngIf="participantList$|async as participants">
         <app-list-of-element [elementList]="participants" [elementIcon]="'assets/images/character-icon.svg'" [replacementIcon]="'assets/images/hourglass-icon.svg'"></app-list-of-element>
     </ng-container>
+    @if(userAllowed.id == table.userId) {
     <app-custom-add-button [routerLink]="'new-player'" ></app-custom-add-button>
     <app-custom-button [style]="'gold'" [name]="'Persos à valider'" [routerLink]="'accept-characters'"></app-custom-button>
-    <app-custom-area-title [title]="'Chat avec les joueurs'"></app-custom-area-title>
-    <ng-container *ngIf="chatList$|async as chatList">
-    <app-list-of-element [elementList]="chatList" [elementIcon]="'assets/images/discussion-icon.svg'"></app-list-of-element>
-    </ng-container>
-    <app-custom-add-button ></app-custom-add-button>
+        <app-custom-area-title [title]="'Chat avec les joueurs'"></app-custom-area-title>
+        <ng-container *ngIf="chatList$|async as chatList">
+        <app-list-of-element [elementList]="chatList" [elementIcon]="'assets/images/discussion-icon.svg'"></app-list-of-element>
+        </ng-container>
+        <app-custom-add-button ></app-custom-add-button>
+    }
     <app-custom-area-title [title]="'Dessins'"></app-custom-area-title>
     <ng-container *ngIf="drawingList$|async as drawingList">
     <app-list-of-element [elementList]="drawingList" [elementIcon]="'assets/images/brush-icon.svg'" (sendDrawingUrl)="showDrawing($event)" [isForDrawing]="true"></app-list-of-element>
@@ -25,3 +28,14 @@
         <app-drawing-display (isDrawingVisible)="toggleDrawingVisible($event)" [drawingToShow]="drawingToShow"></app-drawing-display>
     }
 </footer>
+    <app-custom-add-button ></app-custom-add-button>
+    <footer class="bottom-part">
+        <app-custom-button [style]="'gold'" [name]="'Retour'" PreviousPage></app-custom-button>
+        @if(userAllowed.id == table.userId) {
+        <app-custom-button [style]="'gold'" [name]="'Sélectionner'"></app-custom-button>
+        }
+        @if(isDrawingVisible) {
+            <app-drawing-display (isDrawingVisible)="toggleDrawingVisible($event)" [drawingToShow]="drawingToShow"></app-drawing-display>
+        }
+    </footer>
+</ng-container>

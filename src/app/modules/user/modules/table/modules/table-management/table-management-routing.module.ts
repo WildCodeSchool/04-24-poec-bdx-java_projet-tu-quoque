@@ -29,6 +29,11 @@ const routes: Routes = [
     component: CharactersToAcceptComponent
   },
   {
+    path: "my-tables/:id/shared-calendar",
+    loadChildren: () => import('./modules/table-calendar/table-calendar.module')
+    .then(m => m.TableCalendarModule)
+  },
+  {
     path: "my-tables/:id/new-drawing",
     component: TableNewDrawingComponent
   }

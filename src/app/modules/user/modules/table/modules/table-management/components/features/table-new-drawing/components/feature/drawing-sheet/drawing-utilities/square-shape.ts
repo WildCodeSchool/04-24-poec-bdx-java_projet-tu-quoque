@@ -1,10 +1,38 @@
 import { Observable, Subscription, map, switchMap, takeUntil } from "rxjs";
 import { BaseShape } from "../../../../../../../../../../../../shared/models/class/base-shape";
 import { DrawingPoint } from "../../../../../../../../../../../../shared/models/class/drawing-point";
+import { SquareEventHandlers } from "../../../../../../../../../../../../shared/models/class/form-class/square-event-handlers";
+import { ElementRef } from "@angular/core";
+import { DrawingUtilitiesService } from "../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service";
+import { ColorService } from "../../../../../../../../../../../../shared/services/drawing/color.service";
 
 export class SquareShape extends BaseShape {
-  private startPos!: DrawingPoint;
-  private finalPos!: DrawingPoint;
+  private squareEventHandlers: SquareEventHandlers;
+
+  constructor(
+    canvasRef: ElementRef,
+    _drawingService: DrawingUtilitiesService,
+    _colorService: ColorService,
+    _ctx: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+    _drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
+    redrawAll: () => void,
+    currentColor: string,
+    currentLineWidth: number
+  ) {
+    super(canvasRef, _drawingService, _colorService, _ctx, width, height, _drawnPaths, redrawAll, currentColor, currentLineWidth);
+    this.squareEventHandlers = new SquareEventHandlers(
+      canvasRef,
+      _drawingService,
+      _ctx,
+      currentColor,
+      currentLineWidth,
+      _drawnPaths,
+      this.clearAndRedraw.bind(this),
+      redrawAll
+    );
+  }
 
   protected drawShape(
     start$: Observable<MouseEvent | TouchEvent>,
@@ -12,66 +40,9 @@ export class SquareShape extends BaseShape {
     end$: Observable<MouseEvent | TouchEvent>
   ): void {
     const square$ = start$.pipe(
-      switchMap(startEvent => this.handleStartEvent(startEvent, move$, end$))
+      switchMap(startEvent => this.squareEventHandlers.handleStartEvent(startEvent, move$, end$))
     );
 
     this._drawingService.addSubscription(square$.subscribe());
-  }
-
-  private handleStartEvent(
-    startEvent: MouseEvent | TouchEvent,
-    move$: Observable<MouseEvent | TouchEvent>,
-    end$: Observable<MouseEvent | TouchEvent>
-  ) {
-    this.startPos = DrawingPoint.fromEvent(startEvent, this.canvasRef.nativeElement, this._drawingService);
-
-    const moveSubscription = move$.pipe(
-      map(moveEvent => this.calculateSquarePositions(moveEvent)),
-      takeUntil(end$)
-    ).subscribe(() => {
-      this.clearAndRedraw();
-      this.drawSquare(this.startPos, this.finalPos);
-    });
-
-    return end$.pipe(
-      map(() => this.handleEndEvent(moveSubscription))
-    );
-  }
-
-  private calculateSquarePositions(moveEvent: MouseEvent | TouchEvent) {
-    this.finalPos = DrawingPoint.fromEvent(moveEvent, this.canvasRef.nativeElement, this._drawingService);
-  }
-
-  private drawSquare(startPos: DrawingPoint, finalPos: DrawingPoint) {
-    const squareSize = startPos.distanceTo(finalPos);
-
-    this._ctx.strokeStyle = this._currentColor;
-    this._ctx.lineWidth = this._currentLineWidth;
-    this._ctx.strokeRect(startPos.x, startPos.y, squareSize, squareSize);
-  }
-
-  private handleEndEvent(moveSubscription: Subscription) {
-    const width = this.finalPos.x - this.startPos.x;
-    const height = this.finalPos.y - this.startPos.y;
-    const squareSize = Math.max(Math.abs(width), Math.abs(height));
-
-    this._drawnPaths.push({
-      color: this._currentColor,
-      lineWidth: this._currentLineWidth,
-      path: this.generateSquarePath(this.startPos, squareSize)
-    });
-
-    this.redrawAll();
-    moveSubscription.unsubscribe();
-  }
-
-  private generateSquarePath(startPos: { x: number; y: number }, squareSize: number) {
-    return [
-      { x: startPos.x, y: startPos.y },
-      { x: startPos.x + squareSize, y: startPos.y },
-      { x: startPos.x + squareSize, y: startPos.y + squareSize },
-      { x: startPos.x, y: startPos.y + squareSize },
-      { x: startPos.x, y: startPos.y }
-    ];
   }
 }
