@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './hp-component.component.html',
   styleUrl: './hp-component.component.scss'
 })
-export class HpComponentComponent {
+export class HitPointComponent {
   hitPoints: number = 12;
 }

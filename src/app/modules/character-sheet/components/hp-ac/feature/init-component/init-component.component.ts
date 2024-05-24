@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './init-component.component.html',
   styleUrl: './init-component.component.scss'
 })
-export class InitComponentComponent {
+export class InitiativeComponent {
   init: number = 0;
 }

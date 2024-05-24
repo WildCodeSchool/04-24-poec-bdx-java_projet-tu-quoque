@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
     './bba-ui.component.scss'
   ]
 })
-export class BbaUiComponent {
+export class BaseAttackBonusUiComponent {
   @Input()
-  bba$!: Observable<number[]>;
+  baseAttackBonus$!: Observable<number[]>;
 }

@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
     './init-ui-component.component.scss'
   ]
 })
-export class InitUiComponentComponent {
+export class InitiativeUIComponent {
   @Input()
   init!: number;
 }

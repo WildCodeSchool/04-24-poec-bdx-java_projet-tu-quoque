@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AttackBaseBonusType, AttackBaseBonusTypeKey } from '../../models/enums/attack-base-bonus-type.enum';
+import { BaseAttackBonusType, BaseAttackBonusTypeKey } from '../../models/enums/attack-base-bonus-type.enum';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AttackBaseBonusService {
+export class BaseAttackBonusService {
 
-  static getValue(level: number, bbaType: AttackBaseBonusTypeKey): number[] {
-    const bba = Math.floor(level * AttackBaseBonusType[bbaType]);
-    return this.getAllAttacks(bba);
+  static getValue(level: number, baseAttackBonusType: BaseAttackBonusTypeKey): number[] {
+    const baseAttackBonus = Math.floor(level * BaseAttackBonusType[baseAttackBonusType]);
+    return this.getAllAttacks(baseAttackBonus);
   }
 
-  private static getAllAttacks(bba: number): number[] {
-    const attacks = [bba];
-    while ((bba -= 5) > 0) {
-      attacks.push(bba);
+  private static getAllAttacks(baseAttackBonus: number): number[] {
+    const attacks = [baseAttackBonus];
+    while ((baseAttackBonus -= 5) > 0) {
+      attacks.push(baseAttackBonus);
     }
     return attacks;
   }
