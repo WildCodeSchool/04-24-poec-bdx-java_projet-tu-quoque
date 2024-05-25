@@ -1,3 +1,4 @@
+import { CHANGE_RATE } from "../../../shared/constants/constants.constant";
 import { PurseCoinIndex } from "./purse-coin-index.class";
 
 export class Purse {
@@ -28,8 +29,8 @@ export class Purse {
 
     private reorganize(): void {
         let total: number = this.valueOf();
-        [this.copper, this.silver] = [total % 100, Math.floor(total / 100)];
-        [this.silver, this.gold] = [this.silver % 100, Math.floor(this.silver / 100)];
+        [this.copper, this.silver] = [total % CHANGE_RATE, Math.floor(total / CHANGE_RATE)];
+        [this.silver, this.gold] = [this.silver % CHANGE_RATE, Math.floor(this.silver / CHANGE_RATE)];
     }
 
     convert(amount: string): number[] {
@@ -76,6 +77,6 @@ export class Purse {
     }
 
     public valueOf(): number {
-        return this.gold * 100 * 100 + this.silver * 100 + this.copper;
+        return this.gold * CHANGE_RATE * CHANGE_RATE + this.silver * CHANGE_RATE + this.copper;
     }
 }
