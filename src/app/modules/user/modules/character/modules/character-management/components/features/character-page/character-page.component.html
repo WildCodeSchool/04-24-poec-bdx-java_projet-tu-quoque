@@ -1,13 +1,25 @@
 <ng-container *ngIf="character$ | async as character">
-  <app-return-button></app-return-button>
-  <app-page-header
-    [elementIcon]="'assets/images/user-icon.svg'"
-    [title]="character.name"
-  ></app-page-header>
-  <app-character-presentation
+  <div
+    class="character-description"
+    [ngStyle]="{
+      'background-image':
+        'linear-gradient(rgba(11, 32, 47, 0.9), rgba(11, 32, 47, 0.7)), ' +
+        'url(' +
+        character.avatar +
+        ')'
+    }"
+  >
+    <app-return-button></app-return-button>
+    <app-page-header
+      [elementIcon]="'assets/images/user-icon.svg'"
+      [title]="character.name"
+    ></app-page-header>
+    <app-character-presentation
     [character]="character"
     (isCharachterSheetVisible)="toggleCharacterSheetVisible($event)"
-  ></app-character-presentation>
+    ></app-character-presentation>
+  </div>
+  <!-- <app-custom-button [style]="'gold'" [name]="'Fiche de perso'"></app-custom-button> -->
   <ng-container *ngIf="table$ | async as table; else noTable">
     <app-custom-area-title
       [title]="'Table reliée :\n' + table.name"
