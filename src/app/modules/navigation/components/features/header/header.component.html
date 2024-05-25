@@ -1,14 +1,22 @@
 <header class="header">
-  <app-header-button
-    class="header-btn"
-    [picture]="'assets/images/menu-icon.svg'"
-    (click)="onClick()"
-  ></app-header-button>
+  <div class="header-side">
+    <app-header-button
+      class="header-btn"
+      [picture]="'assets/images/menu-icon.svg'"
+      (click)="onClick()"
+    ></app-header-button>
+    <span>Menu</span>
+  </div>
   <h1 class="app-title" [routerLink]="homeLink">{{ title | uppercase }}</h1>
-  <app-header-button
-    class="header-btn"
-    [picture]="'assets/images/profile-img-test.jpg'"
-  ></app-header-button>
+  <div class="header-side">
+    <button class="header-btn">
+      <img
+        class="header-img"
+        [src]="'assets/images/profile-img-test.jpg'"
+        alt="profile-picture"
+      />
+    </button>
+  </div>
 </header>
 <app-notes-button
   (click)="storeActualUrl()"
