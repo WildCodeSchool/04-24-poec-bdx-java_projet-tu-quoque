@@ -2,7 +2,7 @@
     <app-page-header [elementIcon]="'assets/images/user-icon.svg'" [title]="character.name"></app-page-header>
     <app-character-presentation [character]="character" (isCharachterSheetVisible)="toggleCharacterSheetVisible($event)"></app-character-presentation>
     <ng-container *ngIf="table$|async as table; else noTable">
-    <app-custom-area-title [title]="'Table :\n'+ table.name" [routerLink]="['../../../../tables/management/my-tables', table.id]"></app-custom-area-title>
+    <app-custom-area-title [title]="'Table :\n'+ table.name" (click)="linkToCharacterTable(table.id)"></app-custom-area-title>
     </ng-container>
     <ng-template #noTable>
         <app-custom-area-title title="Aucune table"></app-custom-area-title>
