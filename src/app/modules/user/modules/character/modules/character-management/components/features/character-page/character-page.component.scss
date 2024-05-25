@@ -9,6 +9,7 @@
   font-family: alice;
   font-size: large;
 
+  
   .page-footer {
     display: flex;
     flex-direction: column;
@@ -16,6 +17,34 @@
     align-items: center;
     flex-grow: 1;
     gap: 1rem;
-    margin-top: 3rem;
+    // margin-top: 3rem;
   }
 }
+
+:host ::ng-deep p-accordion {
+  margin-top: 0.5rem;
+  .p-accordion,
+  .p-accordion-header:not(.p-disabled).p-highlight,
+  .p-accordion-header-link {
+    background-color: #30495b;
+    color: #fff;
+    font-family: alice;
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+  .p-accordion,
+  .p-accordion-content {
+    background-color: #0b202f;
+    padding: 0 0 1rem;
+    border: none;
+    color: #fff;
+  }
+}
+.bottom-part {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
