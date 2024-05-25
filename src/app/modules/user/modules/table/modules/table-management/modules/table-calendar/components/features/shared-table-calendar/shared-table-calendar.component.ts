@@ -24,6 +24,9 @@ export class SharedTableCalendarComponent {
     private _destroyRef: DestroyRef
   ) {}
 
+  closeCalendar(): void {
+
+  }
   ngOnInit() {
     this.tableId = Number(this._route.snapshot.paramMap.get('id'));
     this._eventService
@@ -43,7 +46,7 @@ export class SharedTableCalendarComponent {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       initialView: 'dayGridMonth',
       locale: 'fr',
-      contentHeight: '52vh',
+      contentHeight: '60vh',
 
       headerToolbar: {
         left: 'title',
