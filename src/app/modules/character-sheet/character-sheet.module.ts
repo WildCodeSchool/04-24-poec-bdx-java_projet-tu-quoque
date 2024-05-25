@@ -58,6 +58,7 @@ import { BuyWeaponsComponent } from './components/market/ui/buy-weapons/buy-weap
 import { PurseComponent } from './components/possessions/ui/purse/purse.component';
 import { PossessionsComponent } from './components/possessions/feature/possessions/possessions.component';
 import { EquipmentComponent } from './components/possessions/ui/equipment/equipment.component';
+import { CoinsComponent } from './components/market/ui/coins/coins.component';
 
 
 @NgModule({
@@ -116,7 +117,8 @@ import { EquipmentComponent } from './components/possessions/ui/equipment/equipm
     BuyWeaponsComponent,
     PurseComponent,
     PossessionsComponent,
-    EquipmentComponent
+    EquipmentComponent,
+    CoinsComponent
   ],
   imports: [
     CommonModule,
