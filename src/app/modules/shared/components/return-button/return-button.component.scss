@@ -1,0 +1,13 @@
+:host {
+    padding: 1rem 5% 0;
+    button {
+        display: flex;
+        align-items: center;
+        padding-inline: 0;
+        gap: 0.4rem;
+        border: none;
+        background-color: transparent;
+        color: #fff;
+        font-family: alice;
+    }
+}

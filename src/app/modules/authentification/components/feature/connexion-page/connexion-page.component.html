@@ -1,5 +1,5 @@
+    <app-return-button></app-return-button>
     <app-page-header [title]="'Connexion'" [elementIcon]="connexionIcon"></app-page-header>
-
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <ng-container *ngIf="emailField$ | async as emailField"> 
         <app-input-text

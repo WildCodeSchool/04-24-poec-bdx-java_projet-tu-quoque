@@ -15,6 +15,7 @@ import { ShowCommentPageComponent } from './components/show-comment-page/show-co
 import { BackToPreviousPageDirective } from './directives/back-to-previous-page.directive';
 import { BaseInputComponent } from './components/custom-form/form-inputs/base-input/base-input.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ReturnButtonComponent } from './components/return-button/return-button.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     CustomAddButtonComponent,
     ShowCommentPageComponent,
     BackToPreviousPageDirective,
+    ReturnButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +45,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ListOfElementComponent,
     PageHeaderComponent,
     CustomAreaTitleComponent,
+    ReturnButtonComponent,
     FileUploadModule,
     AutoCompleteModule,
     ShowCommentPageComponent,
