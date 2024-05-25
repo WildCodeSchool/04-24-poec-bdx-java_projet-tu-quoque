@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { EventClickArg, EventDropArg } from '@fullcalendar/core';
 import { EventResizeDoneArg } from '@fullcalendar/interaction';
@@ -12,11 +11,8 @@ import { calendarEvent } from '../../models/types/users/calendarEvent.type';
 export class EventService extends ApiRessourceService<any> {
   
   private eventList$ = new BehaviorSubject<any[]>([]);
+  
   private readonly _BASE_URL: string = 'http://localhost:3000/events';
-
-  constructor(protected override _http: HttpClient) {
-    super(_http);
-  }
 
   override getRessourceUrl(): string {
     return this._BASE_URL;

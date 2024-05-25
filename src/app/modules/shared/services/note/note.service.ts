@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map, switchMap } from 'rxjs';
 import { Note } from '../../models/types/users/note.type';
 import { ConnectionService } from '../connection/connection.service';
@@ -12,6 +11,8 @@ import { ApiRessourceService } from '../api-ressource/api-ressource.service';
   providedIn: 'root',
 })
 export class NoteService extends ApiRessourceService<Note> {
+
+  private _connectionService = inject(ConnectionService);
   
   private readonly _BASE_URL: string = 'http://localhost:3000/notes';
 
@@ -23,13 +24,6 @@ export class NoteService extends ApiRessourceService<Note> {
 
   private readonly _characterConnected$: Observable<Character> =
     this._connectionService.getCharacterConnected$();
-
-  constructor(
-    protected override _http: HttpClient,
-    private _connectionService: ConnectionService
-  ) {
-    super(_http);
-  }
 
   override getRessourceUrl(): string {
     return this._BASE_URL;

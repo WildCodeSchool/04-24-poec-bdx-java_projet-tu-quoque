@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map, switchMap } from 'rxjs';
 import { Character } from '../../models/types/users/character.type';
 import { ConnectionService } from '../connection/connection.service';
@@ -10,18 +10,13 @@ import { ApiRessourceService } from '../api-ressource/api-ressource.service';
   providedIn: 'root',
 })
 export class CharacterService extends ApiRessourceService<Character> {
-  
-  private readonly _BASE_URL: string = 'http://localhost:3000/characters';
 
+  private connectionService = inject(ConnectionService);
+
+  private readonly _BASE_URL: string = 'http://localhost:3000/characters';
+  
   private readonly _userConnected$: Observable<UserBasicInfos> =
     this.connectionService.getUserConected$();
-
-  constructor(
-    protected override _http: HttpClient,
-    private connectionService: ConnectionService
-  ) {
-    super(_http);
-  }
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
