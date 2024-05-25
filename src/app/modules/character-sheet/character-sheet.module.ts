@@ -55,7 +55,9 @@ import { ProtectionUiComponent } from './components/defense/ui/protection-ui/pro
 import { DefensesComponent } from './components/defense/feature/defenses/defenses.component';
 import { MarketPlaceComponent } from './components/market/feature/market-place/market-place.component';
 import { BuyWeaponsComponent } from './components/market/ui/buy-weapons/buy-weapons.component';
-import { PurseComponent } from './components/market/ui/purse/purse.component';
+import { PurseComponent } from './components/possessions/ui/purse/purse.component';
+import { PossessionsComponent } from './components/possessions/feature/possessions/possessions.component';
+import { EquipmentComponent } from './components/possessions/ui/equipment/equipment.component';
 
 
 @NgModule({
@@ -112,7 +114,9 @@ import { PurseComponent } from './components/market/ui/purse/purse.component';
     DefensesComponent,
     MarketPlaceComponent,
     BuyWeaponsComponent,
-    PurseComponent
+    PurseComponent,
+    PossessionsComponent,
+    EquipmentComponent
   ],
   imports: [
     CommonModule,
