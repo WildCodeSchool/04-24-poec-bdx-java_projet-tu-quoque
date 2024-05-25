@@ -1,11 +1,15 @@
-<div class="homepage">
-    <ng-container *ngIf="buttonOptionList$|async as options">
-        <app-custom-button *ngFor="let option of options; let index= index" 
-            [style]="index % 2 === 0? 'dblue-gold bgSquare': 'gold bgSquare'" 
-            [name]="option.name"
-            [routerLink]="option.url"    
-        >
-        </app-custom-button>
-    </ng-container>
-</div>
-    
+<ng-container *ngIf="invitationList$ | async as invitationList">
+  <app-custom-button
+    *ngFor="let option of buttonOptionList; let index = index"
+    [style]="index % 2 === 0 ? 'dblue-gold bgSquare' : 'gold bgSquare'"
+    [name]="option.name"
+    [routerLink]="option.url"
+    [showSpan]="
+      index === buttonOptionList.length - 1 && invitationList.length
+        ? true
+        : false
+    "
+    [spanValue]="invitationList.length ? invitationList.length : 0"
+  >
+  </app-custom-button>
+</ng-container>
