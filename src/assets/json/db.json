@@ -53,7 +53,7 @@
     {
       "id": "1",
       "name": "Elric",
-      "avatar": "/assets/images/profile-img-test.jpg",
+      "avatar": "/assets/images/user-profile-images/character-elric.jpg",
       "userId": 1,
       "tableId": 4,
       "characterSheetId": 1,
@@ -62,8 +62,8 @@
     },
     {
       "id": "2",
-      "name": "Boromir",
-      "avatar": "",
+      "name": "Gandalf",
+      "avatar": "/assets/images/user-profile-images/user3.png",
       "userId": 1,
       "tableId": 2,
       "characterSheetId": 1,
@@ -72,8 +72,8 @@
     },
     {
       "id": "3",
-      "name": "Willow",
-      "avatar": "",
+      "name": "Elrond",
+      "avatar": "/assets/images/user-profile-images/character-elrond.jpg",
       "userId": 1,
       "tableId": null,
       "characterSheetId": 1,
