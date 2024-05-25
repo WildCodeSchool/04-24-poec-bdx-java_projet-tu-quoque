@@ -4,7 +4,7 @@ import { BaseAttackBonusType, BaseAttackBonusTypeKey } from '../../models/enums/
 @Injectable({
   providedIn: 'root'
 })
-export class BaseAttackBonusService {
+export class BaseAttackBonusCalculationService {
 
   static getValue(level: number, baseAttackBonusType: BaseAttackBonusTypeKey): number[] {
     const baseAttackBonus = Math.floor(level * BaseAttackBonusType[baseAttackBonusType]);
