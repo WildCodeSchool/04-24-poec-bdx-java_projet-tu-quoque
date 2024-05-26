@@ -517,6 +517,7 @@
         "fortitude": "high",
         "will": "low"
       },
+      "startingMoney": "4d4 x10",
       "special": [],
       "id": "68d2"
     },
@@ -575,6 +576,7 @@
         "fortitude": "low",
         "will": "low"
       },
+      "startingMoney": "5d4 x10",
       "special": [],
       "id": "1c9a"
     }
