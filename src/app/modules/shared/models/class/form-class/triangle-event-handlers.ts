@@ -46,8 +46,8 @@ export class TriangleEventHandlers {
   }
 
   private drawTriangle(startX: number, startY: number, currentX: number, currentY: number) {
-    const triangleWidth = currentY - startY;
-    const triangleHeight = currentX - startX;
+    const triangleWidth = currentX - startX;
+    const triangleHeight = currentY - startY;
 
     this._ctx.strokeStyle = this._currentColor;
     this._ctx.lineWidth = this._currentLineWidth;
@@ -74,8 +74,8 @@ export class TriangleEventHandlers {
   }
 
   private generateTrianglePath(startPos: { x: number; y: number }, lastMovePos: { x: number; y: number }) {
-    const triangleHeight = lastMovePos.y - startPos.y;
     const triangleWidth = lastMovePos.x - startPos.x;
+    const triangleHeight = lastMovePos.y - startPos.y;
 
     return [
       { x: startPos.x, y: startPos.y },
