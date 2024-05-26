@@ -26,6 +26,11 @@
     font-family: cinzel;
     font-weight: 100;
     font-size: 2em;
+
+    &.full {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   .header-side {
@@ -50,6 +55,12 @@
       overflow: hidden;
       border: none;
       border-radius: 50%;
+
+      &.avatar {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+      }
 
       .header-img {
         display: inline-block;

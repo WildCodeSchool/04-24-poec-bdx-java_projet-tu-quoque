@@ -1,25 +1,33 @@
-<header class="header">
-  <div class="header-side">
-    <app-header-button
-      class="header-btn"
-      [picture]="'assets/images/menu-icon.svg'"
-      (click)="onClick()"
-    ></app-header-button>
-    <span>Menu</span>
-  </div>
-  <h1 class="app-title" [routerLink]="homeLink">{{ title | uppercase }}</h1>
-  <div class="header-side">
-    <button class="header-btn">
-      <img
-        class="header-img"
-        [src]="'assets/images/profile-img-test.jpg'"
-        alt="profile-picture"
-      />
-    </button>
-  </div>
-</header>
-<app-notes-button
-  (click)="storeActualUrl()"
-  [routerLink]="'../notepad'"
-></app-notes-button>
-<app-menu-sidebar></app-menu-sidebar>
+<ng-container *ngIf="userConnected$ | async as userConnected; else visitor">
+  <header class="header">
+    <div class="header-side">
+      <app-header-button
+        class="header-btn"
+        [picture]="'assets/images/menu-icon.svg'"
+        (click)="onClick()"
+      ></app-header-button>
+      <span>Menu</span>
+    </div>
+    <h1 class="app-title" [routerLink]="userHomeLink">
+      {{ title | uppercase }}
+    </h1>
+    <div class="header-side">
+      <button
+        class="header-btn avatar"
+        [ngStyle]="{ 'background-image': 'url(' + userConnected.avatar + ')' }"
+      ></button>
+    </div>
+  </header>
+  <app-notes-button
+    (click)="storeActualUrl()"
+    [routerLink]="'../notepad'"
+  ></app-notes-button>
+  <app-menu-sidebar></app-menu-sidebar>
+</ng-container>
+<ng-template #visitor>
+  <header class="header">
+    <h1 class="app-title full" [routerLink]="userHomeLink">
+      {{ title | uppercase }}
+    </h1>
+  </header>
+</ng-template>
