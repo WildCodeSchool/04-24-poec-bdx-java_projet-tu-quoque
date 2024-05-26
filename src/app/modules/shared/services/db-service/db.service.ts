@@ -6,7 +6,7 @@ import { CharacterClass } from '../../../character-sheet/models/types/character-
 import { Alignment } from '../../../character-sheet/models/types/alignment.type';
 import { Gender } from '../../../character-sheet/models/types/gender.type';
 import { SkillFromDb } from '../../../character-sheet/models/types/skill-from-db.type';
-import { Weapon } from '../../../character-sheet/models/types/weapons/weapon.type';
+import { WeaponDetails } from '../../../character-sheet/models/types/weapons/weapon.type';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +22,12 @@ export class DbService {
 
   private race$: Observable<Race[]>;
   private classCharacter$: Observable<CharacterClass[]>;
+  private weapons$: Observable<WeaponDetails[]>;
 
   constructor(private http: HttpClient) {
     this.race$ = this.setRaces$();
     this.classCharacter$ = this.setClasses$();
+    this.weapons$ = this.setWeapons$();
   }
 
   getEndpoint$(endpoint: string): Observable<any> {
@@ -58,7 +60,10 @@ export class DbService {
     return this.getEndpoint$(this.SKILLS_ENDPOINT);
   }
 
-  getWeapons$(): Observable<Weapon[]> {
-    return this.getEndpoint$(this.WEAPONS_ENDPOINT);
+  setWeapons$(): Observable<WeaponDetails[]> {
+    return this.getEndpoint$(this.WEAPONS_ENDPOINT).pipe(shareReplay());
+  }
+  getWeapons$(): Observable<WeaponDetails[]> {
+    return this.weapons$;
   }
 }
