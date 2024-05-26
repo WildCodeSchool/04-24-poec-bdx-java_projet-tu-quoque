@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Drawing } from '../../models/types/users/drawing.type';
@@ -25,5 +25,37 @@ export class DrawingService extends ApiRessourceService<Drawing> {
         result.filter((drawing: Drawing) => Number(drawing.tableId) === tableId)
       )
     );
+  }
+
+  save(canvas: HTMLCanvasElement): Observable<any> {
+    return new Observable(observer => {
+      canvas.toBlob(blob => {
+        if (blob) {
+          // TODO quand on aura le back :
+          // const formData = new FormData();
+          // formData.append('file', blob, 'drawing.png');
+
+          // const headers = new HttpHeaders({
+          //   //'Authorization': 'Bearer YOUR_AUTH_TOKEN',  // Remplacer 'YOUR_AUTH_TOKEN' par le vrai token
+          //   // 'Content-Type': 'multipart/form-data', // Généralement géré automatiquement par FormData (?)
+          //   // 'X-Custom-Header': 'CustomHeaderValue'  // Personnaliser l'en-tête (?)
+          // });
+
+          // this._http.post(`${this._BASE_URL}/upload`, formData, { headers })
+          //   .subscribe({
+          //     next: response => {
+          //       observer.next(response);
+          //       observer.complete();
+          //     },
+          //     error: err => observer.error(err)
+          //   });
+          console.log(blob);
+          observer.next(blob);
+          observer.complete();
+        } else {
+          observer.error('Failed to create Blob from canvas');
+        }
+      }, 'image/png');
+    });
   }
 }
