@@ -14,5 +14,6 @@ export type CharacterClass = {
     armors: string[],
     baseAttackBonus: BaseAttackBonusTypeKey,
     savingThrowsBonus: SavingThrows
+    startingMoney: string,
     special: any[]
 }
