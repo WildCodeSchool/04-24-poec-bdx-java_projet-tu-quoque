@@ -1,5 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { WeaponsService } from '../../../../shared/services/weapons.service';
+import { ClassWeaponsService } from '../../../../shared/services/class-weapons.service';
+import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
+import { Weapon } from '../../../../models/classes/weapon.class';
+import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
 
 @Component({
   selector: 'app-attacks',
@@ -7,7 +10,7 @@ import { WeaponsService } from '../../../../shared/services/weapons.service';
   styleUrl: './attacks.component.scss'
 })
 export class AttacksComponent {
-  weapons: string[] = ["épée", "arc", "dague"];
-
-  classWeapons$ = inject(WeaponsService).getClassWeapons$();
+  weapons: Weapon[] = [];
+  characterSize$ = inject(CharacterSheetService).setSizeCategory$()
+  classWeapons$ = inject(ClassWeaponsService).getClassWeapons$();
 }

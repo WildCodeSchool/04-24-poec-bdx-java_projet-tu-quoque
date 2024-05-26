@@ -118,7 +118,7 @@ import { CoinsComponent } from './components/market/ui/coins/coins.component';
     PurseComponent,
     PossessionsComponent,
     EquipmentComponent,
-    CoinsComponent
+    CoinsComponent,
   ],
   imports: [
     CommonModule,

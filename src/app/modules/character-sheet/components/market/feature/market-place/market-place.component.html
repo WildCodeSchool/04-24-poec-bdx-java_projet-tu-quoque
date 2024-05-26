@@ -1,0 +1,7 @@
+<app-purse
+[purse$]="purse$"
+></app-purse>
+<ul *ngIf="classWeapons$ |async as weaponList">
+    <li *ngFor="let weapon of weaponList"> {{weapon.name}} {{weapon.price}} 
+        <button (click)="buy(weapon)">acheter</button></li>
+</ul>

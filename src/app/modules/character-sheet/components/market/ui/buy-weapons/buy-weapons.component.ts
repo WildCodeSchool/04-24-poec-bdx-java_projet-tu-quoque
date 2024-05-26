@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ClassWeaponsService } from '../../../../shared/services/class-weapons.service';
 
 @Component({
   selector: 'app-buy-weapons',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './buy-weapons.component.scss'
 })
 export class BuyWeaponsComponent {
-
+  classWeapons$ = inject(ClassWeaponsService).getClassWeapons$();
 }
