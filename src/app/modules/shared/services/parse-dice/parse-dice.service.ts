@@ -8,7 +8,7 @@ import { DiceDeclaration } from '../../models/types/dice-declaration.type';
 export class ParseDiceService {
 
   static transformStringToDice(dice: string): PossibleDice {
-    switch (dice) {
+    switch (dice.trim()) {
       case "d3":
         return PossibleDice.d3;
       case "d4":
