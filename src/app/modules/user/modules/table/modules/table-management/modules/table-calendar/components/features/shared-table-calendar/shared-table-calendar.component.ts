@@ -60,7 +60,21 @@ export class SharedTableCalendarComponent {
       customButtons: {
         addEventButton: {
           text: 'Ajouter',
-          click:  this._eventService.createNewEvent
+          click: (): void => {
+            const dateStr = prompt('Ajoutez une date au format YYYY-MM-DD');
+            const title = prompt('Ajoutez votre titre');
+            const date: Date = new Date(dateStr + 'T00:00:00');
+            if (!isNaN(date.valueOf())) {
+              const newEvent: calendarEvent = {
+                tableId: this.tableId,
+                title: title ? title : 'non défini',
+                start: date,
+                allDay: true,
+              };
+              this._eventService.addEvent(newEvent);
+              console.log(newEvent);
+            }
+          }
         },
       },
       events: events,

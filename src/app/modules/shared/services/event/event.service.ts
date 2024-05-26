@@ -9,9 +9,8 @@ import { calendarEvent } from '../../models/types/users/calendarEvent.type';
   providedIn: 'root',
 })
 export class EventService extends ApiRessourceService<any> {
-  
   private eventList$ = new BehaviorSubject<any[]>([]);
-  
+
   private readonly _BASE_URL: string = 'http://localhost:3000/events';
 
   override getRessourceUrl(): string {
@@ -50,6 +49,7 @@ export class EventService extends ApiRessourceService<any> {
         allDay: true,
       };
       this.addEvent(newEvent);
+      console.log(newEvent);
     }
   };
 
@@ -60,13 +60,26 @@ export class EventService extends ApiRessourceService<any> {
   showEventDetail = (arg: EventClickArg): void => this.showDetail(arg);
 
   eventResize = (info: EventResizeDoneArg): void => {
-    console.log(info.event.start);
-    console.log(info.event.end);
+    const modifiedEvent: calendarEvent = {
+      id: Number(info.oldEvent._def.publicId),
+      tableId: info.oldEvent.extendedProps['tableId'],
+      title: info.oldEvent._def.title,
+      start: info.event.start,
+      end: info.event.end,
+      allDay: true,
+    };
+    console.log(modifiedEvent);
   };
 
   moveEvent = (info: EventDropArg): void => {
-    if (!confirm('Etes-vous sûr ?')) {
-      info.revert();
-    }
+    const movedEvent: calendarEvent = {
+      id: Number(info.oldEvent._def.publicId),
+      tableId: info.oldEvent.extendedProps['tableId'],
+      title: info.oldEvent._def.title,
+      start: info.event.start,
+      end: info.event.end,
+      allDay: true,
+    };
+    console.log(movedEvent);
   };
 }
