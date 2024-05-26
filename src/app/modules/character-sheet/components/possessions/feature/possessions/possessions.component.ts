@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Purse } from '../../../../models/classes/purse-related/purse.class';
+import { PurseService } from '../../../../shared/services/purse.service';
 
 @Component({
   selector: 'app-possessions',
@@ -6,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './possessions.component.scss'
 })
 export class PossessionsComponent {
-
+  purse$: Observable<Purse> = inject(PurseService).getPurse$();
 }

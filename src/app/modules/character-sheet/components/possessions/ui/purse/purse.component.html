@@ -1,7 +1,14 @@
 <div class="title">{{"argent" | uppercase}}</div>
 
-<ul>
+<ul *ngIf="purse$ | async as purse; else emptyPurse">
     <li><span class="coin">PC :</span>{{purse.copper}}</li>
     <li><span class="coin">PA :</span>{{purse.silver}}</li>
     <li><span class="coin">PO :</span>{{purse.gold}}</li>
 </ul>
+<ng-template #emptyPurse>
+<ul>
+    <li><span class="coin">PC :</span>0</li>
+    <li><span class="coin">PA :</span>0</li>
+    <li><span class="coin">PO :</span>0</li>
+</ul>
+</ng-template>

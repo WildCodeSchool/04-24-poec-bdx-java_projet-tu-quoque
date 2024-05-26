@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Purse } from '../../../../models/classes/purse-related/purse.class';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-purse',
@@ -7,5 +8,6 @@ import { Purse } from '../../../../models/classes/purse-related/purse.class';
   styleUrl: './purse.component.scss'
 })
 export class PurseComponent {
-  purse: Purse = new Purse();
+  @Input()
+  purse$!: Observable<Purse>
 }
