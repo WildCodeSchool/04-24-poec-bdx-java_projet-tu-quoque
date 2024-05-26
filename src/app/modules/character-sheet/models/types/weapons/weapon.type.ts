@@ -1,7 +1,7 @@
 import { Ammo } from "./ammo.type"
 import { Damages } from "./damages.type"
 
-export type Weapon = {
+export type WeaponDetails = {
   name: string,
   category: string,
   price: string,
