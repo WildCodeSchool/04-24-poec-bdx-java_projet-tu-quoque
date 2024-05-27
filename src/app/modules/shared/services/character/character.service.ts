@@ -16,7 +16,7 @@ export class CharacterService extends ApiRessourceService<Character> {
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
   
   private readonly _userConnected$: Observable<UserBasicInfos> =
-    this.connectionService.getUserConected$();
+    this.connectionService.getUserConected$() as Observable<UserBasicInfos>;
 
   override getRessourceUrl(): string {
     return this._BASE_URL;

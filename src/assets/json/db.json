@@ -182,6 +182,7 @@
       "id": 1,
       "tableId": 1,
       "title": "dispo Gimli",
+      "description": "anniversaire Gimli",
       "start": "2024-05-24 00:00:00",
       "allDay": true
     },

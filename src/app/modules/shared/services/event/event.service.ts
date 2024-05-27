@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { EventClickArg, EventDropArg } from '@fullcalendar/core';
+import {
+  EventClickArg,
+  EventDropArg,
+  EventRemoveArg,
+} from '@fullcalendar/core';
 import { EventResizeDoneArg } from '@fullcalendar/interaction';
 import { calendarEvent } from '../../models/types/users/calendarEvent.type';
 
@@ -9,6 +13,7 @@ import { calendarEvent } from '../../models/types/users/calendarEvent.type';
   providedIn: 'root',
 })
 export class EventService extends ApiRessourceService<any> {
+  
   private eventList$ = new BehaviorSubject<any[]>([]);
 
   private readonly _BASE_URL: string = 'http://localhost:3000/events';
@@ -54,7 +59,7 @@ export class EventService extends ApiRessourceService<any> {
   };
 
   showDetail(arg: EventClickArg) {
-    alert(arg.event.title);
+    alert("Titre :\n" +arg.event.title+ '\n' + "Description :\n" +arg.event.extendedProps['description']);
   }
 
   showEventDetail = (arg: EventClickArg): void => this.showDetail(arg);
@@ -81,5 +86,9 @@ export class EventService extends ApiRessourceService<any> {
       allDay: true,
     };
     console.log(movedEvent);
+  };
+
+  deleteEvent = (info: EventRemoveArg): void => {
+    info.event.remove();
   };
 }

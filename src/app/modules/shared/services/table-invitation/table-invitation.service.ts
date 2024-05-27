@@ -17,10 +17,11 @@ export class TableInvitationService extends ApiRessourceService<TableInvitation>
 
   private _connectionService = inject(ConnectionService);
 
-  private _userConnected$ = this._connectionService.getUserConected$();
+  private _userConnected$ =
+    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
 
   private readonly _BASE_URL = 'http://localhost:3000/user_table_invitations';
-  
+
   private _userTableInvitationList$: BehaviorSubject<any> = new BehaviorSubject(
     []
   );

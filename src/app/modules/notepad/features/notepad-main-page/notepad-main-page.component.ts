@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
 export class NotepadMainPageComponent {
   
   fakeCharacterConnected$: Observable<Character> =
-    this._connectionService.getCharacterConnected$();
+    this._connectionService.getCharacterConnected$() as Observable<Character>;
 
   fakeTableConnected$: Observable<Table> =
-    this._connectionService.getTableConnected$();
+    this._connectionService.getTableConnected$() as Observable<Table>;
 
   isUserSelected: Boolean = true;
 

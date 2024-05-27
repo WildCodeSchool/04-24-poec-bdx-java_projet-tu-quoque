@@ -9,12 +9,13 @@ import { ApiRessourceService } from '../api-ressource/api-ressource.service';
   providedIn: 'root',
 })
 export class TableService extends ApiRessourceService<Table> {
-
+  
   private _connectionService = inject(ConnectionService);
 
   private readonly _BASE_URL: string = 'http://localhost:3000/tables';
-  
-  private readonly _userConnected$ = this._connectionService.getUserConected$();
+
+  private readonly _userConnected$ =
+    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
