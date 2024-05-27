@@ -5,6 +5,7 @@ import { SquareEventHandlers } from "../../../../../../../../../../../../shared/
 import { ElementRef } from "@angular/core";
 import { DrawingUtilitiesService } from "../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service";
 import { ColorService } from "../../../../../../../../../../../../shared/services/drawing/color.service";
+import { CanvasDependenciesProvider } from "../../../../../../../../../../../../shared/models/class/form-class/canvas-dependencies-provider";
 
 export class SquareShape extends BaseShape {
   private squareEventHandlers: SquareEventHandlers;
@@ -22,7 +23,8 @@ export class SquareShape extends BaseShape {
     currentLineWidth: number
   ) {
     super(canvasRef, _drawingService, _colorService, _ctx, width, height, _drawnPaths, redrawAll, currentColor, currentLineWidth);
-    this.squareEventHandlers = new SquareEventHandlers(
+    
+    const dependencies = new CanvasDependenciesProvider(
       canvasRef,
       _drawingService,
       _ctx,
@@ -32,6 +34,7 @@ export class SquareShape extends BaseShape {
       this.clearAndRedraw.bind(this),
       redrawAll
     );
+    this.squareEventHandlers = new SquareEventHandlers(dependencies);
   }
 
   protected drawShape(

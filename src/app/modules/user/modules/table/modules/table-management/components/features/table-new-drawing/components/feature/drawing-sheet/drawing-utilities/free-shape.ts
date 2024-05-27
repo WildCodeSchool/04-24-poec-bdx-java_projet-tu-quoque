@@ -4,6 +4,7 @@ import { FreeShapeEventHandlers } from "../../../../../../../../../../../../shar
 import { ElementRef } from "@angular/core";
 import { DrawingUtilitiesService } from "../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service";
 import { ColorService } from "../../../../../../../../../../../../shared/services/drawing/color.service";
+import { CanvasDependenciesProvider } from "../../../../../../../../../../../../shared/models/class/form-class/canvas-dependencies-provider";
 
 export class FreeShape extends BaseShape {
   private freeShapeEventHandlers: FreeShapeEventHandlers;
@@ -21,14 +22,18 @@ export class FreeShape extends BaseShape {
     currentLineWidth: number
   ) {
     super(canvasRef, _drawingService, _colorService, _ctx, width, height, _drawnPaths, redrawAll, currentColor, currentLineWidth);
-    this.freeShapeEventHandlers = new FreeShapeEventHandlers(
+   
+    const dependencies = new CanvasDependenciesProvider(
+      canvasRef,
       _drawingService,
       _ctx,
       currentColor,
       currentLineWidth,
       _drawnPaths,
-      redrawAll
+      redrawAll,
+      this.clearAndRedraw.bind(this)
     );
+    this.freeShapeEventHandlers = new FreeShapeEventHandlers(dependencies);
   }
 
   public drawShape(

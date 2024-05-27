@@ -5,6 +5,7 @@ import { TriangleEventHandlers } from "../../../../../../../../../../../../share
 import { ElementRef } from "@angular/core";
 import { DrawingUtilitiesService } from "../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service";
 import { ColorService } from "../../../../../../../../../../../../shared/services/drawing/color.service";
+import { CanvasDependenciesProvider } from "../../../../../../../../../../../../shared/models/class/form-class/canvas-dependencies-provider";
 
 export class TriangleShape extends BaseShape {
   private triangleEventHandlers: TriangleEventHandlers;
@@ -22,7 +23,8 @@ export class TriangleShape extends BaseShape {
     currentLineWidth: number
   ) {
     super(canvasRef, _drawingService, _colorService, _ctx, width, height, _drawnPaths, redrawAll, currentColor, currentLineWidth);
-    this.triangleEventHandlers = new TriangleEventHandlers(
+    
+    const dependencies = new CanvasDependenciesProvider(
       canvasRef,
       _drawingService,
       _ctx,
@@ -32,6 +34,7 @@ export class TriangleShape extends BaseShape {
       this.clearAndRedraw.bind(this),
       redrawAll
     );
+    this.triangleEventHandlers = new TriangleEventHandlers(dependencies)
   }
 
   protected drawShape(
