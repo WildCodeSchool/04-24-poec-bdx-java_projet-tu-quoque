@@ -37,13 +37,11 @@ export class ConnectionService {
   };
 
   private _user$: BehaviorSubject<UserBasicInfos | null> =
-    new BehaviorSubject<UserBasicInfos | null>(null);
+    new BehaviorSubject<UserBasicInfos | null>(this.fakeConnectedUser);
   private _character$: BehaviorSubject<Character | null> =
-    new BehaviorSubject<Character | null>(this.fakeConnectedCharacter);
+    new BehaviorSubject<Character | null>(null);
   private _table$: BehaviorSubject<Table | null> =
     new BehaviorSubject<Table | null>(this.fakeConnectedTable);
-  private roleConnected$: Subject<Table | Character | null> =
-    new BehaviorSubject<Table | Character | null>(this.fakeConnectedTable);
 
   constructor(protected _http: HttpClient) {}
 
