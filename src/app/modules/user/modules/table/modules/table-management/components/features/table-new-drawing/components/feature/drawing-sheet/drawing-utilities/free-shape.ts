@@ -11,25 +11,25 @@ export class FreeShape extends BaseShape {
 
   constructor(
     canvasRef: ElementRef,
-    _drawingService: DrawingUtilitiesService,
-    _colorService: ColorService,
-    _ctx: CanvasRenderingContext2D,
+    drawingService: DrawingUtilitiesService,
+    colorService: ColorService,
+    ctx: CanvasRenderingContext2D,
     width: number,
     height: number,
-    _drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
+    drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
     redrawAll: () => void,
     currentColor: string,
     currentLineWidth: number
   ) {
-    super(canvasRef, _drawingService, _colorService, _ctx, width, height, _drawnPaths, redrawAll, currentColor, currentLineWidth);
+    super(canvasRef, drawingService, colorService, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
    
     const dependencies = new CanvasDependenciesProvider(
       canvasRef,
-      _drawingService,
-      _ctx,
+      drawingService,
+      ctx,
       currentColor,
       currentLineWidth,
-      _drawnPaths,
+      drawnPaths,
       redrawAll,
       this.clearAndRedraw.bind(this)
     );
@@ -47,6 +47,6 @@ export class FreeShape extends BaseShape {
     );
 
     const drawSubscription = draw$.subscribe();
-    this._drawingService.addSubscription(drawSubscription);
+    this.drawingService.addSubscription(drawSubscription);
   }
 }
