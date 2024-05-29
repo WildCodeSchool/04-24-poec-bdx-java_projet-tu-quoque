@@ -1,25 +1,40 @@
-    <app-return-button></app-return-button>
-    <app-page-header [title]="'Connexion'" [elementIcon]="connexionIcon"></app-page-header>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <ng-container *ngIf="emailField$ | async as emailField"> 
+<app-return-button></app-return-button>
+<app-page-header
+  [title]="'Connexion'"
+  [elementIcon]="connexionIcon"
+></app-page-header>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p-accordion [multiple]="true" [activeIndex]="[]">
+    <p-accordionTab header="Email">
+      <ng-container *ngIf="emailField$ | async as emailField">
         <app-input-text
-         [field]="emailField"
-         formControlName="email"
-         [control]="emailControl"
+          [field]="emailField"
+          formControlName="email"
+          [control]="emailControl"
         >
         </app-input-text>
-    </ng-container>
-    
-    <ng-container *ngIf="passwordField$ | async as passwordField"> 
+      </ng-container>
+    </p-accordionTab>
+    <p-accordionTab header="Mot de passe">
+      <ng-container *ngIf="passwordField$ | async as passwordField">
         <app-input-text
-         [field]="passwordField"
-         formControlName="password"
-         [control]="passwordControl"
+          [field]="passwordField"
+          formControlName="password"
+          [control]="passwordControl"
         >
         </app-input-text>
-    </ng-container>
-    
-    <app-custom-button type="submit" [name]="'Valider'" [style]="'gold'" class="validation-button"></app-custom-button>
+      </ng-container>
+    </p-accordionTab>
+  </p-accordion>
+  <app-custom-button
+    type="submit"
+    [name]="'Valider'"
+    [style]="'gold'"
+  ></app-custom-button>
 </form>
 
-    <app-custom-button [name]="'Pas encore de compte ?'" [style]="'dblue-gold'" class="subscription-button" [routerLink]="['/authentification/inscription']"></app-custom-button>
+<app-custom-button
+  [name]="'Pas encore de compte ?'"
+  [style]="'dblue-gold'"
+  [routerLink]="['/authentification/inscription']"
+></app-custom-button>
