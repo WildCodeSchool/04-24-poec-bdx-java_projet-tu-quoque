@@ -31,6 +31,7 @@ export class AvailableCharacterListComponent {
 
   selectCharacter(id: number): void {
     this.characterIdSelected.emit(id);
+    this.tableSelected = id;
   }
 
   styleObject(id: number): Object {
