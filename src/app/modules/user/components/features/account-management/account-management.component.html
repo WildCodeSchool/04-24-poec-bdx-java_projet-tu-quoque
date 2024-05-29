@@ -1,21 +1,42 @@
 <app-return-button></app-return-button>
-<app-page-header [title]="'Mon compte'" [elementIcon]="connexionIcon"></app-page-header>
+<app-page-header
+  [title]="'Mon compte'"
+  [elementIcon]="connexionIcon"
+></app-page-header>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-<ng-container *ngIf="usernameChangeField$ | async as usernameChangeField"> 
-    <app-input-text
-        [field]="usernameChangeField"
-        formControlName="usernameChange"
-        [control]="usernameChangeControl"
-    >
-    </app-input-text>
-</ng-container>
-<app-custom-area-title [title]="'Changer d\'avatar'"></app-custom-area-title>
+  <p-accordion [multiple]="true" [activeIndex]="[]">
+    <p-accordionTab header="Pseudonyme">
+      <ng-container *ngIf="usernameChangeField$ | async as usernameChangeField">
+        <app-input-text
+          [field]="usernameChangeField"
+          formControlName="usernameChange"
+          [control]="usernameChangeControl"
+        >
+        </app-input-text>
+      </ng-container>
+    </p-accordionTab>
 
-<div class="avatar-img-container">
-<img [src]="userAvatar" alt="Image de profil utilisateur" class="avatar-img">
-</div>
+    <p-accordionTab header="Changer d'avatar">
+      <div class="avatar-img-container">
+        <img
+          [src]="userAvatar"
+          alt="Image de profil utilisateur"
+          class="avatar-img"
+        />
+      </div>
+    </p-accordionTab>
+  </p-accordion>
 
-<app-custom-button type="submit" [name]="'Valider'" [style]="'gold'" class="validation-button"></app-custom-button>
+  <app-custom-button
+    type="submit"
+    [name]="'Valider'"
+    [style]="'gold'"
+  ></app-custom-button>
 
-
+  <app-custom-button
+    type="submit"
+    [name]="'Supprimer mon compte'"
+    [style]="'red'"
+    class="validation-button"
+  ></app-custom-button>
 </form>
