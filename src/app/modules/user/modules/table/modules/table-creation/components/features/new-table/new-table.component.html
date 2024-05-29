@@ -5,21 +5,25 @@
 ></app-page-header>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <ng-container *ngIf="tableNameField$ | async as tableNameField">
-    <app-input-text
-      [field]="tableNameField"
-      formControlName="tableName"
-      [control]="tableNameControl"
-    >
-    </app-input-text>
-  </ng-container>
+  <p-accordion [multiple]="true" [activeIndex]="[]">
+    <p-accordionTab header="Nom de la table">
+      <ng-container *ngIf="tableNameField$ | async as tableNameField">
+        <app-input-text
+          [field]="tableNameField"
+          formControlName="tableName"
+          [control]="tableNameControl"
+        >
+        </app-input-text>
+      </ng-container>
+    </p-accordionTab>
 
-  <app-custom-area-title
-    [title]="'Télécharger un avatar'"
-  ></app-custom-area-title>
-  <div class="add-image-area">
-    <app-custom-add-button></app-custom-add-button>
-  </div>
+    <p-accordionTab header="Télécharger un avatar">
+      <div class="add-image-area">
+        <app-custom-add-button></app-custom-add-button>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+
   <footer class="page-footer">
     <app-custom-button [style]="'gold'" [name]="'Suivant'"></app-custom-button>
   </footer>
