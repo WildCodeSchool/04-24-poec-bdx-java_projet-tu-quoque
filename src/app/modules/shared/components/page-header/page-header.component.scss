@@ -1,14 +1,16 @@
 :host {
   display: flex;
-  gap: 1em;
   align-items: center;
-  padding-left: 5%;
+  gap: 1em;
+  padding: 0.75rem 5% 1rem;
 
   img {
     height: 1.5em;
   }
 
   p {
-    font-size: 1.4rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 1.7rem;
   }
 }

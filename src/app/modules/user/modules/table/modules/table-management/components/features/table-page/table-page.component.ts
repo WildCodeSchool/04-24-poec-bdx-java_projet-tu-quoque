@@ -18,7 +18,6 @@ import { UserBasicInfos } from '../../../../../../../../shared/models/types/user
   styleUrl: './table-page.component.scss',
 })
 export class TablePageComponent {
-  
   id!: number;
   drawingToShow!: string;
   isDrawingVisible: boolean = false;
@@ -42,11 +41,16 @@ export class TablePageComponent {
   ngOnInit(): void {
     this.id = Number(this._route.snapshot.paramMap.get('id'));
     this.table$ = this._tableService.getById$(this.id);
-    this.participantList$ = this._characterService.getCharactersByTable$(this.id);
+    this.participantList$ = this._characterService.getCharactersByTable$(
+      this.id
+    );
     this.chatList$ = this._chatService.getChatListByTable$(this.id);
     this.drawingList$ = this._drawingService.getDrawingListByTable$(this.id);
-    this._connectionService.getUserConected$()
-    .subscribe((user: UserBasicInfos) => this.userAllowed = user)
+    this._connectionService
+      .getUserConected$()
+      .subscribe((user: UserBasicInfos | null) => {
+        if (user) this.userAllowed = user as UserBasicInfos;
+      });
   }
 
   toggleDrawingVisible(event: boolean): void {

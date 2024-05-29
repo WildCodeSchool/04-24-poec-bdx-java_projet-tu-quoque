@@ -14,7 +14,6 @@ import { calendarEvent } from '../../../../../../../../../../shared/models/types
   styleUrl: './shared-table-calendar.component.scss',
 })
 export class SharedTableCalendarComponent {
-  
   calendarOptions!: CalendarOptions;
   tableId!: number;
 
@@ -24,6 +23,7 @@ export class SharedTableCalendarComponent {
     private _destroyRef: DestroyRef
   ) {}
 
+  closeCalendar(): void {}
   ngOnInit() {
     this.tableId = Number(this._route.snapshot.paramMap.get('id'));
     this._eventService
@@ -43,8 +43,7 @@ export class SharedTableCalendarComponent {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       initialView: 'dayGridMonth',
       locale: 'fr',
-      contentHeight: '52vh',
-
+      contentHeight: '60vh',
       headerToolbar: {
         left: 'title',
         center: 'dayGridMonth,timeGridDay prev,next',
@@ -57,7 +56,23 @@ export class SharedTableCalendarComponent {
       customButtons: {
         addEventButton: {
           text: 'Ajouter',
-          click:  this._eventService.createNewEvent
+          click: (): void => {
+            const dateStr = prompt('Ajoutez une date au format YYYY-MM-DD');
+            const title = prompt('Ajoutez votre titre');
+            const description = prompt('Description');
+            const date: Date = new Date(dateStr + 'T00:00:00');
+            if (!isNaN(date.valueOf())) {
+              const newEvent: calendarEvent = {
+                tableId: this.tableId,
+                title: title ? title : 'non défini',
+                description: description ? description : 'non défini',
+                start: date,
+                allDay: true,
+              };
+              this._eventService.addEvent(newEvent);
+              console.log(newEvent);
+            }
+          },
         },
       },
       events: events,
@@ -69,6 +84,7 @@ export class SharedTableCalendarComponent {
       eventDrop: this._eventService.moveEvent,
       eventResize: this._eventService.eventResize,
       eventClick: this._eventService.showEventDetail,
+      eventRemove: this._eventService.deleteEvent,
     };
   }
 }

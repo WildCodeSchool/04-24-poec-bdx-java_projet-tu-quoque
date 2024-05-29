@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ElementProperties } from '../../../character-sheet/models/interfaces/element-properties';
 
@@ -8,7 +8,7 @@ import { ElementProperties } from '../../../character-sheet/models/interfaces/el
 })
 export abstract class ApiRessourceService<T extends ElementProperties> {
 
-  constructor(protected _http: HttpClient) { }
+  protected _http = inject(HttpClient);
 
   abstract getRessourceUrl(): string;
 

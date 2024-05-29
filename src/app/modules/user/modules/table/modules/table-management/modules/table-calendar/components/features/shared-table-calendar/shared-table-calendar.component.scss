@@ -1,26 +1,43 @@
 :host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
+
+.calendar-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
   width: 100vw;
-  padding: 90px 0% 1rem 0%;
   background-color: #0b202f;
   color: #fff;
   font-family: alice;
   font-size: large;
-}
-app-page-header {
-  width: 100%;
-  background-color: #0b202f;
-  color: #fff;
+
+  .close-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+    .close-btn {
+      display: inline-block;
+      width: 39px;
+    }
+  }
+  app-page-header {
+    width: 100%;
+    background-color: #0b202f;
+    color: #fff;
+  }
 }
 
 :host ::ng-deep full-calendar {
   width: 95%;
   color: #0b202f;
   background-color: #fff;
-  
+
   .fc-toolbar.fc-header-toolbar {
     margin-bottom: 0.5rem;
   }
@@ -30,11 +47,4 @@ app-page-header {
     align-items: center;
     gap: 0.5rem;
   }
-}
-
-footer {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: flex-end;
 }

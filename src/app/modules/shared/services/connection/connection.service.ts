@@ -10,7 +10,7 @@ import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
   providedIn: 'root',
 })
 export class ConnectionService {
-  
+
   fakeConnectedUser: UserBasicInfos = {
     id: 1,
     name: 'SkyWalker22',
@@ -36,43 +36,24 @@ export class ConnectionService {
     userId: 1,
   };
 
-  noCharacterConnected: Character = {
-    id: 666,
-    name: 'NoCharacter',
-    avatar: '',
-    userId: 666,
-    accepted: false,
-    scheduleId: 666,
-  };
-
-  noTableConnected: Table = {
-    id: 666,
-    avatar: '',
-    name: 'NoTable',
-    userId: 666,
-  };
-
-  private _user$: BehaviorSubject<UserBasicInfos> = new BehaviorSubject(
-    this.fakeConnectedUser
-  );
-  private _character$: BehaviorSubject<Character> = new BehaviorSubject(
-    this.noCharacterConnected
-  );
-  private _table$: BehaviorSubject<Table> = new BehaviorSubject(
-    this.fakeConnectedTable
-  );
+  private _user$: BehaviorSubject<UserBasicInfos | null> =
+    new BehaviorSubject<UserBasicInfos | null>(this.fakeConnectedUser);
+  private _character$: BehaviorSubject<Character | null> =
+    new BehaviorSubject<Character | null>(null);
+  private _table$: BehaviorSubject<Table | null> =
+    new BehaviorSubject<Table | null>(this.fakeConnectedTable);
 
   constructor(protected _http: HttpClient) {}
 
-  getUserConected$(): Observable<UserBasicInfos> {
+  getUserConected$(): Observable<UserBasicInfos | null> {
     return this._user$.asObservable();
   }
 
-  getCharacterConnected$(): Observable<Character> {
+  getCharacterConnected$(): Observable<Character | null> {
     return this._character$.asObservable();
   }
 
-  getTableConnected$(): Observable<Table> {
+  getTableConnected$(): Observable<Table | null> {
     return this._table$.asObservable();
   }
 

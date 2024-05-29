@@ -1,3 +1,4 @@
+<app-return-button></app-return-button>
 <app-page-header
   [title]="'Mes invitations'"
   [elementIcon]="'assets/images/myTables-title-icon.svg'"
@@ -12,7 +13,7 @@
   ></app-available-character-list>
 </ng-container>
 <app-custom-area-title
-  [title]="'Choisis ton personnage'"
+  [title]="'Personnages sans table attribuée'"
 ></app-custom-area-title>
 <ng-container *ngIf="availableCharacterList$ | async as availableCharacterList">
   <app-available-character-list
@@ -22,11 +23,6 @@
   ></app-available-character-list>
 </ng-container>
 <footer class="page-footer">
-  <app-custom-button
-    [style]="'gold'"
-    [name]="'Retour'"
-    PreviousPage
-  ></app-custom-button>
   <app-custom-button
     [style]="'gold'"
     [name]="'Sélectionner'"

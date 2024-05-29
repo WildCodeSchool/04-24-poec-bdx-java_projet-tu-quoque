@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, map, tap } from 'rxjs';
 import { User } from '../../models/types/users/user.types';
@@ -8,13 +7,10 @@ import { ApiRessourceService } from '../api-ressource/api-ressource.service';
   providedIn: 'root',
 })
 export class userService extends ApiRessourceService<User> {
-  
-  private readonly _BASE_URL: string = 'http://localhost:3000/users';
-  private userListFilteredByName$: Subject<string[]> = new Subject();
 
-  constructor(protected override _http: HttpClient) {
-    super(_http);
-  }
+  private readonly _BASE_URL: string = 'http://localhost:3000/users';
+  
+  private userListFilteredByName$: Subject<string[]> = new Subject();
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
