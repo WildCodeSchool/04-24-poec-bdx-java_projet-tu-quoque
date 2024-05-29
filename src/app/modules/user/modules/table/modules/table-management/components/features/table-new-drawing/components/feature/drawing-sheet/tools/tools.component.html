@@ -1,28 +1,28 @@
-<section>
-    <button type="button" (click)="drawFree()">
+<section class="drawing-button-section">
+    <button type="button" class="drawing-button" (click)="drawFree()">
         <img [src]="drawfreeIcon" alt="Dessin libre">
     </button>
-    <button type="button" (click)="drawLine()">
+    <button type="button" class="drawing-button" (click)="drawLine()">
         <img [src]="lineIcon" alt="Ligne">
     </button>
-    <button type="button" (click)="drawTriangle()">
+    <button type="button" class="drawing-button" (click)="drawTriangle()">
         <img [src]="triangleIcon" alt="Triangle">
     </button>
-    <button type="button" (click)="drawCirle()">
+    <button type="button" class="drawing-button" (click)="drawCirle()">
         <img [src]="circleIcon" alt="Rond">
     </button>
-    <button type="button" (click)="drawSquare()">
+    <button type="button" class="drawing-button" (click)="drawSquare()">
         <img [src]="squareIcon" alt="Carré">
     </button>
 </section>
 <section>
-    <button type="button" (click)="eraseAll()">
+    <button type="button" class="erase-button" (click)="eraseAll()">
         <img [src]="resetIcon" alt="Tout effacer">
     </button>
-    <button type="button" (click)="erase()">
+    <button type="button" class="erase-button" (click)="erase()">
         <img [src]="eraseIcon" alt="Gomme">
     </button>
-    <button type="button" (click)="undoAction()">
+    <button type="button" class="erase-button" (click)="undoAction()">
         <img [src]="returnIcon" alt="Effacer">
     </button>
 </section>
