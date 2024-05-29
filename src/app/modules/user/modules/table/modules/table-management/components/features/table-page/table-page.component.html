@@ -24,6 +24,7 @@
           [elementList]="participants"
           [elementIcon]="'assets/images/character-icon.svg'"
           [replacementIcon]="'assets/images/hourglass-icon.svg'"
+          [isModifiable]="false"
         ></app-list-of-element>
         @if(userAllowed.id == table.userId) {
         <app-custom-add-button
@@ -54,6 +55,7 @@
             [elementIcon]="'assets/images/brush-icon.svg'"
             (sendDrawingUrl)="showDrawing($event)"
             [isForDrawing]="true"
+            [isModifiable]="false"
           ></app-list-of-element>
         </ng-container>
         <app-custom-add-button
