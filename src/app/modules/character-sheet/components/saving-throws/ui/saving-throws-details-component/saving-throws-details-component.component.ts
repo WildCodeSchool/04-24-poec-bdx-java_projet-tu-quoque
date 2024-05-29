@@ -6,7 +6,7 @@ import { SavingThrow } from '../../../../models/classes/saving-throw.class';
   templateUrl: './saving-throws-details-component.component.html',
   styleUrl: './saving-throws-details-component.component.scss'
 })
-export class SavingThrowsDetailsComponentComponent {
+export class SavingThrowsDetailsComponent {
   @Input()
   savingThrow!: SavingThrow;
 }

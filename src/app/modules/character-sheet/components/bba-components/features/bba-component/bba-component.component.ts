@@ -1,15 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BbaService } from '../../../../shared/services/bba.service';
+import { BaseAttackBonusStreamService } from '../../../../shared/services/base-attack-bonus-stream.service';
 
 @Component({
   selector: 'app-bba-component',
   templateUrl: './bba-component.component.html',
   styleUrl: './bba-component.component.scss'
 })
-export class BbaComponentComponent {
-  bbaService = inject(BbaService);
-  bba$: Observable<number[]> = this.bbaService.bbaStream$;
+export class BaseAttackBonusComponent {
+  baseAttackBonus: Observable<number[]> = inject(BaseAttackBonusStreamService).baseAttackBonusStream$;
   magicalResistance: number = 0;
   wrestling: number = 0;
 }

@@ -9,6 +9,5 @@ import { CharacterSavingThrows } from '../../../../models/classes/character-savi
   styleUrl: './saving-throws-feature.component.scss'
 })
 export class SavingThrowsFeatureComponent {
-  savingThrowsService: SavingThrowsService = inject(SavingThrowsService);
-  savingThrows$: Observable<CharacterSavingThrows> = this.savingThrowsService.getCharacterSavingThrows$();
+  savingThrows$: Observable<CharacterSavingThrows> = inject(SavingThrowsService).getCharacterSavingThrows$();
 }

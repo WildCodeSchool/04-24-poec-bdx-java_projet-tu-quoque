@@ -1,13 +1,19 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
-// watch dom change and fire (dom-changed) event
+import { Directive, ElementRef, inject, OnInit } from '@angular/core';
+
+/**
+*    @directive watchDomTree
+*    @selector '[watchDomTree]'
+*    @description Monitors changes in the DOM structure of the element it's attached to using MutationObserver.
+*    Dispatches a custom event named 'dom-changed' with details about the mutation whenever a change occurs. 
+*/
 @Directive({
     selector: '[watchDomTree]'
 })
 export class DomChangedDirective implements OnInit {
-    constructor(private elRef: ElementRef) { }
+    private elRef: ElementRef = inject(ElementRef);
+
     ngOnInit() {
         this.registerDomChangedEvent(this.elRef.nativeElement);
-
     }
 
     registerDomChangedEvent(el: any) {

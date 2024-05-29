@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
     './reduce-damage-ui-component.component.scss'
   ]
 })
-export class ReduceDamageUiComponentComponent {
+export class ReduceDamageUiComponent {
   @Input()
   reduceDamage!: number;
 }

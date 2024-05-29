@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './movement-component.component.html',
   styleUrl: './movement-component.component.scss'
 })
-export class MovementComponentComponent {
+export class MovementComponent {
   movement: number = 9;
 }
