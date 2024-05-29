@@ -1,34 +1,26 @@
 import { Observable, Subscription, map, takeUntil } from "rxjs";
 import { DrawingUtilitiesService } from "../../../services/drawing/drawing-utilities.service";
 import { ElementRef } from "@angular/core";
+import { CanvasDependenciesProvider } from "./canvas-dependencies-provider";
 
 export class CircleShapeEventHandlers {
   private radius: number = 0;
 
-  constructor(
-    private canvasRef: ElementRef,
-    private _drawingService: DrawingUtilitiesService,
-    private _ctx: CanvasRenderingContext2D,
-    private _currentColor: string,
-    private _currentLineWidth: number,
-    private _drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
-    private redrawAll: () => void,
-    private clearAndRedraw: () => void
-  ) {}
+  constructor(private dependencies : CanvasDependenciesProvider) {}
 
   handleStartEvent(
     startEvent: MouseEvent | TouchEvent,
     move$: Observable<MouseEvent | TouchEvent>,
     end$: Observable<MouseEvent | TouchEvent>
   ): Observable<void> {
-    const startPos = this._drawingService.getCoordinates(this.canvasRef.nativeElement, startEvent);
+    const startPos = this.dependencies.drawingService.getCoordinates(this.dependencies.canvasRef.nativeElement, startEvent);
     
     const moveSubscription = move$.pipe(
       map(moveEvent => this.calculateRadiusAndPositions(moveEvent, startPos)),
       takeUntil(end$)
     ).subscribe(({ startPos, currentPos, radius }) => {
       this.radius = radius;
-      this.clearAndRedraw();
+      this.dependencies.clearAndRedraw();
       this.drawCircle(startPos, radius);
     });
 
@@ -38,7 +30,7 @@ export class CircleShapeEventHandlers {
   }
 
   private calculateRadiusAndPositions(moveEvent: MouseEvent | TouchEvent, startPos: { x: number; y: number }) {
-    const currentPos = this._drawingService.getCoordinates(this.canvasRef.nativeElement, moveEvent);
+    const currentPos = this.dependencies.drawingService.getCoordinates(this.dependencies.canvasRef.nativeElement, moveEvent);
     const radius = Math.sqrt(
       Math.pow(currentPos.x - startPos.x, 2) + Math.pow(currentPos.y - startPos.y, 2)
     );
@@ -46,24 +38,24 @@ export class CircleShapeEventHandlers {
   }
 
   private drawCircle(center: { x: number; y: number }, radius: number) {
-    this._ctx.strokeStyle = this._currentColor;
-    this._ctx.lineWidth = this._currentLineWidth;
+    this.dependencies.ctx.strokeStyle = this.dependencies.currentColor;
+    this.dependencies.ctx.lineWidth = this.dependencies.currentLineWidth;
 
-    this._ctx.beginPath();
-    this._ctx.arc(center.x, center.y, radius, 0, 2 * Math.PI);
-    this._ctx.stroke();
+    this.dependencies.ctx.beginPath();
+    this.dependencies.ctx.arc(center.x, center.y, radius, 0, 2 * Math.PI);
+    this.dependencies.ctx.stroke();
   }
 
   private handleEndEvent(startPos: { x: number; y: number }, radius: number, moveSubscription: Subscription): void {
     const path = this.generateCirclePath(startPos, radius);
 
-    this._drawnPaths.push({
-      color: this._currentColor,
-      lineWidth: this._currentLineWidth,
+    this.dependencies.drawnPaths.push({
+      color: this.dependencies.currentColor,
+      lineWidth: this.dependencies.currentLineWidth,
       path
     });
 
-    this.redrawAll();
+    this.dependencies.redrawAll();
     moveSubscription.unsubscribe();
   }
 

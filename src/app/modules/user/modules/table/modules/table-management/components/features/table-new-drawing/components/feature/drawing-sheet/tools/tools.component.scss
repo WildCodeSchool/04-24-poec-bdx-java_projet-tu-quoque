@@ -1,23 +1,28 @@
 :host {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-  padding: 0.5rem;
-}
-section {
-  display: flex;
-  justify-content: center;
-  button {
+  section {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-    width: 3rem;
-    border: 1px solid black;
-    all: unset;
-    color: #c29b0f;
+    justify-content: space-around;
+    margin-bottom: 0.5rem;
+    .drawing-button {
+      display: flex;
+      all: unset;
+    }
+    .erase-button {
+      display: flex;
+      all: unset;
+    }
+    img {
+      padding: 0rem 0.5rem 0rem 0.5rem;
+      width: 5rem;
+    }
+    .erase-button img {
+      width: 4rem;
+    }
   }
-  img {
-    width: 2.5rem;
+  .drawing-button-section {
+    border-bottom: 1px solid white;
   }
 }

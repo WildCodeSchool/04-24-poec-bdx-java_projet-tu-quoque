@@ -15,6 +15,7 @@ import { TableNewDrawingComponent } from './components/features/table-new-drawin
 import { DrawingSheetComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/drawing-sheet.component';
 import { PaletteComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/palette/palette.component';
 import { ToolsComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/tools/tools.component';
+import { SaveDrawingComponent } from './components/features/table-new-drawing/components/feature/drawing-sheet/save-drawing/save-drawing.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ToolsComponent } from './components/features/table-new-drawing/componen
     TableNewDrawingComponent,
     DrawingSheetComponent,
     PaletteComponent,
-    ToolsComponent
+    ToolsComponent,
+    SaveDrawingComponent
   ],
   imports: [
     CommonModule,

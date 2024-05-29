@@ -30,6 +30,7 @@ export class ToolsComponent {
   triangleIcon: string = 'assets/icons/drawTools/triangle.svg';
   eraseIcon: string = 'assets/icons/drawTools/erase.svg';
   returnIcon: string = 'assets/icons/drawTools/return.svg';
+  resetIcon: string = 'assets/icons/drawTools/reset.svg';
 
   drawFree() {
     this.restorePreviousSettings();

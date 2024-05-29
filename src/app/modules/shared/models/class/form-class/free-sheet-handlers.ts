@@ -1,16 +1,10 @@
 import { Observable, Subscription, map, takeUntil, switchMap } from "rxjs";
 import { DrawingUtilitiesService } from "../../../services/drawing/drawing-utilities.service";
 import { ElementRef } from "@angular/core";
+import { CanvasDependenciesProvider } from "./canvas-dependencies-provider";
 
 export class FreeShapeEventHandlers {
-  constructor(
-    private _drawingService: DrawingUtilitiesService,
-    private _ctx: CanvasRenderingContext2D,
-    private _currentColor: string,
-    private _currentLineWidth: number,
-    private _drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
-    private redrawAll: () => void
-  ) {}
+  constructor(private dependencies : CanvasDependenciesProvider) {}
 
   handleStartEvent(
     startEvent: MouseEvent | TouchEvent,
@@ -18,11 +12,11 @@ export class FreeShapeEventHandlers {
     move$: Observable<MouseEvent | TouchEvent>,
     end$: Observable<MouseEvent | TouchEvent>
   ) {
-    const startPos = this._drawingService.getCoordinates(canvas, startEvent);
+    const startPos = this.dependencies.drawingService.getCoordinates(canvas, startEvent);
     let path: { x: number, y: number }[] = [startPos];
 
     const moveSubscription = move$.pipe(
-      map(moveEvent => this._drawingService.getCoordinates(canvas, moveEvent)),
+      map(moveEvent => this.dependencies.drawingService.getCoordinates(canvas, moveEvent)),
       takeUntil(end$)
     ).subscribe(currentPos => {
       path.push(currentPos);
@@ -35,26 +29,26 @@ export class FreeShapeEventHandlers {
   }
 
   private handleEndEvent(path: { x: number, y: number }[], moveSubscription: Subscription) {
-    this._drawnPaths.push({
-      color: this._currentColor,
-      lineWidth: this._currentLineWidth,
+    this.dependencies.drawnPaths.push({
+      color: this.dependencies.currentColor,
+      lineWidth: this.dependencies.currentLineWidth,
       path
     });
 
-    this.redrawAll();
+    this.dependencies.redrawAll();
     moveSubscription.unsubscribe();
   }
 
   private drawOnCanvas(prevPos: { x: number, y: number }, currentPos: { x: number, y: number }) {
-    if (!this._ctx) return;
+    if (!this.dependencies.ctx) return;
 
-    this._ctx.beginPath();
+    this.dependencies.ctx.beginPath();
     if (prevPos) {
-      this._ctx.moveTo(prevPos.x, prevPos.y);
-      this._ctx.lineTo(currentPos.x, currentPos.y);
-      this._ctx.strokeStyle = this._currentColor;
-      this._ctx.lineWidth = this._currentLineWidth;
-      this._ctx.stroke();
+      this.dependencies.ctx.moveTo(prevPos.x, prevPos.y);
+      this.dependencies.ctx.lineTo(currentPos.x, currentPos.y);
+      this.dependencies.ctx.strokeStyle = this.dependencies.currentColor;
+      this.dependencies.ctx.lineWidth = this.dependencies.currentLineWidth;
+      this.dependencies.ctx.stroke();
     }
   }
 }
