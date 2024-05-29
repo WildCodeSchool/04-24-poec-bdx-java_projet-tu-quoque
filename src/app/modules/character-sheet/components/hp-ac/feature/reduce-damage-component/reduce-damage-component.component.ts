@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './reduce-damage-component.component.html',
   styleUrl: './reduce-damage-component.component.scss'
 })
-export class ReduceDamageComponentComponent {
+export class ReduceDamageComponent {
   reduceDamage: number = 0;
 }

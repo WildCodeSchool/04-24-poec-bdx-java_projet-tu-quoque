@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
     './hp-ui-component.component.scss',
   ]
 })
-export class HpUiComponentComponent {
+export class HitPointUIComponent {
   @Input()
   hitPoints!: number;
 }

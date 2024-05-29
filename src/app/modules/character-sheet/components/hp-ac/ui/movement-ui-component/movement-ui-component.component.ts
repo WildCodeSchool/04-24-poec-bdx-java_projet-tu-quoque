@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
     './movement-ui-component.component.scss'
   ]
 })
-export class MovementUiComponentComponent {
+export class MovementUiComponent {
   @Input()
   movement!: number;
 }

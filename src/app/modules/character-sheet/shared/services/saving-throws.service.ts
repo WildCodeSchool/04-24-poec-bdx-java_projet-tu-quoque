@@ -29,6 +29,10 @@ export class SavingThrowsService {
     this.init();
   }
 
+  init(): void {
+    this.update();
+  }
+
   getClassSavingThrows(): Observable<SavingThrows> {
     return this.sheetService.characterClass$.pipe(
       map((characterClass: CharacterClass) => {
@@ -44,10 +48,6 @@ export class SavingThrowsService {
         }
       }
       ))
-  }
-
-  init(): void {
-    this.update();
   }
 
   update() {

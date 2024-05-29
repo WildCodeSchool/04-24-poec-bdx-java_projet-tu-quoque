@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './ca-component.component.html',
   styleUrl: './ca-component.component.scss'
 })
-export class CaComponentComponent {
+export class ArmorClassComponent {
   armorClass: number = 12;
 }

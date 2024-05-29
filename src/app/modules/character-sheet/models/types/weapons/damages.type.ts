@@ -1,4 +1,4 @@
 export type Damages = {
-    "P": string,
-    "M": string
+    P: string,
+    M: string
 }

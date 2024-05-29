@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
     './ca-ui-component.component.scss'
   ]
 })
-export class CaUiComponentComponent {
+export class ArmorClassUIComponent {
   @Input()
   armorClass!: number;
 }

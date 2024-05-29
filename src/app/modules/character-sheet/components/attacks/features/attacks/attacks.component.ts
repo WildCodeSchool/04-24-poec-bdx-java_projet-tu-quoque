@@ -9,5 +9,5 @@ import { WeaponsService } from '../../../../shared/services/weapons.service';
 export class AttacksComponent {
   weapons: string[] = ["épée", "arc", "dague"];
 
-  weaponsAllowed$ = inject(WeaponsService).getAuthorizedWeapons$();
+  classWeapons$ = inject(WeaponsService).getClassWeapons$();
 }

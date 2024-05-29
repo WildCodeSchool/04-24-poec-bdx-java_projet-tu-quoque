@@ -21,7 +21,7 @@ export class WeaponsService {
     );
   }
 
-  getAuthorizedWeapons$() {
+  getClassWeapons$() {
     return this.sheet.getClasseDetails$().pipe(
       map((classDetail: CharacterClass) => classDetail ? classDetail.weapons : []),
       switchMap((weaponsAllowed: string[]) => this.getWeapons$().pipe(

@@ -30,21 +30,21 @@ import { LevelListComponent } from './components/character-informations-componen
 import { DomChangedDirective } from './shared/directives/dom-changed-directive.directive';
 import { MetamorphosisComponent } from './shared/components/metamorphosis/metamorphosis.component';
 import { SavingThrowsFeatureComponent } from './components/saving-throws/feature/saving-throws-feature/saving-throws-feature.component';
-import { SavingThrowsListComponentComponent } from './components/saving-throws/ui/saving-throws-list-component/saving-throws-list-component.component';
-import { SavingThrowsDetailsComponentComponent } from './components/saving-throws/ui/saving-throws-details-component/saving-throws-details-component.component';
-import { HpAcComponentComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
-import { HpComponentComponent } from './components/hp-ac/feature/hp-component/hp-component.component';
-import { MovementComponentComponent } from './components/hp-ac/feature/movement-component/movement-component.component';
-import { CaComponentComponent } from './components/hp-ac/feature/ca-component/ca-component.component';
-import { ReduceDamageComponentComponent } from './components/hp-ac/feature/reduce-damage-component/reduce-damage-component.component';
-import { InitComponentComponent } from './components/hp-ac/feature/init-component/init-component.component';
-import { MovementUiComponentComponent } from './components/hp-ac/ui/movement-ui-component/movement-ui-component.component';
-import { HpUiComponentComponent } from './components/hp-ac/ui/hp-ui-component/hp-ui-component.component';
-import { CaUiComponentComponent } from './components/hp-ac/ui/ca-ui-component/ca-ui-component.component';
-import { ReduceDamageUiComponentComponent } from './components/hp-ac/ui/reduce-damage-ui-component/reduce-damage-ui-component.component';
-import { InitUiComponentComponent } from './components/hp-ac/ui/init-ui-component/init-ui-component.component';
-import { BbaComponentComponent } from './components/bba-components/features/bba-component/bba-component.component';
-import { BbaUiComponent } from './components/bba-components/ui/bba-ui/bba-ui.component';
+import { SavingThrowsListComponent } from './components/saving-throws/ui/saving-throws-list-component/saving-throws-list-component.component';
+import { SavingThrowsDetailsComponent } from './components/saving-throws/ui/saving-throws-details-component/saving-throws-details-component.component';
+import { HpAcComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
+import { HitPointComponent } from './components/hp-ac/feature/hp-component/hp-component.component';
+import { MovementComponent } from './components/hp-ac/feature/movement-component/movement-component.component';
+import { ArmorClassComponent } from './components/hp-ac/feature/ca-component/ca-component.component';
+import { ReduceDamageComponent } from './components/hp-ac/feature/reduce-damage-component/reduce-damage-component.component';
+import { InitiativeComponent } from './components/hp-ac/feature/init-component/init-component.component';
+import { MovementUiComponent } from './components/hp-ac/ui/movement-ui-component/movement-ui-component.component';
+import { HitPointUIComponent } from './components/hp-ac/ui/hp-ui-component/hp-ui-component.component';
+import { ArmorClassUIComponent } from './components/hp-ac/ui/ca-ui-component/ca-ui-component.component';
+import { ReduceDamageUiComponent } from './components/hp-ac/ui/reduce-damage-ui-component/reduce-damage-ui-component.component';
+import { InitiativeUIComponent } from './components/hp-ac/ui/init-ui-component/init-ui-component.component';
+import { BaseAttackBonusComponent } from './components/bba-components/features/bba-component/bba-component.component';
+import { BaseAttackBonusUiComponent } from './components/bba-components/ui/bba-ui/bba-ui.component';
 import { MagicalResistanceComponent } from './components/bba-components/ui/magical-resistance/magical-resistance.component';
 import { WrestlingComponent } from './components/bba-components/ui/wrestling/wrestling.component';
 import { AttacksComponent } from './components/attacks/features/attacks/attacks.component';
@@ -87,21 +87,21 @@ import { PurseComponent } from './components/market/ui/purse/purse.component';
     DomChangedDirective,
     MetamorphosisComponent,
     SavingThrowsFeatureComponent,
-    SavingThrowsListComponentComponent,
-    SavingThrowsDetailsComponentComponent,
-    HpAcComponentComponent,
-    HpComponentComponent,
-    MovementComponentComponent,
-    CaComponentComponent,
-    ReduceDamageComponentComponent,
-    InitComponentComponent,
-    MovementUiComponentComponent,
-    HpUiComponentComponent,
-    CaUiComponentComponent,
-    ReduceDamageUiComponentComponent,
-    InitUiComponentComponent,
-    BbaComponentComponent,
-    BbaUiComponent,
+    SavingThrowsListComponent,
+    SavingThrowsDetailsComponent,
+    HpAcComponent,
+    HitPointComponent,
+    MovementComponent,
+    ArmorClassComponent,
+    ReduceDamageComponent,
+    InitiativeComponent,
+    MovementUiComponent,
+    HitPointUIComponent,
+    ArmorClassUIComponent,
+    ReduceDamageUiComponent,
+    InitiativeUIComponent,
+    BaseAttackBonusComponent,
+    BaseAttackBonusUiComponent,
     MagicalResistanceComponent,
     WrestlingComponent,
     AttacksComponent,

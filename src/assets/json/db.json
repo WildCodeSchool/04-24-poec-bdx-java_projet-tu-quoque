@@ -216,8 +216,8 @@
       "tableId": null,
       "userId": 1,
       "characterId": null,
-      "name": "Question",
-      "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
+      "name": "Disponibilités",
+      "text": "28 et 29 mai toute la journée"
     },
     {
       "id": "2",
@@ -388,7 +388,10 @@
         }
       ],
       "languages": {
-        "systemically": ["commun", "elfe"],
+        "systemically": [
+          "commun",
+          "elfe"
+        ],
         "additional": [
           "draconien",
           "gnoll",
@@ -443,8 +446,17 @@
       "sizeCategorie": "M",
       "skills": [],
       "languages": {
-        "systemically": ["commun", "orque"],
-        "additional": ["abyssal", "draconien", "géant", "gnoll", "gobelin"]
+        "systemically": [
+          "commun",
+          "orque"
+        ],
+        "additional": [
+          "abyssal",
+          "draconien",
+          "géant",
+          "gnoll",
+          "gobelin"
+        ]
       },
       "adultAge": 14,
       "ageModifier": {
@@ -490,10 +502,16 @@
       ],
       "baseSkillPoints": "(4 + mod INT) * 4",
       "skillPointsPerLevel": "4 + mod INT",
-      "weapons": ["courante", "guerre"],
+      "weapons": [
+        "courante",
+        "guerre"
+      ],
       "shields": "toutes sauf pavois",
-      "armors": ["lègere", "intermédiaire"],
-      "attackBaseBonus": "high",
+      "armors": [
+        "lègere",
+        "intermédiaire"
+      ],
+      "baseAttackBonus": "high",
       "savingThrowsBonus": {
         "reflexes": "low",
         "fortitude": "high",
@@ -548,8 +566,10 @@
         "rapière"
       ],
       "shields": "",
-      "armors": ["lègere"],
-      "attackBaseBonus": "medium",
+      "armors": [
+        "lègere"
+      ],
+      "baseAttackBonus": "medium",
       "savingThrowsBonus": {
         "reflexes": "high",
         "fortitude": "low",
