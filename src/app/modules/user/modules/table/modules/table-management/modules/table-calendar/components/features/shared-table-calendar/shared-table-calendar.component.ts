@@ -39,7 +39,6 @@ export class SharedTableCalendarComponent {
   }
 
   initializeCalendarOptions(events: any): void {
-    
     this.calendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       initialView: 'dayGridMonth',

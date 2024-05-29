@@ -12,9 +12,9 @@ export class HeaderComponent {
   
   title: string = 'tu quoque';
 
-  _navigationService = inject(NavigationService)
-  _connectionService = inject(ConnectionService)
-  _router = inject(Router)
+  private _navigationService = inject(NavigationService)
+  private _connectionService = inject(ConnectionService)
+  private _router = inject(Router)
 
   userConected: boolean = true;
   userConnected$ = this._connectionService.getUserConected$()

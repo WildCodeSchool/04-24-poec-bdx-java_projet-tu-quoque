@@ -11,12 +11,12 @@ import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 })
 export class CharacterService extends ApiRessourceService<Character> {
 
-  private connectionService = inject(ConnectionService);
+  private _connectionService = inject(ConnectionService);
 
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
   
   private readonly _userConnected$: Observable<UserBasicInfos> =
-    this.connectionService.getUserConected$() as Observable<UserBasicInfos>;
+    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
