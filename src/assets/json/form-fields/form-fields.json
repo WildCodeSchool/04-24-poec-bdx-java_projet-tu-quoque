@@ -2,7 +2,6 @@
     "fields": [
       {
         "fieldType": "text",
-        "label": "Email",
         "id": "email",
         "name": "email",
         "type": "email",
@@ -14,7 +13,6 @@
       },
       {
         "fieldType": "text",
-        "label": "Mot de passe",
         "id": "password",
         "name": "password",
         "type": "password",
@@ -26,7 +24,6 @@
       },
       {
         "fieldType": "text",
-        "label": "Mot de passe",
         "id": "passwordVerification",
         "name": "passwordVerification",
         "type": "password",
@@ -38,7 +35,6 @@
       },
       {
         "fieldType": "text",
-        "label": "Pseudonyme",
         "id": "username",
         "name": "username",
         "type": "text",
@@ -49,22 +45,7 @@
         "disabled": false
       },
       {
-        "fieldType": "file",
-        "label": "Avatar",
-        "id": "userAvatar",
-        "name": "userAvatar",
-        "type": "file",
-        "value": "",
-        "autocomplete": "off",
-        "placeholder": "Fichier",
-        "required": false,
-        "accept": "image/jpeg",
-        "disabled": false,
-        "maxFileSize": 500000
-      },
-      {
         "fieldType": "text",
-        "label": "Nom du personnage",
         "id": "characterName",
         "name": "characterName",
         "type": "text",
@@ -75,22 +56,7 @@
         "disabled": false
       },
       {
-        "fieldType": "file",
-        "label": "Avatar du personnage",
-        "id": "characterAvatar",
-        "name": "characterAvatar",
-        "type": "file",
-        "value": "",
-        "autocomplete": "off",
-        "placeholder": "Fichier",
-        "required": false,
-        "accept": "image/jpeg",
-        "disabled": false,
-        "maxFileSize": 500000
-      },
-      {
         "fieldType": "text",
-        "label": "Nom de la table",
         "id": "tableName",
         "name": "tableName",
         "type": "text",
@@ -101,22 +67,7 @@
         "disabled": false
       },
       {
-        "fieldType": "file",
-        "label": "Avatar pour la table",
-        "id": "tableAvatar",
-        "name": "tableAvatar",
-        "type": "file",
-        "value": "",
-        "autocomplete": "off",
-        "placeholder": "Fichier",
-        "required": false,
-        "accept": "image/jpeg",
-        "disabled": false,
-        "maxFileSize": 500000
-      },
-      {
         "fieldType": "text",
-        "label": "Titre",
         "id": "noteTitle",
         "name": "noteTitle",
         "type": "text",
@@ -127,7 +78,6 @@
       },
       {
         "fieldType": "textarea",
-        "label": "Description",
         "id": "noteDescription",
         "name": "noteDescription",
         "value": "",
@@ -139,7 +89,6 @@
       },
       {
         "fieldType": "text",
-        "label": "Changer de pseudo",
         "id": "usernameChange",
         "name": "usernameChange",
         "type": "text",
