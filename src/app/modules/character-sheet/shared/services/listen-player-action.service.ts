@@ -90,7 +90,8 @@ export class ListenPlayerActionService {
   }
 
   receiveWeapon(field: WeaponField): void {
-    // TODO
+    this.sheetModifiedByPlayer["weapons"][field.index] = field.value;
+    this.updateSheetStream();
   }
 
   updateSheetStream(): void {

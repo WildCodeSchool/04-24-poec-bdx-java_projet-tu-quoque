@@ -20,8 +20,8 @@ export class AttackComponent {
 
   weaponService: CharacterWeaponsService = inject(CharacterWeaponsService);
 
-  purchaseWeapon(weapon: WeaponDetails) {
+  purchaseWeapon(weapon: WeaponDetails): void {
     this.weapon = new Weapon(weapon);
-    //TODO: save weapon in weapon service
+    this.weaponService.acquiereWeapon(this.weapon, this.index);
   }
 }
