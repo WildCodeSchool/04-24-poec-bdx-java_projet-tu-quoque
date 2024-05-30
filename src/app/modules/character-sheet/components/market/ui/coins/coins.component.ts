@@ -9,17 +9,21 @@ import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
 export class CoinsComponent {
   @Input()
   color: string = 'black';
-  isMarketHidden: boolean = true;
+
+  @Input()
+  index: number = 0;
+
+  //isMarketHidden: boolean = true;
 
   @Output()
   weaponEmitter: EventEmitter<WeaponDetails> = new EventEmitter();
 
-  toggleMarket() {
-    this.isMarketHidden = !this.isMarketHidden;
-  }
+  // toggleMarket() {
+  //   this.isMarketHidden = !this.isMarketHidden;
+  // }
 
   purchaseWeapon(weapon: WeaponDetails) {
-    this.toggleMarket();
+    //this.toggleMarket();
     this.weaponEmitter.emit(weapon);
   }
 }

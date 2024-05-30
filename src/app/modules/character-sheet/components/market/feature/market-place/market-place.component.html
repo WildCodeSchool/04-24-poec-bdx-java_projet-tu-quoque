@@ -3,5 +3,5 @@
 ></app-purse>
 <ul *ngIf="classWeapons$ |async as weaponList">
     <li *ngFor="let weapon of weaponList"> {{weapon.name}} {{weapon.price}} 
-        <button (click)="buy(weapon)">acheter</button></li>
+        <button (click)="buy(weapon)" [disabled]="">acheter</button></li>
 </ul>

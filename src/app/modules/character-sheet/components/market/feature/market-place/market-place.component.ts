@@ -23,6 +23,7 @@ export class MarketPlaceComponent {
   }
 
   buy(weapon: WeaponDetails) {
+    this.purseService.buy(weapon.price);
     this.emitter.emit(weapon)
   }
 }
