@@ -9,15 +9,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { calendarEvent } from '../../../../../../../../../../shared/models/types/users/calendarEvent.type';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CalendarPopupComponent } from '../../calendar-popup/calendar-popup.component';
+import { InfoPopupComponent } from '../../info-popup/info-popup.component';
 
 @Component({
   selector: 'app-shared-table-calendar',
   templateUrl: './shared-table-calendar.component.html',
   styleUrl: './shared-table-calendar.component.scss',
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class SharedTableCalendarComponent {
-
+  
   calendarOptions!: CalendarOptions;
   tableId!: number;
   ref: DynamicDialogRef | undefined;
@@ -25,7 +26,7 @@ export class SharedTableCalendarComponent {
   constructor(
     private _eventService: EventService,
     private _route: ActivatedRoute,
-    private _destroyRef: DestroyRef,
+    private _destroyRef: DestroyRef
   ) {}
 
   closeCalendar(): void {}
@@ -59,7 +60,7 @@ export class SharedTableCalendarComponent {
         day: 'jour',
       },
       dateClick: (info) => {
-        this.createAvalability(info.date)
+        this.createAvalability(info.date);
       },
       events: events,
       eventResizableFromStart: true,
@@ -70,50 +71,47 @@ export class SharedTableCalendarComponent {
       firstDay: 1,
       eventDrop: this._eventService.moveEvent,
       eventResize: this._eventService.eventResize,
-      // eventClick: this._eventService.showEventDetail,
       eventClick: (info) => {
-        this.showEvent(info)
+        this.showEvent(info);
       },
       eventRemove: this._eventService.deleteEvent,
     };
   }
   createAvalability(info: any) {
     this.ref = this.dialogService.open(CalendarPopupComponent, {
-        data: {
-          tableId: this.tableId,
-          startDate: info
-        },
-        header: 'Ajoutez votre disponibilité',
-        width: '50vw',
-        modal:true,
-        breakpoints: {
-            '960px': '75vw',
-            '640px': '90vw'
-        },
-    })
-    this.ref.onClose
-    .pipe(takeUntilDestroyed(this._destroyRef))
-    .subscribe((data:any) => {
-      if(data) {
-        this._eventService.addEvent(data)
-      }
-    })
-  }
-
-  showEvent(info: any) {
-    console.log(info)
-    this.ref = this.dialogService.open(CalendarPopupComponent, {
       data: {
         tableId: this.tableId,
-        startDate: info
+        startDate: info,
       },
       header: 'Ajoutez votre disponibilité',
       width: '50vw',
-      modal:true,
+      modal: true,
       breakpoints: {
-          '960px': '75vw',
-          '640px': '90vw'
+        '960px': '75vw',
+        '640px': '90vw',
       },
-    })
+    });
+    this.ref.onClose
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe((data: any) => {
+        if (data) {
+          this._eventService.addEvent(data);
+        }
+      });
+  }
+
+  showEvent(info: any) {
+    this.ref = this.dialogService.open(InfoPopupComponent, {
+      data: {
+        info: info,
+      },
+      header: info.event.title,
+      width: '50vw',
+      modal: true,
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '90vw',
+      },
+    });
   }
 }

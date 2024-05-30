@@ -1,1 +1,12 @@
-<p>info-popup works!</p>
+<article>
+  <p>Du:</p>
+  <p>{{ eventStart | date }}</p>
+  <p>Au:</p>
+  <p>{{ eventEnd | date }}</p>
+  <p>Plus d'infos :</p>
+  <p>{{ description }}</p>
+</article>
+<app-custom-button
+  [name]="'Supprimer'"
+  [style]="'red-white'"
+></app-custom-button>

@@ -39,6 +39,14 @@
       background-color: #ff0000;
     }
   }
+  &.red-white {
+    background-color: transparent;
+    color: #ff0000;
+    border: 0.5px solid #ff0000;
+    &:hover {
+      background-color: #ff0000;
+    }
+  }
   &:hover {
     background-color: #c29b0f;
     color: #0b202f;
