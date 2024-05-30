@@ -1,5 +1,5 @@
 <form #eventForm="ngForm" (ngSubmit)="onSubmit()">
-  <p-accordion [multiple]="true" [activeIndex]="[]">
+  <p-accordion [activeIndex]="">
     <p-accordionTab header="Titre">
       <input
         type="text"
@@ -15,7 +15,7 @@
       <fieldset>
         <label for="date-input">Date de fin : </label>
         <input
-          type="text"
+          type="date"
           id="date-input"
           name="date-input"
           #dateInput="ngModel"
@@ -31,6 +31,8 @@
         name="description-input"
         #descriptionInput="ngModel"
         [(ngModel)]="description"
+        rows="4"
+        
       ></textarea>
     </p-accordionTab>
   </p-accordion>
