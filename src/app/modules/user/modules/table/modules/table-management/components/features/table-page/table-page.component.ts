@@ -9,6 +9,8 @@ import { ChatService } from '../../../../../../../../shared/services/chat/chat.s
 import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
 import { DrawingService } from '../../../../../../../../shared/services/drawing/drawing.service';
 import { Drawing } from '../../../../../../../../shared/models/types/users/drawing.type';
+import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
+import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/userBasicInfos.type';
 
 @Component({
   selector: 'app-table-page',
@@ -16,15 +18,15 @@ import { Drawing } from '../../../../../../../../shared/models/types/users/drawi
   styleUrl: './table-page.component.scss',
 })
 export class TablePageComponent {
-  
   id!: number;
   drawingToShow!: string;
   isDrawingVisible: boolean = false;
 
   table$!: Observable<Table>;
-  userList$!: Observable<Character[]>;
+  participantList$!: Observable<Character[]>;
   chatList$!: Observable<Chat[]>;
   drawingList$!: Observable<Drawing[]>;
+  userAllowed!: UserBasicInfos;
 
   constructor(
     private _tableService: TableService,
@@ -32,15 +34,23 @@ export class TablePageComponent {
     private _chatService: ChatService,
     private _drawingService: DrawingService,
     private _route: ActivatedRoute,
-    private _renderer: Renderer2
+    private _renderer: Renderer2,
+    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
     this.id = Number(this._route.snapshot.paramMap.get('id'));
-    this.table$ = this._tableService.getTableById$(this.id);
-    this.userList$ = this._characterService.getCharactersByTable$(this.id);
-    this.chatList$ = this._chatService.getChatListByTable(this.id);
-    this.drawingList$ = this._drawingService.getDrawingListByTable(this.id);
+    this.table$ = this._tableService.getById$(this.id);
+    this.participantList$ = this._characterService.getCharactersByTable$(
+      this.id
+    );
+    this.chatList$ = this._chatService.getChatListByTable$(this.id);
+    this.drawingList$ = this._drawingService.getDrawingListByTable$(this.id);
+    this._connectionService
+      .getUserConected$()
+      .subscribe((user: UserBasicInfos | null) => {
+        if (user) this.userAllowed = user as UserBasicInfos;
+      });
   }
 
   toggleDrawingVisible(event: boolean): void {

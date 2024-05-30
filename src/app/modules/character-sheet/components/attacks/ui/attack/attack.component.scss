@@ -1,0 +1,57 @@
+:host {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+
+    table {
+        width: 100%;
+        border-bottom: 1px solid black;
+        border-collapse: collapse;
+
+        th {
+            background-color: black;
+            color: white;
+            border-left: 1px solid white;
+
+            &.first {
+                font-size: 24px;
+                border-right: 1px solid white;
+                width: 40%;
+                border-radius: 8px 8px 0 0;
+            }
+
+            &.blank {
+                background-color: white;
+                min-height: 12px;
+            }
+
+            &.note {
+                width: 75%;
+            }
+
+            &:is(:not(.first)):first-of-type {
+                border-left: 1px solid black;
+            }
+
+            &:is(:not(.blank)):last-of-type {
+                border-right: 1px solid black;
+            }
+
+            &.damages {
+                width: 25%;
+            }
+        }
+
+        td {
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            height: 30px;
+        }
+
+        &:last-of-type {
+            margin-bottom: 20px;
+        }
+    }
+}

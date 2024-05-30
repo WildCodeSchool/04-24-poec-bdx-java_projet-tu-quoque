@@ -9,12 +9,13 @@ import { CustomAreaTitleComponent } from './components/custom-area-title/custom-
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'primeng/fileupload'; // import primeNG
 import { AutoCompleteModule } from 'primeng/autocomplete'; // import primeNG
+import { AccordionModule } from 'primeng/accordion'; // import primeNG
 import { CustomAddButtonComponent } from './components/custom-add-button/custom-add-button.component';
 import { ShowCommentPageComponent } from './components/show-comment-page/show-comment-page.component';
 import { BackToPreviousPageDirective } from './directives/back-to-previous-page.directive';
 import { BaseInputComponent } from './components/custom-form/form-inputs/base-input/base-input.component';
-
-
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { ReturnButtonComponent } from './components/return-button/return-button.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BaseInputComponent } from './components/custom-form/form-inputs/base-in
     CustomAreaTitleComponent,
     CustomAddButtonComponent,
     ShowCommentPageComponent,
-    BackToPreviousPageDirective
+    BackToPreviousPageDirective,
+    ReturnButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,9 @@ import { BaseInputComponent } from './components/custom-form/form-inputs/base-in
     RouterLink,
     HttpClientModule,
     FileUploadModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    FullCalendarModule,
+    AccordionModule
   ],
   exports: [
     CustomButtonComponent,
@@ -41,10 +45,13 @@ import { BaseInputComponent } from './components/custom-form/form-inputs/base-in
     ListOfElementComponent,
     PageHeaderComponent,
     CustomAreaTitleComponent,
+    ReturnButtonComponent,
     FileUploadModule,
     AutoCompleteModule,
     ShowCommentPageComponent,
-    BackToPreviousPageDirective
-  ]
+    BackToPreviousPageDirective,
+    FullCalendarModule,
+    AccordionModule
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

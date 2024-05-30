@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavigationService } from '../../../../shared/services/navigation.service';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { ConnectionService } from '../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-header',
@@ -11,16 +12,21 @@ export class HeaderComponent {
   
   title: string = 'tu quoque';
 
-  notesVisible: boolean = false;
+  private _navigationService = inject(NavigationService)
+  private _connectionService = inject(ConnectionService)
+  private _router = inject(Router)
 
-  constructor(private navService: NavigationService) {}
+  userConected: boolean = true;
+  userConnected$ = this._connectionService.getUserConected$()
+  userHomeLink: string = '/user/home'
+  visitorHomeLink: string ='/visitor/home'
+  urlToGoBack!: string;
 
+  storeActualUrl(): void {
+    localStorage.setItem('routeToGoBack', this._router.url);
+  }
   onClick() {
     window.scrollTo(0, 0);
-    this.navService.setSidebarVisible();
-  }
-
-  closeNotePage(): void {
-    this.notesVisible = false;
+    this._navigationService.setSidebarVisible();
   }
 }

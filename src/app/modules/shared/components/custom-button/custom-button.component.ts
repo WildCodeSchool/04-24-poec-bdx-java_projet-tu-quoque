@@ -6,7 +6,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './custom-button.component.scss',
 })
 export class CustomButtonComponent {
-  
+
   @Input() name!: string;
   @Input() style!: string;
+  @Input() showSpan: boolean = false;
+  @Input() spanValue!: number;
 }

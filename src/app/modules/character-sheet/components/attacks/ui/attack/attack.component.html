@@ -1,0 +1,46 @@
+<div>
+    <table class="main-table">
+        <thead>
+            <tr>
+                <th rowspan="2" class="first">ATTAQUE</th>
+                <th class="blank" rowspan="1">&nbsp;</th>
+                <th class="blank" rowspan="1">&nbsp;</th>
+                <th class="blank" rowspan="1">&nbsp;</th>
+            </tr>
+            <tr>
+                <th rowspan="1">BONUS AU TOUCHER</th>
+                <th rowspan="1" class="damages">{{"dégâts" | uppercase}}</th>
+                <th rowspan="1">CRITIQUE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="sub-table">
+        <thead>
+            <tr>
+                <th>{{"portée" | uppercase}}</th>
+                <th>TYPE</th>
+                <th class="note">NOTES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    {{"munitions" | uppercase }} ________________________________________________ 
+    <span *ngFor="let item of [].constructor(20); let i = index">
+        &#9634;
+        <span *ngIf="(i+1) % 5 == 0">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </span>
+</div>

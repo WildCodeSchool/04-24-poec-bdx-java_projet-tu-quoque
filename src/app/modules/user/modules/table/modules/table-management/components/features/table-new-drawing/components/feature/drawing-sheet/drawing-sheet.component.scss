@@ -1,0 +1,30 @@
+:host {
+  width: 100%;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  .accessory {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0b202f;
+    align-items: flex-start;
+    .tools {
+      display: flex;
+    }
+  }
+  canvas {
+    width: 23rem;
+    height: 25rem;
+    border: 1px solid black;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+  }
+  footer {
+    background-color: #0b202f;
+    flex-grow: 1;
+  }
+}

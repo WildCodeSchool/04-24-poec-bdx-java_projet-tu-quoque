@@ -1,35 +1,33 @@
+<app-return-button></app-return-button>
 <app-page-header
   [title]="'Mes invitations'"
   [elementIcon]="'assets/images/myTables-title-icon.svg'"
 ></app-page-header>
-<app-custom-area-title [title]="'Tables'"></app-custom-area-title>
-<ng-container *ngIf="tableInvitationList$ | async as tableInvitationList">
-  <app-available-character-list
-    [toSelectCharacter]="false"
-    [elementList]="tableInvitationList"
-    [elementIcon]="'assets/images/table-icon.svg'"
-    (tableIdSelected)="getTableSelected($event)"
-  ></app-available-character-list>
-</ng-container>
-<app-custom-area-title
-  [title]="'Choisis ton personnage'"
-></app-custom-area-title>
-<ng-container *ngIf="availableCharacterList$ | async as availableCharacterList">
-  <app-available-character-list
-    [elementList]="availableCharacterList"
-    [elementIcon]="'assets/images/character-icon.svg'"
-    (characterIdSelected)="getCharacterSelected($event)"
-  ></app-available-character-list>
-</ng-container>
-<footer class="page-footer">
-  <app-custom-button
-    [style]="'gold'"
-    [name]="'Retour'"
-    PreviousPage
-  ></app-custom-button>
-  <app-custom-button
-    [style]="'gold'"
-    [name]="'Sélectionner'"
-    (click)="attributeCharacterToTable()"
-  ></app-custom-button>
-</footer>
+<p-accordion [activeIndex]="">
+  <p-accordionTab header="Tables">
+      <ng-container *ngIf="tableInvitationList$ | async as tableInvitationList">
+      <app-available-character-list
+      [toSelectCharacter]="false"
+      [elementList]="tableInvitationList"
+      [elementIcon]="'assets/images/table-icon.svg'"
+      (tableIdSelected)="getTableSelected($event)"
+    ></app-available-character-list> 
+      </ng-container>
+    </p-accordionTab>
+    <p-accordionTab header="Personnages sans table attribuée">
+      <ng-container *ngIf="availableCharacterList$ | async as availableCharacterList">
+        <app-available-character-list
+          [elementList]="availableCharacterList"
+          [elementIcon]="'assets/images/character-icon.svg'"
+          (characterIdSelected)="getCharacterSelected($event)"
+        ></app-available-character-list>
+      </ng-container> 
+    </p-accordionTab>
+  </p-accordion>
+  <footer class="page-footer">
+    <app-custom-button
+      [style]="'gold'"
+      [name]="'Sélectionner'"
+      (click)="attributeCharacterToTable()"
+    ></app-custom-button>
+  </footer>           

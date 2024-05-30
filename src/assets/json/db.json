@@ -53,7 +53,7 @@
     {
       "id": "1",
       "name": "Elric",
-      "avatar": "/assets/images/profile-img-test.jpg",
+      "avatar": "/assets/images/user-profile-images/character-elric.jpg",
       "userId": 1,
       "tableId": 4,
       "characterSheetId": 1,
@@ -62,18 +62,18 @@
     },
     {
       "id": "2",
-      "name": "Boromir",
-      "avatar": "",
+      "name": "Gandalf",
+      "avatar": "/assets/images/user-profile-images/user3.png",
       "userId": 1,
-      "tableId": null,
+      "tableId": 2,
       "characterSheetId": 1,
-      "accepted": false,
+      "accepted": true,
       "scheduleId": 1
     },
     {
       "id": "3",
-      "name": "Willow",
-      "avatar": "",
+      "name": "Elrond",
+      "avatar": "/assets/images/user-profile-images/character-elrond.jpg",
       "userId": 1,
       "tableId": null,
       "characterSheetId": 1,
@@ -87,7 +87,7 @@
       "userId": 2,
       "tableId": 1,
       "characterSheetId": 1,
-      "accepted": false,
+      "accepted": true,
       "scheduleId": 1
     },
     {
@@ -109,8 +109,17 @@
       "characterSheetId": 1,
       "accepted": false,
       "scheduleId": 1
+    },
+    {
+      "id": 7,
+      "name": "Morgoth",
+      "avatar": "",
+      "userId": 1,
+      "tableId": null,
+      "characterSheetId": 1,
+      "accepted": false,
+      "scheduleId": 1
     }
-
   ],
   "user_table_invitations": [
     {
@@ -124,38 +133,41 @@
     {
       "userId": 1,
       "tableId": 4
+    },
+    {
+      "userId": 1,
+      "tableId": 2
     }
-
   ],
   "tables": [
     {
       "id": "1",
-      "avatar": "/assets/images/profile-img-test.jpg",
-      "name": "table ronde",
+      "avatar": "/assets/images/table-profile-images/le-bois-de-la-misericorde.jpg",
+      "name": "le bois de la miséricorde",
       "userId": 1
     },
     {
       "id": "2",
-      "avatar": "",
-      "name": "imbattable",
-      "userId": 1
+      "avatar": "/assets/images/table-profile-images/la-communaute.jpg",
+      "name": "La communauté",
+      "userId": 2
     },
     {
       "id": "3",
-      "avatar": "",
-      "name": "évitable",
+      "avatar": "/assets/images/table-profile-images/le-donjon-des-monts-venteux.jpg",
+      "name": "le donjon des monts venteux",
       "userId": 1
     },
     {
       "id": "4",
-      "avatar": "",
-      "name": "La table des héros",
+      "avatar": "/assets/images/table-profile-images/les-catacombes-oubliees.jpg",
+      "name": "Les catacombes oubliées",
       "userId": 2
     },
     {
       "id": "5",
       "avatar": "",
-      "name": "Ajustable",
+      "name": "Les ajustables",
       "userId": 1
     }
   ],
@@ -165,14 +177,48 @@
       "tablesId": 1
     }
   ],
+  "events": [
+    {
+      "id": 1,
+      "tableId": 1,
+      "title": "dispo Gimli",
+      "description": "anniversaire Gimli",
+      "start": "2024-05-24 00:00:00",
+      "allDay": true
+    },
+    {
+      "id": 2,
+      "tableId": 1,
+      "title": "dispo Freyr",
+      "start": "2024-05-27 00:00:00",
+      "allDay": true
+    },
+    {
+      "id": 3,
+      "tableId": 1,
+      "title": "dispoMJ",
+      "start": "2024-05-28 09:00:00",
+      "end": "2024-05-30 09:00:00",
+      "allDay": true,
+      "color": "#c29b0f"
+    },
+    {
+      "id": 4,
+      "tableId": 2,
+      "title": "table 2 MJ dispo",
+      "start": "2024-05-01 09:00:00",
+      "allDay": true,
+      "color": "#c29b0f"
+    }
+  ],
   "notes": [
     {
       "id": "1",
       "tableId": null,
       "userId": 1,
       "characterId": null,
-      "name": "Question",
-      "text": " Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ???? Pourquoi ????"
+      "name": "Disponibilités",
+      "text": "28 et 29 mai toute la journée"
     },
     {
       "id": "2",
@@ -184,7 +230,7 @@
     },
     {
       "id": "3",
-      "tableId": 1,
+      "tableId": 5,
       "userId": null,
       "characterId": null,
       "name": "mot de passe",
@@ -192,9 +238,9 @@
     },
     {
       "id": "4",
-      "tableId": null,
+      "tableId": 5,
       "userId": null,
-      "characterId": 1,
+      "characterId": null,
       "name": "Pas d'inspi",
       "text": "Mur"
     },
@@ -466,6 +512,12 @@
         "lègere",
         "intermédiaire"
       ],
+      "baseAttackBonus": "high",
+      "savingThrowsBonus": {
+        "reflexes": "low",
+        "fortitude": "high",
+        "will": "low"
+      },
       "special": [],
       "id": "68d2"
     },
@@ -508,7 +560,8 @@
       "weapons": [
         "courante",
         "arbalète de poing",
-        "arc court (normal et composite)",
+        "arc court",
+        "arc court composite",
         "épée courte",
         "matraque",
         "rapière"
@@ -517,6 +570,12 @@
       "armors": [
         "lègere"
       ],
+      "baseAttackBonus": "medium",
+      "savingThrowsBonus": {
+        "reflexes": "high",
+        "fortitude": "low",
+        "will": "low"
+      },
       "special": [],
       "id": "1c9a"
     }
@@ -878,6 +937,164 @@
       "innate": false,
       "armorMalus": 0,
       "choice": false
+    }
+  ],
+  "weapons": [
+    {
+      "name": "dague",
+      "category": "courante",
+      "price": "2 po",
+      "damages": {
+        "P": "1d3",
+        "M": "1d4"
+      },
+      "critic": "19-20/x2",
+      "rangeFactor": null,
+      "weight": 0.5,
+      "type": "T|P",
+      "munitions": null
+    },
+    {
+      "name": "masse d'arme légère",
+      "category": "courante",
+      "price": "5 po",
+      "damages": {
+        "P": "1d4",
+        "M": "1d6"
+      },
+      "critic": "x2",
+      "rangeFactor": null,
+      "weight": 2,
+      "type": "C",
+      "munitions": null
+    },
+    {
+      "name": "arbalète légère",
+      "category": "courante",
+      "price": "35 po",
+      "damages": {
+        "P": "1d6",
+        "M": "1d8"
+      },
+      "critic": "19-20/x2",
+      "rangeFactor": 24,
+      "weight": 2,
+      "type": "P",
+      "munitions": {
+        "name": "carreaux",
+        "price": "1po",
+        "weight": 0.5
+      }
+    },
+    {
+      "name": "arc court",
+      "category": "guerre",
+      "price": "30 po",
+      "damages": {
+        "P": "1d4",
+        "M": "1d6"
+      },
+      "critic": "x3",
+      "rangeFactor": 18,
+      "weight": 1,
+      "type": "P",
+      "munitions": {
+        "name": "flèches",
+        "price": "1po",
+        "weight": 1.5
+      }
+    },
+    {
+      "name": "arc court composite",
+      "category": "guerre",
+      "price": "75 po",
+      "damages": {
+        "P": "1d4",
+        "M": "1d6"
+      },
+      "critic": "x3",
+      "rangeFactor": 21,
+      "weight": 1,
+      "type": "P",
+      "munitions": {
+        "name": "flèches",
+        "price": "1po",
+        "weight": 1.5
+      }
+    },
+    {
+      "name": "épée courte",
+      "category": "guerre",
+      "price": "10 po",
+      "damages": {
+        "P": "1d4",
+        "M": "1d6"
+      },
+      "critic": "19-20/x2",
+      "rangeFactor": null,
+      "weight": 1,
+      "type": "P",
+      "munitions": null
+    },
+    {
+      "name": "matraque",
+      "category": "guerre",
+      "price": "1 po",
+      "damages": {
+        "P": "1d4",
+        "M": "1d6"
+      },
+      "critic": "x2",
+      "rangeFactor": null,
+      "weight": 1,
+      "type": "C",
+      "munitions": null
+    },
+    {
+      "name": "rapière",
+      "category": "guerre",
+      "price": "12 po",
+      "damages": {
+        "P": "1d4",
+        "M": "1d6"
+      },
+      "critic": "18-20/x2",
+      "rangeFactor": null,
+      "weight": 1,
+      "type": "P",
+      "munitions": null
+    },
+    {
+      "name": "épée à 2 mains",
+      "category": "guerre",
+      "price": "50 po",
+      "damages": {
+        "P": "1d10",
+        "M": "2d6"
+      },
+      "critic": "19-20/x2",
+      "rangeFactor": null,
+      "weight": 4,
+      "type": "T",
+      "munitions": null
+    },
+    {
+      "name": "arbalète de poing",
+      "category": "exotique",
+      "price": "100 po",
+      "damages": {
+        "P": "1d3",
+        "M": "1d4"
+      },
+      "critic": "19-20/x2",
+      "rangeFactor": 9,
+      "weight": 1,
+      "type": "P",
+      "munitions": {
+        "name": "carreaux",
+        "price": "1po",
+        "weight": 0.5
+      }
     }
   ]
 }

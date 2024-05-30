@@ -1,26 +1,23 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, Subject, map, tap } from 'rxjs';
 import { User } from '../../models/types/users/user.types';
+import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class userService {
-  
+export class userService extends ApiRessourceService<User> {
+
   private readonly _BASE_URL: string = 'http://localhost:3000/users';
-
-  constructor(private _http: HttpClient, private router: Router) {}
-
+  
   private userListFilteredByName$: Subject<string[]> = new Subject();
 
-  getUserList$(): Observable<User[]> {
-    return this._http.get<User[]>(this._BASE_URL);
+  override getRessourceUrl(): string {
+    return this._BASE_URL;
   }
 
   getUserByName$(letters: string): Observable<string[]> {
-    return this.getUserList$().pipe(
+    return this.getAll$().pipe(
       map((userList: User[]) => userList.map((user: User) => user.name)),
       map((result: string[]) =>
         result.filter((user: string) =>
@@ -32,7 +29,7 @@ export class userService {
   }
 
   getUserByEmail$(email: string): Observable<User[]> {
-    return this.getUserList$().pipe(
+    return this.getAll$().pipe(
       map((userList: User[]) =>
         userList.filter((user: User) => user.email === email)
       )

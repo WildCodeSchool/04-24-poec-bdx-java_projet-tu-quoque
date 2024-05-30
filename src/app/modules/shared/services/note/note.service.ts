@@ -1,46 +1,66 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable, map, switchMap } from 'rxjs';
 import { Note } from '../../models/types/users/note.type';
+import { ConnectionService } from '../connection/connection.service';
+import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
+import { Table } from '../../models/types/users/table.type';
+import { Character } from '../../models/types/users/character.type';
+import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NoteService {
+export class NoteService extends ApiRessourceService<Note> {
   
+  private _connectionService = inject(ConnectionService);
+
   private readonly _BASE_URL: string = 'http://localhost:3000/notes';
 
-  private readonly _USER_CONECTED = 1;
+  private readonly _userConnected$: Observable<UserBasicInfos> =
+    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
 
-  constructor(private _http: HttpClient) {}
+  private readonly _tableConected$: Observable<Table> =
+    this._connectionService.getTableConnected$() as Observable<Table>;
 
-  getNoteList(): Observable<Note[]> {
-    return this._http.get<Note[]>(this._BASE_URL);
+  private readonly _characterConnected$: Observable<Character> =
+    this._connectionService.getCharacterConnected$() as Observable<Character>;
+
+  override getRessourceUrl(): string {
+    return this._BASE_URL;
   }
 
   getNoteListByUser(): Observable<Note[]> {
-    return this.getNoteList().pipe(
-      map((result: Note[]) =>
-        result.filter(
-          (note: Note) => Number(note.userId) === this._USER_CONECTED
+    return this.getAll$().pipe(
+      switchMap((noteList: Note[]) =>
+        this._userConnected$.pipe(
+          map((user: UserBasicInfos) =>
+            noteList.filter((note: Note) => note.userId === user.id)
+          )
         )
       )
     );
   }
 
-  getNoteListByCharacter(id: number): Observable<Note[]> {
-    return this.getNoteList().pipe(
-      map((result: Note[]) =>
-        result.filter((note: Note) => Number(note.characterId) === id)
+  getNoteListByCharacter(): Observable<Note[]> {
+    return this.getAll$().pipe(
+      switchMap((noteList: Note[]) =>
+        this._characterConnected$.pipe(
+          map((character: Character) =>
+            noteList.filter((note: Note) => note.characterId === character.id)
+          )
+        )
       )
     );
   }
 
-  getNoteById(id: number): Observable<Note> {
-    return this.getNoteList().pipe(
-      map(
-        (result: Note[]) =>
-          result.find((note: any) => Number(note.id) === id) as Note
+  getNoteListByTable(): Observable<Note[]> {
+    return this.getAll$().pipe(
+      switchMap((noteList: Note[]) =>
+        this._tableConected$.pipe(
+          map((table: Table) =>
+            noteList.filter((note: Note) => note.tableId === table.id)
+          )
+        )
       )
     );
   }

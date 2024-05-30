@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { Observable, map, switchMap, tap } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
@@ -26,18 +26,23 @@ export class CharacterPageComponent implements OnInit {
     private _tableService: TableService,
     private _chatService: ChatService,
     private _route: ActivatedRoute,
-    private _renderer: Renderer2
+    private _renderer: Renderer2,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
-    this.character$ = this._characterService.getCharacterById$(id);
-    this.table$ = this._characterService.getCharacterById$(id).pipe(
+    this.character$ = this._characterService.getById$(id);
+    this.table$ = this._characterService.getById$(id).pipe(
       switchMap((res: Character) => {
-        return this._tableService.getTableById$(res.tableId as Number);
+        return this._tableService.getById$(res.tableId as number);
       })
     );
-    this.chatList$ = this._chatService.getChatListByCharacter(id);
+    this.chatList$ = this._chatService.getChatListByCharacter$(id);
+  }
+
+  linkToCharacterTable(id: number): void {
+    this._router.navigateByUrl(`user/tables/management/my-tables/${id}`)
   }
 
   toggleCharacterSheetVisible(event: boolean): void {

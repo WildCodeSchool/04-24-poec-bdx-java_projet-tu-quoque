@@ -1,59 +1,73 @@
-<div class="inscription-button">
-    <app-custom-button [name]="'S\'inscrire'" [style]="'dblue-gold'" [routerLink]="['/authentification/inscription']"></app-custom-button>
+<div class="inscription-buttons">
+  <app-custom-button
+    [name]="'S\'inscrire'"
+    [style]="'dblue-gold'"
+    [routerLink]="['/authentification/inscription']"
+  ></app-custom-button> 
+  <app-custom-button
+  [name]="'Se connecter'"
+  [style]="'gold'"
+  [routerLink]="['/authentification/connexion']"
+  ></app-custom-button>
 </div>
 
-    <app-custom-button [name]="'Se connecter'" [style]="'gold'" [routerLink]="['/authentification/connexion']"></app-custom-button>
-
-
-
-
 <div class="description-app">
-    <p>
-        Une appli, pour les gouverner tous, <br>
-        Une appli pour les retrouver,<br>
-        Une appli  pour les amener tous...
-    </p>
-    <p class="description-left">
-        ... et dans le jeu les lier.
-    </p>
+  <p>
+    Une appli, pour les gouverner tous, <br />
+    Une appli pour les retrouver,<br />
+    Une appli pour les amener tous...
+  </p>
+  <p class="description-left">... et dans le jeu les lier.</p>
 </div>
 
 <div class="table-function">
-    <div class="table-function-img">
-        <img [src]="tableFunction" alt="Role play game image">
-    </div>
-    <div class="table-function-description">
-        <h2>Crée et gère tes tables</h2>
-        <p>Forgez des légendes et commandez le destin des héros avec notre outil ultime de création et gestion de tables de jeu.</p>
-    </div>
+  <div class="table-function-img">
+    <img [src]="tableFunction" alt="Role play game image" />
+  </div>
+  <div class="table-function-description">
+    <h2>Crée et gère tes tables</h2>
+    <p>
+      Forgez des légendes et commandez le destin des héros avec notre outil
+      ultime de création et gestion de tables de jeu.
+    </p>
+  </div>
 </div>
 
 <div class="function-desciption">
-    <div class="function-description-content">
-        <h2>Crée et gère tes personnages</h2>
-        <p>Sculptez des héros légendaires avec notre fonctionnalité épique de création de personnage.</p>
-    </div>
-    <div class="function-desciption-img">
-        <img [src]="characterFunction" alt="Role play game image">
-    </div>
+  <div class="function-description-content">
+    <h2>Crée et gère tes personnages</h2>
+    <p>
+      Sculptez des héros légendaires avec notre fonctionnalité épique de
+      création de personnage.
+    </p>
+  </div>
+  <div class="function-desciption-img">
+    <img [src]="characterFunction" alt="Role play game image" />
+  </div>
 </div>
 
 <div class="function-desciption">
-    <div class="function-desciption-img">
-        <img [src]="organisationFunction" alt="Role play game image">
-    </div>
-    <div class="function-description-content">
-        <h2>Organise tes parties</h2>
-        <p>Orchestrez vos sessions de jeu à la perfection. Planifiez et synchronisez toutes vos aventures épiques.</p>
-    </div>
+  <div class="function-desciption-img">
+    <img [src]="organisationFunction" alt="Role play game image" />
+  </div>
+  <div class="function-description-content">
+    <h2>Organise tes parties</h2>
+    <p>
+      Orchestrez vos sessions de jeu à la perfection. Planifiez et synchronisez
+      toutes vos aventures épiques.
+    </p>
+  </div>
 </div>
 
 <div class="function-desciption">
-    <div class="function-description-content">
-        <h2>Prend des notes & esquisse</h2>
-        <p>Consignez chaque rencontre et chaque défi dans vos grimoires et vos parchemins à croquis.</p>
-    </div>
-    <div class="function-desciption-img">
-        <img [src]="noteFunction" alt="Role play game image">
-    </div>
+  <div class="function-description-content">
+    <h2>Prend des notes & esquisse</h2>
+    <p>
+      Consignez chaque rencontre et chaque défi dans vos grimoires et vos
+      parchemins à croquis.
+    </p>
+  </div>
+  <div class="function-desciption-img">
+    <img [src]="noteFunction" alt="Role play game image" />
+  </div>
 </div>

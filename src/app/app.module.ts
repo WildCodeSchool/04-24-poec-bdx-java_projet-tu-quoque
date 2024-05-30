@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AuthentificationModule } from './modules/authentification/authentification.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthentificationModule,
     FormsModule,
     HttpClientModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

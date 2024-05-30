@@ -6,6 +6,7 @@ import { CharacterClass } from '../../../character-sheet/models/types/character-
 import { Alignment } from '../../../character-sheet/models/types/alignment.type';
 import { Gender } from '../../../character-sheet/models/types/gender.type';
 import { SkillFromDb } from '../../../character-sheet/models/types/skill-from-db.type';
+import { Weapon } from '../../../character-sheet/models/types/weapons/weapon.type';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class DbService {
   private readonly ALIGNMENTS_ENDPOINT: string = "alignments";
   private readonly GENDERS_ENDPOINT: string = "genders";
   private readonly SKILLS_ENDPOINT: string = "skills";
+  private readonly WEAPONS_ENDPOINT: string = "weapons";
 
   private race$: Observable<Race[]>;
   private classCharacter$: Observable<CharacterClass[]>;
@@ -54,5 +56,9 @@ export class DbService {
 
   getSkills$(): Observable<SkillFromDb[]> {
     return this.getEndpoint$(this.SKILLS_ENDPOINT);
+  }
+
+  getWeapons$(): Observable<Weapon[]> {
+    return this.getEndpoint$(this.WEAPONS_ENDPOINT);
   }
 }

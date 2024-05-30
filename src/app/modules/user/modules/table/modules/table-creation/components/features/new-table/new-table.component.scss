@@ -3,7 +3,7 @@
   flex-direction: column;
   min-height: 100vh;
   width: 100vw;
-  padding: calc(90px + 0.25em) 0% 2em 0%;
+  padding: calc(90px + 0.25em) 0% 1em 0%;
   background-color: #0b202f;
   color: #fff;
   font-family: alice;
@@ -30,8 +30,27 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      gap: 1rem;
+      justify-content: flex-start;
     }
+  }
+}
+
+:host ::ng-deep p-accordion {
+  margin-top: 1rem;
+  .p-accordion,
+  .p-accordion-header:not(.p-disabled).p-highlight,
+  .p-accordion-header-link {
+    background-color: #30495b;
+    color: #fff;
+    font-family: alice;
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+  .p-accordion,
+  .p-accordion-content {
+    background-color: #0b202f;
+    padding: 0 0 1rem;
+    border: none;
+    color: #fff;
   }
 }

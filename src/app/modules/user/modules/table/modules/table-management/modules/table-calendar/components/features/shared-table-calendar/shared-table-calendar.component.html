@@ -1,0 +1,17 @@
+<div class="calendar-body">
+  <div class="close-btn-container">
+    <img
+      class="close-btn"
+      [src]="'assets/images/cross-golden-icon.svg'"
+      alt="close"
+      PreviousPage
+    />
+  </div>
+<app-page-header
+  [elementIcon]="'./assets/images/calendar-icon.svg'"
+  [title]="'Agenda'"
+></app-page-header>
+<ng-container *ngIf="calendarOptions">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+</ng-container>
+</div>

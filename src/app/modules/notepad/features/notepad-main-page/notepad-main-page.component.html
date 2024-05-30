@@ -4,7 +4,6 @@
       class="close-btn"
       [src]="'assets/images/cross-golden-icon.svg'"
       (click)="closeNotes()"
-      [routerLink]="'../user'"
       alt="close"
     />
   </div>
@@ -19,11 +18,11 @@
       [routerLink]="['user/notes']"
       (click)="setUserSelected(true)"
     ></app-custom-button>
-    @if (fakeCharacterId) {
+    @if ((fakeCharacterConnected$|async) || (fakeTableConnected$|async)) {
     <app-custom-button
       [style]="!isUserSelected ? 'dblue-gold' : 'gold'"
       [name]="'Notes de table'"
-      [routerLink]="['game/notes']"
+      [routerLink]="'game/notes'"
       (click)="setUserSelected(false)"
     ></app-custom-button>
     }

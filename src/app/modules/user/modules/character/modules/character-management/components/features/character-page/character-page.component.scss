@@ -3,12 +3,23 @@
   flex-direction: column;
   min-height: 100vh;
   width: 100vw;
-  padding: calc(90px + 0.25em) 0% 2em 0%;
+  padding: calc(90px + 0.25em) 0% 1em 0%;
   background-color: #0b202f;
   color: #fff;
   font-family: alice;
   font-size: large;
 
+  .character-description {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 55vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  
   .page-footer {
     display: flex;
     flex-direction: column;
@@ -16,6 +27,32 @@
     align-items: center;
     flex-grow: 1;
     gap: 1rem;
-    margin-top: 3rem;
   }
 }
+
+:host ::ng-deep p-accordion {
+  margin-top: 0;
+  .p-accordion,
+  .p-accordion-header:not(.p-disabled).p-highlight,
+  .p-accordion-header-link {
+    background-color: #30495b;
+    color: #fff;
+    font-family: alice;
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+  .p-accordion,
+  .p-accordion-content {
+    background-color: #0b202f;
+    padding: 0 0 1rem;
+    border: none;
+    color: #fff;
+  }
+}
+.bottom-part {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+

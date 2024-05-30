@@ -27,6 +27,35 @@ import { StatisticComponent } from './components/statistics-components/ui/statis
 import { SkillListComponent } from './components/skills-components/features/skill-list/skill-list.component';
 import { SkillRowComponent } from './components/skills-components/ui/skill-row/skill-row.component';
 import { LevelListComponent } from './components/character-informations-components/feature/lists/level-list/level-list.component';
+import { DomChangedDirective } from './shared/directives/dom-changed-directive.directive';
+import { MetamorphosisComponent } from './shared/components/metamorphosis/metamorphosis.component';
+import { SavingThrowsFeatureComponent } from './components/saving-throws/feature/saving-throws-feature/saving-throws-feature.component';
+import { SavingThrowsListComponent } from './components/saving-throws/ui/saving-throws-list-component/saving-throws-list-component.component';
+import { SavingThrowsDetailsComponent } from './components/saving-throws/ui/saving-throws-details-component/saving-throws-details-component.component';
+import { HpAcComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
+import { HitPointComponent } from './components/hp-ac/feature/hp-component/hp-component.component';
+import { MovementComponent } from './components/hp-ac/feature/movement-component/movement-component.component';
+import { ArmorClassComponent } from './components/hp-ac/feature/ca-component/ca-component.component';
+import { ReduceDamageComponent } from './components/hp-ac/feature/reduce-damage-component/reduce-damage-component.component';
+import { InitiativeComponent } from './components/hp-ac/feature/init-component/init-component.component';
+import { MovementUiComponent } from './components/hp-ac/ui/movement-ui-component/movement-ui-component.component';
+import { HitPointUIComponent } from './components/hp-ac/ui/hp-ui-component/hp-ui-component.component';
+import { ArmorClassUIComponent } from './components/hp-ac/ui/ca-ui-component/ca-ui-component.component';
+import { ReduceDamageUiComponent } from './components/hp-ac/ui/reduce-damage-ui-component/reduce-damage-ui-component.component';
+import { InitiativeUIComponent } from './components/hp-ac/ui/init-ui-component/init-ui-component.component';
+import { BaseAttackBonusComponent } from './components/bba-components/features/bba-component/bba-component.component';
+import { BaseAttackBonusUiComponent } from './components/bba-components/ui/bba-ui/bba-ui.component';
+import { MagicalResistanceComponent } from './components/bba-components/ui/magical-resistance/magical-resistance.component';
+import { WrestlingComponent } from './components/bba-components/ui/wrestling/wrestling.component';
+import { AttacksComponent } from './components/attacks/features/attacks/attacks.component';
+import { AttackComponent } from './components/attacks/ui/attack/attack.component';
+import { ArmorUiComponent } from './components/defense/ui/armor-ui/armor-ui.component';
+import { ShieldUiComponent } from './components/defense/ui/shield-ui/shield-ui.component';
+import { ProtectionUiComponent } from './components/defense/ui/protection-ui/protection-ui.component';
+import { DefensesComponent } from './components/defense/feature/defenses/defenses.component';
+import { MarketPlaceComponent } from './components/market/feature/market-place/market-place.component';
+import { BuyWeaponsComponent } from './components/market/ui/buy-weapons/buy-weapons.component';
+import { PurseComponent } from './components/market/ui/purse/purse.component';
 
 
 @NgModule({
@@ -55,6 +84,35 @@ import { LevelListComponent } from './components/character-informations-componen
     SkillListComponent,
     SkillRowComponent,
     LevelListComponent,
+    DomChangedDirective,
+    MetamorphosisComponent,
+    SavingThrowsFeatureComponent,
+    SavingThrowsListComponent,
+    SavingThrowsDetailsComponent,
+    HpAcComponent,
+    HitPointComponent,
+    MovementComponent,
+    ArmorClassComponent,
+    ReduceDamageComponent,
+    InitiativeComponent,
+    MovementUiComponent,
+    HitPointUIComponent,
+    ArmorClassUIComponent,
+    ReduceDamageUiComponent,
+    InitiativeUIComponent,
+    BaseAttackBonusComponent,
+    BaseAttackBonusUiComponent,
+    MagicalResistanceComponent,
+    WrestlingComponent,
+    AttacksComponent,
+    AttackComponent,
+    ArmorUiComponent,
+    ShieldUiComponent,
+    ProtectionUiComponent,
+    DefensesComponent,
+    MarketPlaceComponent,
+    BuyWeaponsComponent,
+    PurseComponent
   ],
   imports: [
     CommonModule,

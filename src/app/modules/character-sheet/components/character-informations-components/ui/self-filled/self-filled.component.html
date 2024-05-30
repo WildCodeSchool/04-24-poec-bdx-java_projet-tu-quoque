@@ -1,4 +1,10 @@
-<div class="auto">
-    <ng-container *ngIf="valueObs$ | async as valueObs">{{valueObs}}&nbsp;{{unit}}</ng-container>
+<div class="auto" >
+    <ng-container  *ngIf="valueObs$ | async as valueObs">
+        <app-metamorphosis
+        [value] = "valueObs"
+        >
+        </app-metamorphosis> 
+        &nbsp;{{unit}}
+    </ng-container>
 </div>
 <div>{{label}}</div>

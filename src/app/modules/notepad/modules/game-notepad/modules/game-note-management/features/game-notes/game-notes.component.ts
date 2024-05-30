@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, mergeMap, switchMap } from 'rxjs';
 import { NoteService } from '../../../../../../../shared/services/note/note.service';
-import { ActivatedRoute } from '@angular/router';
 import { Note } from '../../../../../../../shared/models/types/users/note.type';
+import { ConnectionService } from '../../../../../../../shared/services/connection/connection.service';
+import { Table } from '../../../../../../../shared/models/types/users/table.type';
+import { Character } from '../../../../../../../shared/models/types/users/character.type';
 
 @Component({
   selector: 'app-game-notes',
@@ -10,16 +12,27 @@ import { Note } from '../../../../../../../shared/models/types/users/note.type';
   styleUrl: './game-notes.component.scss',
 })
 export class GameNotesComponent {
-  
+
   noteList$!: Observable<Note[]>;
+
+  tableConnected$: Observable<Table> =
+    this._connectionService.getTableConnected$() as Observable<Table>;
+
+  characterConnected$: Observable<Character> =
+    this._connectionService.getCharacterConnected$() as Observable<Character>;
 
   constructor(
     private _notesService: NoteService,
-    private _route: ActivatedRoute
+    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this._route.snapshot.paramMap.get('id'));
-    this.noteList$ = this._notesService.getNoteListByCharacter(id);
+    this.noteList$ = this.characterConnected$.pipe(
+      switchMap((response) =>
+        response == null
+          ? this._notesService.getNoteListByTable()
+          : this._notesService.getNoteListByCharacter()
+      )
+    );
   }
 }

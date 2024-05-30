@@ -13,24 +13,24 @@ label {
   justify-content: center;
   align-items: center;
   textarea {
-    width: 45vw;
+    width: 80vw;
     font-family: alice;
     font-size: 1.2rem;
     padding: 1rem 0;
     border: 1px solid #c29b0f;
+    border-radius: 7px;
     transition: 200ms;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #0b202f;
     text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin: 3rem;
     font-family: alice;
     color: white;
   }
   ::placeholder {
-    font-size: 12px;
+    font-size: 22px;
   }
 }
 

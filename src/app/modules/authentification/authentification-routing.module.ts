@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'inscription', 
   component: InscriptionPageComponent
 }
-
 ];
 
 @NgModule({

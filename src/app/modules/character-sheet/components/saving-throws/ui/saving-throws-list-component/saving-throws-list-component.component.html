@@ -1,0 +1,27 @@
+<table>
+    <thead>
+        <tr>
+            <th>JETS DE SAUVEGARDE</th>
+            <th>TOTAL</th>
+            <th>BONUS DE BASE</th>
+            <th>MOD. DE CARAC.</th>
+            <th>MOD. MAGIQUE</th>
+            <th>MOD. DIVERS</th>
+            <th>MOD. TEMPORAIRES</th>
+            <th>MODIFICATEURS PARTICULIERS</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="savingThrows$ | async as savingThrows">
+        <tr saving-throws-row 
+        [savingThrow]="savingThrows.reflexes"
+        ></tr>
+        <tr saving-throws-row 
+        [savingThrow]="savingThrows.fortitude"
+        ></tr>
+        <tr saving-throws-row 
+        [savingThrow]="savingThrows.will"
+        ></tr>
+    </tbody>
+</table>
+
+

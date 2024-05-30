@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  section {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0.5rem;
+    .drawing-button {
+      display: flex;
+      all: unset;
+    }
+    .erase-button {
+      display: flex;
+      all: unset;
+    }
+    img {
+      padding: 0rem 0.5rem 0rem 0.5rem;
+      width: 5rem;
+    }
+    .erase-button img {
+      width: 4rem;
+    }
+  }
+  .drawing-button-section {
+    border-bottom: 1px solid white;
+  }
+}

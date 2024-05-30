@@ -1,14 +1,20 @@
-<app-page-header [elementIcon]="'assets/images/pixie-icon.svg'" [title]="'Nouveau joueur'"></app-page-header>
+<app-return-button></app-return-button>
+<app-page-header
+  [elementIcon]="'assets/images/pixie-icon.svg'"
+  [title]="'Nouveau joueur'"
+></app-page-header>
 <div class="page-body">
-
-        <p-autoComplete
-        [(ngModel)]="selectedUser" 
-        [suggestions]="suggestions$ |async" 
-        (completeMethod)="searchUser($event)" 
-        />
-
-    <footer class="page-footer">
-    <app-custom-button [style]="'gold'" [name]="'Retour'" PreviousPage></app-custom-button>
-    <app-custom-button [style]="'gold'" [name]="'Ajouter'" (click)="addNewUser()" PreviousPage></app-custom-button>
-    </footer>
+  <p-autoComplete
+    [(ngModel)]="selectedUser"
+    [suggestions]="suggestions$ | async"
+    (completeMethod)="searchUser($event)"
+  />
+  <footer class="page-footer">
+    <app-custom-button
+      [style]="'gold'"
+      [name]="'Ajouter'"
+      (click)="addNewUser()"
+      PreviousPage
+    ></app-custom-button>
+  </footer>
 </div>

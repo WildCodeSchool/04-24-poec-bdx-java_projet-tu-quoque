@@ -1,5 +1,5 @@
 import { DestroyRef, Injectable } from '@angular/core';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { BasicField } from '../models/types/basic-field.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
@@ -8,6 +8,7 @@ import { SkillDetails } from '../../models/classes/skill-details.class';
 import { Field } from '../models/types/field.type';
 import { SkillField } from '../models/types/skill-field.type';
 import { StatListField } from '../models/types/stat-list-field.type';
+import { FieldInfosAddByPlayer } from '../classes/skill-infos-add-by-player.class';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class ListenPlayerActionService {
       } else {
         this.receiveBasicField(field as BasicField)
       }
-    })
+    });
   }
 
   controlField(field: BasicField): void {
@@ -62,15 +63,15 @@ export class ListenPlayerActionService {
 
   receiveStatField(statField: StatField): void {
     this.sheetModifiedByPlayer["stats"][statField.index] = statField.value;
-    this.updateSheetStream()
+    this.updateSheetStream();
   }
 
   receiveSkillField(field: SkillField): void {
     this.sheetModifiedByPlayer['skills'][field.value.id] =
-    {
-      rank: field.value.ranks,
-      complement: field.value.complement
-    };
+      new FieldInfosAddByPlayer(
+        field.value.ranks,
+        field.value.complement
+      );
     this.updateSheetStream();
   }
 
