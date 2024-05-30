@@ -85,6 +85,8 @@ export class ListenPlayerActionService {
 
   receivePurseField(field: PurseField): void {
     this.sheetModifiedByPlayer['purse'] = field.value;
+    console.log(this.sheetModifiedByPlayer['purse']);
+    this.updateSheetStream();
   }
 
   receiveWeapon(field: WeaponField): void {

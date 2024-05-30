@@ -12,6 +12,7 @@ import { PurseFactory } from '../../models/classes/purse-related/purse-factory.c
 export class InitialPurseService {
   purse$: BehaviorSubject<Purse> = new BehaviorSubject<Purse>(new Purse());
   classDetails$: Observable<CharacterClass> = inject(CharacterSheetService).getClasseDetails$();
+  className!: string;
 
   destroyRef: DestroyRef = inject(DestroyRef);
 
@@ -23,11 +24,18 @@ export class InitialPurseService {
     this.classDetails$.pipe(
       map((classDetails) => {
         if (classDetails) {
-          return classDetails.startingMoney;
+          if (classDetails.name !== this.className) {
+            this.className = classDetails.name;
+            return classDetails.startingMoney;
+          }
         }
         return "";
       }),
-    ).subscribe((money) => this.purse$.next(PurseFactory.createInitialPurse(this.transformDiceIntoMoney(money))));
+    ).subscribe((money) => {
+      if (money)
+        this.purse$.next(PurseFactory.createInitialPurse(this.transformDiceIntoMoney(money)))
+    }
+    );
   }
 
   transformDiceIntoMoney(moneyInDices: string): number {
