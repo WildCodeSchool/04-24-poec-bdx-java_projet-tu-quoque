@@ -1,55 +1,64 @@
 :host {
-    position:relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button {
-    width: 45vw;
-    font-family: alice;
-    font-size: 1.2rem;
-    padding: 1rem 0;
-    border: 1px solid #C29B0F;
-    transition: 200ms;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 7px;
+  width: 45vw;
+  font-family: alice;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  border: 1px solid #c29b0f;
+  transition: 200ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
 
-    &.lblue-gold {
-        background-color: #30495B;
-        color: #fff;
-    }
-    &.dblue-gold {
-        background-color: #0B202F;
-        color: #fff;
-    }
-    &.gold {
-        background-color: #C29B0F;
-        color: #0B202F;
-        &:hover {
-            opacity: 80%;
-        }
-    }
+  &.lblue-gold {
+    background-color: #30495b;
+    color: #fff;
+  }
+  &.dblue-gold {
+    background-color: #0b202f;
+    color: #fff;
+  }
+  &.gold {
+    background-color: #c29b0f;
+    color: #0b202f;
     &:hover {
-        background-color: #C29B0F;
-        color: #0B202F;
-        opacity: 80%;
+      opacity: 80%;
     }
-    &.bgSquare {
-        width: 130px;
-        height: 130px;
+  }
+  &.red {
+    background-color: #0b202f;
+    color: #ff0000;
+    border: 1px none;
+    &:hover {
+      background-color: #ff0000;
     }
+  }
+  &:hover {
+    background-color: #c29b0f;
+    color: #0b202f;
+    opacity: 80%;
+    border: 1;
+  }
+  &.bgSquare {
+    width: 130px;
+    height: 130px;
+  }
 }
 span {
-    position: absolute;
-    top: -0.90rem;
-    right: -0.90rem;
-    width: 1.80rem;
-    height: 1.80rem;
-    color: #fff;
-    background-color: red;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 1.75;
+  position: absolute;
+  top: -0.9rem;
+  right: -0.9rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  color: #fff;
+  background-color: red;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 1.75;
 }
