@@ -12,6 +12,7 @@ import { PurseField } from '../models/types/purse-field.type';
 export class PurseService {
   initialPurse$ = inject(InitialPurseService).getPurse$();
   purse$: Subject<Purse> = new Subject();
+  purse: Purse = new Purse();
   destroyRef = inject(DestroyRef);
   listener = inject(ListenPlayerActionService);
   purseField$: Subject<PurseField> = new Subject();
@@ -24,20 +25,29 @@ export class PurseService {
   init(): void {
     this.initialPurse$.pipe(
       takeUntilDestroyed(this.destroyRef),
-    ).subscribe((purse: Purse) => this.updatePurse(purse));
+    ).subscribe((purse: Purse) => {
+      this.purse = purse;
+      this.updatePurse(purse)
+    }
+    );
   }
 
   getPurse$(): Observable<Purse> {
     return this.purse$.asObservable();
   }
 
-  updatePurse(purse: Purse) {
+  updatePurse(purse: Purse = this.purse) {
     this.purse$.next(purse);
     const field = {
       index: "purse",
       value: purse
     };
     this.purseField$.next(field);
+  }
+
+  buy(amount: string) {
+    this.purse.debt(amount);
+    this.updatePurse();
   }
 
 }
