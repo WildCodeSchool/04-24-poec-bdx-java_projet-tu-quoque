@@ -2,6 +2,7 @@
 [purse$]="purse$"
 ></app-purse>
 <ul *ngIf="classWeapons$ |async as weaponList">
-    <li *ngFor="let weapon of weaponList"> {{weapon.name}} {{weapon.price}} 
-        <button (click)="buy(weapon)" [disabled]="">acheter</button></li>
+    <li *ngFor="let weapon of weaponList"> {{weapon.name}} 
+        <img [src]="'assets/images/weapons/'+weapon.image">
+        <button (click)="buy(weapon)" [disabled]="">{{weapon.price}}</button></li>
 </ul>
