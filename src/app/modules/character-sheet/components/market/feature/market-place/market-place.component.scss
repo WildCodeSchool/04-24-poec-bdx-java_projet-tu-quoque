@@ -22,10 +22,13 @@ ul {
 
         div.disabled {
             position: absolute;
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 1;
-            background-color: black;
-            opacity: 50%;
+            background-color: rgba($color: #000000, $alpha: 0.5);
+            color: white;
+            font-size: 24px;
             width: 100%;
             height: 100%;
             top: 0;
