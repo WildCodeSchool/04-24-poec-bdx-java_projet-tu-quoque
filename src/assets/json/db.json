@@ -1096,6 +1096,20 @@
         "price": "1po",
         "weight": 0.5
       }
+    },
+    {
+      "name": "morgenstern",
+      "category": "courante",
+      "price": "8 po",
+      "damages": {
+        "P": "1d6",
+        "M": "1d8"
+      },
+      "critic": "x2",
+      "rangeFactor": null,
+      "weight": 13,
+      "type": "C|P",
+      "munitions": null
     }
   ]
 }
