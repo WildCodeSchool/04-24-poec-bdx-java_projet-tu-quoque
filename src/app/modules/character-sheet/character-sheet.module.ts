@@ -32,7 +32,7 @@ import { MetamorphosisComponent } from './shared/components/metamorphosis/metamo
 import { SavingThrowsFeatureComponent } from './components/saving-throws/feature/saving-throws-feature/saving-throws-feature.component';
 import { SavingThrowsListComponent } from './components/saving-throws/ui/saving-throws-list-component/saving-throws-list-component.component';
 import { SavingThrowsDetailsComponent } from './components/saving-throws/ui/saving-throws-details-component/saving-throws-details-component.component';
-import { HpAcComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
+import { HitPointArmorClassComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
 import { HitPointComponent } from './components/hp-ac/feature/hp-component/hp-component.component';
 import { MovementComponent } from './components/hp-ac/feature/movement-component/movement-component.component';
 import { ArmorClassComponent } from './components/hp-ac/feature/ca-component/ca-component.component';
@@ -92,7 +92,7 @@ import { CoinsComponent } from './components/market/ui/coins/coins.component';
     SavingThrowsFeatureComponent,
     SavingThrowsListComponent,
     SavingThrowsDetailsComponent,
-    HpAcComponent,
+    HitPointArmorClassComponent,
     HitPointComponent,
     MovementComponent,
     ArmorClassComponent,
