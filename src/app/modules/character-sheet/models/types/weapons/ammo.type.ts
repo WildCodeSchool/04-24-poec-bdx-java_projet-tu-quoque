@@ -1,5 +1,6 @@
 export type Ammo = {
     name: string,
     price: string,
-    weight: number
+    weight: number,
+    image: string
 }

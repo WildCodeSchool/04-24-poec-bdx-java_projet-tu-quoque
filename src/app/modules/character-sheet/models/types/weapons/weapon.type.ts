@@ -10,5 +10,6 @@ export type WeaponDetails = {
   rangeFactor: null | number,
   weight: number,
   type: string,
+  image: string,
   munitions: null | Ammo
 }
