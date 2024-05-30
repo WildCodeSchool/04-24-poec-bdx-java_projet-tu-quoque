@@ -1,9 +1,11 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, inject, Output } from '@angular/core';
 import { ClassWeaponsService } from '../../../../shared/services/class-weapons.service';
 import { PurseService } from '../../../../shared/services/purse.service';
 import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
 import { Observable } from 'rxjs';
 import { Purse } from '../../../../models/classes/purse-related/purse.class';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Weapon } from '../../../../models/classes/weapon.class';
 
 @Component({
   selector: 'app-market-place',
@@ -13,17 +15,28 @@ import { Purse } from '../../../../models/classes/purse-related/purse.class';
 export class MarketPlaceComponent {
   classWeapons$ = inject(ClassWeaponsService).getClassWeapons$();
   purseService = inject(PurseService);
+  destroyRef = inject(DestroyRef);
   purse$!: Observable<Purse>;
+  purse!: Purse;
 
   @Output()
   emitter: EventEmitter<WeaponDetails> = new EventEmitter();
 
   ngOnInit() {
     this.purse$ = this.purseService.getPurse$();
+    this.purse$.pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe((purse: Purse) => this.purse = purse);
   }
 
   buy(weapon: WeaponDetails) {
-    this.purseService.buy(weapon.price);
-    this.emitter.emit(weapon)
+    if (this.purseService.buy(weapon.price))
+      this.emitter.emit(weapon);
+  }
+
+  compareWeaponPriceAndPurse(weaponPrice: string) {
+    console.log(this.purse, new Purse(weaponPrice))
+    console.log(this.purse > new Purse(weaponPrice))
+    return this.purse >= new Purse(weaponPrice);
   }
 }

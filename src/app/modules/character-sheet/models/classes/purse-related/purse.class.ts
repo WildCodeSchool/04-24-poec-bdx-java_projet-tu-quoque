@@ -18,13 +18,14 @@ export class Purse {
         this.reorganize();
     }
 
-    debt(amount: string): void {
+    debt(amount: string): boolean {
         const newPurse = new Purse(amount);
         if (newPurse > this) throw new Error('Transaction impossible');
         this.gold -= newPurse.gold;
         this.silver -= newPurse.silver;
         this.copper -= newPurse.copper;
         this.reorganize();
+        return true;
     }
 
     private reorganize(): void {

@@ -45,9 +45,9 @@ export class PurseService {
     this.purseField$.next(field);
   }
 
-  buy(amount: string) {
+  buy(amount: string): boolean {
     this.purse.debt(amount);
     this.updatePurse();
+    return true;
   }
-
 }

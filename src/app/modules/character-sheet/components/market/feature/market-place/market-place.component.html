@@ -2,7 +2,10 @@
 [purse$]="purse$"
 ></app-purse>
 <ul *ngIf="classWeapons$ |async as weaponList">
-    <li *ngFor="let weapon of weaponList"> {{weapon.name}} 
+    <li *ngFor="let weapon of weaponList">
+        <div class="buyable" [ngClass]="compareWeaponPriceAndPurse(weapon.price) ? '' : 'disabled'">
+        </div>
+        {{weapon.name}} 
         <img [src]="'assets/images/weapons/'+weapon.image">
-        <button (click)="buy(weapon)" [disabled]="">{{weapon.price}}</button></li>
+        <button (click)="buy(weapon)">{{weapon.price}}</button></li>
 </ul>

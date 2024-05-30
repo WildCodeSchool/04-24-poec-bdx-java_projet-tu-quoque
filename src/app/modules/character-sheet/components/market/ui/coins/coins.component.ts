@@ -13,17 +13,10 @@ export class CoinsComponent {
   @Input()
   index: number = 0;
 
-  //isMarketHidden: boolean = true;
-
   @Output()
   weaponEmitter: EventEmitter<WeaponDetails> = new EventEmitter();
 
-  // toggleMarket() {
-  //   this.isMarketHidden = !this.isMarketHidden;
-  // }
-
-  purchaseWeapon(weapon: WeaponDetails) {
-    //this.toggleMarket();
+  purchaseWeapon(weapon: WeaponDetails): void {
     this.weaponEmitter.emit(weapon);
   }
 }
