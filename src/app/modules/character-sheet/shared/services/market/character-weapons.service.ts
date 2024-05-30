@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { CharacterSheetService } from './character-sheet.service';
-import { Weapon } from '../../models/classes/weapon.class';
+import { CharacterSheetService } from '../character-sheet.service';
+import { Weapon } from '../../../models/classes/weapon.class';
 import { Subject } from 'rxjs';
-import { WeaponField } from '../models/types/weapon-field.type';
-import { ListenPlayerActionService } from './listen-player-action.service';
+import { WeaponField } from '../../models/types/weapon-field.type';
+import { ListenPlayerActionService } from '../listen-player-action.service';
 
 @Injectable({
   providedIn: 'root'

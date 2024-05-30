@@ -1,10 +1,10 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { InitialPurseService } from './initial-purse.service';
 import { Observable, Subject } from 'rxjs';
-import { Purse } from '../../models/classes/purse-related/purse.class';
+import { Purse } from '../../../models/classes/purse-related/purse.class';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ListenPlayerActionService } from './listen-player-action.service';
-import { PurseField } from '../models/types/purse-field.type';
+import { ListenPlayerActionService } from '../listen-player-action.service';
+import { PurseField } from '../../models/types/purse-field.type';
 
 @Injectable({
   providedIn: 'root'

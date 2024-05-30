@@ -1,10 +1,10 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { Purse } from '../../models/classes/purse-related/purse.class';
-import { CharacterClass } from '../../models/types/character-class.type';
-import { CharacterSheetService } from './character-sheet.service';
-import { DiceService } from '../../../shared/services/dice-service/dice.service';
-import { PurseFactory } from '../../models/classes/purse-related/purse-factory.class';
+import { Purse } from '../../../models/classes/purse-related/purse.class';
+import { CharacterClass } from '../../../models/types/character-class.type';
+import { CharacterSheetService } from '../character-sheet.service';
+import { DiceService } from '../../../../shared/services/dice-service/dice.service';
+import { PurseFactory } from '../../../models/classes/purse-related/purse-factory.class';
 
 @Injectable({
   providedIn: 'root'

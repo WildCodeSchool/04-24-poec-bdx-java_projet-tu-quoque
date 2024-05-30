@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
-import { CharacterWeaponsService } from '../../../../shared/services/character-weapons.service';
+import { CharacterWeaponsService } from '../../../../shared/services/market/character-weapons.service';
 import { Weapon } from '../../../../models/classes/weapon.class';
 import { Observable } from 'rxjs';
 import { SizeCategoryEnumKey } from '../../../../models/enums/sizeCategoryEnum.enum';

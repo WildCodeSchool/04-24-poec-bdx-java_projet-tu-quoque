@@ -1,6 +1,6 @@
 import { Component, DestroyRef, EventEmitter, inject, Output } from '@angular/core';
 import { ClassWeaponsService } from '../../../../shared/services/class-weapons.service';
-import { PurseService } from '../../../../shared/services/purse.service';
+import { PurseService } from '../../../../shared/services/market/purse.service';
 import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
 import { Observable } from 'rxjs';
 import { Purse } from '../../../../models/classes/purse-related/purse.class';

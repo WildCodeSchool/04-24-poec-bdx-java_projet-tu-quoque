@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Purse } from '../../../../models/classes/purse-related/purse.class';
-import { PurseService } from '../../../../shared/services/purse.service';
+import { PurseService } from '../../../../shared/services/market/purse.service';
 
 @Component({
   selector: 'app-possessions',
