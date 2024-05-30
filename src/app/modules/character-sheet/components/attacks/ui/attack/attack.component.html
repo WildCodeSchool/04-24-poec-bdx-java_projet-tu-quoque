@@ -16,6 +16,7 @@
         <tbody>
             <tr>
                 <td><app-coins *ngIf="!weapon"
+                    [index]="index"
                     (weaponEmitter)="purchaseWeapon($event)"
                     ></app-coins>
                     <app-metamorphosis
