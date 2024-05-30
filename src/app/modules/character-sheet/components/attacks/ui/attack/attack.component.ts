@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
 import { CharacterWeaponsService } from '../../../../shared/services/market/character-weapons.service';
 import { Weapon } from '../../../../models/classes/weapon.class';
