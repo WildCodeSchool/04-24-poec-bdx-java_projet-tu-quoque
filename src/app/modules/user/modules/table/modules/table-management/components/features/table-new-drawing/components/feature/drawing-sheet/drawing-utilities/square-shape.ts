@@ -5,33 +5,36 @@ import { SquareEventHandlers } from "../../../../../../../../../../../../shared/
 import { ElementRef } from "@angular/core";
 import { DrawingUtilitiesService } from "../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service";
 import { ColorService } from "../../../../../../../../../../../../shared/services/drawing/color.service";
+import { CanvasDependenciesProvider } from "../../../../../../../../../../../../shared/models/class/form-class/canvas-dependencies-provider";
 
 export class SquareShape extends BaseShape {
   private squareEventHandlers: SquareEventHandlers;
 
   constructor(
     canvasRef: ElementRef,
-    _drawingService: DrawingUtilitiesService,
-    _colorService: ColorService,
-    _ctx: CanvasRenderingContext2D,
+    drawingService: DrawingUtilitiesService,
+    colorService: ColorService,
+    ctx: CanvasRenderingContext2D,
     width: number,
     height: number,
-    _drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
+    drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
     redrawAll: () => void,
     currentColor: string,
     currentLineWidth: number
   ) {
-    super(canvasRef, _drawingService, _colorService, _ctx, width, height, _drawnPaths, redrawAll, currentColor, currentLineWidth);
-    this.squareEventHandlers = new SquareEventHandlers(
+    super(canvasRef, drawingService, colorService, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
+    
+    const dependencies = new CanvasDependenciesProvider(
       canvasRef,
-      _drawingService,
-      _ctx,
+      drawingService,
+      ctx,
       currentColor,
       currentLineWidth,
-      _drawnPaths,
+      drawnPaths,
       this.clearAndRedraw.bind(this),
       redrawAll
     );
+    this.squareEventHandlers = new SquareEventHandlers(dependencies);
   }
 
   protected drawShape(
@@ -43,6 +46,6 @@ export class SquareShape extends BaseShape {
       switchMap(startEvent => this.squareEventHandlers.handleStartEvent(startEvent, move$, end$))
     );
 
-    this._drawingService.addSubscription(square$.subscribe());
+    this.drawingService.addSubscription(square$.subscribe());
   }
 }

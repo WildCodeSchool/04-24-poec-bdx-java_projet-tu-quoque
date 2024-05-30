@@ -4,31 +4,36 @@ import { FreeShapeEventHandlers } from "../../../../../../../../../../../../shar
 import { ElementRef } from "@angular/core";
 import { DrawingUtilitiesService } from "../../../../../../../../../../../../shared/services/drawing/drawing-utilities.service";
 import { ColorService } from "../../../../../../../../../../../../shared/services/drawing/color.service";
+import { CanvasDependenciesProvider } from "../../../../../../../../../../../../shared/models/class/form-class/canvas-dependencies-provider";
 
 export class FreeShape extends BaseShape {
   private freeShapeEventHandlers: FreeShapeEventHandlers;
 
   constructor(
     canvasRef: ElementRef,
-    _drawingService: DrawingUtilitiesService,
-    _colorService: ColorService,
-    _ctx: CanvasRenderingContext2D,
+    drawingService: DrawingUtilitiesService,
+    colorService: ColorService,
+    ctx: CanvasRenderingContext2D,
     width: number,
     height: number,
-    _drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
+    drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
     redrawAll: () => void,
     currentColor: string,
     currentLineWidth: number
   ) {
-    super(canvasRef, _drawingService, _colorService, _ctx, width, height, _drawnPaths, redrawAll, currentColor, currentLineWidth);
-    this.freeShapeEventHandlers = new FreeShapeEventHandlers(
-      _drawingService,
-      _ctx,
+    super(canvasRef, drawingService, colorService, ctx, width, height, drawnPaths, redrawAll, currentColor, currentLineWidth);
+   
+    const dependencies = new CanvasDependenciesProvider(
+      canvasRef,
+      drawingService,
+      ctx,
       currentColor,
       currentLineWidth,
-      _drawnPaths,
-      redrawAll
+      drawnPaths,
+      redrawAll,
+      this.clearAndRedraw.bind(this)
     );
+    this.freeShapeEventHandlers = new FreeShapeEventHandlers(dependencies);
   }
 
   public drawShape(
@@ -42,6 +47,6 @@ export class FreeShape extends BaseShape {
     );
 
     const drawSubscription = draw$.subscribe();
-    this._drawingService.addSubscription(drawSubscription);
+    this.drawingService.addSubscription(drawSubscription);
   }
 }

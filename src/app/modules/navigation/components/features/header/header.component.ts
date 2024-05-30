@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavigationService } from '../../../../shared/services/navigation.service';
 import { Router } from '@angular/router';
+import { ConnectionService } from '../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +11,22 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   
   title: string = 'tu quoque';
+
+  private _navigationService = inject(NavigationService)
+  private _connectionService = inject(ConnectionService)
+  private _router = inject(Router)
+
   userConected: boolean = true;
-  homeLink: string = this.userConected ? '/user/home' : '/visitor/home';
+  userConnected$ = this._connectionService.getUserConected$()
+  userHomeLink: string = '/user/home'
+  visitorHomeLink: string ='/visitor/home'
   urlToGoBack!: string;
 
-  constructor(private _navService: NavigationService, private router: Router) {}
-
   storeActualUrl(): void {
-    localStorage.setItem('routeToGoBack', this.router.url);
+    localStorage.setItem('routeToGoBack', this._router.url);
   }
   onClick() {
     window.scrollTo(0, 0);
-    this._navService.setSidebarVisible();
+    this._navigationService.setSidebarVisible();
   }
 }

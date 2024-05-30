@@ -11,10 +11,6 @@ export class ChatService extends ApiRessourceService<Chat> {
   
   private readonly _BASE_URL: string = 'http://localhost:3000/chats';
 
-  constructor(protected override _http: HttpClient) {
-    super(_http);
-  }
-
   override getRessourceUrl(): string {
     return this._BASE_URL;
   }

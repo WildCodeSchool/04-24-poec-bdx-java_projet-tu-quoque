@@ -2,35 +2,27 @@ import { Observable, Subscription, map, takeUntil } from "rxjs";
 import { DrawingPoint } from "../drawing-point";
 import { DrawingUtilitiesService } from "../../../services/drawing/drawing-utilities.service";
 import { ElementRef } from "@angular/core";
+import { CanvasDependenciesProvider } from "./canvas-dependencies-provider";
 
 export class TriangleEventHandlers {
   private startPos!: DrawingPoint;
   private lastMovePos!: DrawingPoint;
 
-  constructor(
-    private canvasRef: ElementRef,
-    private _drawingService: DrawingUtilitiesService,
-    private _ctx: CanvasRenderingContext2D,
-    private _currentColor: string,
-    private _currentLineWidth: number,
-    private _drawnPaths: { color: string, lineWidth: number, path: { x: number, y: number }[] }[],
-    private clearAndRedraw: () => void,
-    private redrawAll: () => void
-  ) {}
+  constructor(private dependencies : CanvasDependenciesProvider) {}
 
   handleStartEvent(
     startEvent: MouseEvent | TouchEvent,
     move$: Observable<MouseEvent | TouchEvent>,
     end$: Observable<MouseEvent | TouchEvent>
   ) {
-    this.startPos = DrawingPoint.fromEvent(startEvent, this.canvasRef.nativeElement, this._drawingService);
+    this.startPos = DrawingPoint.fromEvent(startEvent, this.dependencies.canvasRef.nativeElement, this.dependencies.drawingService);
     this.lastMovePos = this.startPos;
 
     const moveSubscription = move$.pipe(
       map(moveEvent => this.updateLastMovePos(moveEvent)),
       takeUntil(end$)
     ).subscribe(({ startX, startY, currentX, currentY }) => {
-      this.clearAndRedraw();
+      this.dependencies.clearAndRedraw();
       this.drawTriangle(startX, startY, currentX, currentY);
     });
 
@@ -40,42 +32,42 @@ export class TriangleEventHandlers {
   }
 
   private updateLastMovePos(moveEvent: MouseEvent | TouchEvent) {
-    const currentPos = DrawingPoint.fromEvent(moveEvent, this.canvasRef.nativeElement, this._drawingService);
+    const currentPos = DrawingPoint.fromEvent(moveEvent, this.dependencies.canvasRef.nativeElement, this.dependencies.drawingService);
     this.lastMovePos = currentPos;
     return { startX: this.startPos.x, startY: this.startPos.y, currentX: currentPos.x, currentY: currentPos.y };
   }
 
   private drawTriangle(startX: number, startY: number, currentX: number, currentY: number) {
-    const triangleWidth = currentY - startY;
-    const triangleHeight = currentX - startX;
+    const triangleWidth = currentX - startX;
+    const triangleHeight = currentY - startY;
 
-    this._ctx.strokeStyle = this._currentColor;
-    this._ctx.lineWidth = this._currentLineWidth;
+    this.dependencies.ctx.strokeStyle = this.dependencies.currentColor;
+    this.dependencies.ctx.lineWidth = this.dependencies.currentLineWidth;
 
-    this._ctx.beginPath();
-    this._ctx.moveTo(startX, startY);
-    this._ctx.lineTo(startX + triangleWidth / 2, startY + triangleHeight);
-    this._ctx.lineTo(startX - triangleWidth / 2, startY + triangleHeight);
-    this._ctx.closePath();
-    this._ctx.stroke();
+    this.dependencies.ctx.beginPath();
+    this.dependencies.ctx.moveTo(startX, startY);
+    this.dependencies.ctx.lineTo(startX + triangleWidth / 2, startY + triangleHeight);
+    this.dependencies.ctx.lineTo(startX - triangleWidth / 2, startY + triangleHeight);
+    this.dependencies.ctx.closePath();
+    this.dependencies.ctx.stroke();
   }
 
   private handleEndEvent(moveSubscription: Subscription) {
     const path = this.generateTrianglePath(this.startPos, this.lastMovePos);
 
-    this._drawnPaths.push({
-      color: this._currentColor,
-      lineWidth: this._currentLineWidth,
+    this.dependencies.drawnPaths.push({
+      color: this.dependencies.currentColor,
+      lineWidth: this.dependencies.currentLineWidth,
       path
     });
 
-    this.redrawAll();
+    this.dependencies.redrawAll();
     moveSubscription.unsubscribe();
   }
 
   private generateTrianglePath(startPos: { x: number; y: number }, lastMovePos: { x: number; y: number }) {
-    const triangleHeight = lastMovePos.y - startPos.y;
     const triangleWidth = lastMovePos.x - startPos.x;
+    const triangleHeight = lastMovePos.y - startPos.y;
 
     return [
       { x: startPos.x, y: startPos.y },

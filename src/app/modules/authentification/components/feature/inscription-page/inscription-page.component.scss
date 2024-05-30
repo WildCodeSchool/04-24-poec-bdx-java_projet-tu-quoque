@@ -8,22 +8,32 @@
   color: #fff;
   font-family: alice;
   font-size: large;
+
+  .subscription-button {
+    margin-top: 3rem;
+  }
+
+  form {
+    margin-bottom: 1rem;
+  }
 }
 
-.validation-button {
-  margin-top: 5rem;
-}
-.subscription-button {
-  margin-top: 3rem;
-}
-
-.validation-button {
-  margin-top: 5rem;
-}
-.subscription-button {
-  margin-top: 3rem;
-}
-
-form {
-  margin-bottom: 1rem;
+:host ::ng-deep p-accordion {
+  margin-top: 1rem;
+  .p-accordion,
+  .p-accordion-header:not(.p-disabled).p-highlight,
+  .p-accordion-header-link {
+    background-color: #30495b;
+    color: #fff;
+    font-family: alice;
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+  .p-accordion,
+  .p-accordion-content {
+    background-color: #0b202f;
+    padding: 0 0 1rem;
+    border: none;
+    color: #fff;
+  }
 }

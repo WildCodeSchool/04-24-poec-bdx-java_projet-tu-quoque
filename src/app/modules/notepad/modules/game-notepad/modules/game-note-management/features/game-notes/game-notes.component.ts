@@ -16,10 +16,10 @@ export class GameNotesComponent {
   noteList$!: Observable<Note[]>;
 
   tableConnected$: Observable<Table> =
-    this._connectionService.getTableConnected$();
+    this._connectionService.getTableConnected$() as Observable<Table>;
 
   characterConnected$: Observable<Character> =
-    this._connectionService.getCharacterConnected$();
+    this._connectionService.getCharacterConnected$() as Observable<Character>;
 
   constructor(
     private _notesService: NoteService,
@@ -29,7 +29,7 @@ export class GameNotesComponent {
   ngOnInit(): void {
     this.noteList$ = this.characterConnected$.pipe(
       switchMap((response) =>
-        response.name === 'NoCharacter'
+        response == null
           ? this._notesService.getNoteListByTable()
           : this._notesService.getNoteListByCharacter()
       )

@@ -1,48 +1,65 @@
-<app-page-header [title]="'Inscription'" [elementIcon]="connexionIcon"></app-page-header>
-
+<app-return-button></app-return-button>
+<app-page-header
+  [title]="'Inscription'"
+  [elementIcon]="connexionIcon"
+></app-page-header>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <ng-container *ngIf="usernameField$ | async as usernameField"> 
+  <p-accordion [multiple]="true" [activeIndex]="[]">
+    <p-accordionTab header="Pseudonyme">
+      <ng-container *ngIf="usernameField$ | async as usernameField">
         <app-input-text
-        [field]="usernameField"
-        formControlName="username"
-        [control]="usernameControl"
+          [field]="usernameField"
+          formControlName="username"
+          [control]="usernameControl"
         >
         </app-input-text>
-    </ng-container>
-
-    <ng-container *ngIf="emailField$ | async as emailField"> 
+      </ng-container>
+    </p-accordionTab>
+    <p-accordionTab header="Email">
+      <ng-container *ngIf="emailField$ | async as emailField">
         <app-input-text
-        [field]="emailField"
-        formControlName="email"
-        [control]="emailControl"
+          [field]="emailField"
+          formControlName="email"
+          [control]="emailControl"
         >
         </app-input-text>
-    </ng-container>
-
-    <ng-container *ngIf="passwordField$ | async as passwordField"> 
+      </ng-container>
+    </p-accordionTab>
+    <p-accordionTab header="Mot de passe">
+      <ng-container *ngIf="passwordField$ | async as passwordField">
         <app-input-text
-        [field]="passwordField"
-        formControlName="password"
-        [control]="passwordControl"
+          [field]="passwordField"
+          formControlName="password"
+          [control]="passwordControl"
         >
         </app-input-text>
-    </ng-container>
-
-    <ng-container *ngIf="passwordVerificationField$ | async as passwordVerificationField"> 
+      </ng-container>
+    </p-accordionTab>
+    <p-accordionTab header="Répéter le mot de passe">
+      <ng-container
+        *ngIf="passwordVerificationField$ | async as passwordVerificationField"
+      >
         <app-input-text
-        [field]="passwordVerificationField"
-        formControlName="passwordVerification"
-        [control]="passwordVerificationControl"
+          [field]="passwordVerificationField"
+          formControlName="passwordVerification"
+          [control]="passwordVerificationControl"
         >
         </app-input-text>
-    </ng-container>
-
-    <app-custom-area-title [title]="'Télécharger un avatar'"></app-custom-area-title>
-<div class="add-image-area">
-    <app-custom-add-button ></app-custom-add-button>
-</div>
-
-<app-custom-button type="submit" [name]="'Valider'" [style]="'gold'" class="validation-button"></app-custom-button>
+      </ng-container>
+    </p-accordionTab>
+    <p-accordionTab header="Télécharger un avatar">
+      <app-custom-add-button></app-custom-add-button>
+    </p-accordionTab>
+  </p-accordion>
+  <app-custom-button
+    type="submit"
+    [name]="'Valider'"
+    [style]="'gold'"
+  ></app-custom-button>
 </form>
 
-<app-custom-button [name]="'Déjà un compte ?'" [style]="'dblue-gold'" class="connexion-button" [routerLink]="['/authentification/connexion']"></app-custom-button>
+<app-custom-button
+  [name]="'Déjà un compte ?'"
+  [style]="'dblue-gold'"
+  [routerLink]="['/authentification/connexion']"
+></app-custom-button>

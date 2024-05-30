@@ -1,3 +1,12 @@
+<div class="calendar-body">
+  <div class="close-btn-container">
+    <img
+      class="close-btn"
+      [src]="'assets/images/cross-golden-icon.svg'"
+      alt="close"
+      PreviousPage
+    />
+  </div>
 <app-page-header
   [elementIcon]="'./assets/images/calendar-icon.svg'"
   [title]="'Agenda'"
@@ -5,10 +14,4 @@
 <ng-container *ngIf="calendarOptions">
   <full-calendar [options]="calendarOptions"></full-calendar>
 </ng-container>
-<footer>
-  <app-custom-button
-    [name]="'Retour'"
-    [style]="'gold'"
-    PreviousPage
-  ></app-custom-button>
-</footer>
+</div>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Drawing } from '../../models/types/users/drawing.type';
@@ -11,10 +11,6 @@ export class DrawingService extends ApiRessourceService<Drawing> {
   
   private readonly _BASE_URL: string = 'http://localhost:3000/drawings';
 
-  constructor(protected override _http: HttpClient) {
-    super(_http);
-  }
-
   override getRessourceUrl(): string {
     return this._BASE_URL;
   }
@@ -25,5 +21,19 @@ export class DrawingService extends ApiRessourceService<Drawing> {
         result.filter((drawing: Drawing) => Number(drawing.tableId) === tableId)
       )
     );
+  }
+
+  save(canvas: HTMLCanvasElement): Observable<any> {
+    return new Observable(observer => {
+      canvas.toBlob(blob => {
+        if (blob) {
+          console.log(blob);
+          observer.next(blob);
+          observer.complete();
+        } else {
+          observer.error('Failed to create Blob from canvas');
+        }
+      }, 'image/png');
+    });
   }
 }

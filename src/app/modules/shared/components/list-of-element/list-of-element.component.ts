@@ -22,6 +22,9 @@ export class ListOfElementComponent {
   @Input()
   isForDrawing: boolean = false;
 
+  @Input()
+  isModifiable: boolean = true;
+
   @Output()
   sendDrawingUrl: EventEmitter<string> = new EventEmitter();
 

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { TableService } from '../table/table.service';
 import { TableInvitation } from '../../models/types/users/table-invitation.type';
@@ -12,19 +12,19 @@ import { ApiRessourceService } from '../api-ressource/api-ressource.service';
   providedIn: 'root',
 })
 export class TableInvitationService extends ApiRessourceService<TableInvitation> {
-  private _userConnected$ = this._connectionService.getUserConected$();
+  
+  private _tableService = inject(TableService);
+
+  private _connectionService = inject(ConnectionService);
+
+  private _userConnected$ =
+    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
+
   private readonly _BASE_URL = 'http://localhost:3000/user_table_invitations';
+
   private _userTableInvitationList$: BehaviorSubject<any> = new BehaviorSubject(
     []
   );
-
-  constructor(
-    protected override _http: HttpClient,
-    private _tableService: TableService,
-    private _connectionService: ConnectionService
-  ) {
-    super(_http);
-  }
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
