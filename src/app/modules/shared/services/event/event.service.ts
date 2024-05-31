@@ -42,22 +42,6 @@ export class EventService extends ApiRessourceService<any> {
     this.eventList$.next([...currentEventList, event]);
   }
 
-  createNewEvent = (element: any): void => {
-    const dateStr = prompt('Ajoutez une date au format YYYY-MM-DD');
-    const title = prompt('Ajoutez votre titre');
-    const date: Date = new Date(dateStr + 'T00:00:00');
-    if (!isNaN(date.valueOf())) {
-      const newEvent: calendarEvent = {
-        tableId: element.tableId,
-        title: title ? title : 'non défini',
-        start: date,
-        allDay: true,
-      };
-      this.addEvent(newEvent);
-      console.log(newEvent);
-    }
-  };
-
   eventResize = (info: EventResizeDoneArg): void => {
     const modifiedEvent: calendarEvent = {
       id: Number(info.oldEvent._def.publicId),

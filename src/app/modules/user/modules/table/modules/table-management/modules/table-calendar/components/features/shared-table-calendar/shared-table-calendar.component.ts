@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
+import { CalendarOptions, EventClickArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -71,13 +71,13 @@ export class SharedTableCalendarComponent {
       firstDay: 1,
       eventDrop: this._eventService.moveEvent,
       eventResize: this._eventService.eventResize,
-      eventClick: (info) => {
+      eventClick: (info: EventClickArg) => {
         this.showEvent(info);
       },
       eventRemove: this._eventService.deleteEvent,
     };
   }
-  createAvalability(info: any) {
+  createAvalability(info: Date): void {
     this.ref = this.dialogService.open(CalendarPopupComponent, {
       data: {
         tableId: this.tableId,
@@ -93,14 +93,14 @@ export class SharedTableCalendarComponent {
     });
     this.ref.onClose
       .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe((data: any) => {
+      .subscribe((data: calendarEvent) => {
         if (data) {
           this._eventService.addEvent(data);
         }
       });
   }
 
-  showEvent(info: any) {
+  showEvent(info: EventClickArg): void {
     this.ref = this.dialogService.open(InfoPopupComponent, {
       data: {
         info: info,
