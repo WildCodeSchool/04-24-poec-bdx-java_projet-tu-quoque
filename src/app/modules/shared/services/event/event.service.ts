@@ -58,12 +58,6 @@ export class EventService extends ApiRessourceService<any> {
     }
   };
 
-  showDetail(arg: EventClickArg) {
-    alert("Titre :\n" +arg.event.title+ '\n' + "Description :\n" +arg.event.extendedProps['description']);
-  }
-
-  showEventDetail = (arg: EventClickArg): void => this.showDetail(arg);
-
   eventResize = (info: EventResizeDoneArg): void => {
     const modifiedEvent: calendarEvent = {
       id: Number(info.oldEvent._def.publicId),
@@ -73,7 +67,6 @@ export class EventService extends ApiRessourceService<any> {
       end: info.event.end,
       allDay: true,
     };
-    console.log(modifiedEvent);
   };
 
   moveEvent = (info: EventDropArg): void => {
@@ -85,7 +78,6 @@ export class EventService extends ApiRessourceService<any> {
       end: info.event.end,
       allDay: true,
     };
-    console.log(movedEvent);
   };
 
   deleteEvent = (info: EventRemoveArg): void => {
