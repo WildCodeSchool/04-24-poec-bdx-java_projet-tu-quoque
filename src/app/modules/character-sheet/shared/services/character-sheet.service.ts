@@ -10,6 +10,7 @@ import { DiceService } from '../../../shared/services/dice-service/dice.service'
 import { ClassEnum } from '../../models/enums/classes.enum';
 import { StatModifier } from '../../models/types/stat-modifier.type';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
+import { SizeCategoryEnumKey } from '../../models/enums/sizeCategoryEnum.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -68,10 +69,10 @@ export class CharacterSheetService {
     );
   }
 
-  setSizeCategory$(): Observable<string> {
+  setSizeCategory$(): Observable<SizeCategoryEnumKey> {
     return this.race$.pipe(
       map((race: Race) =>
-        race ? race.sizeCategorie : ""
+        race ? race.sizeCategorie : "NA"
       ),
     );
   }

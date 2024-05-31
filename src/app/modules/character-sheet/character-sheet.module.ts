@@ -32,7 +32,7 @@ import { MetamorphosisComponent } from './shared/components/metamorphosis/metamo
 import { SavingThrowsFeatureComponent } from './components/saving-throws/feature/saving-throws-feature/saving-throws-feature.component';
 import { SavingThrowsListComponent } from './components/saving-throws/ui/saving-throws-list-component/saving-throws-list-component.component';
 import { SavingThrowsDetailsComponent } from './components/saving-throws/ui/saving-throws-details-component/saving-throws-details-component.component';
-import { HpAcComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
+import { HitPointArmorClassComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
 import { HitPointComponent } from './components/hp-ac/feature/hp-component/hp-component.component';
 import { MovementComponent } from './components/hp-ac/feature/movement-component/movement-component.component';
 import { ArmorClassComponent } from './components/hp-ac/feature/ca-component/ca-component.component';
@@ -55,7 +55,10 @@ import { ProtectionUiComponent } from './components/defense/ui/protection-ui/pro
 import { DefensesComponent } from './components/defense/feature/defenses/defenses.component';
 import { MarketPlaceComponent } from './components/market/feature/market-place/market-place.component';
 import { BuyWeaponsComponent } from './components/market/ui/buy-weapons/buy-weapons.component';
-import { PurseComponent } from './components/market/ui/purse/purse.component';
+import { PurseComponent } from './components/possessions/ui/purse/purse.component';
+import { PossessionsComponent } from './components/possessions/feature/possessions/possessions.component';
+import { EquipmentComponent } from './components/possessions/ui/equipment/equipment.component';
+import { CoinsComponent } from './components/market/ui/coins/coins.component';
 
 
 @NgModule({
@@ -89,7 +92,7 @@ import { PurseComponent } from './components/market/ui/purse/purse.component';
     SavingThrowsFeatureComponent,
     SavingThrowsListComponent,
     SavingThrowsDetailsComponent,
-    HpAcComponent,
+    HitPointArmorClassComponent,
     HitPointComponent,
     MovementComponent,
     ArmorClassComponent,
@@ -112,7 +115,10 @@ import { PurseComponent } from './components/market/ui/purse/purse.component';
     DefensesComponent,
     MarketPlaceComponent,
     BuyWeaponsComponent,
-    PurseComponent
+    PurseComponent,
+    PossessionsComponent,
+    EquipmentComponent,
+    CoinsComponent,
   ],
   imports: [
     CommonModule,

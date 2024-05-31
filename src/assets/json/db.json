@@ -520,6 +520,7 @@
         "fortitude": "high",
         "will": "low"
       },
+      "startingMoney": "4d4 x10",
       "special": [],
       "id": "68d2"
     },
@@ -578,6 +579,7 @@
         "fortitude": "low",
         "will": "low"
       },
+      "startingMoney": "5d4 x10",
       "special": [],
       "id": "1c9a"
     }
@@ -954,6 +956,7 @@
       "rangeFactor": null,
       "weight": 0.5,
       "type": "T|P",
+      "image": "dague.png",
       "munitions": null
     },
     {
@@ -968,6 +971,7 @@
       "rangeFactor": null,
       "weight": 2,
       "type": "C",
+      "image": "masse.png",
       "munitions": null
     },
     {
@@ -982,10 +986,12 @@
       "rangeFactor": 24,
       "weight": 2,
       "type": "P",
+      "image": "arbalete_legere.png",
       "munitions": {
         "name": "carreaux",
         "price": "1po",
-        "weight": 0.5
+        "weight": 0.5,
+        "image": "carreau.png"
       }
     },
     {
@@ -1000,10 +1006,12 @@
       "rangeFactor": 18,
       "weight": 1,
       "type": "P",
+      "image": "arc_court.png",
       "munitions": {
         "name": "flèches",
         "price": "1po",
-        "weight": 1.5
+        "weight": 1.5,
+        "image": "fleche.png"
       }
     },
     {
@@ -1018,10 +1026,12 @@
       "rangeFactor": 21,
       "weight": 1,
       "type": "P",
+      "image": "arc_composite.png",
       "munitions": {
         "name": "flèches",
         "price": "1po",
-        "weight": 1.5
+        "weight": 1.5,
+        "image": "fleche.png"
       }
     },
     {
@@ -1036,6 +1046,7 @@
       "rangeFactor": null,
       "weight": 1,
       "type": "P",
+      "image": "epee_courte.png",
       "munitions": null
     },
     {
@@ -1050,6 +1061,7 @@
       "rangeFactor": null,
       "weight": 1,
       "type": "C",
+      "image": "matraque.png",
       "munitions": null
     },
     {
@@ -1064,6 +1076,7 @@
       "rangeFactor": null,
       "weight": 1,
       "type": "P",
+      "image": "rapiere.png",
       "munitions": null
     },
     {
@@ -1078,6 +1091,7 @@
       "rangeFactor": null,
       "weight": 4,
       "type": "T",
+      "image": "2_handed.webp",
       "munitions": null
     },
     {
@@ -1092,11 +1106,28 @@
       "rangeFactor": 9,
       "weight": 1,
       "type": "P",
+      "image": "arbalete_poing.webp",
       "munitions": {
         "name": "carreaux",
         "price": "1po",
-        "weight": 0.5
+        "weight": 0.5,
+        "image": "carreau.png"
       }
+    },
+    {
+      "name": "morgenstern",
+      "category": "courante",
+      "price": "8 po",
+      "damages": {
+        "P": "1d6",
+        "M": "1d8"
+      },
+      "critic": "x2",
+      "rangeFactor": null,
+      "weight": 13,
+      "type": "C|P",
+      "image": "morgenstern.jpg",
+      "munitions": null
     }
   ]
 }

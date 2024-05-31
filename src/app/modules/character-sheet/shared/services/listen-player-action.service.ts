@@ -9,12 +9,16 @@ import { Field } from '../models/types/field.type';
 import { SkillField } from '../models/types/skill-field.type';
 import { StatListField } from '../models/types/stat-list-field.type';
 import { FieldInfosAddByPlayer } from '../classes/skill-infos-add-by-player.class';
+import { Purse } from '../../models/classes/purse-related/purse.class';
+import { PurseField } from '../models/types/purse-field.type';
+import { WeaponField } from '../models/types/weapon-field.type';
+import { Weapon } from '../../models/classes/weapon.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListenPlayerActionService {
-  sheetModifiedByPlayer: any = { "skills": [] };
+  sheetModifiedByPlayer: any = { "skills": [], "weapons": [] };
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);
 
   constructor(private destroyRef: DestroyRef) { }
@@ -29,8 +33,12 @@ export class ListenPlayerActionService {
     ).subscribe((field: Field) => {
       if (field.value instanceof SkillDetails) {
         this.receiveSkillField(field as SkillField);
+      } else if (field.value instanceof Weapon) {
+        this.receiveWeapon(field as WeaponField);
       } else if (field.value instanceof StatisticDetails) {
         this.receiveStatField(field as StatField);
+      } else if (field.value instanceof Purse) {
+        this.receivePurseField(field as PurseField);
       } else if (field.value instanceof Array) {
         this.receiveStatListField(field as StatListField)
       } else {
@@ -72,6 +80,16 @@ export class ListenPlayerActionService {
         field.value.ranks,
         field.value.complement
       );
+    this.updateSheetStream();
+  }
+
+  receivePurseField(field: PurseField): void {
+    this.sheetModifiedByPlayer['purse'] = field.value;
+    this.updateSheetStream();
+  }
+
+  receiveWeapon(field: WeaponField): void {
+    this.sheetModifiedByPlayer["weapons"][field.index] = field.value;
     this.updateSheetStream();
   }
 

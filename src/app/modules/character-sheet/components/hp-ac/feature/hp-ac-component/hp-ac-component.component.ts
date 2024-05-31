@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './hp-ac-component.component.html',
   styleUrl: './hp-ac-component.component.scss'
 })
-export class HpAcComponent {
+export class HitPointArmorClassComponent {
 
 }

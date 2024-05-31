@@ -1,2 +1,5 @@
-<app-attack *ngFor="let item of [].constructor(5); let i = index" 
+<app-attack *ngFor="let item of [].constructor(5); let i = index"
+ [weapon]="weapons[i]"
+ [characterSize$]="characterSize$"
+ [index]="i"
 ></app-attack>
