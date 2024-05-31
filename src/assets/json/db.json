@@ -204,9 +204,11 @@
     },
     {
       "id": 4,
-      "tableId": 2,
-      "title": "table 2 MJ dispo",
-      "start": "2024-05-01 09:00:00",
+      "tableId": 4,
+      "title": "table MJ dispo",
+      "start": "2024-06-26 09:00:00",
+      "end": "2024-06-29 09:00:00",
+      "description": "Disponible 24/24 pendant ces 3 jours, maison déjà louée",
       "allDay": true,
       "color": "#c29b0f"
     }
@@ -218,7 +220,7 @@
       "userId": 1,
       "characterId": null,
       "name": "Disponibilités",
-      "text": "28 et 29 mai toute la journée"
+      "text": "26 et 27 juin toute la journée"
     },
     {
       "id": "2",

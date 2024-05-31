@@ -8,6 +8,7 @@ import { Observable, map } from 'rxjs';
 import { TextField } from '../../../../../../../../shared/models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../../../../../../../shared/services/form-field/get-fields.service';
 import { ParentFormComponent } from '../../../../../../../../shared/components/parent-form/parent-form.component';
+import { RegexPatterns } from '../../../../../../../../shared/models/class/regex-patterns';
 
 @Component({
   selector: 'app-new-character',
@@ -52,7 +53,7 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
         Validators.required,  
         Validators.minLength(2), 
         Validators.maxLength(50),
-        Validators.pattern("[a-zA-Z0-9 ]*")
+        Validators.pattern(RegexPatterns.textPattern)
       ]],
     }, 
   );

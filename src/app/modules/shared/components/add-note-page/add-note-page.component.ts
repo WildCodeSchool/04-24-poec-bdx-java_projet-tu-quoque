@@ -10,6 +10,7 @@ import { GetFieldsService } from '../../services/form-field/get-fields.service';
 import { InputTextareaComponent } from '../custom-form/form-inputs/input-textarea/input-textarea.component';
 import { TextAreaField } from '../../models/types/fields/textarea-field.type';
 import { ParentFormComponent } from '../parent-form/parent-form.component';
+import { RegexPatterns } from '../../models/class/regex-patterns';
 
 @Component({
   selector: 'app-add-note-page',
@@ -58,7 +59,7 @@ export class AddNotePageComponent extends ParentFormComponent implements OnInit 
         Validators.required, 
         Validators.minLength(2), 
         Validators.maxLength(50),
-        Validators.pattern("[a-zA-Z0-9]*")
+        Validators.pattern(RegexPatterns.textPattern)
       ]],
       noteDescription: ['', [
         Validators.required 

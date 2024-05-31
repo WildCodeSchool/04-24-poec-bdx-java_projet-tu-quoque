@@ -96,6 +96,37 @@
         "autocomplete": false,
         "placeholder": "Pseudonyme",
         "disabled": false
+      },
+      {
+        "fieldType": "text",
+        "id": "CalendarTitle",
+        "name": "calendarTitle",
+        "type": "text",
+        "value": "",
+        "autocomplete": false,
+        "placeholder": "Titre",
+        "disabled": false
+      },
+      {
+        "fieldType": "text",
+        "id": "calendarDate",
+        "name": "calendarDate",
+        "type": "text",
+        "value": "",
+        "autocomplete": false,
+        "placeholder": "Date de fin",
+        "disabled": false
+      },
+      {
+        "fieldType": "textarea",
+        "id": "calendarDescription",
+        "name": "calendarDescription",
+        "value": "",
+        "autocomplete": false,
+        "placeholder": "Entrez la description de votre évènement",
+        "required": true,
+        "minlength": 5,
+        "disabled": false
       }
     ]
   }
