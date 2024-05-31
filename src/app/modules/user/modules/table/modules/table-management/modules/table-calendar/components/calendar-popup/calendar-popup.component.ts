@@ -31,7 +31,6 @@ export class CalendarPopupComponent {
       description: this.description,
       allDay: true
     }
-    console.log(newEvent);
     this.ref.close(newEvent);
   }
 }
