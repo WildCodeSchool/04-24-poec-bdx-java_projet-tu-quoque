@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-hp-ui-component',
@@ -10,5 +11,5 @@ import { Component, Input } from '@angular/core';
 })
 export class HitPointUIComponent {
   @Input()
-  hitPoints!: number;
+  hitPoints$!: Observable<number>;
 }

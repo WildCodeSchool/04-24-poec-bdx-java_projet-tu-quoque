@@ -4,7 +4,10 @@
 </div>
 <div>
     <div>TOTAL</div>
-    <div class="case">{{hitPoints}}</div>
+    <div class="case" *ngIf="hitPoints$ | async as hitPoints; else caseVide">{{hitPoints}}</div>
+    <ng-template #caseVide>
+        <div class="case"></div>
+    </ng-template>
 </div>
 <div>
     <div class="minor">{{"blessures/points de vie actuels" | uppercase}}</div>

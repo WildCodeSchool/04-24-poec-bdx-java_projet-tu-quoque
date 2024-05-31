@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HitPointService } from '../../../../shared/services/survival/hit-point.service';
 
 @Component({
   selector: 'app-hp-component',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './hp-component.component.scss'
 })
 export class HitPointComponent {
-  hitPoints: number = 12;
+  service: HitPointService = inject(HitPointService);
+  hitPoints$: Observable<number> = this.service.getHitPoints$();
 }

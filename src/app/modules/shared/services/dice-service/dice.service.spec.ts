@@ -1,5 +1,4 @@
 import { DiceService } from './dice.service';
-import { PossibleDice } from '../../models/enums/possible-dice.enum';
 
 describe('DiceService', () => {
   type diceResult = {
@@ -8,11 +7,11 @@ describe('DiceService', () => {
   }
 
   it('should be > 0', () => {
-    expect(DiceService.throwOneDice(PossibleDice.d4)).toBeGreaterThan(0);
+    expect(DiceService.throwOneDice("d4")).toBeGreaterThan(0);
   });
 
   it('d3 should be < 4', () => {
-    expect(DiceService.throwOneDice(PossibleDice.d3)).toBeLessThan(4);
+    expect(DiceService.throwOneDice("d3")).toBeLessThan(4);
   })
 
   it('should be less than 5% in 100 000 lauches for d6', () => {
@@ -28,7 +27,7 @@ describe('DiceService', () => {
     let min = NB_TRIES;
     let max = 0;
     for (let i = 0; i < NB_TRIES; i += 1) {
-      const actualLauch = DiceService.throwOneDice(PossibleDice.d6);
+      const actualLauch = DiceService.throwOneDice("d6");
       for (let dice of launchesForD6) {
         if (dice.value === actualLauch) {
           dice.nb += 1;
@@ -54,7 +53,7 @@ describe('DiceService', () => {
     let min = Infinity;
     let max = - Infinity;
     for (let i = 0; i < 100; i += 1) {
-      const value = DiceService.throwDices(3, PossibleDice.d6, 12);
+      const value = DiceService.throwDices(3, "d6", 12);
       if (value > max) max = value;
       if (value < min) min = value;
     }
