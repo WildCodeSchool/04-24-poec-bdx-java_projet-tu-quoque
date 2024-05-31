@@ -35,8 +35,6 @@ export class MarketPlaceComponent {
   }
 
   compareWeaponPriceAndPurse(weaponPrice: string) {
-    console.log(this.purse, new Purse(weaponPrice))
-    console.log(this.purse > new Purse(weaponPrice))
     return this.purse >= new Purse(weaponPrice);
   }
 }
