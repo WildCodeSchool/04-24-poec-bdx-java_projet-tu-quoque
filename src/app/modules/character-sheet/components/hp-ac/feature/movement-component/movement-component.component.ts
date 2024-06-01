@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MovementService } from '../../../../shared/services/survival/movement.service';
 
 @Component({
   selector: 'app-movement-component',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './movement-component.component.scss'
 })
 export class MovementComponent {
-  movement: number = 9;
+  movement$: Observable<number> = inject(MovementService).getMovement$();
 }
