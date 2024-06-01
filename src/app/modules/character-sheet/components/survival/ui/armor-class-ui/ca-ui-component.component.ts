@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ca-ui-component',
@@ -10,5 +11,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ArmorClassUIComponent {
   @Input()
-  armorClass!: number;
+  armorClass$!: Observable<number>;
+  @Input()
+  armorClassContact$!: Observable<number>;
+  @Input()
+  armorClassSurprised$!: Observable<number>;
+  @Input()
+  dexMod$!: Observable<number>;
 }
