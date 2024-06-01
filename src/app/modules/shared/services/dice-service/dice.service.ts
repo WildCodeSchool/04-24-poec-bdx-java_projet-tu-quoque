@@ -16,8 +16,6 @@ export class DiceService {
     for (let i = 0; i < nbDices; i += 1) {
       sum += this.throwOneDice(nbFaces);
     }
-    console.log(sum, "sum from throwDices");
-    console.log(additionnalValue, "additionnal value from throwDices");
     return sum + additionnalValue;
   }
 
