@@ -4,8 +4,10 @@
 <div class="case case-bba">
     <ng-container *ngIf="baseAttackBonus$ | async as bba">
         <span *ngFor="let bonus of bba; let i = index">
-            {{bonus || 0 }}
+            <app-metamorphosis
+            [value]="( bonus || 0).toString()" >
             <span *ngIf="i < bba.length - 1">/</span>
+        </app-metamorphosis>
         </span>
     </ng-container>
 </div>

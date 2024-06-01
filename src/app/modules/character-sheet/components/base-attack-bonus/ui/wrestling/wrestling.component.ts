@@ -4,7 +4,8 @@ import { Component, Input } from '@angular/core';
   selector: 'app-wrestling',
   templateUrl: './wrestling.component.html',
   styleUrls: [
-    './../../../hp-ac/ui/generic-ui.style.scss',
+    './../../../survival/ui/generic-ui.style.scss',
+    './../base-attack-bonus-ui.style.scss',
     './wrestling.component.scss'
   ]
 })

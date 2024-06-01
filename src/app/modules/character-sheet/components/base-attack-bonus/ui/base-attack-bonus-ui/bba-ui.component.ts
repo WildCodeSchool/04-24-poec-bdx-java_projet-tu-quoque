@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
   selector: 'app-bba-ui',
   templateUrl: './bba-ui.component.html',
   styleUrls: [
-    './../../../hp-ac/ui/generic-ui.style.scss',
-    './../bba-ui.style.scss',
+    './../../../survival/ui/generic-ui.style.scss',
+    './../base-attack-bonus-ui.style.scss',
     './bba-ui.component.scss'
   ]
 })

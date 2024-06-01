@@ -4,8 +4,8 @@ import { Component, Input } from '@angular/core';
   selector: 'app-magical-resistance',
   templateUrl: './magical-resistance.component.html',
   styleUrls: [
-    './../../../hp-ac/ui/generic-ui.style.scss',
-    './../bba-ui.style.scss',
+    './../../../survival/ui/generic-ui.style.scss',
+    './../base-attack-bonus-ui.style.scss',
     './magical-resistance.component.scss'
   ]
 })
