@@ -6,8 +6,13 @@
         <span *ngFor="let bonus of bba; let i = index">
             <app-metamorphosis
             [value]="( bonus || 0).toString()" >
-            <span *ngIf="i < bba.length - 1">/</span>
-        </app-metamorphosis>
+            </app-metamorphosis>
+            <span *ngIf="i < bba.length - 1">
+                <app-metamorphosis
+                [value]="'/'"
+                ></app-metamorphosis>
+            </span>
+        
         </span>
     </ng-container>
 </div>
