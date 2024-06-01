@@ -4,7 +4,11 @@
 </div>
 <div>
     <div>TOTAL</div>
-    <div class="case" *ngIf="hitPoints$ | async as hitPoints; else caseVide">{{hitPoints}}</div>
+    <div class="case" *ngIf="hitPoints$ | async as hitPoints; else caseVide">
+        <app-metamorphosis
+        [value]="hitPoints.toString()"
+        ></app-metamorphosis>
+    </div>
     <ng-template #caseVide>
         <div class="case"></div>
     </ng-template>
