@@ -37,6 +37,13 @@
           }
         }
       }
+    },
+    {
+      "type": "npm",
+      "script": "db:start",
+      "problemMatcher": [],
+      "label": "npm: db:start",
+      "detail": "npx json-server src/assets/json/db.json"
     }
   ]
 }
