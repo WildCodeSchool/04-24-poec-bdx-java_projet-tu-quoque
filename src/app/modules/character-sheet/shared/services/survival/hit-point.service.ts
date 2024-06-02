@@ -19,8 +19,8 @@ export class HitPointService {
       ),
       switchMap((dice: PossibleDiceKey | undefined) => this.sheetService.getLevel$().pipe(
         switchMap((level: number) => this.sheetService.getCaracteristics$().pipe(
-          map((statList: CharacterStats) => statList.CON),
-          map((stat: StatisticDetails) => this.setHitPoints(dice, level, stat)),
+          map((statList: CharacterStats) => statList ? statList.CON : undefined),
+          map((stat: StatisticDetails | undefined) => this.setHitPoints(dice, level, stat)),
         ))
       ))
     );
@@ -31,8 +31,8 @@ export class HitPointService {
     return undefined;
   }
 
-  setHitPoints(dice: PossibleDiceKey | undefined, level: number, stat: StatisticDetails): number {
-    if (dice && level) {
+  setHitPoints(dice: PossibleDiceKey | undefined, level: number, stat: StatisticDetails | undefined): number {
+    if (dice && level && stat) {
       return HitPointCalculationService.setHitPoints(dice, level, stat)
     }
     else {
