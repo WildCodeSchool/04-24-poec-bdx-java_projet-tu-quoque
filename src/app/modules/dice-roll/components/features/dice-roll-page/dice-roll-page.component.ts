@@ -10,11 +10,6 @@ export class DiceRollPageComponent {
   diceBox: any;
   inputText: string = '';
 
-  @ViewChild('diceBoxContainer', { static: true })
-  diceBoxContainer!: ElementRef<HTMLDivElement>;
-
-  ngOnInit() {}
-
   ngAfterViewInit(): void {
     const containerId = '#diceBoxContainer';
     this.diceBox = new DiceBox(containerId, {
