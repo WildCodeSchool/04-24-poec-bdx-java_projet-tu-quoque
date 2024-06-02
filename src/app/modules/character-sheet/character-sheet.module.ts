@@ -60,7 +60,6 @@ import { PossessionsComponent } from './components/possessions/feature/possessio
 import { EquipmentComponent } from './components/possessions/ui/equipment/equipment.component';
 import { CoinsComponent } from './components/market/ui/coins/coins.component';
 
-
 @NgModule({
   declarations: [
     SheetPageComponent,
