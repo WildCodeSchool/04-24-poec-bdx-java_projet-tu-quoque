@@ -1,13 +1,11 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { CharacterSheetService } from '../character-sheet.service';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { StatisticDetails } from '../../../models/classes/statistic-details.class';
 import { CharacterClass } from '../../../models/types/character-class.type';
 import { SavingThrows } from '../../../models/types/saving-throws.type';
 import { CharacterSavingThrows } from '../../../models/classes/character-saving-throws.class';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SavingThrowType } from '../../../models/enums/saving-throws-type.enum';
-import { SavingThrowsEnum } from '../../../models/enums/saving-throw-enum.enum';
 import { Race } from '../../../models/types/race.type';
 import { CharacterStats } from '../../../models/classes/character-stats.class';
 
@@ -51,7 +49,7 @@ export class SavingThrowsService {
       ))
   }
 
-  update() {
+  update(): void {
     this.observeRace();
     this.updateLevel();
     this.updateClass();
@@ -59,7 +57,7 @@ export class SavingThrowsService {
     this.updateStream();
   }
 
-  observeRace() {
+  observeRace(): void {
     this.race$.pipe(
       takeUntilDestroyed(this.destroyRef)
     ).subscribe(race => this.updateStatsMod());
@@ -111,5 +109,4 @@ export class SavingThrowsService {
     this.updateBaseValues();
     this.characterSavingThrow$.next(this.characterSavingThrows)
   }
-
 }

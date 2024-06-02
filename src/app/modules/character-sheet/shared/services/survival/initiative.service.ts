@@ -15,7 +15,7 @@ export class InitiativeService {
     this.getDexterity();
   }
 
-  getDexterity() {
+  getDexterity(): void {
     this.dexterity$ = this.sheetService$.getCaracteristics$().pipe(
       map((stats: CharacterStats) => stats ? stats.DEX : new StatisticDetails("DEX"))
     );

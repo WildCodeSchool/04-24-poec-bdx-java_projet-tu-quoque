@@ -17,7 +17,7 @@ export class MetamorphosisComponent extends AbstractMetamorphosisComponent {
     else this._value = valuePassed;
   }
 
-  get value() {
+  get value(): string {
     return this._value
   }
   _value!: string;

@@ -16,7 +16,7 @@ export class DomChangedDirective implements OnInit {
         this.registerDomChangedEvent(this.elRef.nativeElement);
     }
 
-    registerDomChangedEvent(el: any) {
+    registerDomChangedEvent(el: any): void {
         const observer = new MutationObserver(list => {
             const evt =
                 new CustomEvent('dom-changed',

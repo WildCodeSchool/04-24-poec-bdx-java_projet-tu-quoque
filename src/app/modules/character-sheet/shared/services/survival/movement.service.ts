@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { CharacterSheetService } from '../character-sheet.service';
-import { map, switchMap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { SizeCategoryEnumKey } from '../../../models/enums/sizeCategoryEnum.enum';
 import { CharacterClass } from '../../../models/types/character-class.type';
 
@@ -10,8 +10,7 @@ import { CharacterClass } from '../../../models/types/character-class.type';
 export class MovementService {
   sheetService: CharacterSheetService = inject(CharacterSheetService);
 
-  public getMovement$() {
-    let movement: number = 0;
+  public getMovement$(): Observable<number> {
     return this.sheetService.setSizeCategory$().pipe(
       map((size: SizeCategoryEnumKey) => this.selectMovementBySizeCategory(size)),
       switchMap((movement: number) => this.sheetService.getClasseDetails$().pipe(
@@ -33,5 +32,4 @@ export class MovementService {
     if (classDetails) return classDetails.name;
     else return "unknown";
   }
-
 }

@@ -50,7 +50,7 @@ export class StatComponent {
     return { index: "statList", value: statList };
   }
 
-  listenStatsFormGenerate(event: CharacterStats) {
+  listenStatsFormGenerate(event: CharacterStats): void {
     this.listener.receiveStatListField(this.transformStatisticDetailsListIntoStatListField(event));
   }
 }

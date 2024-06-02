@@ -29,12 +29,12 @@ export class MarketPlaceComponent {
     ).subscribe((purse: Purse) => this.purse = purse);
   }
 
-  buy(weapon: WeaponDetails) {
+  buy(weapon: WeaponDetails): void {
     if (this.purseService.buy(weapon.price))
       this.emitter.emit(weapon);
   }
 
-  compareWeaponPriceAndPurse(weaponPrice: string) {
+  compareWeaponPriceAndPurse(weaponPrice: string): boolean {
     return this.purse >= new Purse(weaponPrice);
   }
 }

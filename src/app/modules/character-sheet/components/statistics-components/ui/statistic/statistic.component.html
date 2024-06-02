@@ -4,12 +4,12 @@
 </td>
 <td>
     <app-metamorphosis
-    [value]="stat.value.toString() || ''"
+    [value]="stat.value || ''"
     ></app-metamorphosis>
 </td>
 <td>
     <app-metamorphosis
-    [value]="stat.mod.toString()"
+    [value]="stat.mod"
     ></app-metamorphosis>
 </td>
 <td><input type="number" name="temp-{{stat.abbr}}" id="temp-{{stat.abbr}}" [(ngModel)]="playerInput" (ngModelDebounceChange)="updateTempValue()"></td>

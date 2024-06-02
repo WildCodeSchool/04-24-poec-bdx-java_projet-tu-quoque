@@ -6,7 +6,6 @@ import { SkillFromDb } from '../../models/types/skill-from-db.type';
 import { CharacterSheetService } from "../../shared/services/character-sheet.service";
 import { Race } from '../../models/types/race.type';
 import { CharacterClass } from '../../models/types/character-class.type';
-import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { CharacterStats } from '../../models/classes/character-stats.class';
 
 @Injectable({

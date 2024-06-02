@@ -1,4 +1,4 @@
-import { PossibleDice, PossibleDiceKey } from "../../../shared/models/enums/possible-dice.enum"
+import { PossibleDiceKey } from "../../../shared/models/enums/possible-dice.enum"
 import { BaseAttackBonusTypeKey } from "../enums/attack-base-bonus-type.enum"
 import { Skills } from "../enums/skills.enum"
 import { SavingThrows } from "./saving-throws.type"

@@ -10,12 +10,12 @@ export abstract class AbstractMetamorphosisComponent {
 
     constructor(private destroyRef: DestroyRef) { }
 
-    handleDomChange(event: any) {
+    handleDomChange(event: any): void {
         this.hasChanged = true;
         this.runExplosion();
     }
 
-    runExplosion() {
+    runExplosion(): void {
         const source = interval(ANIMATION_DURATION);
         source
             .pipe(

@@ -1,5 +1,4 @@
 <div class="title">{{"argent" | uppercase}}</div>
-
 <ul *ngIf="purse$ | async as purse; else emptyPurse">
     <li><span class="coin">PC :</span>{{purse.copper}}</li>
     <li><span class="coin">PA :</span>{{purse.silver}}</li>

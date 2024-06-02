@@ -1,5 +1,5 @@
 import { SavingThrowsBaseBonusService } from './saving-throws-base-bonus.service';
-import { SavingThrowType } from '../../models/enums/saving-throws-type.enum';
+import { SavingThrowType } from '../../../models/enums/saving-throws-type.enum';
 
 describe('SavingThrowsService', () => {
   it("should be 5 for high saving throw and level 6", () => {

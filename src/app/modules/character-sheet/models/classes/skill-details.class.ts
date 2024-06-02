@@ -58,7 +58,6 @@ export class SkillDetails {
         if (stat && (this.ranks || this.detailsFromDb.innate)) {
             this.statMod = stat.getFinalMod();
         }
-
         return this;
     }
 }

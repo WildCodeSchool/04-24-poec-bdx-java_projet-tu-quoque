@@ -20,19 +20,19 @@ export class ArmorClassComponent {
     this.calcArmorClassContact$();
   }
 
-  calcArmorClass$() {
+  calcArmorClass$(): void {
     this.armorClass$ = this.dexMod$.pipe(
       map((dexMod: number) => BASE_ARMOR_CLASS + dexMod)
-      // add armor and shield when armor and shield will be done
+      // TODO: add armor and shield when armor and shield will be done
     )
   }
 
-  calcArmorClassSurprised$() {
+  calcArmorClassSurprised$(): void {
     this.armorClassSurprised$ = of(BASE_ARMOR_CLASS);
-    // add armor when armor will be done
+    // TODO: add armor when armor will be done
   }
 
-  calcArmorClassContact$() {
+  calcArmorClassContact$(): void {
     this.armorClassContact$ = this.dexMod$.pipe(
       map((dexMod: number) => BASE_ARMOR_CLASS + dexMod)
     )

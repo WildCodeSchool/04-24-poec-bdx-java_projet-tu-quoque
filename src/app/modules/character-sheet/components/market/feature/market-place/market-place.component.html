@@ -6,7 +6,6 @@
         <div class="buyable" [ngClass]="compareWeaponPriceAndPurse(weapon.price) ? '' : 'disabled'">
         Pas assez d'or !
         </div>
-        
             {{weapon.name}}
             <img [src]="'assets/images/weapons/'+weapon.image">
             {{weapon.price}}

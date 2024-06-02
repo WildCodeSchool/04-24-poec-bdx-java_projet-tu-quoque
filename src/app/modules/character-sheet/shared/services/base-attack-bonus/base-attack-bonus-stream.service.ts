@@ -17,7 +17,7 @@ export class BaseAttackBonusStreamService {
     this.init();
   }
 
-  init() {
+  init(): void {
     this.baseAttackBonusStream$ = this.listener.sendInfos().pipe(
       switchMap(() =>
         this.sheetService.getLevel$().pipe(

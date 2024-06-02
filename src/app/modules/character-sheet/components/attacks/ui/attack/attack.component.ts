@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
 import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
 import { CharacterWeaponsService } from '../../../../shared/services/market/character-weapons.service';
 import { Weapon } from '../../../../models/classes/weapon.class';
-import { map, Observable, switchMap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { SizeCategoryEnumKey } from '../../../../models/enums/sizeCategoryEnum.enum';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -37,13 +37,13 @@ export class AttackComponent implements OnInit {
     this.getDexterity();
   }
 
-  getStrength() {
+  getStrength(): void {
     this.strengthBonus$.pipe(
       takeUntilDestroyed(this.destroyRef),
     ).subscribe((value: number) => this.strengthBonus = value);
   }
 
-  getDexterity() {
+  getDexterity(): void {
     this.dexterityBonus$.pipe(
       takeUntilDestroyed(this.destroyRef)
     ).subscribe((value: number) => this.dexterityBonus = value);

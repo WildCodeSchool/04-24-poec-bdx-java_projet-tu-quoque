@@ -9,7 +9,6 @@ import { GenderEnum } from '../../models/enums/gender.enum';
 import { DiceService } from '../../../shared/services/dice-service/dice.service';
 import { ClassEnum } from '../../models/enums/classes.enum';
 import { StatModifier } from '../../models/types/stat-modifier.type';
-import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { SizeCategoryEnumKey } from '../../models/enums/sizeCategoryEnum.enum';
 import { CharacterStats } from '../../models/classes/character-stats.class';
 

@@ -15,7 +15,7 @@ export class SavingThrow {
         this.setName(key);
     }
 
-    setName(key: SavingThrowsEnum) {
+    setName(key: SavingThrowsEnum): void {
         this.caracName = key;
         switch (key) {
             case "DEX":

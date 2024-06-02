@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ClassWeaponsService } from '../../../../shared/services/class-weapons.service';
-import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
 import { Weapon } from '../../../../models/classes/weapon.class';
 import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
 import { map, Observable } from 'rxjs';

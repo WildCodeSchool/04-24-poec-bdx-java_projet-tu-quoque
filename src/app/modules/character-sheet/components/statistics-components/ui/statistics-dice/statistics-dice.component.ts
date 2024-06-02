@@ -13,7 +13,7 @@ export class StatisticsDiceComponent {
   @Output()
   emitter: EventEmitter<CharacterStats> = new EventEmitter();
 
-  generateStatistics() {
+  generateStatistics(): void {
     this.statService.generate();
     this.emitter.emit(this.statService.stats);
   }
