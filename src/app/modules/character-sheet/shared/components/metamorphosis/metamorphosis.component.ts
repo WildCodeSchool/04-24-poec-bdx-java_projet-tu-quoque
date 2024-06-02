@@ -7,6 +7,18 @@ import { AbstractMetamorphosisComponent } from '../../abstract-components/abstra
   styleUrl: './metamorphosis.component.scss'
 })
 export class MetamorphosisComponent extends AbstractMetamorphosisComponent {
-  @Input()
-  value!: string;
+  @Input() set value(valuePassed: string | number) {
+    if (typeof valuePassed == "number" && Number.isNaN(valuePassed)) {
+      this._value = "";
+      console.log(NaN);
+    }
+    else if (typeof valuePassed == "number") this._value = valuePassed.toString();
+    else if (valuePassed == "NaN") this._value = "";
+    else this._value = valuePassed;
+  }
+
+  get value() {
+    return this._value
+  }
+  _value!: string;
 }

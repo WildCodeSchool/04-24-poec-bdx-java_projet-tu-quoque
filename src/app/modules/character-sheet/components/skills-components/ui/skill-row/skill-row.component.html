@@ -3,9 +3,9 @@
 <td>{{skill.detailsFromDb.key}}</td>
 <td>
     <app-metamorphosis
-    [value]="skill.calcValue().toString()"
+    [value]="skill.calcValue() || 0"
     ></app-metamorphosis>
 </td>
-<td>{{skill.statMod}}</td>
+<td>{{skill.statMod || 0}}</td>
 <td><input type="number" value="{{skill.ranks || 0}}" [(ngModel)]="ranks" (ngModelChange)="sendChanges()" min="0"></td>
 <td>{{skill.raceValue}}</td>

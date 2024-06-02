@@ -25,7 +25,6 @@ export class StatComponent {
   }
 
   ngOnInit(): void {
-    this.statService.generate();
     this.statsField$ = this.transformStatListStreamIntoStatFieldStream();
     this.listener.receiveFieldFrom(this.statsField$);
   }
@@ -49,5 +48,9 @@ export class StatComponent {
 
   transformStatisticDetailsListIntoStatListField(statList: CharacterStats): StatListField {
     return { index: "statList", value: statList };
+  }
+
+  listenStatsFormGenerate(event: CharacterStats) {
+    this.listener.receiveStatListField(this.transformStatisticDetailsListIntoStatListField(event));
   }
 }

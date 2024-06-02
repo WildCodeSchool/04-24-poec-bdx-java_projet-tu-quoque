@@ -11,12 +11,18 @@ export class StatisticDetails {
     tempValue!: number;
     tempMod!: number;
 
-    constructor(abbr: StatAbbrKey) {
+    constructor(abbr: StatAbbrKey, generateValue: boolean = false) {
         this.abbr = abbr;
-        this.name = StatAbbr[this.abbr]
-        this.value = DiceService.throwDicesForStatistic();
+        this.name = StatAbbr[this.abbr];
+        this.value = generateValue ? this.generateOriginalValue() : NaN;
         this.originalValue = this.value;
         this.mod = this.calcMod();
+    }
+
+    generateOriginalValue(): number {
+        let value = DiceService.throwDicesForStatistic()
+        while (value < 7) value = DiceService.throwDicesForStatistic();
+        return value;
     }
 
     calcMod(statValue: number = this.value): number {

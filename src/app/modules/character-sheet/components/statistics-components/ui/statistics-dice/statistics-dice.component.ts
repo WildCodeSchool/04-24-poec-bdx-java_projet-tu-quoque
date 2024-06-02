@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { StatisticsService } from '../../../../shared/services/statistics.service';
+import { CharacterStats } from '../../../../models/classes/character-stats.class';
 
 @Component({
   selector: 'app-statistics-dice',
@@ -9,7 +10,11 @@ import { StatisticsService } from '../../../../shared/services/statistics.servic
 export class StatisticsDiceComponent {
   private statService: StatisticsService = inject(StatisticsService);
 
+  @Output()
+  emitter: EventEmitter<CharacterStats> = new EventEmitter();
+
   generateStatistics() {
-    this.statService.generate()
+    this.statService.generate();
+    this.emitter.emit(this.statService.stats);
   }
 }

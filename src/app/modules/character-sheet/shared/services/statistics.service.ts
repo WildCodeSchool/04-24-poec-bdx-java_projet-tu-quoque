@@ -18,8 +18,8 @@ export class StatisticsService {
   }
 
   tryGenerateStatistics(): void {
-    for (let key of Object.keys(StatAbbr)) {
-      this.stats[key as StatAbbrKey] = new StatisticDetails(key as StatAbbrKey);
+    for (let stat of this.stats) {
+      this.stats[stat.abbr] = new StatisticDetails(stat.abbr, true);
     }
   }
 
@@ -27,9 +27,9 @@ export class StatisticsService {
     const MINIMUM_STAT_VALUE_TO_BE_VIABLE = 13;
     let sum = 0;
     let supToMinimumStat = 0;
-    for (let key of Object.keys(StatAbbr)) {
-      sum += this.stats[key as StatAbbrKey].mod;
-      if (this.stats[key as StatAbbrKey].value > MINIMUM_STAT_VALUE_TO_BE_VIABLE) supToMinimumStat += 1;
+    for (let stat of this.stats) {
+      sum += stat.mod;
+      if (stat.originalValue > MINIMUM_STAT_VALUE_TO_BE_VIABLE) supToMinimumStat += 1;
     }
     if (sum <= 0 || supToMinimumStat == 0) return false;
     return true;
