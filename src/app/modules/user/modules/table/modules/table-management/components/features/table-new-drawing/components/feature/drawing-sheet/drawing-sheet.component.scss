@@ -10,10 +10,17 @@
     align-items: center;
     background-color: #0b202f;
     align-items: flex-start;
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 95vw;
+      align-items: center;
+    }
     .tools {
       display: flex;
     }
   }
+
   canvas {
     width: 23rem;
     height: 25rem;
