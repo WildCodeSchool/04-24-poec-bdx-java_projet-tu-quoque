@@ -4,28 +4,26 @@
   [elementIcon]="connexionIcon"
 ></app-page-header>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <p-accordion [multiple]="true" [activeIndex]="[]">
-    <p-accordionTab header="Email">
-      <ng-container *ngIf="emailField$ | async as emailField">
-        <app-input-text
-          [field]="emailField"
-          formControlName="email"
-          [control]="emailControl"
-        >
-        </app-input-text>
-      </ng-container>
-    </p-accordionTab>
-    <p-accordionTab header="Mot de passe">
-      <ng-container *ngIf="passwordField$ | async as passwordField">
-        <app-input-text
-          [field]="passwordField"
-          formControlName="password"
-          [control]="passwordControl"
-        >
-        </app-input-text>
-      </ng-container>
-    </p-accordionTab>
-  </p-accordion>
+  <app-custom-area-title [title]="'Email'"></app-custom-area-title>
+  <ng-container *ngIf="emailField$ | async as emailField">
+    <app-input-text
+      [field]="emailField"
+      formControlName="email"
+      [control]="emailControl"
+    >
+    </app-input-text>
+  </ng-container>
+
+  <app-custom-area-title [title]="'Mot de passe'"></app-custom-area-title>
+  <ng-container *ngIf="passwordField$ | async as passwordField">
+    <app-input-text
+      [field]="passwordField"
+      formControlName="password"
+      [control]="passwordControl"
+    >
+    </app-input-text>
+  </ng-container>
+
   <app-custom-button
     type="submit"
     [name]="'Valider'"
