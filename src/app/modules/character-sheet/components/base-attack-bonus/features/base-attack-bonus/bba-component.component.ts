@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BaseAttackBonusStreamService } from '../../../../shared/services/base-attack-bonus-stream.service';
+import { BaseAttackBonusStreamService } from '../../../../shared/services/base-attack-bonus/base-attack-bonus-stream.service';
 
 @Component({
   selector: 'app-bba-component',

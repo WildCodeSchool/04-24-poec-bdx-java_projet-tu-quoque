@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseAttackBonusType, BaseAttackBonusTypeKey } from '../../models/enums/attack-base-bonus-type.enum';
+import { BaseAttackBonusType, BaseAttackBonusTypeKey } from '../../../models/enums/attack-base-bonus-type.enum';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SavingThrowTypeKey } from '../../models/enums/saving-throws-type.enum';
+import { SavingThrowTypeKey } from '../../../models/enums/saving-throws-type.enum';
 
 @Injectable({
   providedIn: 'root'

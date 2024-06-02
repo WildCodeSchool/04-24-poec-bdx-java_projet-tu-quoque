@@ -59,6 +59,7 @@ import { PurseComponent } from './components/possessions/ui/purse/purse.componen
 import { PossessionsComponent } from './components/possessions/feature/possessions/possessions.component';
 import { EquipmentComponent } from './components/possessions/ui/equipment/equipment.component';
 import { CoinsComponent } from './components/market/ui/coins/coins.component';
+import { StatisticsDiceComponent } from './components/statistics-components/ui/statistics-dice/statistics-dice.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { CoinsComponent } from './components/market/ui/coins/coins.component';
     PossessionsComponent,
     EquipmentComponent,
     CoinsComponent,
+    StatisticsDiceComponent,
   ],
   imports: [
     CommonModule,
