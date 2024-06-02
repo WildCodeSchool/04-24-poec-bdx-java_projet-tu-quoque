@@ -33,10 +33,7 @@ export class DiceRollPageComponent {
     }
     rollDice():void {
       if(this.diceBox) {
-        this.diceBox.roll([this.inputText])
+        this.diceBox.roll(this.inputText.split(" "))
       }
-    }
-    closeNotes(): void {
-      console.log("tutu")
     }
 }
