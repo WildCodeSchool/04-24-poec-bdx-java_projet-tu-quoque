@@ -14,19 +14,19 @@
 
   header {
     margin-bottom: 1rem;
-    
+
     .close-btn-container {
       width: 100%;
       display: flex;
       justify-content: flex-start;
       padding: 0;
-    
+
       .close-btn {
         display: inline-block;
         width: 39px;
       }
     }
-    
+
     input {
       width: 80vw;
       font-family: alice;
@@ -45,7 +45,6 @@
       color: white;
     }
   }
-  
 }
 
 #diceBoxContainer {

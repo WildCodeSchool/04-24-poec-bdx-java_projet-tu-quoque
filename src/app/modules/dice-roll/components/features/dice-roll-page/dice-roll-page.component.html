@@ -1,14 +1,21 @@
 <header>
-    <div class="close-btn-container">
-        <img
-        class="close-btn"
-        [src]="'assets/images/cross-golden-icon.svg'"
-        alt="close"
-        PreviousPage
-        />
-    </div>
-    <app-page-header [elementIcon]="'/assets/images/dice-icon.svg'" [title]="'Table de dés'"></app-page-header>
-    <input type="text" id="dice" name="dice" [(ngModel)]="inputText">
-    <app-custom-button [name]="'Lancer'" [style]="'gold'" (click)="rollDice()"></app-custom-button>
+  <div class="close-btn-container">
+    <img
+      class="close-btn"
+      [src]="'assets/images/cross-golden-icon.svg'"
+      alt="close"
+      PreviousPage
+    />
+  </div>
+  <app-page-header
+    [elementIcon]="'/assets/images/dice-icon.svg'"
+    [title]="'Table de dés'"
+  ></app-page-header>
+  <input type="text" id="dice" name="dice" [(ngModel)]="inputText" />
+  <app-custom-button
+    [name]="'Lancer'"
+    [style]="'gold'"
+    (click)="rollDice()"
+  ></app-custom-button>
 </header>
 <div #diceBoxContainer id="diceBoxContainer"></div>
