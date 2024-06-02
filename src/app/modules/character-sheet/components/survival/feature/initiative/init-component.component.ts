@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StatisticDetails } from '../../../../models/classes/statistic-details.class';
+import { InitiativeService } from '../../../../shared/services/survival/initiative.service';
 
 @Component({
   selector: 'app-init-component',
@@ -6,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './init-component.component.scss'
 })
 export class InitiativeComponent {
-  init: number = 0;
+  dexterity$: Observable<StatisticDetails> = inject(InitiativeService).dexterity$;
 }
