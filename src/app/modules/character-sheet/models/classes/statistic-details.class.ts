@@ -40,10 +40,9 @@ export class StatisticDetails {
         return this.mod;
     }
 
-    applyModifiers(modifiers: StatModifier[]): void {
+    applyModifier(modifier: StatModifier): void {
         this.value = this.originalValue;
-        const mod = modifiers.find(modifier => modifier.stat === this.abbr);
-        if (mod) this.value += mod.mod;
+        this.value += modifier.mod;
         this.setMod();
     }
 }

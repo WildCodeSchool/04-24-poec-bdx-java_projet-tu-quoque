@@ -11,6 +11,7 @@ import { ClassEnum } from '../../models/enums/classes.enum';
 import { StatModifier } from '../../models/types/stat-modifier.type';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { SizeCategoryEnumKey } from '../../models/enums/sizeCategoryEnum.enum';
+import { CharacterStats } from '../../models/classes/character-stats.class';
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +64,7 @@ export class CharacterSheetService {
     );
   }
 
-  getCaracteristics$(): Observable<StatisticDetails[]> {
+  getCaracteristics$(): Observable<CharacterStats> {
     return this.listener.sendInfos().pipe(
       map((sheet: any) => sheet.stats)
     );

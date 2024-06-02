@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { StatisticDetails } from '../../../../models/classes/statistic-details.class';
 import { Observable } from 'rxjs';
+import { CharacterStats } from '../../../../models/classes/character-stats.class';
 
 @Component({
   selector: 'app-statistics',
@@ -9,5 +10,5 @@ import { Observable } from 'rxjs';
 })
 export class StatisticsComponent {
   @Input()
-  stats$!: Observable<StatisticDetails[]>;
+  stats$!: Observable<CharacterStats>;
 }

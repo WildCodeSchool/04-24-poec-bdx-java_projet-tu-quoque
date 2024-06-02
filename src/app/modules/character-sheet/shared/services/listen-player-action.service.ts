@@ -13,6 +13,7 @@ import { Purse } from '../../models/classes/purse-related/purse.class';
 import { PurseField } from '../models/types/purse-field.type';
 import { WeaponField } from '../models/types/weapon-field.type';
 import { Weapon } from '../../models/classes/weapon.class';
+import { CharacterStats } from '../../models/classes/character-stats.class';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class ListenPlayerActionService {
         this.receiveStatField(field as StatField);
       } else if (field.value instanceof Purse) {
         this.receivePurseField(field as PurseField);
-      } else if (field.value instanceof Array) {
+      } else if (field.value instanceof CharacterStats) {
         this.receiveStatListField(field as StatListField)
       } else {
         this.receiveBasicField(field as BasicField)
@@ -51,6 +52,10 @@ export class ListenPlayerActionService {
     if (['characterRace', 'gender'].includes(field.index)) {
       this.sheetModifiedByPlayer.heightModifierRolled = '';
       this.sheetModifiedByPlayer.weightModifierRolled = '';
+    }
+    if (['characterRace'].includes(field.index) && this.sheetModifiedByPlayer.stats) {
+      this.sheetModifiedByPlayer.stats.resetMod();
+
     }
     if (['characterRace', 'characterClass'].includes(field.index)) {
       this.sheetModifiedByPlayer.age = '';
@@ -64,13 +69,13 @@ export class ListenPlayerActionService {
   }
 
   receiveStatListField(field: StatListField): void {
-    const statList: StatisticDetails[] = field.value;
+    const statList: CharacterStats = field.value;
     this.sheetModifiedByPlayer["stats"] = statList;
     this.updateSheetStream();
   }
 
   receiveStatField(statField: StatField): void {
-    this.sheetModifiedByPlayer["stats"][statField.index] = statField.value;
+    this.sheetModifiedByPlayer["stats"][statField.value.abbr] = statField.value;
     this.updateSheetStream();
   }
 

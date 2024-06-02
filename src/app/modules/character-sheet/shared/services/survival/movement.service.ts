@@ -16,7 +16,7 @@ export class MovementService {
       map((size: SizeCategoryEnumKey) => this.selectMovementBySizeCategory(size)),
       switchMap((movement: number) => this.sheetService.getClasseDetails$().pipe(
         map((classDetails: CharacterClass) => this.selectClassName(classDetails)),
-        map((name: string) => name == "Barbare" ? movement + 3 : movement)
+        map((name: string) => name == "Barbare" && movement != 0 ? movement + 3 : movement)
       ))
     )
   }

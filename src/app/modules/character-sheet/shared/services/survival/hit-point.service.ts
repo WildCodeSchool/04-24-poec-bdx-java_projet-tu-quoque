@@ -5,6 +5,7 @@ import { PossibleDiceKey } from '../../../../shared/models/enums/possible-dice.e
 import { map, Observable, switchMap } from 'rxjs';
 import { StatisticDetails } from '../../../models/classes/statistic-details.class';
 import { HitPointCalculationService } from './hit-point-calculation.service';
+import { CharacterStats } from '../../../models/classes/character-stats.class';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,7 @@ export class HitPointService {
       ),
       switchMap((dice: PossibleDiceKey | undefined) => this.sheetService.getLevel$().pipe(
         switchMap((level: number) => this.sheetService.getCaracteristics$().pipe(
-          map((statList: StatisticDetails[]) => statList.find((stat: StatisticDetails) =>
-            stat.abbr === "CON") as StatisticDetails),
+          map((statList: CharacterStats) => statList.CON),
           map((stat: StatisticDetails) => this.setHitPoints(dice, level, stat)),
         ))
       ))

@@ -1,6 +1,7 @@
 import { Skills } from "../enums/skills.enum";
 import { SkillFromDb } from "../types/skill-from-db.type";
 import { SkillModifier } from "../types/skill-modifier.type";
+import { CharacterStats } from "./character-stats.class";
 import { StatisticDetails } from "./statistic-details.class";
 
 export class SkillDetails {
@@ -52,13 +53,12 @@ export class SkillDetails {
         return this;
     }
 
-    setStatMod(stats: StatisticDetails[]): this {
-        for (let stat of stats) {
-            if (this.detailsFromDb.key === stat.abbr && (this.ranks || this.detailsFromDb.innate)) {
-                this.statMod = stat.getFinalMod();
-                break;
-            }
+    setStatMod(stats: CharacterStats): this {
+        const stat = stats[this.detailsFromDb.key];
+        if (stat && (this.ranks || this.detailsFromDb.innate)) {
+            this.statMod = stat.getFinalMod();
         }
+
         return this;
     }
 }

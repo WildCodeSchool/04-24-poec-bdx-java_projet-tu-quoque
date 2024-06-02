@@ -9,6 +9,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SavingThrowType } from '../../../models/enums/saving-throws-type.enum';
 import { SavingThrowsEnum } from '../../../models/enums/saving-throw-enum.enum';
 import { Race } from '../../../models/types/race.type';
+import { CharacterStats } from '../../../models/classes/character-stats.class';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class SavingThrowsService {
   private sheetService: CharacterSheetService = inject(CharacterSheetService);
 
   private level$: Observable<number> = this.sheetService.getLevel$();
-  private caracs$: Observable<StatisticDetails[]> = this.sheetService.getCaracteristics$();
+  private caracs$: Observable<CharacterStats> = this.sheetService.getCaracteristics$();
   private classSavingThrows$: Observable<SavingThrows> = this.getClassSavingThrows();
   private race$: Observable<Race> = this.sheetService.getRaceDetails$();
 
@@ -85,11 +86,11 @@ export class SavingThrowsService {
   updateStatsMod(): void {
     this.caracs$.pipe(
       takeUntilDestroyed(this.destroyRef)
-    ).subscribe((stats: StatisticDetails[]) => {
+    ).subscribe((stats: CharacterStats) => {
       if (stats) {
-        const fortitudeMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.fortitude) as StatisticDetails).getFinalMod();
-        const reflexesMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.reflexes) as StatisticDetails).getFinalMod();
-        const willMod: number = (stats.find(stat => stat.abbr == SavingThrowsEnum.will) as StatisticDetails).getFinalMod();
+        const fortitudeMod: number = stats.CON.getFinalMod();
+        const reflexesMod: number = stats.DEX.getFinalMod();
+        const willMod: number = stats.SAG.getFinalMod();
         this.characterSavingThrows.updateModValues(fortitudeMod, reflexesMod, willMod);
         this.updateStream();
       }
