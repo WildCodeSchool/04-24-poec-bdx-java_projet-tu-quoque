@@ -1,6 +1,5 @@
 import { Component, Input, Renderer2 } from '@angular/core';
 import { NavigationService } from '../../../../shared/services/navigation.service';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Observable } from 'rxjs';
 import { PageNavigation } from '../../../../shared/models/types/navigation/page-navigation.type';
 import { inOutAnimation } from '../../../../shared/animations/inOutAnimation';
