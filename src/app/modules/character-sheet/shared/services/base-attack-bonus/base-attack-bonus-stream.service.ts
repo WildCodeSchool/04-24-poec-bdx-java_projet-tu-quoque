@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CharacterSheetService } from './character-sheet.service';
+import { CharacterSheetService } from '../character-sheet.service';
 import { map, Observable, switchMap, tap } from 'rxjs';
-import { CharacterClass } from '../../models/types/character-class.type';
+import { CharacterClass } from '../../../models/types/character-class.type';
 import { BaseAttackBonusCalculationService } from './base-attack-bonus-calculation.service';
-import { ListenPlayerActionService } from './listen-player-action.service';
+import { ListenPlayerActionService } from '../listen-player-action.service';
 
 @Injectable({
   providedIn: 'root'
