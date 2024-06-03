@@ -1,4 +1,4 @@
-import { FieldInfosAddByPlayer } from "../../shared/classes/skill-infos-add-by-player.class"
+import { SkillInfosAddByPlayer } from "../../shared/classes/skill-infos-add-by-player.class"
 import { CharacterStats } from "../classes/character-stats.class"
 import { Purse } from "../classes/purse-related/purse.class"
 import { Weapon } from "../classes/weapon.class"
@@ -17,14 +17,12 @@ export type Sheet = {
     level: string,
     playerName: string,
     purse?: Purse,
-    skills: FieldInfosAddByPlayer[],
+    skills: SkillInfosAddByPlayer[],
     skinColor: string,
     stats: CharacterStats
     weapons: Weapon[]
     weightModifierRolled: string
 }
-
-export type SheetKey = keyof Sheet;
 
 export enum SheetKeyForString {
     age,
