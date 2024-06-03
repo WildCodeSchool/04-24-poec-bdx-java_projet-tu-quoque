@@ -14,12 +14,30 @@ import { PurseField } from '../models/types/purse-field.type';
 import { WeaponField } from '../models/types/weapon-field.type';
 import { Weapon } from '../../models/classes/weapon.class';
 import { CharacterStats } from '../../models/classes/character-stats.class';
+import { Sheet, SheetKey, SheetKeyForStringKeys } from '../../models/types/sheet.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListenPlayerActionService {
-  sheetModifiedByPlayer: any = { "skills": [], "weapons": [] };
+  sheetModifiedByPlayer: Sheet = {
+    "skills": [], "weapons": [],
+    age: '',
+    alignment: '',
+    characterClass: '',
+    characterName: '',
+    characterRace: '',
+    eyesColor: '',
+    gender: '',
+    god: '',
+    hairColor: '',
+    heightModifierRolled: '',
+    level: '',
+    playerName: '',
+    skinColor: '',
+    stats: new CharacterStats,
+    weightModifierRolled: ''
+  };
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);
 
   constructor(private destroyRef: DestroyRef) { }
@@ -64,7 +82,7 @@ export class ListenPlayerActionService {
 
   receiveBasicField(field: BasicField): void {
     this.controlField(field);
-    this.sheetModifiedByPlayer[field.index] = field.value;
+    this.sheetModifiedByPlayer[field.index as SheetKeyForStringKeys] = field.value;
     this.updateSheetStream();
   }
 
