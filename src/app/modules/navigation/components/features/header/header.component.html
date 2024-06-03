@@ -19,9 +19,9 @@
     </div>
   </header>
   <app-notes-button
-    (click)="storeActualUrl()"
-    [routerLink]="'../notepad'"
+    (click)="goToNotepad()"
   ></app-notes-button>
+  <app-dice-button (click)="goToDiceRoll()"></app-dice-button>
   <app-menu-sidebar></app-menu-sidebar>
 </ng-container>
 <ng-template #visitor>

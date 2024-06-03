@@ -232,7 +232,7 @@
     },
     {
       "id": "3",
-      "tableId": 5,
+      "tableId": 3,
       "userId": null,
       "characterId": null,
       "name": "mot de passe",
@@ -240,7 +240,7 @@
     },
     {
       "id": "4",
-      "tableId": 5,
+      "tableId": 3,
       "userId": null,
       "characterId": null,
       "name": "Pas d'inspi",
