@@ -3,7 +3,7 @@ import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
 import { CharacterWeaponsService } from '../../../../shared/services/market/character-weapons.service';
 import { Weapon } from '../../../../models/classes/weapon.class';
 import { map, Observable } from 'rxjs';
-import { SizeCategoryEnumKey } from '../../../../models/enums/sizeCategoryEnum.enum';
+import { SizeCategoryEnumKey } from '../../../../models/enums/size-category-enum.enum';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({

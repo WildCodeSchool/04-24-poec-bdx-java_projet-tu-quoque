@@ -9,7 +9,7 @@ import { BASE_ARMOR_CLASS } from '../../../../shared/constants/constants.constan
   styleUrl: './ca-component.component.scss'
 })
 export class ArmorClassComponent {
-  dexMod$: Observable<number> = inject(ArmorClassService).getDexMod$();
+  dexterityModifier$: Observable<number> = inject(ArmorClassService).getDexterityModifier$();
   armorClass$!: Observable<number>;
   armorClassSurprised$!: Observable<number>;
   armorClassContact$!: Observable<number>;
@@ -21,8 +21,8 @@ export class ArmorClassComponent {
   }
 
   calcArmorClass$(): void {
-    this.armorClass$ = this.dexMod$.pipe(
-      map((dexMod: number) => BASE_ARMOR_CLASS + dexMod)
+    this.armorClass$ = this.dexterityModifier$.pipe(
+      map((dexterityModifier: number) => BASE_ARMOR_CLASS + dexterityModifier)
       // TODO: add armor and shield when armor and shield will be done
     )
   }
@@ -33,8 +33,8 @@ export class ArmorClassComponent {
   }
 
   calcArmorClassContact$(): void {
-    this.armorClassContact$ = this.dexMod$.pipe(
-      map((dexMod: number) => BASE_ARMOR_CLASS + dexMod)
+    this.armorClassContact$ = this.dexterityModifier$.pipe(
+      map((dexterityModifier: number) => BASE_ARMOR_CLASS + dexterityModifier)
     )
   }
 }
