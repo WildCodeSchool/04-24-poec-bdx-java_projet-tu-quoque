@@ -40,21 +40,4 @@ export class userService extends ApiRessourceService<User> {
     return this.userListFilteredByName$.asObservable();
   }
 
-  checkUserInfos(email: string, password: string): Observable<Boolean> {
-    {
-      return this.getUserByEmail$(email).pipe(
-        map((response: User[]) => {
-          if (response.length) {
-            if (response[0].password === password) {
-              return true;
-            } else {
-              return false;
-            }
-          } else {
-            return false;
-          }
-        })
-      );
-    }
-  }
 }
