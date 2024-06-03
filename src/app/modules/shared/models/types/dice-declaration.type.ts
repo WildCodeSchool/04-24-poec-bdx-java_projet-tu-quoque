@@ -1,7 +1,7 @@
-import { PossibleDice } from "../enums/possible-dice.enum"
+import { PossibleDiceKey } from "../enums/possible-dice.enum"
 
 export type DiceDeclaration = {
     nbDices: number,
-    diceType: PossibleDice,
+    diceType: PossibleDiceKey,
     modifier: number
 }

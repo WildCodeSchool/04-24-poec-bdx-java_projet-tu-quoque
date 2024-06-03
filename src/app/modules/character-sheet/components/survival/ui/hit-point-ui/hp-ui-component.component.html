@@ -1,0 +1,23 @@
+<div class="title-case">
+    <div class="major">PV</div>
+    <div class="minor">Points de vie</div>
+</div>
+<div>
+    <div>TOTAL</div>
+    <div class="case" *ngIf="hitPoints$ | async as hitPoints; else caseVide">
+        <app-metamorphosis
+        [value]="hitPoints.toString()"
+        ></app-metamorphosis>
+    </div>
+    <ng-template #caseVide>
+        <div class="case"></div>
+    </ng-template>
+</div>
+<div>
+    <div class="minor">{{"blessures/points de vie actuels" | uppercase}}</div>
+    <div class="case long-case"></div>
+</div>
+<div>
+    <div class="minor">{{"dégats non-létaux" | uppercase}}</div>    
+    <div class="case"></div>
+</div>

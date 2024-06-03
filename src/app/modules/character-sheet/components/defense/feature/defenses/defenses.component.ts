@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class DefensesComponent {
   armor: string = 'armure de cuir';
   shield: string = "n/a";
-  protections: string[] = ["anneau"];
+  protections: string[] = [];
 }

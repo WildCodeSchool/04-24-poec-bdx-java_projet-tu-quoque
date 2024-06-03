@@ -4,8 +4,10 @@
 </svg>
 </button>
 <dialog #buy>
+    <div>
     <button (click)="buy.close()">X</button>
     <app-market-place
     (emitter)="purchaseWeapon($event)"
     ></app-market-place>
+    </div>
 </dialog>

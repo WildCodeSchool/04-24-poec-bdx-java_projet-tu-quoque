@@ -6,7 +6,7 @@ import { SkillFromDb } from '../../models/types/skill-from-db.type';
 import { CharacterSheetService } from "../../shared/services/character-sheet.service";
 import { Race } from '../../models/types/race.type';
 import { CharacterClass } from '../../models/types/character-class.type';
-import { StatisticDetails } from '../../models/classes/statistic-details.class';
+import { CharacterStats } from '../../models/classes/character-stats.class';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class SkillsService {
         )
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getCaracteristics$().pipe(
-        map((stats: StatisticDetails[]) => this.updateSkillStatMod(skills, stats)),
+        map((stats: CharacterStats) => this.updateSkillStatMod(skills, stats)),
       )),
       shareReplay(),
     );
@@ -61,7 +61,7 @@ export class SkillsService {
     return skills;
   }
 
-  updateSkillStatMod(skills: SkillDetails[], stats: StatisticDetails[]): SkillDetails[] {
+  updateSkillStatMod(skills: SkillDetails[], stats: CharacterStats): SkillDetails[] {
     if (!stats) return skills;
     for (let skill of skills) {
       skill.setStatMod(stats);

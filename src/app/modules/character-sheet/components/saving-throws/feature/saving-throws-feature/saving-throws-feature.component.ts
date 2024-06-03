@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { SavingThrowsService } from '../../../../shared/services/saving-throws.service';
+import { SavingThrowsService } from '../../../../shared/services/saving-throws/saving-throws.service';
 import { Observable } from 'rxjs';
 import { CharacterSavingThrows } from '../../../../models/classes/character-saving-throws.class';
 

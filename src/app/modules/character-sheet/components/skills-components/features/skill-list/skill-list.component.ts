@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SkillsService } from '../../../../shared/services/skills.service';
 
 @Component({
@@ -7,8 +7,5 @@ import { SkillsService } from '../../../../shared/services/skills.service';
   styleUrl: './skill-list.component.scss'
 })
 export class SkillListComponent {
-  constructor(
-    protected characterSkills: SkillsService
-  ) {
-  }
+  protected characterSkills: SkillsService = inject(SkillsService);
 }

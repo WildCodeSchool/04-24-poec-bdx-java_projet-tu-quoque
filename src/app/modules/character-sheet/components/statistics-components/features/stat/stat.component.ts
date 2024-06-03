@@ -6,6 +6,7 @@ import { CharacterSheetService } from '../../../../shared/services/character-she
 import { StatModifier } from '../../../../models/types/stat-modifier.type';
 import { StatisticsService } from '../../../../shared/services/statistics.service';
 import { StatListField } from '../../../../shared/models/types/stat-list-field.type';
+import { CharacterStats } from '../../../../models/classes/character-stats.class';
 
 @Component({
   selector: 'app-stat',
@@ -13,7 +14,7 @@ import { StatListField } from '../../../../shared/models/types/stat-list-field.t
   styleUrl: './stat.component.scss'
 })
 export class StatComponent {
-  stats$: Observable<StatisticDetails[]> = this.adjustStatsFunctionRace$();;
+  stats$: Observable<CharacterStats> = this.adjustStatsFunctionRace$();;
   statsField$!: Observable<StatListField>;
 
   constructor(
@@ -24,12 +25,11 @@ export class StatComponent {
   }
 
   ngOnInit(): void {
-    this.statService.generate();
     this.statsField$ = this.transformStatListStreamIntoStatFieldStream();
     this.listener.receiveFieldFrom(this.statsField$);
   }
 
-  adjustStatsFunctionRace$(): Observable<StatisticDetails[]> {
+  adjustStatsFunctionRace$(): Observable<CharacterStats> {
     return this.sheetService.getRaceStatsModifiers$().pipe(
       map((modifiers: StatModifier[]) =>
         this.statService.applyRaceModifiers(modifiers)
@@ -40,13 +40,17 @@ export class StatComponent {
 
   transformStatListStreamIntoStatFieldStream(): Observable<StatListField> {
     return this.stats$.pipe(
-      map((statList: StatisticDetails[]) =>
+      map((statList: CharacterStats) =>
         this.transformStatisticDetailsListIntoStatListField(statList),
       ),
     );
   }
 
-  transformStatisticDetailsListIntoStatListField(statList: StatisticDetails[]): StatListField {
+  transformStatisticDetailsListIntoStatListField(statList: CharacterStats): StatListField {
     return { index: "statList", value: statList };
+  }
+
+  listenStatsFormGenerate(event: CharacterStats): void {
+    this.listener.receiveStatListField(this.transformStatisticDetailsListIntoStatListField(event));
   }
 }

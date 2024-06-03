@@ -1,4 +1,7 @@
 <app-attack *ngFor="let item of [].constructor(5); let i = index"
+ [dexterityBonus$]="dexterityBonus$"
+ [strengthBonus$]="strengthBonus$"
+ [baseAttackBonus$]="baseAttackBonus$"
  [weapon]="weapons[i]"
  [characterSize$]="characterSize$"
  [index]="i"

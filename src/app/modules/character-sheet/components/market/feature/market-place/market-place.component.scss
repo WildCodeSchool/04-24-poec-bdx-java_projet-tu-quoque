@@ -1,5 +1,7 @@
 ul {
     list-style: none;
+    margin-left: -20px;
+    padding: 0;
 
     li {
         display: flex;
@@ -11,9 +13,11 @@ ul {
         border: 10px double black;
         border-radius: 16px;
         position: relative;
+        font-size: 20px;
 
         img {
             max-height: 100px;
+            margin: 0 12px;
         }
 
         div.buyable {
@@ -35,6 +39,10 @@ ul {
             left: 0;
             border-radius: 4px;
         }
-    }
 
+        &:focus,
+        &:active {
+            transform: scale(0.98);
+        }
+    }
 }
