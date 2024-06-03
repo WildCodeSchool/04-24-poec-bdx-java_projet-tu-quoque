@@ -9,7 +9,6 @@ import { HeaderButtonComponent } from './components/ui/header-button/header-butt
 import { NotesButtonComponent } from './components/ui/notes-button/notes-button.component';
 import { DiceButtonComponent } from './components/ui/dice-button/dice-button.component';
 
-
 @NgModule({
   declarations: [
     MenuSidebarComponent,

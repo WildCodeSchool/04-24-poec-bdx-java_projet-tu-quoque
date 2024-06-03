@@ -12,7 +12,7 @@
       <p class="connected-info-title">Vous jouez votre personnage :</p>
       <p class="connected-info-content">{{(fakeCharacterConnected$|async)?.name}}</p>
     } @else {
-      <p class="connected-info-title">Vous etes MJ de la table :</p>
+      <p class="connected-info-title">Vous êtes MJ de la table :</p>
       <p class="connected-info-content">{{(fakeTableConnected$|async)?.name}}</p>
     }
   }
