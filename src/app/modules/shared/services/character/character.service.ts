@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, map, switchMap } from 'rxjs';
 import { Character } from '../../models/types/users/character.type';
 import { ConnectionService } from '../connection/connection.service';
-import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
+import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 
 @Injectable({

@@ -10,7 +10,7 @@ import { Chat } from '../../../../../../../../shared/models/types/users/chat.typ
 import { DrawingService } from '../../../../../../../../shared/services/drawing/drawing.service';
 import { Drawing } from '../../../../../../../../shared/models/types/users/drawing.type';
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
-import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/userBasicInfos.type';
+import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/user-basic-infos.type';
 
 @Component({
   selector: 'app-table-page',

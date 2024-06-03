@@ -10,6 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 import { userService } from '../../../../shared/services/users/user.service';
 import { RegexPatterns } from '../../../../shared/models/class/regex-patterns';
 import { ParentFormComponent } from '../../../../shared/components/parent-form/parent-form.component';
+import { UserAuthenticateService } from '../../../../shared/services/users/user-authenticate.service';
 
 @Component({
   selector: 'app-connexion-page',
@@ -28,17 +29,17 @@ export class ConnexionPageComponent extends ParentFormComponent implements OnDes
   connexionIcon: string = 'assets/icons/connexion.svg';
 
   private _userCheckSubscription! : Subscription;
-  private _userService: userService;
+  private _userAuthenticateService: UserAuthenticateService;
   private router: Router;
 
   constructor(
     _fieldsService: GetFieldsService, 
     _fb: FormBuilder, 
-    _userService: userService, 
+    _userAuthenticateService: UserAuthenticateService, 
     router: Router
   ) {
     super();
-    this._userService = _userService;
+    this._userAuthenticateService = _userAuthenticateService;
     this.router = router;
     this.buildForm();
     this.initializeFormControls();
@@ -59,8 +60,12 @@ export class ConnexionPageComponent extends ParentFormComponent implements OnDes
     if (this.form.valid) {
       const email = this.form.value.email;
       const password = this.form.value.password;
-      this._userService.checkUserInfos(email, password)
-      .subscribe(res => {if (res){this.router.navigate(['/user'])}});
+      this._userCheckSubscription = this._userAuthenticateService.authenticateUser(email, password)
+        .subscribe(res => {
+          if (res) {
+            this.router.navigate(['/user']);
+          }
+        });
     } else {
       console.log('Le formulaire est invalide');
     }
