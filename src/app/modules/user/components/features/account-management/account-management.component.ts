@@ -19,8 +19,8 @@ import { RegexPatterns } from '../../../../shared/models/class/regex-patterns';
 })
 export class AccountManagementComponent extends ParentFormComponent implements OnInit {
 
-  usernameChangeField$!: Observable<TextField>;
-  usernameChangeControl!: FormControl;
+  nicknameChangeField$!: Observable<TextField>;
+  nicknameChangeControl!: FormControl;
   connexionIcon: string = 'assets/icons/connexion.svg';
   userAvatar: string = '/assets/images/user-profile-images/user1.jpg';
 
@@ -34,9 +34,9 @@ export class AccountManagementComponent extends ParentFormComponent implements O
   }
 
   ngOnInit() {
-    this.usernameChangeField$ = this._fieldsService.getFields$()
+    this.nicknameChangeField$ = this._fieldsService.getFields$()
     .pipe(
-      map(fields => fields.find(field => field.name === 'usernameChange') as TextField)
+      map(fields => fields.find(field => field.name === 'nicknameChange') as TextField)
     );
   }
 
@@ -44,13 +44,13 @@ export class AccountManagementComponent extends ParentFormComponent implements O
     if (this.form.valid) {
       console.log('Form Value:', this.form.value);
     } else {
-      console.log('Form is not valid:', this.form.get('usernameChange')?.errors);
+      console.log('Form is not valid:', this.form.get('nicknameChange')?.errors);
     }
   }
 
   protected buildForm() {
     this.form = this._fb.group({
-      usernameChange: ['', [
+      nicknameChange: ['', [
         Validators.required, 
         Validators.minLength(2), 
         Validators.maxLength(50),
@@ -61,9 +61,9 @@ export class AccountManagementComponent extends ParentFormComponent implements O
   }
 
   protected initializeFormControls() {
-    this.usernameChangeControl = this.form.get('usernameChange') as FormControl;
-    if (!this.usernameChangeControl) {
-      console.error('usernameChange control is missing!');
+    this.nicknameChangeControl = this.form.get('nicknameChange') as FormControl;
+    if (!this.nicknameChangeControl) {
+      console.error('nicknameChange control is missing!');
     }
   }
 }

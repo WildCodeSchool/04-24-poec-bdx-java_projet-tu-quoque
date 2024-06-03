@@ -6,11 +6,11 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <p-accordion [multiple]="true" [activeIndex]="[]">
     <p-accordionTab header="Pseudonyme">
-      <ng-container *ngIf="usernameChangeField$ | async as usernameChangeField">
+      <ng-container *ngIf="nicknameChangeField$ | async as nicknameChangeField">
         <app-input-text
-          [field]="usernameChangeField"
-          formControlName="usernameChange"
-          [control]="usernameChangeControl"
+          [field]="nicknameChangeField"
+          formControlName="nicknameChange"
+          [control]="nicknameChangeControl"
         >
         </app-input-text>
       </ng-container>
