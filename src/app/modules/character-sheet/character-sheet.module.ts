@@ -60,7 +60,6 @@ import { PossessionsComponent } from './components/possessions/feature/possessio
 import { EquipmentComponent } from './components/possessions/ui/equipment/equipment.component';
 import { CoinsComponent } from './components/market/ui/coins/coins.component';
 import { StatisticsDiceComponent } from './components/statistics-components/ui/statistics-dice/statistics-dice.component';
-import { SelectGenderComponent } from './components/character-informations-components/ui/select-gender/select-gender.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +120,6 @@ import { SelectGenderComponent } from './components/character-informations-compo
     EquipmentComponent,
     CoinsComponent,
     StatisticsDiceComponent,
-    SelectGenderComponent,
   ],
   imports: [
     CommonModule,
