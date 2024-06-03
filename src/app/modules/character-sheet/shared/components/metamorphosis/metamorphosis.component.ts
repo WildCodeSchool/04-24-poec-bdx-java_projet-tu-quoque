@@ -10,7 +10,6 @@ export class MetamorphosisComponent extends AbstractMetamorphosisComponent {
   @Input() set value(valuePassed: string | number | null) {
     if (typeof valuePassed == "number" && Number.isNaN(valuePassed)) {
       this._value = "";
-      console.log(NaN);
     }
     else if (typeof valuePassed == "number") this._value = valuePassed.toString();
     else if (valuePassed == "NaN" || valuePassed == null) this._value = "";

@@ -54,7 +54,7 @@ export class ListenPlayerActionService {
       this.sheetModifiedByPlayer.weightModifierRolled = '';
     }
     if (['characterRace'].includes(field.index) && this.sheetModifiedByPlayer.stats) {
-      this.sheetModifiedByPlayer.stats.resetMod();
+      this.sheetModifiedByPlayer.stats.resetRaceModifier();
 
     }
     if (['characterRace', 'characterClass'].includes(field.index)) {
