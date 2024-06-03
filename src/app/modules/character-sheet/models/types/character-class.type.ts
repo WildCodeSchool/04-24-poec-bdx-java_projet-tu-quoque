@@ -5,7 +5,7 @@ import { SavingThrows } from "./saving-throws.type"
 
 export type CharacterClass = {
     name: string,
-    DV: PossibleDiceKey,
+    hitPointDice: PossibleDiceKey,
     classSkills: Skills[],
     baseSkillPoints: string,
     skillPointsPerLevel: string,

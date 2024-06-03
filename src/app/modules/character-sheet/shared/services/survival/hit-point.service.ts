@@ -27,7 +27,7 @@ export class HitPointService {
   }
 
   selectClasseDV(classDetails: CharacterClass): PossibleDiceKey | undefined {
-    if (classDetails) return classDetails.DV;
+    if (classDetails) return classDetails.hitPointDice;
     return undefined;
   }
 

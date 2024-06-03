@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { CharacterSheetService } from '../character-sheet.service';
-import { defaultIfEmpty, EMPTY, map, Observable } from 'rxjs';
-import { StatisticDetails } from '../../../models/classes/statistic-details.class';
+import { map, Observable } from 'rxjs';
+
 import { CharacterStats } from '../../../models/classes/character-stats.class';
 
 @Injectable({
@@ -10,15 +10,15 @@ import { CharacterStats } from '../../../models/classes/character-stats.class';
 export class ArmorClassService {
   sheetService: CharacterSheetService = inject(CharacterSheetService);
 
-  getDexMod$(): Observable<number> {
+  getDexterityModifier$(): Observable<number> {
     return this.sheetService.getCaracteristics$().pipe(
       map((statList: CharacterStats) =>
-        statList ? this.getDexMod(statList) : 0
+        statList ? this.getDexterityModifier(statList) : 0
       ),
     )
   }
 
-  getDexMod(statList: CharacterStats): number {
+  getDexterityModifier(statList: CharacterStats): number {
     return statList.DEX.getFinalMod();
   }
 }
