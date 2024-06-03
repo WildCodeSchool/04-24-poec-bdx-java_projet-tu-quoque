@@ -9,11 +9,11 @@
   </div>
   @if ((fakeCharacterConnected$|async) || (fakeTableConnected$|async)) {
     @if (fakeCharacterConnected$|async) {
-      <p>Vous jouez votre personnage :</p>
-      <p>{{(fakeCharacterConnected$|async)?.name}}</p>
+      <p class="connected-info-title">Vous jouez votre personnage :</p>
+      <p class="connected-info-content">{{(fakeCharacterConnected$|async)?.name}}</p>
     } @else {
-      <p>Vous etes MJ de la table :</p>
-      <p>{{(fakeTableConnected$|async)?.name}}</p>
+      <p class="connected-info-title">Vous etes MJ de la table :</p>
+      <p class="connected-info-content">{{(fakeTableConnected$|async)?.name}}</p>
     }
   }
   <app-page-header
