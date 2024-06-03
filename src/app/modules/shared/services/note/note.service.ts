@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, map, switchMap } from 'rxjs';
 import { Note } from '../../models/types/users/note.type';
 import { ConnectionService } from '../connection/connection.service';
-import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
+import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { Table } from '../../models/types/users/table.type';
 import { Character } from '../../models/types/users/character.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';

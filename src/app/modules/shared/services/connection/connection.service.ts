@@ -4,7 +4,7 @@ import { User } from '../../models/types/users/user.types';
 import { Character } from '../../models/types/users/character.type';
 import { Table } from '../../models/types/users/table.type';
 import { HttpClient } from '@angular/common/http';
-import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
+import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 
 @Injectable({
   providedIn: 'root',
