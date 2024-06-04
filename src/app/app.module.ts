@@ -7,8 +7,9 @@ import { NavigationModule } from './modules/navigation/navigation.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AuthentificationModule } from './modules/authentification/authentification.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { TokenInterceptor } from './core/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     HttpClientModule,
     FullCalendarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
