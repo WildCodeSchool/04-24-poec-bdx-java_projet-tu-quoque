@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 import { userService } from '../../../../shared/services/users/user.service';
 import { RegexPatterns } from '../../../../shared/models/class/regex-patterns';
 import { ParentFormComponent } from '../../../../shared/components/parent-form/parent-form.component';
-import { UserAuthenticateService } from '../../../../shared/services/users/user-authenticate.service';
+import { UserAuthenticateService } from '../../../../shared/services/connection/user-authenticate.service';
 
 @Component({
   selector: 'app-connexion-page',

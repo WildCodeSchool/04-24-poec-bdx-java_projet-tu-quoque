@@ -9,7 +9,7 @@ import { GetFieldsService } from '../../../../shared/services/form-field/get-fie
 import { Router, RouterLink } from '@angular/router';
 import { RegexPatterns } from '../../../../shared/models/class/regex-patterns';
 import { ParentFormComponent } from '../../../../shared/components/parent-form/parent-form.component';
-import { UserRegisterService } from '../../../../shared/services/users/user-register.service';
+import { UserRegisterService } from '../../../../shared/services/connection/user-register.service';
 import { RegisterRequest } from '../../../../shared/models/types/users/register-request';
 import { RegisterResponse } from '../../../../shared/models/types/users/register-response';
 
