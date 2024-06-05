@@ -22,10 +22,14 @@
                     <app-metamorphosis
                     [value]="weapon.weaponDetails.name"
                     ></app-metamorphosis></td>
-                <td></td>
+                <td>
+                    <app-metamorphosis *ngIf="getBaseAttackBonus(weapon.weaponDetails.rangeFactor ? (dexterityBonus) : (strengthBonus)) | async as baseAttackBonus"
+                    [value]="baseAttackBonus"
+                    ></app-metamorphosis>
+                </td>
                 <td *ngIf="characterSize$ | async as characterSize; else emptyTd">
                     <app-metamorphosis
-                   [value]="weapon.weaponDetails.damages[characterSize]"
+                   [value]="weapon.weaponDetails.damages[characterSize] + (strengthBonus ? (strengthBonus > 0 ? ' + ' : '') + strengthBonus : '')"
                     >
                 </app-metamorphosis>
                 </td>
@@ -48,8 +52,16 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
+                <td>
+                    <app-metamorphosis
+                    [value]="weapon.weaponDetails.rangeFactor"
+                    ></app-metamorphosis>
+                </td>
+                <td>
+                    <app-metamorphosis
+                    [value]="weapon.weaponDetails.type"
+                    ></app-metamorphosis>
+                </td>
                 <td></td>
             </tr>
         </tbody>

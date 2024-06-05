@@ -10,7 +10,6 @@ import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
   providedIn: 'root',
 })
 export class ConnectionService {
-
   fakeConnectedUser: UserBasicInfos = {
     id: 1,
     name: 'SkyWalker22',
@@ -30,9 +29,10 @@ export class ConnectionService {
   };
 
   fakeConnectedTable: Table = {
-    id: 5,
-    avatar: '',
-    name: 'Les ajustables',
+    id: 3,
+    avatar:
+      '/assets/images/table-profile-images/le-donjon-des-monts-venteux.jpg',
+    name: 'le donjon des monts venteux',
     userId: 1,
   };
 

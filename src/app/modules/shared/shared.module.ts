@@ -39,7 +39,8 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     AutoCompleteModule,
     FullCalendarModule,
     AccordionModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    FormsModule
   ],
   exports: [
     CustomButtonComponent,
@@ -56,7 +57,8 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     AccordionModule,
     DynamicDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
 })
 export class SharedModule {}

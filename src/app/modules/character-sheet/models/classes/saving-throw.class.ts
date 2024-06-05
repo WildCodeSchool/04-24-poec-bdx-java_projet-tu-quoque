@@ -1,4 +1,4 @@
-import { SavingThrowsBaseBonusService } from "../../shared/services/saving-throws-base-bonus.service";
+import { SavingThrowsBaseBonusService } from "../../shared/services/saving-throws/saving-throws-base-bonus.service";
 import { SavingThrowsEnum } from "../enums/saving-throw-enum.enum";
 import { SavingThrowTypeKey } from "../enums/saving-throws-type.enum";
 
@@ -15,7 +15,7 @@ export class SavingThrow {
         this.setName(key);
     }
 
-    setName(key: SavingThrowsEnum) {
+    setName(key: SavingThrowsEnum): void {
         this.caracName = key;
         switch (key) {
             case "DEX":

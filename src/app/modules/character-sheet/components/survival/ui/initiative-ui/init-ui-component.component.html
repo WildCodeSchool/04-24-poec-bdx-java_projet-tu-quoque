@@ -1,0 +1,23 @@
+<div class="title-case major">
+    INITIATIVE
+</div>
+<div>
+    <div class="case total">
+        <app-metamorphosis *ngIf="dexterity$ | async as dexterity"
+        [value]="dexterity.getFinalMod()"
+        ></app-metamorphosis>
+    </div>
+    <div>TOTAL</div>    
+ </div>
+ <div>
+    <div class="case dex">
+        <app-metamorphosis *ngIf="dexterity$ | async as dexterity"
+        [value]="dexterity.getFinalMod()"
+        ></app-metamorphosis>
+    </div>
+    <div class="minor">{{"mod. dex" | uppercase}}</div>
+</div>
+<div>
+    <div class="case"></div>
+    <div class="minor">{{"mod. divers" | uppercase}}</div>
+</div>

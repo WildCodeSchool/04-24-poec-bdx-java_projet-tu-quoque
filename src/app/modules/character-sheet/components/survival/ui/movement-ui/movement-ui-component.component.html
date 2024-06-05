@@ -1,0 +1,10 @@
+<div class="title">{{"déplacement" | uppercase}}</div>
+<div class="case" *ngIf="movement$ | async as movement; else emptyMovement">
+    <app-metamorphosis
+    [value]="movement.toString()"
+    ></app-metamorphosis></div>
+<ng-template #emptyMovement>
+    <div class="case"></div>
+</ng-template>
+
+

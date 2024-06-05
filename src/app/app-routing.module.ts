@@ -32,6 +32,10 @@ const routes: Routes = [
     path: 'notepad',
     loadChildren: () => import('./modules/notepad/notepad.module')
     .then(m => m.NotepadModule)
+  },
+  {
+    path: 'dice-roll',
+    loadChildren: () => import('./modules/dice-roll/dice-roll.module').then(m => m.DiceRollModule)
   }
 ];
 

@@ -18,7 +18,8 @@
             "regexp": "bundle generation complete"
           }
         }
-      }
+      },
+      "label": "ng server",
     },
     {
       "type": "npm",
@@ -37,6 +38,13 @@
           }
         }
       }
+    },
+    {
+      "type": "npm",
+      "script": "db:start",
+      "problemMatcher": [],
+      "label": "db server",
+      "detail": "npx json-server src/assets/json/db.json"
     }
   ]
 }

@@ -22,11 +22,16 @@ export class HeaderComponent {
   visitorHomeLink: string ='/visitor/home'
   urlToGoBack!: string;
 
-  storeActualUrl(): void {
+  goToNotepad(): void {
     localStorage.setItem('routeToGoBack', this._router.url);
+    this._router.navigateByUrl('notepad')
   }
   onClick() {
     window.scrollTo(0, 0);
     this._navigationService.setSidebarVisible();
+  }
+
+  goToDiceRoll() {
+    this._router.navigateByUrl('dice-roll')
   }
 }

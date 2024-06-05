@@ -7,3 +7,6 @@ export enum PossibleDice {
     d12 = 12,
     d20 = 20
 }
+
+export type PossibleDiceKey = keyof typeof PossibleDice;
+export type PossibleDiceValue = typeof PossibleDice[PossibleDiceKey];
