@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -10,8 +10,8 @@ import { Router, RouterLink } from '@angular/router';
 import { RegexPatterns } from '../../../../shared/models/class/regex-patterns';
 import { ParentFormComponent } from '../../../../shared/components/parent-form/parent-form.component';
 import { UserRegisterService } from '../../../../shared/services/connection/user-register.service';
-import { RegisterRequest } from '../../../../shared/models/types/users/register-request';
 import { RegisterResponse } from '../../../../shared/models/types/users/register-response';
+import { UserRegister } from '../../../../shared/models/class/user-register.model';
 
 
 @Component({
@@ -21,7 +21,7 @@ import { RegisterResponse } from '../../../../shared/models/types/users/register
   styleUrl: './inscription-page.component.scss',
   imports: [InputTextComponent, FormsModule, ReactiveFormsModule, CommonModule, SharedModule, RouterLink]
 })
-export class InscriptionPageComponent extends ParentFormComponent implements OnInit {
+export class InscriptionPageComponent extends ParentFormComponent implements OnInit, OnDestroy {
 
   nicknameField$!: Observable<TextField>;
   nicknameControl!: FormControl;
@@ -41,11 +41,11 @@ export class InscriptionPageComponent extends ParentFormComponent implements OnI
     _fieldsService: GetFieldsService, 
     _fb: FormBuilder,
     _userRegisterService: UserRegisterService,
-    router: Router
+    _router: Router
   ) {
     super();
     this._userRegisterService = _userRegisterService;
-    this._router = router;
+    this._router = _router;
     this.buildForm(); 
     this.initializeFormControls();
   }
@@ -70,12 +70,15 @@ export class InscriptionPageComponent extends ParentFormComponent implements OnI
 
   protected onSubmit() {
     if (this.form.valid) {
-      const registerData: RegisterRequest = this.form.value;
-      console.log('Register Data:', registerData); 
+      const registerData: UserRegister = new UserRegister(
+        this.form.value.nickname,
+        this.form.value.email,
+        this.form.value.password,
+        this.form.value.avatar
+      ); 
       this._subscription = this._userRegisterService.registerUser(registerData)
         .subscribe({
           next: (response: RegisterResponse) => {
-            console.log('Registration successful:', response);
             if (response.message === 'Account successfully created as user') {
               this._router.navigate(['/user']);
             } else {
@@ -148,6 +151,7 @@ export class InscriptionPageComponent extends ParentFormComponent implements OnI
       console.error('passwordVerification control is missing!');
     }
   }
+
   ngOnDestroy(): void {
     if (this._subscription) {
       this._subscription.unsubscribe();
