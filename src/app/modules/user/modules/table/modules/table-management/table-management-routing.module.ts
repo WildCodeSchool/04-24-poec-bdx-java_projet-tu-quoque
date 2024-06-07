@@ -12,27 +12,27 @@ const routes: Routes = [
     path: "",
     redirectTo: "my-tables",
     pathMatch: "full",
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "my-tables",
     component: UserTablesComponent, 
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "my-tables/:id",
     component: TablePageComponent, 
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "my-tables/:id/new-player",
     component: TableNewPlayerComponent, 
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "my-tables/:id/accept-characters",
     component: CharactersToAcceptComponent, 
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "my-tables/:id/shared-calendar",
@@ -42,7 +42,7 @@ const routes: Routes = [
   {
     path: "my-tables/:id/new-drawing",
     component: TableNewDrawingComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   }
 ];
 

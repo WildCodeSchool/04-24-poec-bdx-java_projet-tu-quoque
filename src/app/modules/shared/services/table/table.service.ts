@@ -5,6 +5,7 @@ import { ConnectionService } from '../connection/connection.service';
 import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { UserInfos } from '../../models/types/users/user-infos';
+import { environment } from '../../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class TableService extends ApiRessourceService<Table> {
   
   private _connectionService = inject(ConnectionService);
 
-  private readonly _BASE_URL: string = 'http://localhost:3000/tables';
+  private readonly _BASE_URL: string = environment + '/tables';
 
   private readonly _userConnected$ =
     this._connectionService.getUserConnected$() as Observable<UserInfos>;

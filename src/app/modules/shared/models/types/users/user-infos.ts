@@ -1,3 +1,5 @@
+import { TableDTO } from "./table-dto";
+
 export type UserInfos = {
     id: number;
     name: string;
@@ -6,5 +8,6 @@ export type UserInfos = {
     player_characters?: number[];
     notes: number[];
     game_tables: number[];
+    playerGameTableList: TableDTO[]
   };
   

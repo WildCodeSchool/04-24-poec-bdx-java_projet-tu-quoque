@@ -9,17 +9,17 @@ const routes: Routes = [
     path: "",
     redirectTo: "my-characters",
     pathMatch: "full",
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "my-characters",
     component: UserCharactersComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "my-characters/:id",
     component: CharacterPageComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   }
 ];
 

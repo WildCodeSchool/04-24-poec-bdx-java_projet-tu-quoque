@@ -2,19 +2,19 @@
   [elementIcon]="'assets/images/user-icon.svg'"
   [title]="'Mes fiches personnage'"
 ></app-page-header>
-<ng-container *ngIf="userCharacterList$ | async as userCharacterList">
-  @if(userCharacterList.length) {
-  <main class="character-list-body">
-    <app-list-of-element
-      [elementList]="userCharacterList"
-      [elementIcon]="'assets/images/character-icon.svg'"
-      [baseUrl]="'../my-characters'"
-    ></app-list-of-element>
-    <app-custom-add-button
-      [routerLink]="'../../creation'"
-    ></app-custom-add-button>
-  </main>
-  } @else {
+<!-- <ng-container *ngIf="userCharacterList$ | async as userCharacterList">
+  @if(userCharacterList.length) { -->
+<main class="character-list-body">
+  <app-list-of-element
+    [elementList]="user?.player_characters"
+    [elementIcon]="'assets/images/character-icon.svg'"
+    [baseUrl]="'../my-characters'"
+  ></app-list-of-element>
+  <app-custom-add-button
+    [routerLink]="'../../creation'"
+  ></app-custom-add-button>
+</main>
+<!-- } @else {
   <main class="character-list-body list-empty">
     <app-custom-add-button
       [style]="'list-empty'"
@@ -22,4 +22,4 @@
     ></app-custom-add-button>
   </main>
   }
-</ng-container>
+</ng-container> -->

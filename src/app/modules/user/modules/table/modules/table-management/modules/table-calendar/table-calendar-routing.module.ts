@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: "",
     component: SharedTableCalendarComponent,
-     resolve: {userResolver}
+     resolve: {user: userResolver}
   }
 ];
 
