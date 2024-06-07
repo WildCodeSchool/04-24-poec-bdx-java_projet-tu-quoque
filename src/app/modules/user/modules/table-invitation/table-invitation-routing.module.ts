@@ -8,12 +8,12 @@ const routes: Routes = [
     path: "",
     redirectTo: "invitation-management",
     pathMatch: "full",
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "invitation-management",
     component: TableInvitationComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   }
 ];
 
