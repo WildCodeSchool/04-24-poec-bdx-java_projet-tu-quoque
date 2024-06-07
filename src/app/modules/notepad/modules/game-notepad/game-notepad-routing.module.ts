@@ -8,7 +8,7 @@ const routes: Routes = [
     path:"",
     redirectTo: "management",
     pathMatch: "full",
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "management",
@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: "creation",
     component: AddNotePageComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   }
 ];
 

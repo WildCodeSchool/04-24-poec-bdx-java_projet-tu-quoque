@@ -6,7 +6,7 @@ import { userResolver } from '../shared/resolver/user.resolver';
 const routes: Routes = [
   { path: "", 
   component: SheetPageComponent, 
-  resolve: {userResolver} },
+  resolve: {user: userResolver} },
 ];
 
 @NgModule({

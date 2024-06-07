@@ -8,7 +8,7 @@ const routes: Routes = [
     path:"",
     redirectTo: "management",
     pathMatch: "full",
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "management",

@@ -9,17 +9,17 @@ const routes: Routes = [
     path: "",
     redirectTo: "game-notes",
     pathMatch: "full",
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "game-notes",
     component: GameNotesComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "note/:id",
     component: ShowCommentPageComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   }
 
 ];
