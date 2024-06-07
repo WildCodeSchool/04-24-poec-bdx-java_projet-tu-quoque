@@ -17,10 +17,18 @@ export class HeaderComponent {
   private _router = inject(Router)
 
   userConected: boolean = true;
-  userConnected$ = this._connectionService.getUserConected$()
+  userConnected$ = this._connectionService.getUserConnected$()
   userHomeLink: string = '/user/home'
   visitorHomeLink: string ='/visitor/home'
   urlToGoBack!: string;
+
+  ngOnInit(): void {
+    this._connectionService.getUserConnected$().subscribe(user => {
+      if (!user) {
+        this._connectionService.personalInfo().subscribe();
+      }
+    });
+  }
 
   goToNotepad(): void {
     localStorage.setItem('routeToGoBack', this._router.url);

@@ -10,7 +10,8 @@ import { Chat } from '../../../../../../../../shared/models/types/users/chat.typ
 import { DrawingService } from '../../../../../../../../shared/services/drawing/drawing.service';
 import { Drawing } from '../../../../../../../../shared/models/types/users/drawing.type';
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
-import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/user-basic-infos.type';
+// import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/user-basic-infos.type';
+import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
 
 @Component({
   selector: 'app-table-page',
@@ -26,7 +27,7 @@ export class TablePageComponent {
   participantList$!: Observable<Character[]>;
   chatList$!: Observable<Chat[]>;
   drawingList$!: Observable<Drawing[]>;
-  userAllowed!: UserBasicInfos;
+  userAllowed!: UserInfos;
 
   constructor(
     private _tableService: TableService,
@@ -39,19 +40,35 @@ export class TablePageComponent {
   ) {}
 
   ngOnInit(): void {
-    this.id = Number(this._route.snapshot.paramMap.get('id'));
-    this.table$ = this._tableService.getById$(this.id);
-    this.participantList$ = this._characterService.getCharactersByTable$(
-      this.id
-    );
-    this.chatList$ = this._chatService.getChatListByTable$(this.id);
-    this.drawingList$ = this._drawingService.getDrawingListByTable$(this.id);
-    this._connectionService
-      .getUserConected$()
-      .subscribe((user: UserBasicInfos | null) => {
-        if (user) this.userAllowed = user as UserBasicInfos;
-      });
+    this._route.data.subscribe(data => {
+      this.userAllowed = data['user'] as UserInfos;
+
+      this.id = Number(this._route.snapshot.paramMap.get('id'));
+      this.loadTableData(this.id);
+    });
   }
+
+  private loadTableData(tableId: number): void {
+    this.table$ = this._tableService.getById$(tableId);
+    this.participantList$ = this._characterService.getCharactersByTable$(tableId);
+    this.chatList$ = this._chatService.getChatListByTable$(tableId);
+    this.drawingList$ = this._drawingService.getDrawingListByTable$(tableId);
+  }
+
+  // ngOnInit(): void {
+  //   this.id = Number(this._route.snapshot.paramMap.get('id'));
+  //   this.table$ = this._tableService.getById$(this.id);
+  //   this.participantList$ = this._characterService.getCharactersByTable$(
+  //     this.id
+  //   );
+  //   this.chatList$ = this._chatService.getChatListByTable$(this.id);
+  //   this.drawingList$ = this._drawingService.getDrawingListByTable$(this.id);
+  //   this._connectionService
+  //     .getUserConnected$()
+  //     .subscribe((user: UserBasicInfos | null) => {
+  //       if (user) this.userAllowed = user as UserBasicInfos;
+  //     });
+  // }
 
   toggleDrawingVisible(event: boolean): void {
     window.scrollTo(0, 0);

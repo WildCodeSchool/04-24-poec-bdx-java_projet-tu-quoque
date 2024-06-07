@@ -7,6 +7,8 @@ import { Character } from '../../../../../../../../shared/models/types/users/cha
 import { Table } from '../../../../../../../../shared/models/types/users/table.type';
 import { ChatService } from '../../../../../../../../shared/services/chat/chat.service';
 import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
+import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
+import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-character-page',
@@ -20,6 +22,7 @@ export class CharacterPageComponent implements OnInit {
   chatList$!: Observable<Chat[]>;
 
   isCharacterSheetVisible: boolean = false;
+  user: UserInfos | null = null;
 
   constructor(
     private _characterService: CharacterService,
@@ -27,19 +30,47 @@ export class CharacterPageComponent implements OnInit {
     private _chatService: ChatService,
     private _route: ActivatedRoute,
     private _renderer: Renderer2,
-    private _router: Router
+    private _router: Router,
+    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this._route.snapshot.paramMap.get('id'));
-    this.character$ = this._characterService.getById$(id);
-    this.table$ = this._characterService.getById$(id).pipe(
-      switchMap((res: Character) => {
-        return this._tableService.getById$(res.tableId as number);
-      })
-    );
-    this.chatList$ = this._chatService.getChatListByCharacter$(id);
+    this._route.data.subscribe((data) => {
+      this.user = data['user'];
+
+      if (!this.user) {
+        this._connectionService.personalInfo().subscribe(user => {
+          this.user = user;
+          this.loadCharacterData();
+        });
+      } else {
+        this.loadCharacterData();
+      }
+    });
   }
+
+  private loadCharacterData(): void {
+    if (this.user) {
+      const id = Number(this._route.snapshot.paramMap.get('id'));
+      this.character$ = this._characterService.getById$(id);
+      this.table$ = this.character$.pipe(
+        switchMap((res: Character) => {
+          return this._tableService.getById$(res.tableId as number);
+        })
+      );
+      this.chatList$ = this._chatService.getChatListByCharacter$(id);
+    }
+  }
+  // ngOnInit(): void {
+  //   const id = Number(this._route.snapshot.paramMap.get('id'));
+  //   this.character$ = this._characterService.getById$(id);
+  //   this.table$ = this._characterService.getById$(id).pipe(
+  //     switchMap((res: Character) => {
+  //       return this._tableService.getById$(res.tableId as number);
+  //     })
+  //   );
+  //   this.chatList$ = this._chatService.getChatListByCharacter$(id);
+  // }
 
   linkToCharacterTable(id: number): void {
     this._router.navigateByUrl(`user/tables/management/my-tables/${id}`)

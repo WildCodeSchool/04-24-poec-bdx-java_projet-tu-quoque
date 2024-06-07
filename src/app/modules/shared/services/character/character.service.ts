@@ -5,6 +5,7 @@ import { Character } from '../../models/types/users/character.type';
 import { ConnectionService } from '../connection/connection.service';
 import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
+import { environment } from '../../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +16,17 @@ export class CharacterService extends ApiRessourceService<Character> {
 
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
   
+  private readonly _BASE_URL_NEW: string = environment.baseUrl;
+
   private readonly _userConnected$: Observable<UserBasicInfos> =
-    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
+    this._connectionService.getUserConnected$() as Observable<UserBasicInfos>;
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
+  }
+
+  getUserCharacterListNew$(id: number): Observable<any> {
+    return this._http.get(this._BASE_URL_NEW + `/character/${id}`)
   }
 
   getUserCharacterList$(): Observable<Character[]> {

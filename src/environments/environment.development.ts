@@ -4,6 +4,12 @@ export const environment = {
         { 
         register: "/auth/register",
         authenticate: "/auth/authenticate"  
-        }
+        },
+    users:
+        {
+        personal: "/users/personal"
+        },
+ 
+
     
 };

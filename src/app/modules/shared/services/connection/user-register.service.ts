@@ -11,8 +11,7 @@ import { Observable, Subscription, tap } from 'rxjs';
 export class UserRegisterService {
 
   private readonly _BASE_URL: string = environment.baseUrl + environment.auth.register;
-  private subscription!: Subscription;
-
+ 
   constructor(private _http : HttpClient) { }
 
   registerUser(userRegister: UserRegister): Observable<RegisterResponse> {
