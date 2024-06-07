@@ -1,22 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, filter, tap } from 'rxjs';
 import { User } from '../../models/types/users/user.types';
 import { Character } from '../../models/types/users/character.type';
 import { Table } from '../../models/types/users/table.type';
 import { HttpClient } from '@angular/common/http';
 import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
+import { environment } from '../../../../../environments/environment.development';
+import { UserInfos } from '../../models/types/users/user-infos';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConnectionService {
-  fakeConnectedUser: UserBasicInfos = {
-    id: 1,
-    name: 'SkyWalker22',
-    avatar: '/assets/images/user-profile-images/user1.jpg',
-    role: 'user',
-  };
-
   fakeConnectedCharacter: Character = {
     id: 1,
     name: 'Elric',
@@ -36,8 +31,9 @@ export class ConnectionService {
     userId: 1,
   };
 
-  private _user$: BehaviorSubject<UserBasicInfos | null> =
-    new BehaviorSubject<UserBasicInfos | null>(this.fakeConnectedUser);
+  private readonly _BASE_URL: string = environment.baseUrl + environment.users.personal;
+  private _user$: BehaviorSubject<UserInfos | null> = 
+  new BehaviorSubject<UserInfos | null>(null);
   private _character$: BehaviorSubject<Character | null> =
     new BehaviorSubject<Character | null>(null);
   private _table$: BehaviorSubject<Table | null> =
@@ -45,26 +41,40 @@ export class ConnectionService {
 
   constructor(protected _http: HttpClient) {}
 
-  getUserConected$(): Observable<UserBasicInfos | null> {
+
+  // Méthode pour récupérer les informations de l'utilisateur connecté
+  personalInfo(): Observable<UserInfos | null> {
+    return this._http.get<UserInfos>(this._BASE_URL).pipe(
+      tap(user => this._user$.next(user))
+    );
+  }
+
+  // Méthode pour obtenir un Observable des informations de l'utilisateur connecté
+  getUserConnected$(): Observable<UserInfos | null> {
     return this._user$.asObservable();
   }
 
+  // Méthode pour définir les informations de l'utilisateur connecté
+  setUserConnected(value: UserInfos): void {
+    this._user$.next(value);
+  }
+
+  // Méthode pour obtenir un Observable des informations du personnage connecté
   getCharacterConnected$(): Observable<Character | null> {
     return this._character$.asObservable();
   }
 
-  getTableConnected$(): Observable<Table | null> {
-    return this._table$.asObservable();
-  }
-
-  setUserConnected(value: User): void {
-    this._user$.next(value);
-  }
-
+  // Méthode pour définir les informations du personnage connecté
   setCharacterConnected(value: Character): void {
     this._character$.next(value);
   }
 
+  // Méthode pour obtenir un Observable des informations de la table de jeu connectée
+  getTableConnected$(): Observable<Table | null> {
+    return this._table$.asObservable();
+  }
+
+  // Méthode pour définir les informations de la table de jeu connectée
   setTableConnected(value: Table): void {
     this._table$.next(value);
   }
