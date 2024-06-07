@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { userResolver } from '../../../shared/resolver/user.resolver';
 
 const routes: Routes = [
   {
     path: "",
     redirectTo: "management",
-    pathMatch: "full"
+    pathMatch: "full",
+    resolve: {user: userResolver}
   },
   {
     path: "management",

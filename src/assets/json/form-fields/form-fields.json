@@ -35,8 +35,8 @@
       },
       {
         "fieldType": "text",
-        "id": "username",
-        "name": "username",
+        "id": "nickname",
+        "name": "nickname",
         "type": "text",
         "value": "",
         "autocomplete": false,
@@ -89,8 +89,8 @@
       },
       {
         "fieldType": "text",
-        "id": "usernameChange",
-        "name": "usernameChange",
+        "id": "nicknameChange",
+        "name": "nicknameChange",
         "type": "text",
         "value": "",
         "autocomplete": false,

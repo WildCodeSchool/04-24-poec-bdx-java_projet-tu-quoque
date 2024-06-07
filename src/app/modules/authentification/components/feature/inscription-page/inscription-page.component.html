@@ -5,11 +5,11 @@
 ></app-page-header>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <app-custom-area-title [title]="'Pseudonyme'"></app-custom-area-title>
-  <ng-container *ngIf="usernameField$ | async as usernameField">
+  <ng-container *ngIf="nicknameField$ | async as nicknameField">
     <app-input-text
-      [field]="usernameField"
-      formControlName="username"
-      [control]="usernameControl"
+      [field]="nicknameField"
+      formControlName="nickname"
+      [control]="nicknameControl"
     >
     </app-input-text>
   </ng-container>

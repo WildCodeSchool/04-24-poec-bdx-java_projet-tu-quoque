@@ -3,6 +3,8 @@ import { CharacterService } from '../../../../../../../../shared/services/charac
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
+import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
+import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-characters-to-accept',
@@ -12,15 +14,38 @@ import { Character } from '../../../../../../../../shared/models/types/users/cha
 export class CharactersToAcceptComponent implements OnInit {
   
   characterList$!: Observable<Character[]>;
-
+  user: UserInfos | null = null;
   constructor(
     private _characterService: CharacterService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this._route.snapshot.paramMap.get('id'));
-    this.characterList$ =
-      this._characterService.getCharacterToAcceptByTable$(id);
+    this._route.data.subscribe((data) => {
+      this.user = data['user'];
+
+      if (!this.user) {
+        this._connectionService.personalInfo().subscribe(user => {
+          this.user = user;
+          this.loadCharacterData();
+        });
+      } else {
+        this.loadCharacterData();
+      }
+    });
   }
+
+  private loadCharacterData(): void {
+    if (this.user) {
+      const id = Number(this._route.snapshot.paramMap.get('id'));
+      this.characterList$ = this._characterService.getCharacterToAcceptByTable$(id);
+    }
+  }
+
+  // ngOnInit(): void {
+  //   const id = Number(this._route.snapshot.paramMap.get('id'));
+  //   this.characterList$ =
+  //     this._characterService.getCharacterToAcceptByTable$(id);
+  // }
 }

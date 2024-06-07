@@ -5,8 +5,9 @@ import { TableService } from '../table/table.service';
 import { TableInvitation } from '../../models/types/users/table-invitation.type';
 import { Table } from '../../models/types/users/table.type';
 import { ConnectionService } from '../connection/connection.service';
-import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
+import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
+import { UserInfos } from '../../models/types/users/user-infos';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class TableInvitationService extends ApiRessourceService<TableInvitation>
   private _connectionService = inject(ConnectionService);
 
   private _userConnected$ =
-    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
+    this._connectionService.getUserConnected$() as Observable<UserInfos>;
 
   private readonly _BASE_URL = 'http://localhost:3000/user_table_invitations';
 
@@ -34,7 +35,7 @@ export class TableInvitationService extends ApiRessourceService<TableInvitation>
     return this.getAll$().pipe(
       switchMap((tableInvitationList: TableInvitation[]) =>
         this._userConnected$.pipe(
-          map((user: UserBasicInfos) =>
+          map((user: UserInfos) =>
             tableInvitationList.filter(
               (tableInvitation: TableInvitation) =>
                 tableInvitation.userId === user.id

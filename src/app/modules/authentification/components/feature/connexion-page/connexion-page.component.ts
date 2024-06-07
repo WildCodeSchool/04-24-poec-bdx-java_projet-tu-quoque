@@ -10,6 +10,8 @@ import { Router, RouterLink } from '@angular/router';
 import { userService } from '../../../../shared/services/users/user.service';
 import { RegexPatterns } from '../../../../shared/models/class/regex-patterns';
 import { ParentFormComponent } from '../../../../shared/components/parent-form/parent-form.component';
+import { UserAuthenticateService } from '../../../../shared/services/connection/user-authenticate.service';
+import { UserAuth } from '../../../../shared/models/class/user-auth.model';
 
 @Component({
   selector: 'app-connexion-page',
@@ -28,17 +30,17 @@ export class ConnexionPageComponent extends ParentFormComponent implements OnDes
   connexionIcon: string = 'assets/icons/connexion.svg';
 
   private _userCheckSubscription! : Subscription;
-  private _userService: userService;
+  private _userAuthenticateService: UserAuthenticateService;
   private router: Router;
 
   constructor(
     _fieldsService: GetFieldsService, 
     _fb: FormBuilder, 
-    _userService: userService, 
+    _userAuthenticateService: UserAuthenticateService, 
     router: Router
   ) {
     super();
-    this._userService = _userService;
+    this._userAuthenticateService = _userAuthenticateService;
     this.router = router;
     this.buildForm();
     this.initializeFormControls();
@@ -59,8 +61,17 @@ export class ConnexionPageComponent extends ParentFormComponent implements OnDes
     if (this.form.valid) {
       const email = this.form.value.email;
       const password = this.form.value.password;
-      this._userService.checkUserInfos(email, password)
-      .subscribe(res => {if (res){this.router.navigate(['/user'])}});
+      const userAuth = new UserAuth(email, password);
+
+      this._userCheckSubscription = this._userAuthenticateService.authenticateUser(userAuth)
+      .subscribe({
+        next: (tokenFromDB) => {
+          this.router.navigate(['/user']);
+        },
+        error: (err) => {
+          console.log('Authentication failed', err);
+        }
+      });
     } else {
       console.log('Le formulaire est invalide');
     }

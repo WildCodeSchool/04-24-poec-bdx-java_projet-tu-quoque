@@ -2,7 +2,7 @@
   "users": [
         {
           "id": 1,
-          "userName":"SkyWalker22",
+          "nickname":"SkyWalker22",
           "password":"1234",
           "avatar":"/assets/images/user-profile-images/user1.jpg",
           "characters": [
@@ -37,7 +37,7 @@
         },
         {
           "id": 2,
-          "userName":"Moussay",
+          "nickname":"Moussay",
           "password":"1234",
           "avatar":"/assets/images/user-profile-images/user2.png",
           "characters": [
