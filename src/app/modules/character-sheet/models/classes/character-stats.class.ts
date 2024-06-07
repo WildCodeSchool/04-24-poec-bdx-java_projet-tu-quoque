@@ -15,7 +15,7 @@ export class CharacterStats {
         }
     }
 
-    resetMod(): void {
+    resetRaceModifier(): void {
         for (let statistic of this) {
             statistic.applyModifier({ stat: statistic.abbr, mod: 0 })
         }

@@ -1,10 +1,23 @@
-button {
+div {
     position: absolute;
-    top: 20px;
-    left: 424px;
+    top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 448px;
+    height: 400px;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    border: 2px solid black;
+    border-radius: 7px;
 
-    svg {
-        width: 48px;
-        height: 48px;
+    button {
+        background-color: black;
+        border-radius: 7px;
+
+        svg {
+            width: 120px;
+            height: 120px;
+            fill: var(--custom-gold);
+        }
     }
 }

@@ -9,11 +9,15 @@ import { CharacterStats } from '../../../../models/classes/character-stats.class
 })
 export class StatisticsDiceComponent {
   private statService: StatisticsService = inject(StatisticsService);
+  isVisible: boolean = true;
 
   @Output()
   emitter: EventEmitter<CharacterStats> = new EventEmitter();
 
   generateStatistics(): void {
+
+    this.isVisible = !this.isVisible;
+    console.log(this.isVisible)
     this.statService.generate();
     this.emitter.emit(this.statService.stats);
   }

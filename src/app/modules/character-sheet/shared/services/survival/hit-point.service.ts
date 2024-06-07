@@ -15,7 +15,7 @@ export class HitPointService {
 
   getHitPoints$(): Observable<number> {
     return this.sheetService.getClasseDetails$().pipe(
-      map((classDetails: CharacterClass) => this.selectClasseDV(classDetails)
+      map((classDetails: CharacterClass) => this.selectClasseHitPointDices(classDetails)
       ),
       switchMap((dice: PossibleDiceKey | undefined) => this.sheetService.getLevel$().pipe(
         switchMap((level: number) => this.sheetService.getCaracteristics$().pipe(
@@ -26,8 +26,8 @@ export class HitPointService {
     );
   }
 
-  selectClasseDV(classDetails: CharacterClass): PossibleDiceKey | undefined {
-    if (classDetails) return classDetails.DV;
+  selectClasseHitPointDices(classDetails: CharacterClass): PossibleDiceKey | undefined {
+    if (classDetails) return classDetails.hitPointDice;
     return undefined;
   }
 

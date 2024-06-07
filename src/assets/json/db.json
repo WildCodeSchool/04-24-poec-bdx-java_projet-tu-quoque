@@ -491,7 +491,7 @@
   "classes": [
     {
       "name": "Barbare",
-      "DV": "d12",
+      "hitPointDice": "d12",
       "classSkills": [
         "Artisanat",
         "Dressage",
@@ -526,7 +526,7 @@
     },
     {
       "name": "Roublard",
-      "DV": "d6",
+      "hitPointDice": "d6",
       "classSkills": [
         "Acrobaties",
         "Artisanat",

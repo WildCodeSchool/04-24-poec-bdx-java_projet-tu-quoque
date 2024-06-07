@@ -8,18 +8,36 @@ import { SkillDetails } from '../../models/classes/skill-details.class';
 import { Field } from '../models/types/field.type';
 import { SkillField } from '../models/types/skill-field.type';
 import { StatListField } from '../models/types/stat-list-field.type';
-import { FieldInfosAddByPlayer } from '../classes/skill-infos-add-by-player.class';
+import { SkillInfosAddByPlayer } from '../classes/skill-infos-add-by-player.class';
 import { Purse } from '../../models/classes/purse-related/purse.class';
 import { PurseField } from '../models/types/purse-field.type';
 import { WeaponField } from '../models/types/weapon-field.type';
 import { Weapon } from '../../models/classes/weapon.class';
 import { CharacterStats } from '../../models/classes/character-stats.class';
+import { Sheet, SheetKeyForStringKeys } from '../../models/types/sheet.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListenPlayerActionService {
-  sheetModifiedByPlayer: any = { "skills": [], "weapons": [] };
+  sheetModifiedByPlayer: Sheet = {
+    "skills": [], "weapons": [],
+    age: '',
+    alignment: '',
+    characterClass: '',
+    characterName: '',
+    characterRace: '',
+    eyesColor: '',
+    gender: '',
+    god: '',
+    hairColor: '',
+    heightModifierRolled: '',
+    level: '',
+    playerName: '',
+    skinColor: '',
+    stats: new CharacterStats,
+    weightModifierRolled: ''
+  };
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);
 
   constructor(private destroyRef: DestroyRef) { }
@@ -54,7 +72,7 @@ export class ListenPlayerActionService {
       this.sheetModifiedByPlayer.weightModifierRolled = '';
     }
     if (['characterRace'].includes(field.index) && this.sheetModifiedByPlayer.stats) {
-      this.sheetModifiedByPlayer.stats.resetMod();
+      this.sheetModifiedByPlayer.stats.resetRaceModifier();
 
     }
     if (['characterRace', 'characterClass'].includes(field.index)) {
@@ -64,7 +82,7 @@ export class ListenPlayerActionService {
 
   receiveBasicField(field: BasicField): void {
     this.controlField(field);
-    this.sheetModifiedByPlayer[field.index] = field.value;
+    this.sheetModifiedByPlayer[field.index as SheetKeyForStringKeys] = field.value;
     this.updateSheetStream();
   }
 
@@ -81,7 +99,8 @@ export class ListenPlayerActionService {
 
   receiveSkillField(field: SkillField): void {
     this.sheetModifiedByPlayer['skills'][field.value.id] =
-      new FieldInfosAddByPlayer(
+      new SkillInfosAddByPlayer(
+        field.value.id,
         field.value.ranks,
         field.value.complement
       );
