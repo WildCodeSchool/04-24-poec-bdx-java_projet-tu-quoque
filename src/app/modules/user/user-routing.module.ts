@@ -9,12 +9,12 @@ const routes: Routes = [
     path: "",
     redirectTo: "home",
     pathMatch: "full",
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "home",
     component: UserHomepageComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "characters", 
@@ -34,7 +34,7 @@ const routes: Routes = [
   {
     path: "account-management",
     component: AccountManagementComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   }
 ];
 

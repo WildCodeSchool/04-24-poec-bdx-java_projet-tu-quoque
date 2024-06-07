@@ -12,7 +12,7 @@ const routes: Routes = [
         path: '',
         redirectTo: 'user/notes',
         pathMatch: 'full',
-        resolve: {userResolver}
+        resolve: {user: userResolver}
       },
       {
         path: 'user/notes',

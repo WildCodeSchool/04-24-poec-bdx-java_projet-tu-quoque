@@ -8,12 +8,12 @@ const routes: Routes = [
     path: "",
     redirectTo: "new-table",
     pathMatch: "full",
-     resolve: {userResolver}
+     resolve: {user: userResolver}
   },
   {
     path: "new-table",
     component: NewTableComponent, 
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   }
 ];
 

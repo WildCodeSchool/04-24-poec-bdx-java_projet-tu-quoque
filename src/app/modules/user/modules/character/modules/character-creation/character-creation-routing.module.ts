@@ -8,12 +8,12 @@ const routes: Routes = [
     path: "",
     redirectTo: "new-character",
     pathMatch: "full",
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   },
   {
     path: "new-character",
     component: NewCharacterComponent,
-    resolve: {userResolver}
+    resolve: {user: userResolver}
   }
 ];
 
