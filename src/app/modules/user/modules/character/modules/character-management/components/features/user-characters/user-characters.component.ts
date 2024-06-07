@@ -22,17 +22,10 @@ export class UserCharactersComponent {
   ) {}
 
   ngOnInit(): void {
-    this._route.data.subscribe((data) => {
-      console.log(data);
-      this.user = data['user'];
-      if (!this.user) {
-        this._connectionService.personalInfo();
-      // } else {
-      //   if(this.user)this.loadUserCharacters(this.user.id);
-      // }
-    
-  }});
-  this._connectionService.getUserConnected$().subscribe(data => console.log(data?.name));
+    const userData = this._route.snapshot.data['user'];
+    this.user = userData;
+    console.log(this.user)
+ 
   }
 
   // private loadUserCharacters(id: number): void {
