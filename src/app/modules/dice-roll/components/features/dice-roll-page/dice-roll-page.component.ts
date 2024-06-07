@@ -19,10 +19,10 @@ export class DiceRollPageComponent {
       Offscreen: true,
       scale: 5,
     });
-
-    this.diceBox.canvas.width = '400';
-    this.diceBox.canvas.height = '600';
-    this.diceBox.init();
+ 
+  this.diceBox.canvas.width = window.innerWidth;
+  this.diceBox.canvas.height = window.innerHeight - 270;
+  this.diceBox.init();
   }
   rollDice(): void {
     if (this.diceBox) {
