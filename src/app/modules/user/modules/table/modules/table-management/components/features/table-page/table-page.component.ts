@@ -42,8 +42,8 @@ export class TablePageComponent {
       this.userAllowed = data['user'] as UserInfos;
       console.log(this.userAllowed)
       this.id = Number(this._route.snapshot.paramMap.get('id'));
-      this._tableService.getUserListTableNew(this.id).subscribe(response => this.foundTable = response)
-      this._tableService.getUserListTableNew(this.id).subscribe(response => console.log(response))
+      this._tableService.getUserTableByIdNew(this.id).subscribe(response => this.foundTable = response)
+      this._tableService.getUserTableByIdNew(this.id).subscribe(response => console.log(response))
     });
   }
 
