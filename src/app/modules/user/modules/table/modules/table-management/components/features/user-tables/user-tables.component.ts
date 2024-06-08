@@ -20,9 +20,7 @@ export class UserTablesComponent {
 
   ngOnInit(): void {
     const userData = this._route.snapshot.data['user'];
-    this.user = userData;
-    console.log(this.user)
- 
+    this.user = userData; 
   }
   
   userTableList$: Observable<Table[]> = this._tableService.getAll$();
