@@ -10,5 +10,5 @@ export class CustomButtonComponent {
   @Input() name!: string;
   @Input() style!: string;
   @Input() showSpan: boolean = false;
-  @Input() spanValue!: number;
+  @Input() spanValue!: number | undefined;
 }
