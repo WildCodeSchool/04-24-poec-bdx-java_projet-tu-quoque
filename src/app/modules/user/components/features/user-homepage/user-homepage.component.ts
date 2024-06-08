@@ -3,6 +3,8 @@ import { TableInvitationService } from '../../../../shared/services/table-invita
 import { Observable, map } from 'rxjs';
 import { PageNavigation } from '../../../../shared/models/types/navigation/page-navigation.type';
 import { TableInvitation } from '../../../../shared/models/types/users/table-invitation.type';
+import { UserInfos } from '../../../../shared/models/types/users/user-infos';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-homepage',
@@ -10,7 +12,8 @@ import { TableInvitation } from '../../../../shared/models/types/users/table-inv
   styleUrl: './user-homepage.component.scss',
 })
 export class UserHomepageComponent {
-  
+  user: UserInfos | null = null;
+
   buttonOptionList = [
     { name: 'Personnages', url: '../characters' },
     { name: 'Tables', url: '../tables' },
@@ -19,5 +22,15 @@ export class UserHomepageComponent {
   invitationList$: Observable<TableInvitation[]> =
     this._tableInvitation.getUserTableInvitationList$();
 
-  constructor(private _tableInvitation: TableInvitationService) {}
+  constructor(
+    private _tableInvitation: TableInvitationService,
+    private _route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    const userData = this._route.snapshot.data['user'];
+    this.user = userData; 
+    console.log(this.user)
+  }
+
 }
