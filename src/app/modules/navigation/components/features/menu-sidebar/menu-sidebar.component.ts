@@ -3,6 +3,7 @@ import { NavigationService } from '../../../../shared/services/navigation.servic
 import { Observable } from 'rxjs';
 import { PageNavigation } from '../../../../shared/models/types/navigation/page-navigation.type';
 import { inOutAnimation } from '../../../../shared/animations/inOutAnimation';
+import { ConnectionService } from '../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-menu-sidebar',
@@ -19,7 +20,8 @@ export class MenuSidebarComponent {
 
   constructor(
     private navService: NavigationService,
-    private _renderer: Renderer2
+    private _renderer: Renderer2,
+    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +34,11 @@ export class MenuSidebarComponent {
     });
   }
 
-  onClick() {
+  onClick(e: string) {
+    if(e === "Déconnexion") {
+      this._connectionService.setUserConnected(null);
+      localStorage.removeItem("tokenId");
+    }
     this.navService.setSidebarVisible();
   }
 }
