@@ -21,7 +21,7 @@ export class TableService extends ApiRessourceService<Table> {
     return this._BASE_URL;
   }
 
-  getUserListTableNew(id: number): Observable<any> {
+  getUserTableByIdNew(id: number): Observable<any> {
     const token = this._localStorageService.getToken();
     const headers = new HttpHeaders({
       "Authorization": 
