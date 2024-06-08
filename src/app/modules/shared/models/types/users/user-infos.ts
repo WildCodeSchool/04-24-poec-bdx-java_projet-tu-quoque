@@ -8,6 +8,7 @@ export type UserInfos = {
     player_characters?: number[];
     notes: number[];
     game_tables: number[];
-    playerGameTableList: TableDTO[]
+    playerGameTableList: TableDTO[],
+    gameTableInvitationList: TableDTO[] 
   };
   
