@@ -19,7 +19,6 @@ export class NoteService extends ApiRessourceService<Note> {
   private _connectionService = inject(ConnectionService);
   private _localStorageService = inject(LocalStorageService)
 
-  // private readonly _BASE_URL: string = 'http://localhost:3000/notes';
   private readonly _BASE_URL: string = environment.baseUrl + '/notes';
 
   private readonly _userConnected$: Observable<UserInfos> =
@@ -33,18 +32,6 @@ export class NoteService extends ApiRessourceService<Note> {
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
-  }
-
-  getNoteListByUser(): Observable<Note[]> {
-    return this.getAll$().pipe(
-      switchMap((noteList: Note[]) =>
-        this._userConnected$.pipe(
-          map((user: UserInfos) =>
-            noteList.filter((note: Note) => note.userId === user.id)
-          )
-        )
-      )
-    );
   }
 
   getNoteListByCharacter(): Observable<Note[]> {
@@ -71,19 +58,24 @@ export class NoteService extends ApiRessourceService<Note> {
     );
   }
 
+  getNoteById$(id: number): Observable<any> {
+    const token = this._localStorageService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this._http.get(this._BASE_URL + `/get/note/${id}`, { headers });
+  };
+
   postUserNote(formValue: Object, userId: number) {
     const token = this._localStorageService.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    console.log('mon url: ', this._BASE_URL + `/add/user/${userId}`)
-    console.log('mon token est: ', token)
-    console.log('form value is: ', formValue)
     return this._http.post(
       this._BASE_URL + `/add/user/${userId}`,
       formValue,
       { headers }
-    ).subscribe(response => console.log(response))
+    )
   }
 
 }
