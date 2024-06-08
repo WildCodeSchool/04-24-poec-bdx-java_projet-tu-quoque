@@ -2,8 +2,7 @@
   [elementIcon]="'assets/images/myTables-title-icon.svg'"
   [title]="'Mes tables'"
 ></app-page-header>
-<!-- <ng-container *ngIf="userTableList$| async as userTableList">
-    @if (userTableList.length) { -->
+@if (user?.playerGameTableList?.length) {
 <main class="table-list-body">
   <app-list-of-element
     [elementList]="user?.playerGameTableList"
@@ -14,10 +13,12 @@
     [routerLink]="'../../creation'"
   ></app-custom-add-button>
 </main>
-<!-- } @else {
-        <main class="table-list-body list-empty">
-            <app-custom-add-button [style]="'list-empty'" [routerLink]="'../../creation'"></app-custom-add-button>
-        </main>
-    
-    }
-</ng-container> -->
+} @else {
+<main class="table-list-body list-empty">
+  <app-custom-add-button
+    [style]="'list-empty'"
+    [routerLink]="'../../creation'"
+  ></app-custom-add-button>
+</main>
+
+}
