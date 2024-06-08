@@ -31,9 +31,10 @@ export class ConnectionService {
     userId: 1,
   };
 
-  private readonly _BASE_URL: string = environment.baseUrl + environment.users.personal;
-  private _user$: BehaviorSubject<UserInfos | null> = 
-  new BehaviorSubject<UserInfos | null>(null);
+  private readonly _BASE_URL: string =
+    environment.baseUrl + environment.users.personal;
+  private _user$: BehaviorSubject<UserInfos | null> =
+    new BehaviorSubject<UserInfos | null>(null);
   private _character$: BehaviorSubject<Character | null> =
     new BehaviorSubject<Character | null>(null);
   private _table$: BehaviorSubject<Table | null> =
@@ -41,12 +42,11 @@ export class ConnectionService {
 
   constructor(protected _http: HttpClient) {}
 
-
   // Méthode pour récupérer les informations de l'utilisateur connecté
   personalInfo(): Observable<UserInfos | null> {
-    return this._http.get<UserInfos>(this._BASE_URL).pipe(
-      tap(user => this._user$.next(user))
-    );
+    return this._http
+      .get<UserInfos>(this._BASE_URL)
+      .pipe(tap((user) => this._user$.next(user)));
   }
 
   // Méthode pour obtenir un Observable des informations de l'utilisateur connecté
@@ -55,7 +55,7 @@ export class ConnectionService {
   }
 
   // Méthode pour définir les informations de l'utilisateur connecté
-  setUserConnected(value: UserInfos): void {
+  setUserConnected(value: UserInfos | null): void {
     this._user$.next(value);
   }
 
