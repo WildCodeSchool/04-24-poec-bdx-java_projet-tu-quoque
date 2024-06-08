@@ -16,9 +16,7 @@ export class UserNotesComponent {
   user!: UserInfos;
 
   constructor(
-    private _notesService: NoteService,
     private _route: ActivatedRoute,
-    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
