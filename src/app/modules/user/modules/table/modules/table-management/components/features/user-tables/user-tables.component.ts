@@ -11,10 +11,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './user-tables.component.scss',
 })
 export class UserTablesComponent {
+
   user: UserInfos | null = null;
 
   constructor(
-    private _tableService: TableService,
     private _route: ActivatedRoute
   ) {}
 
@@ -22,7 +22,4 @@ export class UserTablesComponent {
     const userData = this._route.snapshot.data['user'];
     this.user = userData; 
   }
-  
-  userTableList$: Observable<Table[]> = this._tableService.getAll$();
-
 }
