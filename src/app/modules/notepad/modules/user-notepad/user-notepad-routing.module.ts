@@ -16,8 +16,9 @@ const routes: Routes = [
     .then(m => m.UserNoteManagementModule)
   },
   {
-    path: "creation",
-    component: AddNotePageComponent
+    path: "creation/:role",
+    component: AddNotePageComponent,
+    resolve: {user: userResolver}
   }
 ];
 

@@ -7,6 +7,9 @@ import { Table } from '../../models/types/users/table.type';
 import { Character } from '../../models/types/users/character.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { UserInfos } from '../../models/types/users/user-infos';
+import { environment } from '../../../../../environments/environment.development';
+import { HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from '../connection/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +17,10 @@ import { UserInfos } from '../../models/types/users/user-infos';
 export class NoteService extends ApiRessourceService<Note> {
   
   private _connectionService = inject(ConnectionService);
+  private _localStorageService = inject(LocalStorageService)
 
-  private readonly _BASE_URL: string = 'http://localhost:3000/notes';
+  // private readonly _BASE_URL: string = 'http://localhost:3000/notes';
+  private readonly _BASE_URL: string = environment.baseUrl + '/notes';
 
   private readonly _userConnected$: Observable<UserInfos> =
     this._connectionService.getUserConnected$() as Observable<UserInfos>;
@@ -65,4 +70,20 @@ export class NoteService extends ApiRessourceService<Note> {
       )
     );
   }
+
+  postUserNote(formValue: Object, userId: number) {
+    const token = this._localStorageService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    console.log('mon url: ', this._BASE_URL + `/add/user/${userId}`)
+    console.log('mon token est: ', token)
+    console.log('form value is: ', formValue)
+    return this._http.post(
+      this._BASE_URL + `/add/user/${userId}`,
+      formValue,
+      { headers }
+    ).subscribe(response => console.log(response))
+  }
+
 }
