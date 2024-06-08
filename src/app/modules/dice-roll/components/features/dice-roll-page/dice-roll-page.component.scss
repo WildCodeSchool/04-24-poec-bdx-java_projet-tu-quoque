@@ -51,7 +51,7 @@
   position: relative;
   box-sizing: border-box;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 267px);
   background-image: url("/assets/images/woodgrain2.jpg");
   background-size: cover;
 }
