@@ -51,19 +51,11 @@ export class NoteService extends ApiRessourceService<Note> {
   }
 
   getNoteById$(id: number): Observable<any> {
-    // const token = this._localStorageService.getToken();
-    // const headers = new HttpHeaders({
-    //   Authorization: `Bearer ${token}`,
-    // });
     const headers = this.getHeaders()
     return this._http.get(this._BASE_URL + `/get/note/${id}`, { headers });
   }
 
   postUserNote(formValue: any, userId: number): Observable<any> {
-    // const token = this._localStorageService.getToken();
-    // const headers = new HttpHeaders({
-      //   Authorization: `Bearer ${token}`,
-      // });
     const headers = this.getHeaders()
     return this._http.post(this._BASE_URL + `/add/user/${userId}`, formValue, {
       headers,
@@ -82,7 +74,10 @@ export class NoteService extends ApiRessourceService<Note> {
 
   postTableNote(formValue: any, tableId: number): Observable<any> {
     const headers = this.getHeaders()
+    console.log(headers)
     console.log("post by table")
+    console.log(this._BASE_URL + `/add/table/${tableId}`)
+    console.log(formValue)
     return this._http.post(
       this._BASE_URL + `/add/table/${tableId}`,
       formValue,
