@@ -12,7 +12,7 @@ import { Drawing } from '../../../../../../../../shared/models/types/users/drawi
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
 // import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/user-basic-infos.type';
 import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
-import { TableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
+import { GameTableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
 
 @Component({
   selector: 'app-table-page',
@@ -29,7 +29,7 @@ export class TablePageComponent {
   chatList$!: Observable<Chat[]>;
   drawingList$!: Observable<Drawing[]>;
   userAllowed!: UserInfos;
-  foundTable!: TableFullDTO;
+  foundTable!: GameTableFullDTO;
 
   constructor(
     private _tableService: TableService,
