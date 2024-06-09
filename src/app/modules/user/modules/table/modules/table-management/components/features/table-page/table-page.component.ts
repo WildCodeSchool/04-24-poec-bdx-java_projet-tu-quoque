@@ -8,6 +8,7 @@ import { Chat } from '../../../../../../../../shared/models/types/users/chat.typ
 import { Drawing } from '../../../../../../../../shared/models/types/users/drawing.type';
 import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
 import { GameTableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
+import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-table-page',
@@ -30,6 +31,7 @@ export class TablePageComponent {
     private _tableService: TableService,
     private _route: ActivatedRoute,
     private _renderer: Renderer2,
+    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,12 @@ export class TablePageComponent {
       this.id = Number(this._route.snapshot.paramMap.get('id'));
       this._tableService.getUserTableByIdNew(this.id).subscribe(response => this.foundTable = response)
     });
+  }
+
+  selectTableToPlay(): void {
+    console.log(typeof this.foundTable)
+    this._connectionService.setTableConnectedNew(this.foundTable)
+    this._connectionService.setCharacterConnectedNew(null)
   }
 
   toggleDrawingVisible(event: boolean): void {

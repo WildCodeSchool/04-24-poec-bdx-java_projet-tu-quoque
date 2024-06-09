@@ -8,6 +8,7 @@ import { Table } from '../../../../../../../../shared/models/types/users/table.t
 import { ChatService } from '../../../../../../../../shared/services/chat/chat.service';
 import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
 import { CharacterFullDTO } from '../../../../../../../../shared/models/types/users/character-full-dto';
+import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-character-page',
@@ -30,7 +31,8 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
     private _chatService: ChatService,
     private _route: ActivatedRoute,
     private _renderer: Renderer2,
-    private _router: Router
+    private _router: Router,
+    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +53,13 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
       this.characterSubscription.unsubscribe();
     }
   }
+
+  selectCharacterToPlay(): void {
+    console.log(typeof this.foundCharacter)
+    this._connectionService.setCharacterConnectedNew(this.foundCharacter)
+    this._connectionService.setTableConnectedNew(null)
+  }
+
   linkToCharacterTable(id: number): void {
     this._router.navigateByUrl(`user/tables/management/my-tables/${id}`)
   }
