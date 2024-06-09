@@ -1,3 +1,4 @@
+<ng-container *ngIf="foundCharacter">
 <div
   class="character-description"
   [ngStyle]="{
@@ -52,3 +53,4 @@
   (isCharacterSheetVisible)="toggleCharacterSheetVisible($event)"
 ></app-character-sheet-display>
 }
+</ng-container>
