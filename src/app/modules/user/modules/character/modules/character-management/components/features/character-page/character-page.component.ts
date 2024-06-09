@@ -1,14 +1,14 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
-import { Character } from '../../../../../../../../shared/models/types/users/character.type';
-import { Table } from '../../../../../../../../shared/models/types/users/table.type';
 import { ChatService } from '../../../../../../../../shared/services/chat/chat.service';
 import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
 import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
+import { CharacterFullDTO } from '../../../../../../../../shared/models/types/users/character-full-dto';
+import { GameTableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
 
 @Component({
   selector: 'app-character-page',
@@ -17,8 +17,8 @@ import { ConnectionService } from '../../../../../../../../shared/services/conne
 })
 export class CharacterPageComponent implements OnInit {
   
-  character$!: Observable<Character>;
-  table$!: Observable<Table>;
+  character$!: Observable<CharacterFullDTO>;
+  table$!: Observable<GameTableFullDTO>;
   chatList$!: Observable<Chat[]>;
 
   isCharacterSheetVisible: boolean = false;
@@ -35,17 +35,11 @@ export class CharacterPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._route.data.subscribe((data) => {
+    this._route.data.subscribe(data => {
       this.user = data['user'];
-
-      if (!this.user) {
-        this._connectionService.personalInfo().subscribe(user => {
-          this.user = user;
-          this.loadCharacterData();
-        });
-      } else {
-        this.loadCharacterData();
-      }
+      console.log(this.user);
+      
+      this.loadCharacterData();
     });
   }
 
@@ -54,13 +48,14 @@ export class CharacterPageComponent implements OnInit {
       const id = Number(this._route.snapshot.paramMap.get('id'));
       this.character$ = this._characterService.getById$(id);
       this.table$ = this.character$.pipe(
-        switchMap((res: Character) => {
-          return this._tableService.getById$(res.tableId as number);
+        switchMap((res: CharacterFullDTO) => {
+          return this._tableService.getById$(res.gameTable.id);
         })
       );
       this.chatList$ = this._chatService.getChatListByCharacter$(id);
     }
   }
+  
   // ngOnInit(): void {
   //   const id = Number(this._route.snapshot.paramMap.get('id'));
   //   this.character$ = this._characterService.getById$(id);

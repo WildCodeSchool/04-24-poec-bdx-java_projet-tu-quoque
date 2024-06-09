@@ -3,7 +3,7 @@ import { DrawingDTO } from "./drawing-dto";
 import { EventDTO } from "./event-dto";
 import { NoteDTO } from "./note-dto";
 
-export type TableFullDTO = {
+export type GameTableFullDTO = {
     id: number,
     name: string,
     Avatar: string,

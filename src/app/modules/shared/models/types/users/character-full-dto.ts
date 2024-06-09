@@ -1,10 +1,10 @@
-import { TableDTO } from "./table-dto"
+import { GameTableDTO } from "./table-dto"
 
 export type CharacterFullDTO = {
     id: number,
     name: string,
     avatar: string,
     accepted: boolean,
-    drawingList: TableDTO[],
+    gameTable: GameTableDTO,
     characterSheetId: number
 }
