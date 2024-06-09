@@ -55,7 +55,6 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
   }
 
   selectCharacterToPlay(): void {
-    console.log(typeof this.foundCharacter)
     this._connectionService.setCharacterConnectedNew(this.foundCharacter)
     this._connectionService.setTableConnectedNew(null)
   }
