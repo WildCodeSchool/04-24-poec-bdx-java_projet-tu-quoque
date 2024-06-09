@@ -21,7 +21,7 @@ export class TablePageComponent {
 
   table$!: Observable<Table>;
   participantList$!: Observable<Character[]>;
-  chatList$!: Observable<Chat[]>;
+  chatList!:Chat[];
   drawingList$!: Observable<Drawing[]>;
   userAllowed!: UserInfos;
   foundTable!: GameTableFullDTO;
