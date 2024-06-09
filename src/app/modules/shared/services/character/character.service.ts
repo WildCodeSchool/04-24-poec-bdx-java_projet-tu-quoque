@@ -9,6 +9,7 @@ import { UserInfos } from '../../models/types/users/user-infos';
 import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
 import { Character } from '../../models/types/users/character.type';
 import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
+import { CharacterDTO } from '../../models/types/users/character-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -35,15 +36,15 @@ export class CharacterService extends ApiRessourceService<Character> {
     });
   }
 
-  // Inutilisable : 
+  // A voir : 
   // getUserCharacterListNew$(id: number): Observable<CharacterFullDTO[]> {
   //   const headers = this.getHeaders();
   //   return this._http.get<CharacterFullDTO[]>(`${this._BASE_URL_NEW}/get/userId=${id}`, { headers });
   // }
 
-  getUserCharacterById$(id: number): Observable<any>{
+  getUserCharacterById$(id: number): Observable<CharacterFullDTO>{
     const headers = this.getHeaders()
-    return this._http.get(this._BASE_URL_NEW + `/get/${id}`, { headers })
+    return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, { headers })
   }
 
   getUserCharacterList$(): Observable<Character[]> {
@@ -59,7 +60,6 @@ export class CharacterService extends ApiRessourceService<Character> {
       )
     );
   }
-
 
   getUserCharacterWithoutTableList$(): Observable<Character[]> {
     return this.getUserCharacterList$().pipe(
@@ -77,9 +77,6 @@ export class CharacterService extends ApiRessourceService<Character> {
   //     )
   //   );
   // } 
-
-
- 
   
   getCharactersByTable$(tableId: number): Observable<Character[]> {
     return this.getAll$().pipe(

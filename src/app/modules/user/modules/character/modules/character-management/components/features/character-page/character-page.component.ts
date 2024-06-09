@@ -1,7 +1,7 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { Observable, Subscription, switchMap} from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
 import { Table } from '../../../../../../../../shared/models/types/users/table.type';
@@ -14,7 +14,7 @@ import { CharacterFullDTO } from '../../../../../../../../shared/models/types/us
   templateUrl: './character-page.component.html',
   styleUrl: './character-page.component.scss',
 })
-export class CharacterPageComponent implements OnInit {
+export class CharacterPageComponent implements OnInit, OnDestroy {
   
   character$!: Observable<Character>;
   table$!: Observable<Table>;
@@ -22,6 +22,7 @@ export class CharacterPageComponent implements OnInit {
   foundCharacter!: CharacterFullDTO;
 
   isCharacterSheetVisible: boolean = false;
+  private characterSubscription!: Subscription;
 
   constructor(
     private _characterService: CharacterService,
@@ -33,11 +34,8 @@ export class CharacterPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     const id = Number(this._route.snapshot.paramMap.get('id'));
-    this._characterService.getUserCharacterById$(id).subscribe(response => console.log(response));
-    this._characterService.getUserCharacterById$(id).subscribe(response => this.foundCharacter = response);
-
+    this.characterSubscription = this._characterService.getUserCharacterById$(id).subscribe(response => this.foundCharacter = response);
 
     this.character$ = this._characterService.getById$(id);
     this.table$ = this._characterService.getById$(id).pipe(
@@ -48,6 +46,11 @@ export class CharacterPageComponent implements OnInit {
     this.chatList$ = this._chatService.getChatListByCharacter$(id);
   }
 
+  ngOnDestroy(): void {
+    if (this.characterSubscription) {
+      this.characterSubscription.unsubscribe();
+    }
+  }
   linkToCharacterTable(id: number): void {
     this._router.navigateByUrl(`user/tables/management/my-tables/${id}`)
   }
