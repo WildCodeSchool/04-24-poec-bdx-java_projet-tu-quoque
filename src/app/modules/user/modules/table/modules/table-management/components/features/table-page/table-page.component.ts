@@ -7,7 +7,7 @@ import { Character } from '../../../../../../../../shared/models/types/users/cha
 import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
 import { Drawing } from '../../../../../../../../shared/models/types/users/drawing.type';
 import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
-import { TableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
+import { GameTableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
 
 @Component({
   selector: 'app-table-page',
@@ -24,7 +24,7 @@ export class TablePageComponent {
   chatList$!: Observable<Chat[]>;
   drawingList$!: Observable<Drawing[]>;
   userAllowed!: UserInfos;
-  foundTable!: TableFullDTO;
+  foundTable!: GameTableFullDTO;
 
   constructor(
     private _tableService: TableService,

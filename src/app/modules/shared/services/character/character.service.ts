@@ -1,11 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map, switchMap } from 'rxjs';
-import { Character } from '../../models/types/users/character.type';
 import { ConnectionService } from '../connection/connection.service';
-import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { environment } from '../../../../../environments/environment.development';
+import { LocalStorageService } from '../connection/local-storage.service';
+import { UserInfos } from '../../models/types/users/user-infos';
+import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
+import { Character } from '../../models/types/users/character.type';
+import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
+import { CharacterDTO } from '../../models/types/users/character-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -13,20 +17,34 @@ import { environment } from '../../../../../environments/environment.development
 export class CharacterService extends ApiRessourceService<Character> {
 
   private _connectionService = inject(ConnectionService);
+  private _localStorageService = inject(LocalStorageService)
 
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
-  
-  private readonly _BASE_URL_NEW: string = environment.baseUrl;
+  private readonly _BASE_URL_NEW: string = environment.baseUrl + '/characters';
 
-  private readonly _userConnected$: Observable<UserBasicInfos> =
-    this._connectionService.getUserConnected$() as Observable<UserBasicInfos>;
+  private readonly _userConnected$ =
+    this._connectionService.getUserConnected$() as Observable<UserInfos>;
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
   }
 
-  getUserCharacterListNew$(id: number): Observable<any> {
-    return this._http.get(this._BASE_URL_NEW + `/character/${id}`)
+  private getHeaders(): HttpHeaders {
+    const token = this._localStorageService.getToken();
+    return new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    });
+  }
+
+  // A voir : 
+  // getUserCharacterListNew$(id: number): Observable<CharacterFullDTO[]> {
+  //   const headers = this.getHeaders();
+  //   return this._http.get<CharacterFullDTO[]>(`${this._BASE_URL_NEW}/get/userId=${id}`, { headers });
+  // }
+
+  getUserCharacterById$(id: number): Observable<CharacterFullDTO>{
+    const headers = this.getHeaders()
+    return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, { headers })
   }
 
   getUserCharacterList$(): Observable<Character[]> {
@@ -50,7 +68,16 @@ export class CharacterService extends ApiRessourceService<Character> {
       )
     );
   }
-
+ 
+//  Porposition :
+  // getUserCharacterWithoutTableList$(id: number): Observable<CharacterFullDTO[]> {
+  //   return this.getUserCharacterListNew$(id).pipe(
+  //     map((response: CharacterFullDTO[]) =>
+  //       response.filter((character: CharacterFullDTO) => character.gameTable === null)
+  //     )
+  //   );
+  // } 
+  
   getCharactersByTable$(tableId: number): Observable<Character[]> {
     return this.getAll$().pipe(
       map((characters: Character[]) =>
@@ -61,6 +88,12 @@ export class CharacterService extends ApiRessourceService<Character> {
     );
   }
 
+  // Proposition : 
+  // getCharactersByTableNew$(tableId: number): Observable<CharacterFullDTO[]> {
+  //   const headers = this.getHeaders();
+  //   return this._http.get<CharacterFullDTO[]>(`${this._BASE_URL}/table/${tableId}`, { headers });
+  // }
+
   getCharacterToAcceptByTable$(id: number): Observable<Character[]> {
     return this.getCharactersByTable$(id).pipe(
       map((characterList: Character[]) =>
@@ -70,4 +103,15 @@ export class CharacterService extends ApiRessourceService<Character> {
       )
     );
   }
+
+  // Proposition : 
+  // getCharacterToAcceptByTable$(tableId: number): Observable<CharacterFullDTO[]> {
+  //   return this.getCharactersByTableNew$(tableId).pipe(
+  //     map((characterList: CharacterFullDTO[]) =>
+  //       characterList.filter(
+  //         (character: CharacterFullDTO) => character.accepted === false
+  //       )
+  //     )
+  //   );
+  // }
 }
