@@ -1,15 +1,17 @@
+import { CharacterDTO } from "./character-dto";
 import { NoteShortDTO } from "./note-short-dto";
-import { TableDTO } from "./table-dto";
+import { GameTableDTO } from "./table-dto";
+
 
 export type UserInfos = {
     id: number;
     name: string;
     avatar: string;
     role: string;
-    player_characters?: number[];
+    playerCharacterList: CharacterDTO[];
     playerNoteList: NoteShortDTO[];
     game_tables: number[];
-    playerGameTableList: TableDTO[],
-    gameTableInvitationList: TableDTO[] 
+    playerGameTableList: GameTableDTO[],
+    gameTableInvitationList: GameTableDTO[] 
   };
   
