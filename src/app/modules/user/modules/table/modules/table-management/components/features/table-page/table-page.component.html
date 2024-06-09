@@ -48,15 +48,13 @@
       </p-accordionTab>
       }
       <p-accordionTab header="Dessins">
-        <ng-container *ngIf="drawingList$ | async as drawingList">
           <app-list-of-element
-            [elementList]="drawingList"
+            [elementList]="foundTable.drawingList"
             [elementIcon]="'assets/images/brush-icon.svg'"
             (sendDrawingUrl)="showDrawing($event)"
             [isForDrawing]="true"
             [isModifiable]="false"
           ></app-list-of-element>
-        </ng-container>
         <app-custom-add-button
           [routerLink]="'new-drawing'"
         ></app-custom-add-button>

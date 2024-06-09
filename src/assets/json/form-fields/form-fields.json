@@ -68,8 +68,8 @@
       },
       {
         "fieldType": "text",
-        "id": "noteTitle",
-        "name": "noteTitle",
+        "id": "name",
+        "name": "name",
         "type": "text",
         "value": "",
         "autocomplete": false,
@@ -78,8 +78,8 @@
       },
       {
         "fieldType": "textarea",
-        "id": "noteDescription",
-        "name": "noteDescription",
+        "id": "text",
+        "name": "text",
         "value": "",
         "autocomplete": false,
         "placeholder": "Entrez la description de votre note",

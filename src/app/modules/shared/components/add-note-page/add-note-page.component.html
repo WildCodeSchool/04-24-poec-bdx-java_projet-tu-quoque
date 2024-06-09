@@ -1,23 +1,23 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <p-accordion [multiple]="true" [activeIndex]="[]">
     <p-accordionTab header="Titre">
-      <ng-container *ngIf="noteTitleField$ | async as noteTitleField">
+      <ng-container *ngIf="nameField$ | async as nameField">
         <app-input-text
-          [field]="noteTitleField"
-          formControlName="noteTitle"
-          [control]="noteTitleControl"
+          [field]="nameField"
+          formControlName="name"
+          [control]="nameControl"
         >
         </app-input-text>
       </ng-container>
     </p-accordionTab>
     <p-accordionTab header="Description">
       <ng-container
-        *ngIf="noteDescriptionField$ | async as noteDescriptionField"
+        *ngIf="textField$ | async as textField"
       >
         <app-input-textarea
-          [field]="noteDescriptionField"
-          formControlName="noteDescription"
-          [control]="noteDescriptionControl"
+          [field]="textField"
+          formControlName="text"
+          [control]="textControl"
         >
         </app-input-textarea>
       </ng-container>

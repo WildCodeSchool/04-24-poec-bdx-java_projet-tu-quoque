@@ -8,6 +8,7 @@ import {
 } from '@fullcalendar/core';
 import { EventResizeDoneArg } from '@fullcalendar/interaction';
 import { calendarEvent } from '../../models/types/users/calendarEvent.type';
+import { environment } from '../../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,7 @@ import { calendarEvent } from '../../models/types/users/calendarEvent.type';
 export class EventService extends ApiRessourceService<any> {
   
   private eventList$ = new BehaviorSubject<any[]>([]);
-
-  private readonly _BASE_URL: string = 'http://localhost:3000/events';
+  private readonly _BASE_URL: string = environment.baseUrl + '/events';
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
