@@ -6,6 +6,7 @@ import { Character } from '../../../../../../shared/models/types/users/character
 import { TableInvitation } from '../../../../../../shared/models/types/users/table-invitation.type';
 import { UserInfos } from '../../../../../../shared/models/types/users/user-infos';
 import { ActivatedRoute } from '@angular/router';
+import { CharacterDTO } from '../../../../../../shared/models/types/users/character-dto';
 
 @Component({
   selector: 'app-table-invitation',
@@ -21,6 +22,7 @@ export class TableInvitationComponent {
   tableInvitationList$!: Observable<TableInvitation[]>;
   availableCharacterList$!: Observable<Character[]>;
   userAllowed!: UserInfos;
+  availableCharacterList!: CharacterDTO[];
 
   private tableSelected!: number;
   private characterSelected!: number;
@@ -34,7 +36,6 @@ export class TableInvitationComponent {
   ngOnInit(): void {
     this._route.data.subscribe(data => {
       this.userAllowed = data['user'] as UserInfos;
-      
       this.loadData();
     });
   }
