@@ -38,12 +38,10 @@
       </p-accordionTab>
       @if(userAllowed.id == foundTable.userId) {
       <p-accordionTab header="Discussions avec les joueurs">
-        <ng-container *ngIf="chatList$ | async as chatList">
           <app-list-of-element
             [elementList]="chatList"
             [elementIcon]="'assets/images/discussion-icon.svg'"
           ></app-list-of-element>
-        </ng-container>
         <app-custom-add-button></app-custom-add-button>
       </p-accordionTab>
       }
