@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { InputTextComponent } from '../custom-form/form-inputs/input-text/input-text.component';
 import {
   FormBuilder,
@@ -23,6 +23,10 @@ import { UserInfos } from '../../models/types/users/user-infos';
 import { LocalStorageService } from '../../services/connection/local-storage.service';
 import { environment } from '../../../../../environments/environment.development';
 import { NoteService } from '../../services/note/note.service';
+import { GameTableFullDTO } from '../../models/types/users/table-full-dto';
+import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
+import { ConnectionService } from '../../services/connection/connection.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-add-note-page',
@@ -45,6 +49,8 @@ export class AddNotePageComponent
 {
   user!: UserInfos;
   role!: string;
+  tableConnected!: GameTableFullDTO | null;
+  characterConnected!: CharacterFullDTO | null;
   private readonly _BASE_URL: string = environment.baseUrl + '/notes';
 
   nameField$!: Observable<TextField>;
@@ -57,7 +63,9 @@ export class AddNotePageComponent
     _fb: FormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _noteService: NoteService
+    private _noteService: NoteService,
+    private _connectionService: ConnectionService,
+    private _destroyRef: DestroyRef
   ) {
     super();
     this.buildForm();
@@ -85,6 +93,13 @@ export class AddNotePageComponent
     const userData = this._route.snapshot.data['user'];
     this.user = userData;
     this.role = this._route.snapshot.paramMap.get('role') as string;
+
+    this._connectionService.getTableConnectedNew$()
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe((response: GameTableFullDTO | null) => this.tableConnected = response);
+    this._connectionService.getCharacterConnectedNew$()
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe((response: CharacterFullDTO | null) => this.characterConnected = response);
   }
 
   protected onSubmit() {
@@ -92,6 +107,12 @@ export class AddNotePageComponent
       if (this.role === 'user') {
         this._noteService.postUserNote(this.form.value, this.user.id);
         this._router.navigateByUrl(`notepad/user/notes`);
+      } else if(this.tableConnected) {
+        this._noteService.postTableNote(this.form.value, this.tableConnected.id)
+        this._router.navigateByUrl(`notepad/user/notes`);
+      } else if(this.characterConnected) {
+        this._router.navigateByUrl(`notepad/user/notes`);
+        this._noteService.postCharacterNote(this.form.value, this.characterConnected.id)
       }
     } else {
       console.log(
