@@ -15,61 +15,78 @@ import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
   providedIn: 'root',
 })
 export class NoteService extends ApiRessourceService<Note> {
-  
+
   private _connectionService = inject(ConnectionService);
-  private _localStorageService = inject(LocalStorageService)
 
   private readonly _BASE_URL: string = environment.baseUrl + '/notes';
-
-  private readonly _userConnected$: Observable<UserInfos> =
-    this._connectionService.getUserConnected$() as Observable<UserInfos>;
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
   }
 
   setGameNotes$(): Observable<NoteDTO[] | null> {
-    return this._connectionService.getCharacterConnectedNew$().pipe(
-      switchMap((response) =>
-        response == null
-          ? this._connectionService
-              .getTableConnectedNew$()
-              .pipe(
-                map(
-                  (response: GameTableFullDTO | null) =>
-                    response?.noteList as NoteDTO[]
+    return this._connectionService
+      .getCharacterConnectedNew$()
+      .pipe(
+        switchMap((response) =>
+          response == null
+            ? this._connectionService
+                .getTableConnectedNew$()
+                .pipe(
+                  map(
+                    (response: GameTableFullDTO | null) =>
+                      response?.noteList as NoteDTO[]
+                  )
                 )
-              )
-          : this._connectionService
-              .getCharacterConnectedNew$()
-              .pipe(
-                map(
-                  (response: CharacterFullDTO | null) =>
-                    response?.characterNoteList as NoteDTO[]
+            : this._connectionService
+                .getCharacterConnectedNew$()
+                .pipe(
+                  map(
+                    (response: CharacterFullDTO | null) =>
+                      response?.characterNoteList as NoteDTO[]
+                  )
                 )
-              )
-      )
-    );
+        )
+      );
   }
 
   getNoteById$(id: number): Observable<any> {
-    const token = this._localStorageService.getToken();
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
+    // const token = this._localStorageService.getToken();
+    // const headers = new HttpHeaders({
+    //   Authorization: `Bearer ${token}`,
+    // });
+    const headers = this.getHeaders()
     return this._http.get(this._BASE_URL + `/get/note/${id}`, { headers });
-  };
-
-  postUserNote(formValue: Object, userId: number) {
-    const token = this._localStorageService.getToken();
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this._http.post(
-      this._BASE_URL + `/add/user/${userId}`,
-      formValue,
-      { headers }
-    )
   }
 
+  postUserNote(formValue: any, userId: number): Observable<any> {
+    // const token = this._localStorageService.getToken();
+    // const headers = new HttpHeaders({
+      //   Authorization: `Bearer ${token}`,
+      // });
+    const headers = this.getHeaders()
+    return this._http.post(this._BASE_URL + `/add/user/${userId}`, formValue, {
+      headers,
+    });
+  }
+
+  postCharacterNote(formValue: any, characterId: number): Observable<any> {
+    const headers = this.getHeaders()
+    console.log("post by character")
+    return this._http.post(
+      this._BASE_URL + `/add/character/${characterId}`,
+      formValue,
+      { headers }
+    );
+  }
+
+  postTableNote(formValue: any, tableId: number): Observable<any> {
+    const headers = this.getHeaders()
+    console.log("post by table")
+    return this._http.post(
+      this._BASE_URL + `/add/table/${tableId}`,
+      formValue,
+      { headers }
+    );
+  }
 }
