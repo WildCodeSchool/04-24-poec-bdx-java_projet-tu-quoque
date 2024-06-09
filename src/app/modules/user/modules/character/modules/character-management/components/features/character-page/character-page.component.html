@@ -44,6 +44,7 @@
   <app-custom-button
     [style]="'gold'"
     [name]="'Joue\n ce personnage'"
+    (click)="selectCharacterToPlay()"
   ></app-custom-button>
 </footer>
 @if (isCharacterSheetVisible) {

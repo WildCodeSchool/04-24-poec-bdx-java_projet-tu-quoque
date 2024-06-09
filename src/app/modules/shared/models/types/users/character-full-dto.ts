@@ -1,3 +1,4 @@
+import { NoteDTO } from "./note-dto"
 import { GameTableDTO } from "./table-dto"
 
 export type CharacterFullDTO = {
@@ -6,5 +7,6 @@ export type CharacterFullDTO = {
     avatar: string,
     accepted: boolean,
     gameTable: GameTableDTO,
-    characterSheetId: number
+    characterSheetId: number,
+    characterNoteList: NoteDTO[]
 }

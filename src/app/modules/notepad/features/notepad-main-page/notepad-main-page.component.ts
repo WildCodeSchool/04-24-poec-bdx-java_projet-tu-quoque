@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Character } from '../../../shared/models/types/users/character.type';
 import { Table } from '../../../shared/models/types/users/table.type';
 import { Router } from '@angular/router';
+import { GameTableFullDTO } from '../../../shared/models/types/users/table-full-dto';
+import { CharacterFullDTO } from '../../../shared/models/types/users/character-full-dto';
 
 @Component({
   selector: 'app-notepad-main-page',
@@ -12,12 +14,8 @@ import { Router } from '@angular/router';
 })
 export class NotepadMainPageComponent {
   
-  fakeCharacterConnected$: Observable<Character> =
-    this._connectionService.getCharacterConnected$() as Observable<Character>;
-
-  fakeTableConnected$: Observable<Table> =
-    this._connectionService.getTableConnected$() as Observable<Table>;
-
+  tableConnected$: Observable<GameTableFullDTO> = this._connectionService.getTableConnectedNew$() as Observable<GameTableFullDTO>;
+  characterConnected$: Observable<CharacterFullDTO> = this._connectionService.getCharacterConnectedNew$() as Observable<CharacterFullDTO>;
   isUserSelected: Boolean = true;
 
   private _urlBeforeNotepad!: string;

@@ -63,6 +63,7 @@
       <app-custom-button
         [style]="'gold'"
         [name]="'Reprendre cette partie'"
+        (click)="selectTableToPlay()"
       ></app-custom-button>
       } @if(isDrawingVisible) {
       <app-drawing-display

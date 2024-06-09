@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, filter, tap } from 'rxjs';
-import { User } from '../../models/types/users/user.types';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Character } from '../../models/types/users/character.type';
 import { Table } from '../../models/types/users/table.type';
 import { HttpClient } from '@angular/common/http';
-import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { environment } from '../../../../../environments/environment.development';
 import { UserInfos } from '../../models/types/users/user-infos';
+import { GameTableFullDTO } from '../../models/types/users/table-full-dto';
+import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +40,12 @@ export class ConnectionService {
   private _table$: BehaviorSubject<Table | null> =
     new BehaviorSubject<Table | null>(this.fakeConnectedTable);
 
+  private _tableNew$: BehaviorSubject<GameTableFullDTO | null> =
+    new BehaviorSubject<GameTableFullDTO | null>(null);
+  private _characterNew$: BehaviorSubject<CharacterFullDTO | null> =
+  new BehaviorSubject<CharacterFullDTO | null>(null);
+
+    
   constructor(protected _http: HttpClient) {}
 
   personalInfo(): Observable<UserInfos | null> {
@@ -49,8 +55,8 @@ export class ConnectionService {
   }
 
   getUserConnected$(): Observable<UserInfos | null> {
-    if(!this._user$) {
-      this.personalInfo()
+    if (!this._user$) {
+      this.personalInfo();
     }
     return this._user$.asObservable();
   }
@@ -74,4 +80,24 @@ export class ConnectionService {
   setTableConnected(value: Table): void {
     this._table$.next(value);
   }
+
+  getTableConnectedNew$(): Observable<GameTableFullDTO | null> {
+    return this._tableNew$.asObservable();
+  }
+
+  setTableConnectedNew(value: GameTableFullDTO | null): void {
+    console.log(value)
+    this._tableNew$.next(value);
+  }
+
+  getCharacterConnectedNew$(): Observable<CharacterFullDTO | null> {
+    return this._characterNew$.asObservable();
+  }
+
+  setCharacterConnectedNew(value: CharacterFullDTO | null): void {
+    console.log(value)
+    this._characterNew$.next(value);
+  }
+
+
 }
