@@ -49,6 +49,9 @@ export class ConnectionService {
   }
 
   getUserConnected$(): Observable<UserInfos | null> {
+    if(!this._user$) {
+      this.personalInfo()
+    }
     return this._user$.asObservable();
   }
 
