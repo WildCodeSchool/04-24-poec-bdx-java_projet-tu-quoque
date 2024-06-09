@@ -5,7 +5,7 @@
 ></app-page-header>
 <p-accordion [activeIndex]="">
   <p-accordionTab header="Tables">
-    <ng-container *ngIf="!userAllowed.gameTableInvitationList.length; else noTaleInvitation">
+    <ng-container *ngIf="userAllowed.gameTableInvitationList.length; else noTaleInvitation">
       <app-available-character-list
       [toSelectCharacter]="false"
       [elementList]="userAllowed.gameTableInvitationList"
