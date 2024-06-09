@@ -17,7 +17,6 @@ import { CharacterDTO } from '../../models/types/users/character-dto';
 export class CharacterService extends ApiRessourceService<Character> {
 
   private _connectionService = inject(ConnectionService);
-  private _localStorageService = inject(LocalStorageService)
 
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
   private readonly _BASE_URL_NEW: string = environment.baseUrl + '/characters';
@@ -27,13 +26,6 @@ export class CharacterService extends ApiRessourceService<Character> {
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
-  }
-
-  private getHeaders(): HttpHeaders {
-    const token = this._localStorageService.getToken();
-    return new HttpHeaders({
-      "Authorization": `Bearer ${token}`
-    });
   }
 
   // A voir : 
