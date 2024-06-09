@@ -1,4 +1,3 @@
-<!-- <ng-container *ngIf="character$ | async as character"> -->
 <div
   class="character-description"
   [ngStyle]="{
@@ -19,7 +18,7 @@
     (isCharachterSheetVisible)="toggleCharacterSheetVisible($event)"
   ></app-character-presentation>
 </div>
-<!-- <app-custom-button [style]="'gold'" [name]="'Fiche de perso'"></app-custom-button> -->
+
 <ng-container *ngIf="foundCharacter.gameTable as gameTable; else noTable">
   <app-custom-area-title
     [title]="'Table reliée :\n' + gameTable.name"
@@ -52,4 +51,3 @@
   (isCharacterSheetVisible)="toggleCharacterSheetVisible($event)"
 ></app-character-sheet-display>
 }
-<!-- </ng-container> -->

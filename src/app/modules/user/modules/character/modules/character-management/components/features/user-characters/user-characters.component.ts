@@ -24,17 +24,5 @@ export class UserCharactersComponent {
   ngOnInit(): void {
     const userData = this._route.snapshot.data['user'];
     this.user = userData;
-    console.log(this.user)
- 
   }
-
-  // private loadUserCharacters(id: number): void {
-  //   if (this.user) {
-  //     this.userCharacterList$ = this._characterService.getUserCharacterListNew$(id);
-  //   }
-  // }
-  // userCharacterList$: Observable<Character[]> =
-  //   this._characterService.getUserCharacterList$();
-
-  // constructor(private _characterService: CharacterService) {}
 }

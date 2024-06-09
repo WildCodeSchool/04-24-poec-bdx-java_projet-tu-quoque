@@ -42,39 +42,32 @@ export class ConnectionService {
 
   constructor(protected _http: HttpClient) {}
 
-  // Méthode pour récupérer les informations de l'utilisateur connecté
   personalInfo(): Observable<UserInfos | null> {
     return this._http
       .get<UserInfos>(this._BASE_URL)
       .pipe(tap((user) => this._user$.next(user)));
   }
 
-  // Méthode pour obtenir un Observable des informations de l'utilisateur connecté
   getUserConnected$(): Observable<UserInfos | null> {
     return this._user$.asObservable();
   }
 
-  // Méthode pour définir les informations de l'utilisateur connecté
   setUserConnected(value: UserInfos | null): void {
     this._user$.next(value);
   }
 
-  // Méthode pour obtenir un Observable des informations du personnage connecté
   getCharacterConnected$(): Observable<Character | null> {
     return this._character$.asObservable();
   }
 
-  // Méthode pour définir les informations du personnage connecté
   setCharacterConnected(value: Character): void {
     this._character$.next(value);
   }
 
-  // Méthode pour obtenir un Observable des informations de la table de jeu connectée
   getTableConnected$(): Observable<Table | null> {
     return this._table$.asObservable();
   }
 
-  // Méthode pour définir les informations de la table de jeu connectée
   setTableConnected(value: Table): void {
     this._table$.next(value);
   }
