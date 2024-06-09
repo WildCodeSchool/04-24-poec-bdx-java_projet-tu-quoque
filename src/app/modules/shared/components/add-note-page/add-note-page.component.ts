@@ -105,14 +105,20 @@ export class AddNotePageComponent
   protected onSubmit() {
     if (this.form.valid) {
       if (this.role === 'user') {
-        this._noteService.postUserNote(this.form.value, this.user.id).subscribe();
+        this._noteService.postUserNote(this.form.value, this.user.id)
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe();
         this._router.navigateByUrl(`notepad/user/notes`);
       } else if(this.tableConnected) {
-        this._noteService.postTableNote(this.form.value, this.tableConnected.id).subscribe()
+        this._noteService.postTableNote(this.form.value, this.tableConnected.id)
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe()
         this._router.navigateByUrl(`notepad/game/notes`);
       } else if(this.characterConnected) {
         this._router.navigateByUrl(`notepad/game/notes`);
-        this._noteService.postCharacterNote(this.form.value, this.characterConnected.id).subscribe();
+        this._noteService.postCharacterNote(this.form.value, this.characterConnected.id)
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe();
       }
     } else {
       console.log(
