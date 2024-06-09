@@ -44,7 +44,6 @@ export class TablePageComponent {
   }
 
   selectTableToPlay(): void {
-    console.log(typeof this.foundTable)
     this._connectionService.setTableConnectedNew(this.foundTable)
     this._connectionService.setCharacterConnectedNew(null)
   }

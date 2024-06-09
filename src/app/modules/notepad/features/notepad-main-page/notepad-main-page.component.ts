@@ -14,8 +14,10 @@ import { CharacterFullDTO } from '../../../shared/models/types/users/character-f
 })
 export class NotepadMainPageComponent {
   
-  tableConnected$: Observable<GameTableFullDTO> = this._connectionService.getTableConnectedNew$() as Observable<GameTableFullDTO>;
-  characterConnected$: Observable<CharacterFullDTO> = this._connectionService.getCharacterConnectedNew$() as Observable<CharacterFullDTO>;
+  tableConnected$: Observable<GameTableFullDTO> =
+    this._connectionService.getTableConnectedNew$() as Observable<GameTableFullDTO>;
+  characterConnected$: Observable<CharacterFullDTO> =
+    this._connectionService.getCharacterConnectedNew$() as Observable<CharacterFullDTO>;
   isUserSelected: Boolean = true;
 
   private _urlBeforeNotepad!: string;
