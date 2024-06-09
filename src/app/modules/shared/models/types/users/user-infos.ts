@@ -1,3 +1,4 @@
+import { NoteShortDTO } from "./note-short-dto";
 import { TableDTO } from "./table-dto";
 
 export type UserInfos = {
@@ -6,8 +7,9 @@ export type UserInfos = {
     avatar: string;
     role: string;
     player_characters?: number[];
-    notes: number[];
+    playerNoteList: NoteShortDTO[];
     game_tables: number[];
-    playerGameTableList: TableDTO[]
+    playerGameTableList: TableDTO[],
+    gameTableInvitationList: TableDTO[] 
   };
   

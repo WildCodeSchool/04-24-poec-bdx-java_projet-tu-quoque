@@ -2,15 +2,10 @@ import { Component, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { ActivatedRoute } from '@angular/router';
-import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { Table } from '../../../../../../../../shared/models/types/users/table.type';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
-import { ChatService } from '../../../../../../../../shared/services/chat/chat.service';
 import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
-import { DrawingService } from '../../../../../../../../shared/services/drawing/drawing.service';
 import { Drawing } from '../../../../../../../../shared/models/types/users/drawing.type';
-import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
-// import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/user-basic-infos.type';
 import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
 import { TableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
 
@@ -42,8 +37,7 @@ export class TablePageComponent {
       this.userAllowed = data['user'] as UserInfos;
       console.log(this.userAllowed)
       this.id = Number(this._route.snapshot.paramMap.get('id'));
-      this._tableService.getUserListTableNew(this.id).subscribe(response => this.foundTable = response)
-      this._tableService.getUserListTableNew(this.id).subscribe(response => console.log(response))
+      this._tableService.getUserTableByIdNew(this.id).subscribe(response => this.foundTable = response)
     });
   }
 
