@@ -7,13 +7,13 @@
       alt="close"
     />
   </div>
-  @if ((fakeCharacterConnected$|async) || (fakeTableConnected$|async)) {
-    @if (fakeCharacterConnected$|async) {
+  @if ((characterConnected$|async) || (tableConnected$|async)) {
+    @if (characterConnected$|async) {
       <p class="connected-info-title">Vous jouez votre personnage :</p>
-      <p class="connected-info-content">{{(fakeCharacterConnected$|async)?.name}}</p>
+      <p class="connected-info-content">{{(characterConnected$|async)?.name}}</p>
     } @else {
       <p class="connected-info-title">Vous êtes MJ de la table :</p>
-      <p class="connected-info-content">{{(fakeTableConnected$|async)?.name}}</p>
+      <p class="connected-info-content">{{(tableConnected$|async)?.name}}</p>
     }
   }
   <app-page-header
@@ -27,7 +27,7 @@
       [routerLink]="['user/notes']"
       (click)="setUserSelected(true)"
     ></app-custom-button>
-    @if ((fakeCharacterConnected$|async) || (fakeTableConnected$|async)) {
+    @if ((characterConnected$|async) || (tableConnected$|async)) {
     <app-custom-button
       [style]="!isUserSelected ? 'dblue-gold' : 'gold'"
       [name]="'Notes de table'"

@@ -1,3 +1,4 @@
+<ng-container *ngIf="foundCharacter">
 <div
   class="character-description"
   [ngStyle]="{
@@ -44,6 +45,7 @@
   <app-custom-button
     [style]="'gold'"
     [name]="'Joue\n ce personnage'"
+    (click)="selectCharacterToPlay()"
   ></app-custom-button>
 </footer>
 @if (isCharacterSheetVisible) {
@@ -51,3 +53,4 @@
   (isCharacterSheetVisible)="toggleCharacterSheetVisible($event)"
 ></app-character-sheet-display>
 }
+</ng-container>

@@ -9,6 +9,12 @@
     font-family: alice;
     font-size: large;
 
+    .no-element-text {
+      width: 100vw;
+      margin-block-start: 2rem;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
     .page-footer {
       flex-grow: 1;
       display: flex;

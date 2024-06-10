@@ -5,23 +5,29 @@
 ></app-page-header>
 <p-accordion [activeIndex]="">
   <p-accordionTab header="Tables">
-      <ng-container *ngIf="tableInvitationList$ | async as tableInvitationList">
+    <ng-container *ngIf="userAllowed.gameTableInvitationList.length; else noTaleInvitation">
       <app-available-character-list
       [toSelectCharacter]="false"
-      [elementList]="tableInvitationList"
+      [elementList]="userAllowed.gameTableInvitationList"
       [elementIcon]="'assets/images/table-icon.svg'"
       (tableIdSelected)="getTableSelected($event)"
-    ></app-available-character-list> 
-      </ng-container>
+    ></app-available-character-list>
+  </ng-container>
+  <ng-template #noTaleInvitation>
+    <p class="no-element-text">Actuellement aucune invitation</p>
+  </ng-template>
     </p-accordionTab>
     <p-accordionTab header="Personnages sans table attribuée">
-      <ng-container *ngIf="availableCharacterList$ | async as availableCharacterList">
+      <ng-container *ngIf="availableCharacterList; else noCharacterAvailable">
         <app-available-character-list
           [elementList]="availableCharacterList"
           [elementIcon]="'assets/images/character-icon.svg'"
           (characterIdSelected)="getCharacterSelected($event)"
         ></app-available-character-list>
       </ng-container> 
+      <ng-template #noCharacterAvailable>
+        <p class="no-element-text">Aucun personnage disponnible</p>
+      </ng-template>
     </p-accordionTab>
   </p-accordion>
   <footer class="page-footer">
