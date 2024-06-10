@@ -13,7 +13,7 @@ export class InfoPopupComponent {
   eventEnd!: any;
   description!: any;
 
-  ngOnInit() {
+  ngOnInit(): void {
     const event = this.config.data.info.event;
     this.title = event.title;
     this.eventStart = event.start;

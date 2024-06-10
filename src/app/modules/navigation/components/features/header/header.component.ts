@@ -16,7 +16,6 @@ export class HeaderComponent {
   private _connectionService = inject(ConnectionService)
   private _router = inject(Router)
 
-  //userConected: boolean = true;
   userConnected$ = this._connectionService.getUserConnected$()
   userHomeLink: string = '/user/home'
   visitorHomeLink: string ='/visitor/home'
