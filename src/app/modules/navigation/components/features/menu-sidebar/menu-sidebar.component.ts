@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PageNavigation } from '../../../../shared/models/types/navigation/page-navigation.type';
 import { inOutAnimation } from '../../../../shared/animations/inOutAnimation';
 import { ConnectionService } from '../../../../shared/services/connection/connection.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-sidebar',
@@ -21,7 +22,8 @@ export class MenuSidebarComponent {
   constructor(
     private navService: NavigationService,
     private _renderer: Renderer2,
-    private _connectionService: ConnectionService
+    private _connectionService: ConnectionService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class MenuSidebarComponent {
     if(e === "Déconnexion") {
       this._connectionService.setUserConnected(null);
       localStorage.removeItem("tokenId");
+      this._router.navigateByUrl("visitor/home")
     }
     this.navService.setSidebarVisible();
   }
