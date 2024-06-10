@@ -4,9 +4,11 @@ import { SheetPageComponent } from './pages/sheet-page/sheet-page.component';
 import { userResolver } from '../shared/resolver/user.resolver';
 
 const routes: Routes = [
-  { path: "", 
-  component: SheetPageComponent, 
-  resolve: {user: userResolver} },
+  {
+    path: ":id",
+    component: SheetPageComponent,
+    resolve: { user: userResolver }
+  },
 ];
 
 @NgModule({

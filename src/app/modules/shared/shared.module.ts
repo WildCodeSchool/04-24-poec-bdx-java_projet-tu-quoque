@@ -61,4 +61,4 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     FormsModule
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
