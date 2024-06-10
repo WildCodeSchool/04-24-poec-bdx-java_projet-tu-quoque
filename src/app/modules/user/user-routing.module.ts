@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Injectable, NgModule } from '@angular/core';
+import { RouterModule, Routes, mapToCanActivate } from '@angular/router';
 import { UserHomepageComponent } from './components/features/user-homepage/user-homepage.component';
 import { AccountManagementComponent } from './components/features/account-management/account-management.component';
 import { userResolver } from '../shared/resolver/user.resolver';
+import { authGuard } from '../shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
   {
     path: "home",
     component: UserHomepageComponent,
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   },
   {
     path: "characters", 
