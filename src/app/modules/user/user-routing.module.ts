@@ -36,7 +36,8 @@ const routes: Routes = [
   {
     path: "account-management",
     component: AccountManagementComponent,
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   }
 ];
 
