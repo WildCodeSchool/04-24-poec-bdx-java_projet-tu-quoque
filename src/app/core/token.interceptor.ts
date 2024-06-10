@@ -7,7 +7,7 @@ import {
   HttpRequest,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../modules/shared/services/connection/local-storage.service';
 import { HttpRequestService } from '../modules/shared/services/connection/http-request.service';
 
@@ -48,7 +48,9 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         console.log(err);
         this.httpRequestService.setHttpErrorSubject$(err);
-        return throwError(() => new Error('Une erreur est survenue'));
+        console.log('Une erreur est survenue');
+        
+        return of();
       })
     );
   }
