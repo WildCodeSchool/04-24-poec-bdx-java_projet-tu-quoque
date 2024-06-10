@@ -10,7 +10,8 @@ const routes: Routes = [
     path: "",
     redirectTo: "home",
     pathMatch: "full",
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   },
   {
     path: "home",
@@ -36,7 +37,8 @@ const routes: Routes = [
   {
     path: "account-management",
     component: AccountManagementComponent,
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   }
 ];
 

@@ -6,33 +6,39 @@ import { TableNewPlayerComponent } from './components/features/table-new-player/
 import { CharactersToAcceptComponent } from './components/features/characters-to-accept/characters-to-accept.component';
 import { TableNewDrawingComponent } from './components/features/table-new-drawing/table-new-drawing.component';
 import { userResolver } from '../../../../../shared/resolver/user.resolver';
+import { authGuard } from '../../../../../shared/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: "",
     redirectTo: "my-tables",
     pathMatch: "full",
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   },
   {
     path: "my-tables",
     component: UserTablesComponent, 
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   },
   {
     path: "my-tables/:id",
     component: TablePageComponent, 
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   },
   {
     path: "my-tables/:id/new-player",
     component: TableNewPlayerComponent, 
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   },
   {
     path: "my-tables/:id/accept-characters",
     component: CharactersToAcceptComponent, 
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   },
   {
     path: "my-tables/:id/shared-calendar",
@@ -42,7 +48,8 @@ const routes: Routes = [
   {
     path: "my-tables/:id/new-drawing",
     component: TableNewDrawingComponent,
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   }
 ];
 
