@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewCharacterComponent } from './components/features/new-character/new-character.component';
 import { userResolver } from '../../../../../shared/resolver/user.resolver';
+import { authGuard } from '../../../../../shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
   {
     path: "new-character",
     component: NewCharacterComponent,
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   }
 ];
 

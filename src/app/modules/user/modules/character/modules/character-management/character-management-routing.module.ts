@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserCharactersComponent } from './components/features/user-characters/user-characters.component';
 import { CharacterPageComponent } from './components/features/character-page/character-page.component';
 import { userResolver } from '../../../../../shared/resolver/user.resolver';
+import { authGuard } from '../../../../../shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,12 +15,14 @@ const routes: Routes = [
   {
     path: "my-characters",
     component: UserCharactersComponent,
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   },
   {
     path: "my-characters/:id",
     component: CharacterPageComponent,
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   }
 ];
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotepadMainPageComponent } from './features/notepad-main-page/notepad-main-page.component';
 import { userResolver } from '../shared/resolver/user.resolver';
+import { authGuard } from '../shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
         path: '',
         redirectTo: 'user/notes',
         pathMatch: 'full',
-        resolve: {user: userResolver}
+        resolve: {user: userResolver},
+        canActivate: [authGuard]
       },
       {
         path: 'user/notes',

@@ -2,13 +2,6 @@ import { Injectable, NgModule } from '@angular/core';
 import { RouterModule, Routes, mapToCanActivate } from '@angular/router';
 import { VisitorHomepageModule } from './modules/visitor-homepage/visitor-homepage.module';
 
-@Injectable({providedIn: 'root'})
-export class AdminGuard {
-  canActivate() {
-    return true;
-  }
-}
-
 const routes: Routes = [
   {
     path: '', 
