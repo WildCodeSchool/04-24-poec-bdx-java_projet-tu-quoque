@@ -1,0 +1,187 @@
+[
+    {
+        "name": "dague",
+        "category": "courante",
+        "price": "2 po",
+        "damages": {
+            "P": "1d3",
+            "M": "1d4"
+        },
+        "critic": "19-20/x2",
+        "rangeFactor": null,
+        "weight": 0.5,
+        "type": "T|P",
+        "image": "dague.png",
+        "munitions": null
+    },
+    {
+        "name": "masse d'arme légère",
+        "category": "courante",
+        "price": "5 po",
+        "damages": {
+            "P": "1d4",
+            "M": "1d6"
+        },
+        "critic": "x2",
+        "rangeFactor": null,
+        "weight": 2,
+        "type": "C",
+        "image": "masse.png",
+        "munitions": null
+    },
+    {
+        "name": "arbalète légère",
+        "category": "courante",
+        "price": "35 po",
+        "damages": {
+            "P": "1d6",
+            "M": "1d8"
+        },
+        "critic": "19-20/x2",
+        "rangeFactor": 24,
+        "weight": 2,
+        "type": "P",
+        "image": "arbalete_legere.png",
+        "munitions": {
+            "name": "carreaux",
+            "price": "1po",
+            "weight": 0.5,
+            "image": "carreau.png"
+        }
+    },
+    {
+        "name": "arc court",
+        "category": "guerre",
+        "price": "30 po",
+        "damages": {
+            "P": "1d4",
+            "M": "1d6"
+        },
+        "critic": "x3",
+        "rangeFactor": 18,
+        "weight": 1,
+        "type": "P",
+        "image": "arc_court.png",
+        "munitions": {
+            "name": "flèches",
+            "price": "1po",
+            "weight": 1.5,
+            "image": "fleche.png"
+        }
+    },
+    {
+        "name": "arc court composite",
+        "category": "guerre",
+        "price": "75 po",
+        "damages": {
+            "P": "1d4",
+            "M": "1d6"
+        },
+        "critic": "x3",
+        "rangeFactor": 21,
+        "weight": 1,
+        "type": "P",
+        "image": "arc_composite.png",
+        "munitions": {
+            "name": "flèches",
+            "price": "1po",
+            "weight": 1.5,
+            "image": "fleche.png"
+        }
+    },
+    {
+        "name": "épée courte",
+        "category": "guerre",
+        "price": "10 po",
+        "damages": {
+            "P": "1d4",
+            "M": "1d6"
+        },
+        "critic": "19-20/x2",
+        "rangeFactor": null,
+        "weight": 1,
+        "type": "P",
+        "image": "epee_courte.png",
+        "munitions": null
+    },
+    {
+        "name": "matraque",
+        "category": "guerre",
+        "price": "1 po",
+        "damages": {
+            "P": "1d4",
+            "M": "1d6"
+        },
+        "critic": "x2",
+        "rangeFactor": null,
+        "weight": 1,
+        "type": "C",
+        "image": "matraque.png",
+        "munitions": null
+    },
+    {
+        "name": "rapière",
+        "category": "guerre",
+        "price": "12 po",
+        "damages": {
+            "P": "1d4",
+            "M": "1d6"
+        },
+        "critic": "18-20/x2",
+        "rangeFactor": null,
+        "weight": 1,
+        "type": "P",
+        "image": "rapiere.png",
+        "munitions": null
+    },
+    {
+        "name": "épée à 2 mains",
+        "category": "guerre",
+        "price": "50 po",
+        "damages": {
+            "P": "1d10",
+            "M": "2d6"
+        },
+        "critic": "19-20/x2",
+        "rangeFactor": null,
+        "weight": 4,
+        "type": "T",
+        "image": "2_handed.webp",
+        "munitions": null
+    },
+    {
+        "name": "arbalète de poing",
+        "category": "exotique",
+        "price": "100 po",
+        "damages": {
+            "P": "1d3",
+            "M": "1d4"
+        },
+        "critic": "19-20/x2",
+        "rangeFactor": 9,
+        "weight": 1,
+        "type": "P",
+        "image": "arbalete_poing.webp",
+        "munitions": {
+            "name": "carreaux",
+            "price": "1po",
+            "weight": 0.5,
+            "image": "carreau.png"
+        }
+    },
+    {
+        "name": "morgenstern",
+        "category": "courante",
+        "price": "8 po",
+        "damages": {
+            "P": "1d6",
+            "M": "1d8"
+        },
+        "critic": "x2",
+        "rangeFactor": null,
+        "weight": 13,
+        "type": "C|P",
+        "image": "morgenstern.jpg",
+        "munitions": null
+    }
+]
