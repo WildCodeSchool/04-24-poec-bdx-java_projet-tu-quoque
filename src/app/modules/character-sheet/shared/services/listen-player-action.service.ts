@@ -39,8 +39,13 @@ export class ListenPlayerActionService {
     weightModifierRolled: ''
   };
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);
+  sheetId$!: Observable<number>;
 
   constructor(private destroyRef: DestroyRef) { }
+
+  setId(id$: Observable<number>) {
+    this.sheetId$ = id$;
+  }
 
   sendInfos(): Observable<any> {
     return this.sheetModifiedListener$.asObservable();
