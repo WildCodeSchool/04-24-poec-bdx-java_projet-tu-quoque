@@ -10,8 +10,7 @@ const routes: Routes = [
     path: "",
     redirectTo: "home",
     pathMatch: "full",
-    resolve: {user: userResolver},
-    canActivate: [authGuard]
+    resolve: {user: userResolver}
   },
   {
     path: "home",

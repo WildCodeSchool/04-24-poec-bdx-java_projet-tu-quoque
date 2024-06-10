@@ -13,8 +13,7 @@ const routes: Routes = [
     path: "",
     redirectTo: "my-tables",
     pathMatch: "full",
-    resolve: {user: userResolver},
-    canActivate: [authGuard]
+    resolve: {user: userResolver}
   },
   {
     path: "my-tables",

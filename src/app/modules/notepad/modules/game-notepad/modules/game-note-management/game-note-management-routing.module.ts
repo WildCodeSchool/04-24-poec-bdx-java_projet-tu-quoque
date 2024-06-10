@@ -10,8 +10,7 @@ const routes: Routes = [
     path: "",
     redirectTo: "game-notes",
     pathMatch: "full",
-    resolve: {user: userResolver},
-    canActivate: [authGuard]
+    resolve: {user: userResolver}
   },
   {
     path: "game-notes",

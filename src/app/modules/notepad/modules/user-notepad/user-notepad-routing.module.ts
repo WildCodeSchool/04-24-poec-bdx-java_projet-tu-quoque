@@ -9,8 +9,7 @@ const routes: Routes = [
     path:"",
     redirectTo: "management",
     pathMatch: "full",
-    resolve: {user: userResolver},
-    canActivate: [authGuard]
+    resolve: {user: userResolver}
   },
   {
     path: "management",

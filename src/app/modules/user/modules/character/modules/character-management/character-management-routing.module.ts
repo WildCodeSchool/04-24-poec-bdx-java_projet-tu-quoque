@@ -10,8 +10,7 @@ const routes: Routes = [
     path: "",
     redirectTo: "my-characters",
     pathMatch: "full",
-    resolve: {user: userResolver},
-    canActivate: [authGuard]
+    resolve: {user: userResolver}
   },
   {
     path: "my-characters",
