@@ -7,7 +7,7 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
   styleUrl: './dice-roll-score-popup.component.scss',
 })
 export class DiceRollScorePopupComponent {
-  score!: any;
+  score!: number;
   config = inject(DynamicDialogConfig);
 
   ngOnInit(): void {

@@ -1,10 +1,7 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import DiceBox from '@3d-dice/dice-box';
-import DisplayResults from '@3d-dice/dice-ui';
 import { DiceService } from '../../../../shared/services/dice-service/dice.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { EventClickArg } from '@fullcalendar/core';
-import { InfoPopupComponent } from '../../../../user/modules/table/modules/table-management/modules/table-calendar/components/info-popup/info-popup.component';
 import { DiceRollScorePopupComponent } from '../../ui/dice-roll-score-popup/dice-roll-score-popup.component';
 import { DiceRollRulesComponent } from '../../ui/dice-roll-rules/dice-roll-rules.component';
 @Component({
@@ -36,13 +33,13 @@ export class DiceRollPageComponent {
   }
   rollDice(): void {
     if (this.diceBox) {
-      this.diceBox.roll(this.inputText.split(' ')).then((result: any) => this.showEvent(result))
+      this.diceBox.roll(this.inputText.split(' ')).then((result: Object[]) => this.showEvent(result))
     }
   }
 
-  showEvent(result: any): void {
+  showEvent(result: Object[]): void {
+    
     const throwResult = this.diceService.getDicesThrowResult(result)
-
     this.ref = this.dialogService.open(DiceRollScorePopupComponent, {
       data: {
         info: throwResult,
