@@ -9,6 +9,7 @@ import { TextField } from '../../../../../../../../shared/models/types/fields/te
 import { GetFieldsService } from '../../../../../../../../shared/services/form-field/get-fields.service';
 import { ParentFormComponent } from '../../../../../../../../shared/components/parent-form/parent-form.component';
 import { RegexPatterns } from '../../../../../../../../shared/models/class/regex-patterns';
+import { UploadFileService } from '../../../../../../../../shared/services/uploadFile/upload-file.service';
 
 @Component({
   selector: 'app-new-character',
@@ -21,10 +22,12 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
 
   characterNameField$!: Observable<TextField>;
   characterNameControl!: FormControl;
+  uploadedFileTypes: string[] = [];
 
   constructor(
     _fieldsService: GetFieldsService, 
-    _fb: FormBuilder
+    _fb: FormBuilder,
+    private _uploadFileService: UploadFileService
   ) {
     super();
     this.buildForm();
@@ -39,7 +42,11 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
 
   protected onSubmit() {
     if (this.form.valid) {
+      const selectedFile = this._uploadFileService.getSelectedFile();
       console.log('Form Value:', this.form.value);
+      console.log('Uploaded File Types:', this.uploadedFileTypes);
+      console.log('Selected File:', selectedFile);
+      
     } else {
       console.log('Form is not valid:', 
       this.form.get('characterName')?.errors,

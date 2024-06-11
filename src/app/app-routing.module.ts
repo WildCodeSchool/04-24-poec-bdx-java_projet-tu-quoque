@@ -5,7 +5,7 @@ import { VisitorHomepageModule } from './modules/visitor-homepage/visitor-homepa
 const routes: Routes = [
   {
     path: '', 
-    redirectTo: '/user/home', 
+    redirectTo: '/visitor/home', 
     pathMatch: 'full'
   },
 	{ 

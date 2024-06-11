@@ -19,7 +19,13 @@
 
     <p-accordionTab header="Télécharger un avatar">
       <div class="add-image-area">
-        <app-custom-add-button></app-custom-add-button>
+        <!-- <app-custom-add-button></app-custom-add-button> -->
+        <app-file-upload
+          labelFor="imgUrl"
+          labelContent="Choisir une image :"
+          name="imgUrl"
+          id="imgUrl"
+        ></app-file-upload>
       </div>
     </p-accordionTab>
   </p-accordion>
