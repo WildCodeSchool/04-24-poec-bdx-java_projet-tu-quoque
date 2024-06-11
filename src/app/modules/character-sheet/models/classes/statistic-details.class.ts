@@ -11,12 +11,13 @@ export class StatisticDetails {
     tempValue!: number;
     tempMod!: number;
 
-    constructor(abbr: StatAbbrKey, generateValue: boolean = false) {
+    constructor(abbr: StatAbbrKey, generateValue: boolean = false, tempModifier = null) {
         this.abbr = abbr;
         this.name = StatAbbr[this.abbr];
         this.value = generateValue ? this.generateOriginalValue() : NaN;
         this.originalValue = this.value;
         this.mod = this.calcMod();
+        if (tempModifier) this.tempValue = tempModifier;
     }
 
     generateOriginalValue(): number {

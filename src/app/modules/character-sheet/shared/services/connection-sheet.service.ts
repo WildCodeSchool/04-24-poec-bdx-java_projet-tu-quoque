@@ -13,7 +13,7 @@ export class ConnectionSheetService extends ApiRessourceService<Sheet> {
 
   private _connectionService = inject(ConnectionService);
 
-  private readonly _BASE_URL: string = environment.baseUrl + '/sheet';
+  private readonly _BASE_URL: string = environment.baseUrl + '/sheets';
 
   private readonly _userConnected$ =
     this._connectionService.getUserConnected$() as Observable<UserInfos>;
@@ -27,5 +27,10 @@ export class ConnectionSheetService extends ApiRessourceService<Sheet> {
   //   const headers = this.getHeaders()
   //   return this._http.get<CharacterFullDTO>(this._BASE_URL + `/get/${id}`, { headers })
   // }
+
+  getSheetById$(id: number): Observable<any> {
+    const headers = this.getHeaders()
+    return this._http.get<any>(`${this._BASE_URL}/get/${id}`, { headers });
+  }
 
 }

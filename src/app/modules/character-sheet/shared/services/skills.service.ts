@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, shareReplay, switchMap } from "rxjs";
+import { map, Observable, shareReplay, switchMap, tap } from "rxjs";
 import { DbService } from "../../../shared/services/db-service/db.service";
 import { SkillDetails } from '../../models/classes/skill-details.class';
 import { SkillFromDb } from '../../models/types/skill-from-db.type';
@@ -18,23 +18,31 @@ export class SkillsService {
     private dbService: DbService,
     private sheetService: CharacterSheetService,
   ) {
+    console.log("SKILLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+
     this.init();
   }
 
   init(): void {
     this.skills$ = this.dbService.getSkills$().pipe(
       map((skillList: SkillFromDb[]) => this.transformSkillFromDbIntoSkillsDetails(skillList)),
+      tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
       switchMap((skills: SkillDetails[]) => this.sheetService.race$.pipe(
-        map((race: Race) => this.updateSkillsWithRace(skills, race))
+        tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
+        map((race: Race) => this.updateSkillsWithRace(skills, race)),
+        tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getClasseDetails$().pipe(
+        tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
         map((classDetails: CharacterClass) =>
           this.updateSkillsWithClass(skills, classDetails)
-        )
+        ),
+        tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getCaracteristics$().pipe(
         map((stats: CharacterStats) => this.updateSkillStatMod(skills, stats)),
       )),
+
       shareReplay(),
     );
   }
@@ -63,6 +71,7 @@ export class SkillsService {
 
   updateSkillStatMod(skills: SkillDetails[], stats: CharacterStats): SkillDetails[] {
     if (!stats) return skills;
+    if (!stats.FOR.originalValue) return skills;
     for (let skill of skills) {
       skill.setStatMod(stats);
     }

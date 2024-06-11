@@ -1,5 +1,5 @@
-import { DestroyRef, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { DestroyRef, inject, Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable, Subject, switchMap, tap } from 'rxjs';
 import { BasicField } from '../models/types/basic-field.type';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
@@ -15,13 +15,16 @@ import { WeaponField } from '../models/types/weapon-field.type';
 import { Weapon } from '../../models/classes/weapon.class';
 import { CharacterStats } from '../../models/classes/character-stats.class';
 import { Sheet, SheetKeyForStringKeys } from '../../models/types/sheet.type';
+import { ConnectionSheetService } from './connection-sheet.service';
+import { TransformDtoToSheetService } from './transform-dto-to-sheet.service';
+import { SheetDTO } from '../../models/types/dto/sheet-dto.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListenPlayerActionService {
   sheetModifiedByPlayer: Sheet = {
-    "skills": [], "weapons": [],
+    skills: [], weapons: [],
     age: '',
     alignment: '',
     characterClass: '',
@@ -38,16 +41,43 @@ export class ListenPlayerActionService {
     stats: new CharacterStats,
     weightModifierRolled: ''
   };
+
+  //sheetModifiedByPlayer: any;
+
+  private connectionSheetService: ConnectionSheetService = inject(ConnectionSheetService);
+  //private sheetModifiedListener$: Subject<any> = new Subject();
+  private destroyRef: DestroyRef = inject(DestroyRef);
+  private transformDTOService: TransformDtoToSheetService = inject(TransformDtoToSheetService);
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);
-  sheetId$!: Observable<number>;
+  sheetId$: Subject<number> = new Subject();
 
-  constructor(private destroyRef: DestroyRef) { }
+  constructor() {
+    console.log("tadam");
 
-  setId(id$: Observable<number>) {
-    this.sheetId$ = id$;
+    this.sheetId$.pipe(
+      takeUntilDestroyed(this.destroyRef),
+      //tap(bla => console.log(bla, 'BLLLLLLLLLLLLLLLLLLLLLLLLLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')),
+      switchMap((id: number) => this.connectionSheetService.getSheetById$(id).pipe(
+        //tap(qqch => console.log(qqch, "BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOB")),
+        map((sheet: SheetDTO) => this.transformDTOService.transform(sheet)),
+        // tap(qqch => console.log(qqch, "BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOB")),
+        tap(sheet => this.sheetModifiedByPlayer = sheet),
+        tap(sheet => this.sheetModifiedListener$.next(sheet)),
+        tap(sheet => this.updateSheetStream())
+      ))
+    ).subscribe(something => console.log(something));
   }
 
-  sendInfos(): Observable<any> {
+  setId(id$: Observable<number>) {
+    console.log("plop")
+    id$.pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe(num => this.sheetId$.next(num))
+    this.sheetId$.subscribe(qqch => console.log(qqch));
+
+  }
+
+  sendInfos(): Observable<Sheet> {
     return this.sheetModifiedListener$.asObservable();
   }
 

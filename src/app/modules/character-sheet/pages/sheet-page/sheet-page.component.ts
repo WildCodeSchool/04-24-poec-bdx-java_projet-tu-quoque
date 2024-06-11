@@ -4,6 +4,7 @@ import { ListenPlayerActionService } from '../../shared/services/listen-player-a
 import { Observable, Subject } from 'rxjs';
 import { UserInfos } from '../../../shared/models/types/users/user-infos';
 import { CharacterDTO } from '../../../shared/models/types/users/character-dto';
+import { ConnectionSheetService } from '../../shared/services/connection-sheet.service';
 
 @Component({
   selector: 'app-sheet-page',
