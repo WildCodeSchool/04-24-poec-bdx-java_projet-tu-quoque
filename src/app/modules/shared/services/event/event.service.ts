@@ -1,6 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
-import { BehaviorSubject, Observable, map, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
 import { EventDropArg, EventRemoveArg } from '@fullcalendar/core';
 import { EventResizeDoneArg } from '@fullcalendar/interaction';
 import { calendarEvent } from '../../models/types/users/calendarEvent.type';
@@ -10,7 +10,7 @@ import { environment } from '../../../../../environments/environment.development
   providedIn: 'root',
 })
 export class EventService extends ApiRessourceService<any> {
-  
+
   private eventList$ = new BehaviorSubject<calendarEvent[]>([]);
   private readonly _BASE_URL: string = environment.baseUrl + '/events';
 
