@@ -7,14 +7,14 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrl: './info-popup.component.scss',
 })
 export class InfoPopupComponent {
+  
   private config = inject(DynamicDialogConfig);
   ref = inject(DynamicDialogRef);
   public title!: any;
   public eventStart!: any;
   public eventEnd!: any;
   public description!: any;
-  public event: any = this.config.data.info.event
-
+  public event: any = this.config.data.info.event;
 
   ngOnInit(): void {
     const event = this.config.data.info.event;
@@ -27,6 +27,6 @@ export class InfoPopupComponent {
   }
 
   deleteEvent(): void {
-    this.ref.close(Number(this.event.id))
+    this.ref.close(Number(this.event.id));
   }
 }

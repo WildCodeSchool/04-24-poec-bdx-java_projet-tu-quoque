@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
-import { EventDropArg, EventRemoveArg } from '@fullcalendar/core';
+import { EventDropArg } from '@fullcalendar/core';
 import { EventResizeDoneArg } from '@fullcalendar/interaction';
 import { calendarEvent } from '../../models/types/users/calendarEvent.type';
 import { environment } from '../../../../../environments/environment.development';
@@ -55,7 +55,6 @@ export class EventService extends ApiRessourceService<any> {
     const eventListUpdated = currentEventList.filter(
       (calendarEvent: calendarEvent) => calendarEvent.id !== eventId
     );
-    // console.log(eventListUpdated)
     this.eventList$.next(eventListUpdated);
     return this._http.delete(this._BASE_URL + `/delete/${eventId}`, {
       headers,
@@ -63,24 +62,32 @@ export class EventService extends ApiRessourceService<any> {
   };
 
   eventResize = (info: EventResizeDoneArg): void => {
+    const headers = this.getHeaders();
+    const eventId = Number(info.oldEvent._def.publicId);
     const modifiedEvent: calendarEvent = {
-      id: Number(info.oldEvent._def.publicId),
       tableId: info.oldEvent.extendedProps['tableId'],
       title: info.oldEvent._def.title,
       start: info.event.start,
       end: info.event.end,
       allDay: true,
     };
+    this._http.patch<calendarEvent>(this._BASE_URL + `/patch/${eventId}`, modifiedEvent, {
+      headers,
+    }).subscribe();
   };
 
   moveEvent = (info: EventDropArg): void => {
+    const headers = this.getHeaders();
+    const eventId = Number(info.oldEvent._def.publicId);
     const movedEvent: calendarEvent = {
-      id: Number(info.oldEvent._def.publicId),
       tableId: info.oldEvent.extendedProps['tableId'],
       title: info.oldEvent._def.title,
       start: info.event.start,
       end: info.event.end,
       allDay: true,
     };
+    this._http.patch<calendarEvent>(this._BASE_URL + `/patch/${eventId}`, movedEvent, {
+      headers,
+    }).subscribe();
   };
 }
