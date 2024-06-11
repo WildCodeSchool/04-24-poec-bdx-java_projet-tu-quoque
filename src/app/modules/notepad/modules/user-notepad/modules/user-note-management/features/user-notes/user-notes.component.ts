@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { NoteService } from '../../../../../../../shared/services/note/note.service';
-import { Note } from '../../../../../../../shared/models/types/users/note.type';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserInfos } from '../../../../../../../shared/models/types/users/user-infos';
-import { ConnectionService } from '../../../../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-user-notes',

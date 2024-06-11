@@ -10,6 +10,7 @@ import { environment } from '../../../../../environments/environment.development
   providedIn: 'root',
 })
 export class EventService extends ApiRessourceService<any> {
+  
   private eventList$ = new BehaviorSubject<calendarEvent[]>([]);
   private readonly _BASE_URL: string = environment.baseUrl + '/events';
 
