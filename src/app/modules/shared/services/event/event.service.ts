@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { DestroyRef, Injectable } from '@angular/core';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
 import { EventDropArg } from '@fullcalendar/core';
@@ -71,9 +71,13 @@ export class EventService extends ApiRessourceService<any> {
       end: info.event.end,
       allDay: true,
     };
-    this._http.patch<calendarEvent>(this._BASE_URL + `/patch/${eventId}`, modifiedEvent, {
-      headers,
-    }).subscribe();
+    this._http
+      .patch<calendarEvent>(
+        this._BASE_URL + `/patch/${eventId}`,
+        modifiedEvent,
+        { headers }
+      )
+      .subscribe();
   };
 
   moveEvent = (info: EventDropArg): void => {
@@ -86,8 +90,10 @@ export class EventService extends ApiRessourceService<any> {
       end: info.event.end,
       allDay: true,
     };
-    this._http.patch<calendarEvent>(this._BASE_URL + `/patch/${eventId}`, movedEvent, {
-      headers,
-    }).subscribe();
+    this._http
+      .patch<calendarEvent>(this._BASE_URL + `/patch/${eventId}`, movedEvent, {
+        headers,
+      })
+      .subscribe();
   };
 }
