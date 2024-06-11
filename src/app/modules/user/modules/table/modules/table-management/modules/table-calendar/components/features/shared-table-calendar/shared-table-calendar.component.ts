@@ -18,11 +18,12 @@ import { InfoPopupComponent } from '../../info-popup/info-popup.component';
   providers: [DialogService],
 })
 export class SharedTableCalendarComponent {
-  
+
   calendarOptions!: CalendarOptions;
   tableId!: number;
   ref: DynamicDialogRef | undefined;
   dialogService = inject(DialogService);
+  
   constructor(
     private _eventService: EventService,
     private _route: ActivatedRoute,
@@ -33,15 +34,12 @@ export class SharedTableCalendarComponent {
   ngOnInit() {
     this.tableId = Number(this._route.snapshot.paramMap.get('id'));
     this._eventService
-      .getEventListByTable$(this.tableId)
+      .getEventListByTableNew$(this.tableId)
       .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe();
-    this._eventService
-      .getEnventList$()
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe((events: calendarEvent[]) =>
-        this.initializeCalendarOptions(events)
-      );
+      .subscribe((events) => {
+        this.initializeCalendarOptions(events);
+        console.log(events);
+      });
   }
 
   initializeCalendarOptions(events: any): void {
@@ -95,7 +93,7 @@ export class SharedTableCalendarComponent {
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe((data: calendarEvent) => {
         if (data) {
-          this._eventService.addEvent(data);
+          this._eventService.addEventNew(data, this.tableId).subscribe();
         }
       });
   }
