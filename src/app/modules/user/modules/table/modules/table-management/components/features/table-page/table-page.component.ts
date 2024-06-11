@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,11 +9,13 @@ import { Drawing } from '../../../../../../../../shared/models/types/users/drawi
 import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
 import { GameTableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-table-page',
   templateUrl: './table-page.component.html',
   styleUrl: './table-page.component.scss',
+  providers: [MessageService]
 })
 export class TablePageComponent {
   id!: number;
@@ -26,6 +28,7 @@ export class TablePageComponent {
   drawingList$!: Observable<Drawing[]>;
   userAllowed!: UserInfos;
   foundTable!: GameTableFullDTO;
+  private _messagerieService = inject(MessageService);
 
   constructor(
     private _tableService: TableService,
@@ -37,7 +40,6 @@ export class TablePageComponent {
   ngOnInit(): void {
     this._route.data.subscribe(data => {
       this.userAllowed = data['user'] as UserInfos;
-      console.log(this.userAllowed)
       this.id = Number(this._route.snapshot.paramMap.get('id'));
       this._tableService.getUserTableByIdNew(this.id).subscribe(response => this.foundTable = response)
     });
@@ -46,6 +48,7 @@ export class TablePageComponent {
   selectTableToPlay(): void {
     this._connectionService.setTableConnectedNew(this.foundTable)
     this._connectionService.setCharacterConnectedNew(null)
+    this._messagerieService.add({ severity: 'info', summary: 'Connecté', detail: `Vous avez repris : ${this.foundTable.name}` });
   }
 
   toggleDrawingVisible(event: boolean): void {
