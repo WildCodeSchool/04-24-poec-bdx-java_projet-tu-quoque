@@ -10,19 +10,19 @@ const routes: Routes = [
     path: "",
     redirectTo: "my-notes",
     pathMatch: "full",
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
   },
   {
     path: "my-notes",
     component: UserNotesComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: "note/:id",
     component: ShowCommentPageComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   }
 ];
 

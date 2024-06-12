@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,11 +9,13 @@ import { Drawing } from '../../../../../../../../shared/models/types/users/drawi
 import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
 import { GameTableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-table-page',
   templateUrl: './table-page.component.html',
   styleUrl: './table-page.component.scss',
+  providers: [MessageService]
 })
 export class TablePageComponent {
   id!: number;

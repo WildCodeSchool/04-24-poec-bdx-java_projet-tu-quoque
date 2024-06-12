@@ -9,7 +9,7 @@ const routes: Routes = [
     path:"",
     redirectTo: "management",
     pathMatch: "full",
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
   },
   {
     path: "management",
@@ -20,7 +20,7 @@ const routes: Routes = [
     path: "creation/:role",
     component: AddNotePageComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   }
 ];
 

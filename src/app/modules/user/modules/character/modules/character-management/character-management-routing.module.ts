@@ -16,13 +16,13 @@ const routes: Routes = [
     path: "my-characters",
     component: UserCharactersComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: "my-characters/:id",
     component: CharacterPageComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   }
 ];
 

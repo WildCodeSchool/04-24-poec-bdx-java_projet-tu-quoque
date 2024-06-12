@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-info-popup',
@@ -7,13 +7,16 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
   styleUrl: './info-popup.component.scss',
 })
 export class InfoPopupComponent {
-  config = inject(DynamicDialogConfig);
-  title!: any;
-  eventStart!: any;
-  eventEnd!: any;
-  description!: any;
+  
+  private config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  public title!: any;
+  public eventStart!: any;
+  public eventEnd!: any;
+  public description!: any;
+  public event: any = this.config.data.info.event;
 
-  ngOnInit() {
+  ngOnInit(): void {
     const event = this.config.data.info.event;
     this.title = event.title;
     this.eventStart = event.start;
@@ -21,5 +24,9 @@ export class InfoPopupComponent {
     this.description = event.extendedProps['description']
       ? event.extendedProps['description']
       : 'Aucune information communiquée';
+  }
+
+  deleteEvent(): void {
+    this.ref.close(Number(this.event.id));
   }
 }
