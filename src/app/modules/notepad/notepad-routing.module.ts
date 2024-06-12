@@ -14,7 +14,6 @@ const routes: Routes = [
         redirectTo: 'user/notes',
         pathMatch: 'full',
         resolve: {user: userResolver},
-        canActivate: [authGuard]
       },
       {
         path: 'user/notes',
