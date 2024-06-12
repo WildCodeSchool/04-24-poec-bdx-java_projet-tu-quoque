@@ -13,7 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class InputFieldComponent extends AbstractSendToListenerComponent {
   @Input()
   field!: InputField;
-  playerInput: string = "";
+  playerInput!: string;
 
   override ngOnInit(): void {
     this.playerInput = this.field.preFillValue;

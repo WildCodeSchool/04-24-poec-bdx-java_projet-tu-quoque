@@ -9,14 +9,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './god-input.component.scss'
 })
 export class GodInputComponent extends AbstractListenerComponent {
-  field!: InputField;
+  fieldList!: InputField[];
 
   ngOnInit() {
     this.listener.sendInfos().pipe(
       takeUntilDestroyed(this.destroyRef),
     ).subscribe(sheet => {
-      console.log(sheet.god)
-      this.field = new InputField("god", "DIVINITE", "size-196", sheet.god);
+      this.fieldList = [new InputField("god", "DIVINITE", "size-196", sheet.god)];
     });
   }
 }

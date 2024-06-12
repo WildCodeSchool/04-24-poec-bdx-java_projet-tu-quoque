@@ -18,26 +18,19 @@ export class SkillsService {
     private dbService: DbService,
     private sheetService: CharacterSheetService,
   ) {
-    console.log("SKILLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
-
     this.init();
   }
 
   init(): void {
     this.skills$ = this.dbService.getSkills$().pipe(
       map((skillList: SkillFromDb[]) => this.transformSkillFromDbIntoSkillsDetails(skillList)),
-      tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
       switchMap((skills: SkillDetails[]) => this.sheetService.race$.pipe(
-        tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
         map((race: Race) => this.updateSkillsWithRace(skills, race)),
-        tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getClasseDetails$().pipe(
-        tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
         map((classDetails: CharacterClass) =>
           this.updateSkillsWithClass(skills, classDetails)
         ),
-        tap(hop => console.log("HOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")),
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getCaracteristics$().pipe(
         map((stats: CharacterStats) => this.updateSkillStatMod(skills, stats)),

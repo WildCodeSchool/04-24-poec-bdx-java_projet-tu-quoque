@@ -52,28 +52,22 @@ export class ListenPlayerActionService {
   sheetId$: Subject<number> = new Subject();
 
   constructor() {
-    console.log("tadam");
-
     this.sheetId$.pipe(
       takeUntilDestroyed(this.destroyRef),
-      //tap(bla => console.log(bla, 'BLLLLLLLLLLLLLLLLLLLLLLLLLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')),
       switchMap((id: number) => this.connectionSheetService.getSheetById$(id).pipe(
-        //tap(qqch => console.log(qqch, "BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOB")),
         map((sheet: SheetDTO) => this.transformDTOService.transform(sheet)),
-        // tap(qqch => console.log(qqch, "BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOB")),
         tap(sheet => this.sheetModifiedByPlayer = sheet),
         tap(sheet => this.sheetModifiedListener$.next(sheet)),
         tap(sheet => this.updateSheetStream())
       ))
-    ).subscribe(something => console.log(something));
+    ).subscribe();
   }
 
   setId(id$: Observable<number>) {
-    console.log("plop")
     id$.pipe(
       takeUntilDestroyed(this.destroyRef),
     ).subscribe(num => this.sheetId$.next(num))
-    this.sheetId$.subscribe(qqch => console.log(qqch));
+
 
   }
 

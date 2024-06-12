@@ -25,6 +25,7 @@ export class StatComponent {
   }
 
   ngOnInit(): void {
+
     this.statsField$ = this.transformStatListStreamIntoStatFieldStream();
     this.listener.receiveFieldFrom(this.statsField$);
   }

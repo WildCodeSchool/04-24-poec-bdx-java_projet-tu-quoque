@@ -16,6 +16,8 @@ export class SelectListComponent extends AbstractSendToListenerComponent {
   selectName!: string;
   @Input()
   selectLabel!: string;
+  @Input()
+  actual!: string;
 
   override updateField(value: string): Field {
     const field: BasicField = {

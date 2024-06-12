@@ -13,7 +13,7 @@ export class ClassesListComponent extends AbstractListComponent {
   classList$: Observable<CharacterClass[]> = this.dbService.getClasses$();
   selectName: string = "characterClass";
   selectLabel: string = "CLASSE";
-  actual!: string;
+  actual: string = "";
 
   ngOnInit() {
     this.listener.sendInfos().pipe(

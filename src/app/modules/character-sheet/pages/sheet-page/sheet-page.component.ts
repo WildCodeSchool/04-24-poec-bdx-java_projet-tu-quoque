@@ -20,7 +20,6 @@ export class SheetPageComponent {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
     this.listener.setId(this.id$.asObservable());
     this.id$.next(this.id);
   }
