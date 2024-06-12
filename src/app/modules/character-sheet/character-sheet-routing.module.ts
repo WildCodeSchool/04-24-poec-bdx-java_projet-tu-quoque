@@ -5,9 +5,9 @@ import { userResolver } from '../shared/resolver/user.resolver';
 import { authGuard } from '../shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: "", 
+  { path: "",   
   component: SheetPageComponent, 
-  resolve: {user: userResolver},
+  resolve: {user: userResolver}, 
   canActivate: [authGuard]
  },
 ];

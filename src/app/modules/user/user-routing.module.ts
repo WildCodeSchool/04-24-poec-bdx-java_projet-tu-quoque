@@ -16,7 +16,7 @@ const routes: Routes = [
     path: "home",
     component: UserHomepageComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: "characters", 
@@ -37,7 +37,7 @@ const routes: Routes = [
     path: "account-management",
     component: AccountManagementComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   }
 ];
 

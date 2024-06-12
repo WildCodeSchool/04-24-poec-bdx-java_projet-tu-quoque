@@ -13,31 +13,31 @@ const routes: Routes = [
     path: "",
     redirectTo: "my-tables",
     pathMatch: "full",
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
   },
   {
     path: "my-tables",
     component: UserTablesComponent, 
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard], 
   },
   {
     path: "my-tables/:id",
     component: TablePageComponent, 
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard], 
   },
   {
     path: "my-tables/:id/new-player",
     component: TableNewPlayerComponent, 
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard], 
   },
   {
     path: "my-tables/:id/accept-characters",
     component: CharactersToAcceptComponent, 
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard], 
   },
   {
     path: "my-tables/:id/shared-calendar",
@@ -48,7 +48,7 @@ const routes: Routes = [
     path: "my-tables/:id/new-drawing",
     component: TableNewDrawingComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   }
 ];
 

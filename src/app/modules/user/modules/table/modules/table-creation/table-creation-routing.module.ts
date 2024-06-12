@@ -15,7 +15,7 @@ const routes: Routes = [
     path: "new-table",
     component: NewTableComponent, 
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard], 
   }
 ];
 
