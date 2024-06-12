@@ -16,6 +16,10 @@ export class MetamorphosisComponent extends AbstractMetamorphosisComponent {
     else this._value = valuePassed;
   }
 
+  @Input() set tolog(value: string) {
+    console.log(value, "from Metamorphosis")
+  }
+
   get value(): string {
     return this._value
   }

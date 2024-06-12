@@ -3,7 +3,7 @@ import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { StatAbbr, StatAbbrKey } from '../../models/enums/stats-abbr.enum';
 import { StatModifier } from '../../models/types/stat-modifier.type';
 import { CharacterStats } from '../../models/classes/character-stats.class';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { ListenPlayerActionService } from './listen-player-action.service';
 import { Sheet } from '../../models/types/sheet.type';
 
@@ -15,9 +15,12 @@ export class StatisticsService {
   destroyRef: DestroyRef = inject(DestroyRef);
   listener = inject(ListenPlayerActionService);
 
-  ngOnInit() {
+  constructor() {
     this.listener.sendInfos().pipe(
-      map((sheet: Sheet) => sheet.stats)
+      map((sheet: Sheet) => sheet.stats),
+      tap(qqch => {
+        console.log(qqch, "StatisticsServiceConstructor")
+      }),
     ).subscribe(stats => {
       this.stats = stats;
     });

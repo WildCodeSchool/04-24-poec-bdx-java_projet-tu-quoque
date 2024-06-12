@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { StatisticDetails } from '../../../../models/classes/statistic-details.class';
 import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
-import { distinctUntilChanged, map, Observable } from 'rxjs';
+import { distinctUntilChanged, map, Observable, tap } from 'rxjs';
 import { CharacterSheetService } from '../../../../shared/services/character-sheet.service';
 import { StatModifier } from '../../../../models/types/stat-modifier.type';
 import { StatisticsService } from '../../../../shared/services/statistics.service';
@@ -25,9 +25,9 @@ export class StatComponent {
   }
 
   ngOnInit(): void {
-
     this.statsField$ = this.transformStatListStreamIntoStatFieldStream();
     this.listener.receiveFieldFrom(this.statsField$);
+    this.stats$.subscribe(qqch => console.log(qqch));
   }
 
   adjustStatsFunctionRace$(): Observable<CharacterStats> {
@@ -41,6 +41,7 @@ export class StatComponent {
 
   transformStatListStreamIntoStatFieldStream(): Observable<StatListField> {
     return this.stats$.pipe(
+      tap(qqch => console.log(qqch, "FROM transforStatListIntoStatFieldStream")),
       map((statList: CharacterStats) =>
         this.transformStatisticDetailsListIntoStatListField(statList),
       ),
