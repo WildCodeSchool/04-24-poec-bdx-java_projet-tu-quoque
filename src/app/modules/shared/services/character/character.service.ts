@@ -110,6 +110,5 @@ export class CharacterService extends ApiRessourceService<Character> {
   postCharacter(userId: number, character: CharacterFullDTO): Observable<any>{
     const headers = this.getHeaders(); 
     return this._http.post(this._BASE_URL_NEW + `/add/${userId}`, character, { headers })
-
   }
 }

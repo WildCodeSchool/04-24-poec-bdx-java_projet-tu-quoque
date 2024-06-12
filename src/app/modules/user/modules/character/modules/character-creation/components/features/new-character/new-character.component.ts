@@ -4,7 +4,7 @@ import { SharedModule } from '../../../../../../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextComponent } from '../../../../../../../../shared/components/custom-form/form-inputs/input-text/input-text.component';
-import { Observable, Subscription, filter, firstValueFrom, map } from 'rxjs';
+import { Observable, Subscription, filter, finalize, firstValueFrom, map } from 'rxjs';
 import { TextField } from '../../../../../../../../shared/models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../../../../../../../shared/services/form-field/get-fields.service';
 import { ParentFormComponent } from '../../../../../../../../shared/components/parent-form/parent-form.component';
@@ -62,7 +62,12 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
     );
 
     this._uploadSubscription = this._uploadToFirebaseService.downloadURL$
-      .pipe(filter(url => !!url))
+    .pipe(
+      filter(url => !!url),
+      finalize(() => {
+        console.log('Upload process finished');
+      })
+    )
       .subscribe(async (url) => {
         const character: CharacterFullDTO = {
           id:0,
@@ -74,13 +79,14 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
           characterNoteList: []
         };
         const userId = userData.id;
-        try {
-          const response = await firstValueFrom(this._characterService.postCharacter(userId, character));
-          console.log('character created:', response);
-          this._router.navigate([`/user/characters/management/my-characters/${response.id}`]);
-        } catch (err) {
-          console.error('Error creating character:', err);
-        }
+        firstValueFrom(this._characterService.postCharacter(userId, character))
+          .then(response => {
+            console.log('character created:', response);
+            this._router.navigate([`/user/characters/management/my-characters/${response.id}`]);
+          })
+          .catch(err => {
+            console.error('Error creating character:', err);
+          });
       });
   }
 
