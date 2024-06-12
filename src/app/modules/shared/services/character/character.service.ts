@@ -38,30 +38,7 @@ export class CharacterService extends ApiRessourceService<Character> {
     const headers = this.getHeaders()
     return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, { headers })
   }
-
-  getUserCharacterList$(): Observable<Character[]> {
-    return this.getAll$().pipe(
-      switchMap((CharacterList: Character[]) =>
-        this._userConnected$.pipe(
-          map((user: UserBasicInfos) =>
-            CharacterList.filter(
-              (character: Character) => character.userId === user.id
-            )
-          )
-        )
-      )
-    );
-  }
-
-  getUserCharacterWithoutTableList$(): Observable<Character[]> {
-    return this.getUserCharacterList$().pipe(
-      map((response: Character[]) =>
-        response.filter((character: Character) => character.tableId === null)
-      )
-    );
-  }
-  
-  
+   
   getCharacterWithoutTableListNew$(id: number): Observable<CharacterDTO[]> {
     return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-available/userId=${id}`)
   }
@@ -78,6 +55,12 @@ export class CharacterService extends ApiRessourceService<Character> {
     )
   )
   }
+
+  getCharacterAcceptedList$(tableId: number): Observable<CharacterDTO[]> {
+    const headers = this.getHeaders()
+    return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-accepted/tableId=${tableId}`)
+  }
+
  
 //  Porposition :
   // getUserCharacterWithoutTableList$(id: number): Observable<CharacterFullDTO[]> {

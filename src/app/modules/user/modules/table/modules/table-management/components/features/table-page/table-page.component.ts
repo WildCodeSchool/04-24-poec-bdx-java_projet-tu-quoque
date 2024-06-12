@@ -10,6 +10,8 @@ import { UserInfos } from '../../../../../../../../shared/models/types/users/use
 import { GameTableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
 import { MessageService } from 'primeng/api';
+import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
+import { CharacterDTO } from '../../../../../../../../shared/models/types/users/character-dto';
 
 @Component({
   selector: 'app-table-page',
@@ -22,8 +24,9 @@ export class TablePageComponent {
   drawingToShow!: string;
   isDrawingVisible: boolean = false;
   private _messageService = inject(MessageService);
+  private _characterService = inject(CharacterService);
   table$!: Observable<Table>;
-  participantList$!: Observable<Character[]>;
+  participantList!: CharacterDTO[];
   chatList!: Chat[];
   drawingList$!: Observable<Drawing[]>;
   userAllowed!: UserInfos;
@@ -39,11 +42,12 @@ export class TablePageComponent {
   ngOnInit(): void {
     this._route.data.subscribe((data) => {
       this.userAllowed = data['user'] as UserInfos;
-      console.log(this.userAllowed);
       this.id = Number(this._route.snapshot.paramMap.get('id'));
       this._tableService
-        .getUserTableByIdNew(this.id)
+        .getUserTableByIdNew$(this.id)
+        // TakeuntilDestroy ---------------------------------------
         .subscribe((response) => (this.foundTable = response));
+      this._characterService.getCharacterAcceptedList$(this.id).subscribe(characterList => this.participantList = characterList)
     });
   }
 
