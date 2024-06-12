@@ -11,6 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { WeaponDetails } from '../../models/types/weapons/weapon.type';
 import { StatisticsDTO } from '../../models/types/dto/statistics-dto.type';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
+import { CharacterWeaponsService } from './market/character-weapons.service';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,8 @@ export class TransformDtoToSheetService {
     }
 
     sheet.stats = this.transformStatistics(sheetDTO.stats);
-    //TODO : stats, purse
+
+    //TODO : weapons, purse
 
     return sheet;
   }
