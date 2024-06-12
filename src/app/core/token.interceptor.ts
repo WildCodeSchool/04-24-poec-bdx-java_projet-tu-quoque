@@ -40,7 +40,6 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       tap((incomingRequest) => {
-        //console.log(incomingRequest);
         if (incomingRequest instanceof HttpResponse) {
           this.httpRequestService.setHttpSuccessSubject$(incomingRequest);
         }
@@ -48,7 +47,6 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         console.log(err);
         this.httpRequestService.setHttpErrorSubject$(err);
-        console.log('Une erreur est survenue');
 
         return of();
       })

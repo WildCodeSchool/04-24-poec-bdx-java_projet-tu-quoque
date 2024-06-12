@@ -19,11 +19,20 @@
 
     <p-accordionTab header="Télécharger un avatar">
       <div class="add-image-area">
-        <app-custom-add-button></app-custom-add-button>
+        <app-file-upload
+          labelFor="imgUrl"
+          labelContent="Choisir une image :"
+          name="imgUrl"
+          id="imgUrl"
+        ></app-file-upload>
       </div>
     </p-accordionTab>
   </p-accordion>
   <footer class="page-footer">
-    <app-custom-button [style]="'gold'" [name]="'Suivant'"></app-custom-button>
+    <app-custom-button
+      type="submit"
+      [style]="'gold'"
+      [name]="'Suivant'"
+    ></app-custom-button>
   </footer>
 </form>
