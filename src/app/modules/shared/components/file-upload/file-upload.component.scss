@@ -1,52 +1,25 @@
-// .form-control {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   gap: 0rem;
-// }
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 2rem 0;
 
-// label {
-//   font-family: var(--font-family-primary);
-//   margin-bottom: 0.4rem;
-//   color: var(--black-color);
-// }
+  .add-button-img {
+    display: inline-block;
+    width: 50px;
 
-// :host ::ng-deep p-fileupload .p-fileupload {
-//   width: 100%;
+    &.list-empty {
+      width: 200px;
+    }
+  }
+}
 
-//   .p-icon-wrapper {
-//     display: none;
-//   }
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-//   .p-button.p-fileupload-choose {
-//     width: 100%;
-//     color: var(--black-color);
-//     background: var(--gray-500);
-//     border: 1px solid var(--gray-700);
-//   }
-// }
-
-// .file-upload {
-//   position: relative;
-//   display: block;
-//   cursor: pointer;
-
-//   input[type="file"] {
-//     display: none;
-//   }
-
-//   .upload-label {
-//     display: block;
-//     padding: 10px 20px;
-//     color: var(--black-color);
-//     background: var(--gray-500);
-//     border: 1px solid var(--gray-700);
-//     border-radius: 4px;
-//     cursor: pointer;
-//     transition: background-color 0.3s ease;
-
-//     .pi-upload {
-//       margin-right: 8px;
-//     }
-//   }
-// }
+input {
+  display: none;
+}
