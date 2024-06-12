@@ -1,11 +1,13 @@
-import { Injectable, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes, mapToCanActivate } from '@angular/router';
 import { VisitorHomepageModule } from './modules/visitor-homepage/visitor-homepage.module';
+import { userResolver } from './modules/shared/resolver/user.resolver';
+
 
 const routes: Routes = [
   {
     path: '', 
-    redirectTo: '/user/home', 
+    redirectTo: '/user', 
     pathMatch: 'full'
   },
 	{ 
@@ -25,6 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'user', 
+    resolve: {user: userResolver},
     loadChildren: () => import('./modules/user/user.module')
     .then(m  => m.UserModule),
   },

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddNotePageComponent } from '../../../shared/components/add-note-page/add-note-page.component';
-import { userResolver } from '../../../shared/resolver/user.resolver';
 import { authGuard } from '../../../shared/guards/auth.guard';
+import { userResolver } from '../../../shared/resolver/user.resolver';
 
 const routes: Routes = [
   {

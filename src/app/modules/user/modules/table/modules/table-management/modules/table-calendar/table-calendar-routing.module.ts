@@ -9,7 +9,7 @@ const routes: Routes = [
     path: "",
     component: SharedTableCalendarComponent,
      resolve: {user: userResolver},
-     canActivate: [authGuard]
+     canActivate: [authGuard],
   }
 ];
 

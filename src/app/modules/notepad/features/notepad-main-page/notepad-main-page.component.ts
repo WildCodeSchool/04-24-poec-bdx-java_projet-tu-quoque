@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ConnectionService } from '../../../shared/services/connection/connection.service';
 import { Observable } from 'rxjs';
-import { Character } from '../../../shared/models/types/users/character.type';
-import { Table } from '../../../shared/models/types/users/table.type';
 import { Router } from '@angular/router';
 import { GameTableFullDTO } from '../../../shared/models/types/users/table-full-dto';
 import { CharacterFullDTO } from '../../../shared/models/types/users/character-full-dto';
@@ -19,7 +17,6 @@ export class NotepadMainPageComponent {
   characterConnected$: Observable<CharacterFullDTO> =
     this._connectionService.getCharacterConnectedNew$() as Observable<CharacterFullDTO>;
   isUserSelected: Boolean = true;
-
   private _urlBeforeNotepad!: string;
 
   constructor(

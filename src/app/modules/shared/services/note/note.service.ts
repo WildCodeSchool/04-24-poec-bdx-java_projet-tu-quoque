@@ -4,12 +4,12 @@ import { Note } from '../../models/types/users/note.type';
 import { ConnectionService } from '../connection/connection.service';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { UserInfos } from '../../models/types/users/user-infos';
-import { environment } from '../../../../../environments/environment.development';
 import { HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from '../connection/local-storage.service';
 import { GameTableFullDTO } from '../../models/types/users/table-full-dto';
 import { NoteDTO } from '../../models/types/users/note-dto';
 import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
+import { environment } from '../../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -62,23 +62,18 @@ export class NoteService extends ApiRessourceService<Note> {
     });
   }
 
-  postCharacterNote(formValue: any, characterId: number): Observable<any> {
-    const headers = this.getHeaders()
-    console.log("post by character")
-    return this._http.post(
+  postCharacterNote(formValue: any, characterId: number): Observable<NoteDTO> {
+    const headers = this.getHeaders();
+    return this._http.post<NoteDTO>(
       this._BASE_URL + `/add/character/${characterId}`,
       formValue,
       { headers }
     );
   }
 
-  postTableNote(formValue: any, tableId: number): Observable<any> {
-    const headers = this.getHeaders()
-    console.log(headers)
-    console.log("post by table")
-    console.log(this._BASE_URL + `/add/table/${tableId}`)
-    console.log(formValue)
-    return this._http.post(
+  postTableNote(formValue: any, tableId: number): Observable<NoteDTO> {
+    const headers = this.getHeaders();
+    return this._http.post<NoteDTO>(
       this._BASE_URL + `/add/table/${tableId}`,
       formValue,
       { headers }

@@ -18,15 +18,15 @@ import { InputTextareaComponent } from '../custom-form/form-inputs/input-textare
 import { TextAreaField } from '../../models/types/fields/textarea-field.type';
 import { ParentFormComponent } from '../parent-form/parent-form.component';
 import { RegexPatterns } from '../../models/class/regex-patterns';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserInfos } from '../../models/types/users/user-infos';
-import { LocalStorageService } from '../../services/connection/local-storage.service';
 import { environment } from '../../../../../environments/environment.development';
 import { NoteService } from '../../services/note/note.service';
 import { GameTableFullDTO } from '../../models/types/users/table-full-dto';
 import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
 import { ConnectionService } from '../../services/connection/connection.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from '../../services/connection/local-storage.service';
 
 @Component({
   selector: 'app-add-note-page',
@@ -80,7 +80,6 @@ export class AddNotePageComponent
           (fields) => fields.find((field) => field.name === 'name') as TextField
         )
       );
-
     this.textField$ = this._fieldsService
       .getFields$()
       .pipe(
@@ -89,38 +88,52 @@ export class AddNotePageComponent
             fields.find((field) => field.name === 'text') as TextAreaField
         )
       );
-
     const userData = this._route.snapshot.data['user'];
     this.user = userData;
     this.role = this._route.snapshot.paramMap.get('role') as string;
 
-    this._connectionService.getTableConnectedNew$()
-    .pipe(takeUntilDestroyed(this._destroyRef))
-    .subscribe((response: GameTableFullDTO | null) => this.tableConnected = response);
-    this._connectionService.getCharacterConnectedNew$()
-    .pipe(takeUntilDestroyed(this._destroyRef))
-    .subscribe((response: CharacterFullDTO | null) => this.characterConnected = response);
+    this._connectionService
+      .getTableConnectedNew$()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe(
+        (response: GameTableFullDTO | null) => (this.tableConnected = response)
+      );
+    this._connectionService
+      .getCharacterConnectedNew$()
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe(
+        (response: CharacterFullDTO | null) =>
+          (this.characterConnected = response)
+      );
   }
 
   protected onSubmit() {
     if (this.form.valid) {
       if (this.role === 'user') {
-        this._noteService.postUserNote(this.form.value, this.user.id)
-        .pipe(takeUntilDestroyed(this._destroyRef))
-        .subscribe();
+        this._noteService
+          .postUserNote(this.form.value, this.user.id)
+          .pipe(takeUntilDestroyed(this._destroyRef))
+          .subscribe();
         this._router.navigateByUrl(`notepad/user/notes`);
-      } else if(this.tableConnected) {
-        this._noteService.postTableNote(this.form.value, this.tableConnected.id)
-        .pipe(takeUntilDestroyed(this._destroyRef))
-        .subscribe()
+      } else if (this.tableConnected) {
+        this._noteService
+          .postTableNote(this.form.value, this.tableConnected.id)
+          .pipe(takeUntilDestroyed(this._destroyRef))
+          .subscribe();
         this._router.navigateByUrl(`notepad/game/notes`);
-      } else if(this.characterConnected) {
+      } else if (this.characterConnected) {
         this._router.navigateByUrl(`notepad/game/notes`);
-        this._noteService.postCharacterNote(this.form.value, this.characterConnected.id)
-        .pipe(takeUntilDestroyed(this._destroyRef))
-        .subscribe();
+        this._noteService
+          .postCharacterNote(this.form.value, this.characterConnected.id)
+          .pipe(takeUntilDestroyed(this._destroyRef))
+          .subscribe();
       }
     } else {
+      console.log(
+        'Form is not valid:',
+        this.form.get('name')?.errors,
+        this.form.get('text')
+      );
       console.log(
         'Form is not valid:',
         this.form.get('name')?.errors,
@@ -129,7 +142,7 @@ export class AddNotePageComponent
     }
   }
 
-  protected buildForm() {
+  protected buildForm()  {
     this.form = this._fb.group({
       name: [
         '',

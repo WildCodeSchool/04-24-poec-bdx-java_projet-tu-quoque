@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { PossibleDice, PossibleDiceKey } from '../../models/enums/possible-dice.enum';
 import { ParseDiceService } from '../parse-dice/parse-dice.service';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { InfoPopupComponent } from '../../../user/modules/table/modules/table-management/modules/table-calendar/components/info-popup/info-popup.component';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +33,13 @@ export class DiceService {
   static roll(dice: string): number {
     const dices = ParseDiceService.parseDiceDeclaration(dice);
     return this.throwDices(dices.nbDices, dices.diceType, dices.modifier);
+  }
+
+  public getDicesThrowResult(dicesArray: any): number {
+    let totalPoints: number = 0;
+    for(let dice of dicesArray) {
+      totalPoints += dice.value
+    } 
+    return totalPoints
   }
 }
