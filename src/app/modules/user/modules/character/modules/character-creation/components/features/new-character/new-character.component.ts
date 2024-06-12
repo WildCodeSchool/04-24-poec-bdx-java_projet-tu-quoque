@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SharedModule } from '../../../../../../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,7 +28,6 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
 
   characterNameField$!: Observable<TextField>;
   characterNameControl!: FormControl;
-  // uploadedFileTypes: string[] = [];
   selectedFile: File | null = null;
   private _subscription!: Subscription;
   private _uploadSubscription!: Subscription;
@@ -42,6 +41,7 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
     private _uploadToFirebaseService: UploadToFirebaseService, 
     private _characterService: CharacterService,
     private _route: ActivatedRoute,
+    private _router: Router
   ) {
     super();
     this.buildForm();
@@ -77,6 +77,7 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
         try {
           const response = await firstValueFrom(this._characterService.postCharacter(userId, character));
           console.log('character created:', response);
+          this._router.navigate([`/user/characters/management/my-characters/${response.id}`]);
         } catch (err) {
           console.error('Error creating character:', err);
         }
@@ -91,13 +92,6 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
       this._uploadSubscription.unsubscribe();
     }
   }
-
-  // onFileSelected(event: Event) {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files && input.files.length > 0) {
-  //     this.selectedFile = input.files[0];
-  //   }
-  // }
 
   protected onSubmit() {
     if (this.form.valid) {
