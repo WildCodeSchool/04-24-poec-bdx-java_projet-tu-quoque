@@ -27,7 +27,6 @@ export class StatComponent {
   ngOnInit(): void {
     this.statsField$ = this.transformStatListStreamIntoStatFieldStream();
     this.listener.receiveFieldFrom(this.statsField$);
-    this.stats$.subscribe(qqch => console.log(qqch));
   }
 
   adjustStatsFunctionRace$(): Observable<CharacterStats> {
@@ -41,7 +40,6 @@ export class StatComponent {
 
   transformStatListStreamIntoStatFieldStream(): Observable<StatListField> {
     return this.stats$.pipe(
-      tap(qqch => console.log(qqch, "FROM transforStatListIntoStatFieldStream")),
       map((statList: CharacterStats) =>
         this.transformStatisticDetailsListIntoStatListField(statList),
       ),

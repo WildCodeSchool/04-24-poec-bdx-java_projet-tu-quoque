@@ -101,14 +101,12 @@ export class TransformDtoToSheetService {
 
   transformStatistics(statisticsDTO: StatisticsDTO) {
     const stats = new CharacterStats();
-    console.log(statisticsDTO, "from transform service");
     if (!statisticsDTO.FOR.originalValue) return stats;
     for (let stat of stats) {
       stats[stat.abbr].originalValue = statisticsDTO[stat.abbr].originalValue;
       stats[stat.abbr].tempValue = statisticsDTO[stat.abbr].tempModifier;
     }
     stats.resetRaceModifier()
-    console.log(stats, "final stats from transform service");
     return stats;
   }
 

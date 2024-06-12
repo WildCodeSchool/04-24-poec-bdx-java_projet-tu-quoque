@@ -18,9 +18,6 @@ export class StatisticsService {
   constructor() {
     this.listener.sendInfos().pipe(
       map((sheet: Sheet) => sheet.stats),
-      tap(qqch => {
-        console.log(qqch, "StatisticsServiceConstructor")
-      }),
     ).subscribe(stats => {
       this.stats = stats;
     });
