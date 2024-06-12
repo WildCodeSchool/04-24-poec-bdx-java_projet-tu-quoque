@@ -5,6 +5,7 @@ import { PageNavigation } from '../../../../shared/models/types/navigation/page-
 import { TableInvitation } from '../../../../shared/models/types/users/table-invitation.type';
 import { UserInfos } from '../../../../shared/models/types/users/user-infos';
 import { ActivatedRoute } from '@angular/router';
+import { ConnectionService } from '../../../../shared/services/connection/connection.service';
 
 @Component({
   selector: 'app-user-homepage',
@@ -12,25 +13,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './user-homepage.component.scss',
 })
 export class UserHomepageComponent {
-  user: UserInfos | null = null;
 
   buttonOptionList = [
     { name: 'Personnages', url: '../characters' },
     { name: 'Tables', url: '../tables' },
     { name: 'Invitations', url: '../table-invitation' },
   ];
-  invitationList$: Observable<TableInvitation[]> =
-    this._tableInvitation.getUserTableInvitationList$();
 
+  userConnected$: Observable<UserInfos | null> = this._connectionService.getUserConnected$()
+  
   constructor(
     private _tableInvitation: TableInvitationService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _connectionService: ConnectionService
   ) {}
-
-  ngOnInit(): void {
-    const userData = this._route.snapshot.data['user'];
-    this.user = userData; 
-    console.log(this.user)
-  }
-
 }
