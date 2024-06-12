@@ -1,6 +1,6 @@
 [
     {
-        "name": "elfe",
+        "name": "Elfe",
         "statsModifiers": [
             {
                 "stat": "DEX",
@@ -67,7 +67,7 @@
         "id": "5bf3"
     },
     {
-        "name": "demi-orque",
+        "name": "Demi-orque",
         "statsModifiers": [
             {
                 "stat": "FOR",
