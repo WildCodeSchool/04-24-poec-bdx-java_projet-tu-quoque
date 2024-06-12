@@ -15,16 +15,16 @@ import { MessageService } from 'primeng/api';
   selector: 'app-table-page',
   templateUrl: './table-page.component.html',
   styleUrl: './table-page.component.scss',
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class TablePageComponent {
   id!: number;
   drawingToShow!: string;
   isDrawingVisible: boolean = false;
-
+  private _messageService = inject(MessageService);
   table$!: Observable<Table>;
   participantList$!: Observable<Character[]>;
-  chatList!:Chat[];
+  chatList!: Chat[];
   drawingList$!: Observable<Drawing[]>;
   userAllowed!: UserInfos;
   foundTable!: GameTableFullDTO;
@@ -37,17 +37,24 @@ export class TablePageComponent {
   ) {}
 
   ngOnInit(): void {
-    this._route.data.subscribe(data => {
+    this._route.data.subscribe((data) => {
       this.userAllowed = data['user'] as UserInfos;
-      console.log(this.userAllowed)
+      console.log(this.userAllowed);
       this.id = Number(this._route.snapshot.paramMap.get('id'));
-      this._tableService.getUserTableByIdNew(this.id).subscribe(response => this.foundTable = response)
+      this._tableService
+        .getUserTableByIdNew(this.id)
+        .subscribe((response) => (this.foundTable = response));
     });
   }
 
   selectTableToPlay(): void {
-    this._connectionService.setTableConnectedNew(this.foundTable)
-    this._connectionService.setCharacterConnectedNew(null)
+    this._connectionService.setTableConnectedNew(this.foundTable);
+    this._connectionService.setCharacterConnectedNew(null);
+    this._messageService.add({
+      severity: 'info',
+      summary: 'Connecté',
+      detail: `Vous avez maintenant repris : ${this.foundTable.name}`,
+    });
   }
 
   toggleDrawingVisible(event: boolean): void {

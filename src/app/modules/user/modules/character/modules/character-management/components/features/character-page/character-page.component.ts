@@ -11,6 +11,7 @@ import { CharacterFullDTO } from '../../../../../../../../shared/models/types/us
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
 import { MessageService } from 'primeng/api';
 
+
 @Component({
   selector: 'app-character-page',
   templateUrl: './character-page.component.html',
