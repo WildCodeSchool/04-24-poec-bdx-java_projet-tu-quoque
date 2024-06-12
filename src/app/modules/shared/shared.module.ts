@@ -60,9 +60,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     FullCalendarModule,
     AccordionModule,
     DynamicDialogModule,
-    FormsModule,
     ReactiveFormsModule,
-    FormsModule,
     FileUploadComponent,
     FormsModule,
     ToastModule
