@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'primeng/fileupload'; // import primeNG
 import { AutoCompleteModule } from 'primeng/autocomplete'; // import primeNG
 import { AccordionModule } from 'primeng/accordion'; // import primeNG
+import { ToastModule } from 'primeng/toast';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CustomAddButtonComponent } from './components/custom-add-button/custom-add-button.component';
 import { ShowCommentPageComponent } from './components/show-comment-page/show-comment-page.component';
@@ -40,7 +41,8 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     FullCalendarModule,
     AccordionModule,
     DynamicDialogModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ],
   exports: [
     CustomButtonComponent,
@@ -58,7 +60,8 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     DynamicDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ],
 })
 export class SharedModule { }

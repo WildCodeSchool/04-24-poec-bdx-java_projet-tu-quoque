@@ -9,13 +9,13 @@ const routes: Routes = [
     path: "",
     redirectTo: "invitation-management",
     pathMatch: "full",
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
   },
   {
     path: "invitation-management",
     component: TableInvitationComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   }
 ];
 

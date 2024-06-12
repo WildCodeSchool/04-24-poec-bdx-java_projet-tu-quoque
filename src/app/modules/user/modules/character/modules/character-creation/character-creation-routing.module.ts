@@ -9,13 +9,13 @@ const routes: Routes = [
     path: "",
     redirectTo: "new-character",
     pathMatch: "full",
-    resolve: {user: userResolver}
+    resolve: {user: userResolver},
   },
   {
     path: "new-character",
     component: NewCharacterComponent,
     resolve: {user: userResolver},
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   }
 ];
 
