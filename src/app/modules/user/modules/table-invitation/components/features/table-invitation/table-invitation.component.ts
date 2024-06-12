@@ -7,6 +7,8 @@ import { TableInvitation } from '../../../../../../shared/models/types/users/tab
 import { UserInfos } from '../../../../../../shared/models/types/users/user-infos';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterDTO } from '../../../../../../shared/models/types/users/character-dto';
+import { ConnectionService } from '../../../../../../shared/services/connection/connection.service';
+import { identifierName } from '@angular/compiler';
 
 @Component({
   selector: 'app-table-invitation',
@@ -15,14 +17,11 @@ import { CharacterDTO } from '../../../../../../shared/models/types/users/charac
 })
 export class TableInvitationComponent {
   
-  // tableInvitationList$: Observable<TableInvitation[]> =
-  //   this._tableInvitationService.getUserTableInvitationList$();
-  // availableCharacterList$: Observable<Character[]> =
-  //   this._characterService.getUserCharacterWithoutTableList$();
-  tableInvitationList$!: Observable<TableInvitation[]>;
   availableCharacterList$!: Observable<Character[]>;
-  userAllowed!: UserInfos;
+  userAllowed!: UserInfos; // -------------> En cours de suppresion
   availableCharacterList!: CharacterDTO[];
+  userConnected$: Observable<UserInfos> = this._connectionService.getUserConnected$() as Observable<UserInfos>;
+  availableCharacterListNew$: Observable<CharacterDTO[]> = this._characterService.getUserCharacterAvailableList$();
 
   private tableSelected!: number;
   private characterSelected!: number;
@@ -30,7 +29,8 @@ export class TableInvitationComponent {
   constructor(
     private _tableInvitationService: TableInvitationService,
     private _characterService: CharacterService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
@@ -38,10 +38,11 @@ export class TableInvitationComponent {
       this.userAllowed = data['user'] as UserInfos;
       this.loadData();
     });
+    this._connectionService.getUserConnected$().subscribe(res => console.log(res))
+    this._characterService.getUserCharacterAvailableList$().subscribe(res => console.log(res))
   }
 
   private loadData(): void {
-    this.tableInvitationList$ = this._tableInvitationService.getUserTableInvitationList$();
     this.availableCharacterList$ = this._characterService.getUserCharacterWithoutTableList$();
   }
 

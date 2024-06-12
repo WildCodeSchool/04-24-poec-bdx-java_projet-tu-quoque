@@ -1,3 +1,4 @@
+<ng-container *ngIf="userConnected$ | async as userConected">
 <app-return-button></app-return-button>
 <app-page-header
   [title]="'Mes invitations'"
@@ -5,7 +6,7 @@
 ></app-page-header>
 <p-accordion [activeIndex]="">
   <p-accordionTab header="Tables">
-    <ng-container *ngIf="userAllowed.gameTableInvitationList.length; else noTaleInvitation">
+    <ng-container *ngIf="userAllowed.gameTableInvitationList.length; else noTableInvitation">
       <app-available-character-list
       [toSelectCharacter]="false"
       [elementList]="userAllowed.gameTableInvitationList"
@@ -13,12 +14,12 @@
       (tableIdSelected)="getTableSelected($event)"
     ></app-available-character-list>
   </ng-container>
-  <ng-template #noTaleInvitation>
+  <ng-template #noTableInvitation>
     <p class="no-element-text">Actuellement aucune invitation</p>
   </ng-template>
     </p-accordionTab>
     <p-accordionTab header="Personnages sans table attribuée">
-      <ng-container *ngIf="availableCharacterList; else noCharacterAvailable">
+      <ng-container *ngIf="availableCharacterListNew$ as availableCharacterList; else noCharacterAvailable">
         <app-available-character-list
           [elementList]="availableCharacterList"
           [elementIcon]="'assets/images/character-icon.svg'"
@@ -36,4 +37,5 @@
       [name]="'Sélectionner'"
       (click)="attributeCharacterToTable()"
     ></app-custom-button>
-  </footer>           
+  </footer>
+  </ng-container>           

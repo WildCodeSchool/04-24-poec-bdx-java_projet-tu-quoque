@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, map, of, switchMap } from 'rxjs';
 import { ConnectionService } from '../connection/connection.service';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { environment } from '../../../../../environments/environment.development';
@@ -59,6 +59,24 @@ export class CharacterService extends ApiRessourceService<Character> {
         response.filter((character: Character) => character.tableId === null)
       )
     );
+  }
+  
+  
+  getCharacterWithoutTableListNew$(id: number): Observable<CharacterDTO[]> {
+    return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-available/userId=${id}`)
+  }
+
+  getUserCharacterAvailableList$(): Observable<CharacterDTO[]> {
+    return this._connectionService.getUserConnected$().pipe(
+      switchMap((user: UserInfos | null) => {
+        if(user == null) {
+          return of([])
+        } else {
+          return this.getCharacterWithoutTableListNew$(user.id);
+        }
+      }
+    )
+  )
   }
  
 //  Porposition :
