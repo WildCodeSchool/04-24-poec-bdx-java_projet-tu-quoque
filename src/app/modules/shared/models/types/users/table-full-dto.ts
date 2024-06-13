@@ -7,7 +7,7 @@ import { NoteDTO } from "./note-dto";
 export type GameTableFullDTO = ElementProperties & {
     id: number,
     name: string,
-    Avatar: string,
+    avatar: string,
     userId: number, 
     drawingList: DrawingDTO[],
     eventList: EventDTO[],
