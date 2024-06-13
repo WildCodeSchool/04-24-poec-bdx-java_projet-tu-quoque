@@ -28,12 +28,6 @@ export class CharacterService extends ApiRessourceService<Character> {
     return this._BASE_URL;
   }
 
-  // A voir : 
-  // getUserCharacterListNew$(id: number): Observable<CharacterFullDTO[]> {
-  //   const headers = this.getHeaders();
-  //   return this._http.get<CharacterFullDTO[]>(`${this._BASE_URL_NEW}/get/userId=${id}`, { headers });
-  // }
-
   getUserCharacterById$(id: number): Observable<CharacterFullDTO>{
     const headers = this.getHeaders()
     return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, { headers })
@@ -60,16 +54,6 @@ export class CharacterService extends ApiRessourceService<Character> {
     const headers = this.getHeaders()
     return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-accepted/tableId=${tableId}`)
   }
-
- 
-//  Porposition :
-  // getUserCharacterWithoutTableList$(id: number): Observable<CharacterFullDTO[]> {
-  //   return this.getUserCharacterListNew$(id).pipe(
-  //     map((response: CharacterFullDTO[]) =>
-  //       response.filter((character: CharacterFullDTO) => character.gameTable === null)
-  //     )
-  //   );
-  // } 
   
   getCharactersByTable$(tableId: number): Observable<Character[]> {
     return this.getAll$().pipe(
@@ -81,12 +65,6 @@ export class CharacterService extends ApiRessourceService<Character> {
     );
   }
 
-  // Proposition : 
-  // getCharactersByTableNew$(tableId: number): Observable<CharacterFullDTO[]> {
-  //   const headers = this.getHeaders();
-  //   return this._http.get<CharacterFullDTO[]>(`${this._BASE_URL}/table/${tableId}`, { headers });
-  // }
-
   getCharacterToAcceptByTable$(id: number): Observable<Character[]> {
     return this.getCharactersByTable$(id).pipe(
       map((characterList: Character[]) =>
@@ -96,17 +74,6 @@ export class CharacterService extends ApiRessourceService<Character> {
       )
     );
   }
-
-  // Proposition : 
-  // getCharacterToAcceptByTable$(tableId: number): Observable<CharacterFullDTO[]> {
-  //   return this.getCharactersByTableNew$(tableId).pipe(
-  //     map((characterList: CharacterFullDTO[]) =>
-  //       characterList.filter(
-  //         (character: CharacterFullDTO) => character.accepted === false
-  //       )
-  //     )
-  //   );
-  // }
 
   postCharacter(userId: number, character: CharacterFullDTO): Observable<any>{
     const headers = this.getHeaders(); 
