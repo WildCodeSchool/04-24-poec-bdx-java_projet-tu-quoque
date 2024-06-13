@@ -51,7 +51,7 @@ export class TablePageComponent {
       this._characterService
         .getCharacterAcceptedList$(this.id)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((characterList) => {(this.participantList = characterList), console.log(characterList)});
+        .subscribe((characterList) => (this.participantList = characterList));
     });
   }
 

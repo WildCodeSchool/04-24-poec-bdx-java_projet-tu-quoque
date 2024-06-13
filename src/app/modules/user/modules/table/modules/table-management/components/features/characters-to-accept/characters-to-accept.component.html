@@ -1,7 +1,30 @@
 <app-return-button></app-return-button>
-<app-page-header [elementIcon]="'assets/images/dice-icon.svg'" [title]="'Acceptation de joueurs'"></app-page-header>
+<app-page-header
+  [elementIcon]="'assets/images/dice-icon.svg'"
+  [title]="'Invitations en cours'"
+></app-page-header>
 <body>
-    <ng-container *ngIf="characterList$|async as characterList">
-        <app-character-card *ngFor="let character of characterList" [character]="character"></app-character-card>
+  <p-accordion [activeIndex]="">
+    <ng-container *ngIf="userInvitedList">
+      <p-accordionTab header="Utilisateurs">
+        <div class="card-container">
+          <app-character-card
+            *ngFor="let userInvited of userInvitedList"
+            [character]="userInvited"
+            [isUserCard]="true"
+          ></app-character-card>
+        </div>
+      </p-accordionTab>
     </ng-container>
+    <ng-container *ngIf="userInvitedList">
+      <p-accordionTab header="Personnages">
+        <div class="card-container">
+          <app-character-card
+            *ngFor="let character of userInvitedList"
+            [character]="character"
+          ></app-character-card>
+        </div>
+      </p-accordionTab>
+    </ng-container>
+  </p-accordion>
 </body>
