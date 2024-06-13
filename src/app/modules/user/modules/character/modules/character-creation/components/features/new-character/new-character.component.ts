@@ -81,7 +81,6 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
         const userId = userData.id;
         firstValueFrom(this._characterService.postCharacter(userId, character))
           .then(response => {
-            console.log('character created:', response);
             this._router.navigate([`/user/characters/management/my-characters/${response.id}`]);
           })
           .catch(err => {

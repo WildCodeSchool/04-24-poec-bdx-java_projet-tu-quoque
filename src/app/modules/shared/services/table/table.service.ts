@@ -22,12 +22,8 @@ export class TableService extends ApiRessourceService<Table> {
     return this._http.get<GameTableFullDTO>(this._BASE_URL + `/get/${id}`, { headers });
   }
 
-  // proposition : 
-  // getUserTableByIdNew(id: number): Observable<GameTableFullDTO> {
-  //   const token = this._localStorageService.getToken();
-  //   const headers = new HttpHeaders({
-  //     Authorization: `Bearer ${token}`,
-  //   });
-  //   return this._http.get<GameTableFullDTO>(this._BASE_URL + `/get/${id}`, { headers });
-  // }
+  postTable(userId: number, table: GameTableFullDTO): Observable<any>{
+    const headers = this.getHeaders(); 
+    return this._http.post<GameTableFullDTO>(this._BASE_URL + `/add/${userId}`, table, { headers });
+  }
 }

@@ -30,7 +30,7 @@ export class HeaderComponent {
       if (characterConnected) {
         return characterConnected.avatar;
       } else if (tableConnected) {
-        return tableConnected.Avatar;
+        return tableConnected.avatar;
       } else {
         return userConnected?.avatar;
       }
