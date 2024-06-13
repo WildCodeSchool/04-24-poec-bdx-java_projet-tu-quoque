@@ -18,6 +18,7 @@ import { BackToPreviousPageDirective } from './directives/back-to-previous-page.
 import { BaseInputComponent } from './components/custom-form/form-inputs/base-input/base-input.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ReturnButtonComponent } from './components/return-button/return-button.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     ShowCommentPageComponent,
     BackToPreviousPageDirective,
     ReturnButtonComponent,
+    FileUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -58,8 +60,8 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     FullCalendarModule,
     AccordionModule,
     DynamicDialogModule,
-    FormsModule,
     ReactiveFormsModule,
+    FileUploadComponent,
     FormsModule,
     ToastModule
   ],
