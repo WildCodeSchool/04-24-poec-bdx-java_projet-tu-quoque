@@ -1,4 +1,4 @@
-import { Component, Renderer2, inject } from '@angular/core';
+import { Component, DestroyRef, Renderer2, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,6 +12,7 @@ import { ConnectionService } from '../../../../../../../../shared/services/conne
 import { MessageService } from 'primeng/api';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { CharacterDTO } from '../../../../../../../../shared/models/types/users/character-dto';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-table-page',
@@ -25,12 +26,12 @@ export class TablePageComponent {
   isDrawingVisible: boolean = false;
   private _messageService = inject(MessageService);
   private _characterService = inject(CharacterService);
-  table$!: Observable<Table>;
   participantList!: CharacterDTO[];
   chatList!: Chat[];
   drawingList$!: Observable<Drawing[]>;
   userAllowed!: UserInfos;
   foundTable!: GameTableFullDTO;
+  destroyRef: DestroyRef = inject(DestroyRef);
 
   constructor(
     private _tableService: TableService,
@@ -45,9 +46,12 @@ export class TablePageComponent {
       this.id = Number(this._route.snapshot.paramMap.get('id'));
       this._tableService
         .getUserTableByIdNew$(this.id)
-        // TakeuntilDestroy ---------------------------------------
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((response) => (this.foundTable = response));
-      this._characterService.getCharacterAcceptedList$(this.id).subscribe(characterList => this.participantList = characterList)
+      this._characterService
+        .getCharacterAcceptedList$(this.id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((characterList) => (this.participantList = characterList));
     });
   }
 
