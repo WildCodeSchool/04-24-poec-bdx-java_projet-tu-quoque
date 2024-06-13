@@ -39,7 +39,6 @@ export class TablePageComponent {
   ngOnInit(): void {
     this._route.data.subscribe((data) => {
       this.userAllowed = data['user'] as UserInfos;
-      console.log(this.userAllowed);
       this.id = Number(this._route.snapshot.paramMap.get('id'));
       this._tableService
         .getUserTableByIdNew(this.id)
