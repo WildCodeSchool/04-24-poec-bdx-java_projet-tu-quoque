@@ -1,13 +1,21 @@
 import { CHANGE_RATE } from "../../../shared/constants/constants.constant";
+import { PurseDTO } from "../../types/dto/purse-dto.type";
 import { PurseCoinIndex } from "./purse-coin-index.class";
 
 export class Purse {
     gold: number = 0;
     silver: number = 0;
     copper: number = 0;
+    rolled: boolean;
 
-    constructor(amountInString: string = "") {
+    constructor(amountInString: string = "", rolled = false) {
         [this.gold, this.silver, this.copper] = this.convert(amountInString);
+        this.rolled = rolled;
+    }
+
+    static purseFromPurseDTO(purseDto: PurseDTO) {
+        const purseInString: string = `${purseDto.goldPieces}po ${purseDto.silverPieces}pa ${purseDto.copperPieces}pc`;
+        return new Purse(purseInString, purseDto.rolled);
     }
 
     gain(amount: string): void {

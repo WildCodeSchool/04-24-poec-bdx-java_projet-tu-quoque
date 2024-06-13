@@ -2,6 +2,7 @@ import { SkillInfosAddByPlayer } from "../../../shared/classes/skill-infos-add-b
 import { CharacterStats } from "../../classes/character-stats.class"
 import { Purse } from "../../classes/purse-related/purse.class"
 import { Weapon } from "../../classes/weapon.class"
+import { PurseDTO } from "./purse-dto.type"
 import { SkillInfoModifiedByPlayerDTO } from "./skill-info-modified-by-player-dto.type"
 import { StatisticsDTO } from "./statistics-dto.type"
 import { WeaponsDTO } from "./weapons-dto.type"
@@ -20,7 +21,7 @@ export type SheetDTO = {
     heightModifierRolled: string | null,
     level: string | null,
     playerName: string | null,
-    purse?: Purse,
+    purse: PurseDTO,
     skills: SkillInfoModifiedByPlayerDTO[],
     skinColor: string | null,
     stats: StatisticsDTO,

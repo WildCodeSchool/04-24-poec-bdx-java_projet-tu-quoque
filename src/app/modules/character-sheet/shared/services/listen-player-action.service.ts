@@ -38,8 +38,9 @@ export class ListenPlayerActionService {
     level: '',
     playerName: '',
     skinColor: '',
-    stats: new CharacterStats,
-    weightModifierRolled: ''
+    stats: new CharacterStats(),
+    weightModifierRolled: '',
+    purse: new Purse()
   };
 
   private connectionSheetService: ConnectionSheetService = inject(ConnectionSheetService);

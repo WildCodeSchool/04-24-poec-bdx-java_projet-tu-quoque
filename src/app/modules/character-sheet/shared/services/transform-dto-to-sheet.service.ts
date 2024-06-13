@@ -9,6 +9,7 @@ import { DbService } from '../../../shared/services/db-service/db.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { WeaponDetails } from '../../models/types/weapons/weapon.type';
 import { StatisticsDTO } from '../../models/types/dto/statistics-dto.type';
+import { Purse } from '../../models/classes/purse-related/purse.class';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class TransformDtoToSheetService {
 
     sheet.stats = this.transformStatistics(sheetDTO.stats);
 
-    //TODO : weapons, purse
+    sheet.purse = Purse.purseFromPurseDTO(sheetDTO.purse);
 
     return sheet;
   }
@@ -59,7 +60,8 @@ export class TransformDtoToSheetService {
       playerName: '',
       skinColor: '',
       stats: new CharacterStats,
-      weightModifierRolled: ''
+      weightModifierRolled: '',
+      purse: new Purse()
     };
   }
 

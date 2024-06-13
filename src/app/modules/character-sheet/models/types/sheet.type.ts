@@ -16,7 +16,7 @@ export type Sheet = {
     heightModifierRolled: string,
     level: string,
     playerName: string,
-    purse?: Purse,
+    purse: Purse,
     skills: SkillInfosAddByPlayer[],
     skinColor: string,
     stats: CharacterStats
