@@ -71,7 +71,7 @@ export class NewTableComponent extends ParentFormComponent implements OnInit{
           id: 0,
           name: this.form.value.tableName,
           avatar: url as string,
-          // userId: this.user?.id?? 0,
+          userId: this.user?.id?? 0,
           drawingList: [], 
           eventList: [], 
           noteList: [],

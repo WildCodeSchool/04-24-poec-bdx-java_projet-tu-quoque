@@ -8,7 +8,7 @@ export type GameTableFullDTO = ElementProperties & {
     id: number,
     name: string,
     avatar: string,
-    // userId: number, 
+    userId: number, 
     drawingList: DrawingDTO[],
     eventList: EventDTO[],
     noteList: NoteDTO[],
