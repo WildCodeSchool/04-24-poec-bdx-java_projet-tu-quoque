@@ -6,35 +6,35 @@ import { userResolver } from './modules/shared/resolver/user.resolver';
 
 const routes: Routes = [
   {
-    path: '', 
-    redirectTo: '/user', 
+    path: '',
+    redirectTo: '/user',
     pathMatch: 'full'
   },
-	{ 
-    path: 'character-sheet', 
-    loadChildren: () =>  import('./modules/character-sheet/character-sheet.module')
-    .then(m  => m.CharacterSheetModule) 
+  {
+    path: 'character-sheet',
+    loadChildren: () => import('./modules/character-sheet/character-sheet.module')
+      .then(m => m.CharacterSheetModule)
   },
   {
-    path: 'authentification', 
+    path: 'authentification',
     loadChildren: () => import('./modules/authentification/authentification.module')
-    .then(m  => m.AuthentificationModule) 
+      .then(m => m.AuthentificationModule)
   },
   {
     path: 'visitor',
     loadChildren: () => import('./modules/visitor-homepage/visitor-homepage.module')
-    .then(m  => m.VisitorHomepageModule)
+      .then(m => m.VisitorHomepageModule)
   },
   {
-    path: 'user', 
-    resolve: {user: userResolver},
+    path: 'user',
+    resolve: { user: userResolver },
     loadChildren: () => import('./modules/user/user.module')
-    .then(m  => m.UserModule),
+      .then(m => m.UserModule),
   },
   {
     path: 'notepad',
     loadChildren: () => import('./modules/notepad/notepad.module')
-    .then(m => m.NotepadModule)
+      .then(m => m.NotepadModule)
   },
   {
     path: 'dice-roll',

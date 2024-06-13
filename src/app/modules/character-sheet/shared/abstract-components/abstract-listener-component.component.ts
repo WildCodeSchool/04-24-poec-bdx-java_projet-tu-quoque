@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, DestroyRef, inject } from "@angular/core";
 import { ListenPlayerActionService } from "../services/listen-player-action.service";
 
 @Component({
@@ -7,4 +7,5 @@ import { ListenPlayerActionService } from "../services/listen-player-action.serv
 })
 export abstract class AbstractListenerComponent {
     protected listener = inject(ListenPlayerActionService);
+    protected destroyRef = inject(DestroyRef);
 }

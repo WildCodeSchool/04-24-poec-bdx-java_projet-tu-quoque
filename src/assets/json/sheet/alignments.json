@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Loyal Bon"
+    },
+    {
+        "name": "Loyal Neutre"
+    },
+    {
+        "name": "Loyal Mauvais"
+    },
+    {
+        "name": "Neutre Bon"
+    },
+    {
+        "name": "Neutre"
+    },
+    {
+        "name": "Neutre Mauvais",
+        "id": "d7eb"
+    },
+    {
+        "name": "Chaotique Bon"
+    },
+    {
+        "name": "Chaotique Neutre"
+    },
+    {
+        "name": "Chaotique Mauvais"
+    }
+]
