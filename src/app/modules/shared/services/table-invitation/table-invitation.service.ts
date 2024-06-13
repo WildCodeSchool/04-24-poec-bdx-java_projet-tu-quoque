@@ -1,11 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TableService } from '../table/table.service';
 import { TableInvitation } from '../../models/types/users/table-invitation.type';
-import { Table } from '../../models/types/users/table.type';
 import { ConnectionService } from '../connection/connection.service';
-import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { UserInfos } from '../../models/types/users/user-infos';
 
