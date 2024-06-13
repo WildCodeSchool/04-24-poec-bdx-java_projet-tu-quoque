@@ -21,16 +21,9 @@ export class ConnectionSheetService extends ApiRessourceService<Sheet> {
   override getRessourceUrl(): string {
     return this._BASE_URL;
   }
-  // MODELE avec character
-  //
-  // getUserCharacterById$(id: number): Observable<CharacterFullDTO>{
-  //   const headers = this.getHeaders()
-  //   return this._http.get<CharacterFullDTO>(this._BASE_URL + `/get/${id}`, { headers })
-  // }
 
   getSheetById$(id: number): Observable<any> {
     const headers = this.getHeaders()
     return this._http.get<any>(`${this._BASE_URL}/get/${id}`, { headers });
   }
-
 }

@@ -42,10 +42,7 @@ export class ListenPlayerActionService {
     weightModifierRolled: ''
   };
 
-  //sheetModifiedByPlayer: any;
-
   private connectionSheetService: ConnectionSheetService = inject(ConnectionSheetService);
-  //private sheetModifiedListener$: Subject<any> = new Subject();
   private destroyRef: DestroyRef = inject(DestroyRef);
   private transformDTOService: TransformDtoToSheetService = inject(TransformDtoToSheetService);
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);

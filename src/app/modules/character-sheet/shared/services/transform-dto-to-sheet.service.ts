@@ -1,17 +1,14 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { SheetDTO } from '../../models/types/dto/sheet-dto.type';
-import { Sheet, SheetKeyForString, SheetKeyForStringKeys } from '../../models/types/sheet.type';
+import { Sheet, SheetKeyForStringKeys } from '../../models/types/sheet.type';
 import { CharacterStats } from '../../models/classes/character-stats.class';
 import { SkillInfoModifiedByPlayerDTO } from '../../models/types/dto/skill-info-modified-by-player-dto.type';
 import { SkillInfosAddByPlayer } from '../classes/skill-infos-add-by-player.class';
-import { WeaponDTO } from '../../models/types/dto/weapon-dto.type';
 import { Weapon } from '../../models/classes/weapon.class';
 import { DbService } from '../../../shared/services/db-service/db.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { WeaponDetails } from '../../models/types/weapons/weapon.type';
 import { StatisticsDTO } from '../../models/types/dto/statistics-dto.type';
-import { StatisticDetails } from '../../models/classes/statistic-details.class';
-import { CharacterWeaponsService } from './market/character-weapons.service';
 
 @Injectable({
   providedIn: 'root'

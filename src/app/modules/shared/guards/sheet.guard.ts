@@ -24,7 +24,6 @@ export const sheetGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state):
   )
 };
 
-
 function isCharacterInUserCharacters(user: UserInfos, id: number) {
 
   const characterIdList: number[] = user.playerCharacterList.map((character: CharacterDTO) => character.id);

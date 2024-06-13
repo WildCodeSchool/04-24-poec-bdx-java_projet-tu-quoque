@@ -1,9 +1,8 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
-import { StatAbbr, StatAbbrKey } from '../../models/enums/stats-abbr.enum';
 import { StatModifier } from '../../models/types/stat-modifier.type';
 import { CharacterStats } from '../../models/classes/character-stats.class';
-import { map, Observable, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { ListenPlayerActionService } from './listen-player-action.service';
 import { Sheet } from '../../models/types/sheet.type';
 
