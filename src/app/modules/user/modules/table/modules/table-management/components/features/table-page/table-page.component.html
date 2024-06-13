@@ -18,59 +18,62 @@
     [name]="'Disponibilités des participants'"
     [routerLink]="['shared-calendar']"
   ></app-custom-button>
-    <p-accordion [activeIndex]="">
-      <p-accordionTab header="Liste des joueurs">
-        <app-list-of-element
-          [elementList]="participantList"
-          [elementIcon]="'assets/images/character-icon.svg'"
-          [replacementIcon]="'assets/images/hourglass-icon.svg'"
-          [isModifiable]="false"
-        ></app-list-of-element>
-        @if(userAllowed.id == foundTable.userId) {
-        <app-custom-add-button
-          [routerLink]="'new-player'"
-        ></app-custom-add-button>
-        <app-custom-button
-          [style]="'gold'"
-          [name]="'Persos à valider'"
-          [routerLink]="'accept-characters'"
-        ></app-custom-button>
-        }
-      </p-accordionTab>
-      @if(userAllowed.id == foundTable.userId) {
-      <p-accordionTab header="Discussions avec les joueurs">
-          <app-list-of-element
-            [elementList]="chatList"
-            [elementIcon]="'assets/images/discussion-icon.svg'"
-          ></app-list-of-element>
-        <app-custom-add-button></app-custom-add-button>
-      </p-accordionTab>
-      }
-      <p-accordionTab header="Dessins">
-          <app-list-of-element
-            [elementList]="foundTable.drawingList"
-            [elementIcon]="'assets/images/brush-icon.svg'"
-            (sendDrawingUrl)="showDrawing($event)"
-            [isForDrawing]="true"
-            [isModifiable]="false"
-          ></app-list-of-element>
-        <app-custom-add-button
-          [routerLink]="'new-drawing'"
-        ></app-custom-add-button>
-      </p-accordionTab>
-    </p-accordion>
-    <footer class="bottom-part">
-      @if(userAllowed.id == foundTable.userId) {
+  <p-accordion [activeIndex]="">
+    <p-accordionTab header="Liste des joueurs">
+      @if(participantList.length == 0) {
+      <p class="no-element-text">Aucun joueur pour le moment</p>
+      } @else {
+      <app-list-of-element
+        [elementList]="participantList"
+        [elementIcon]="'assets/images/character-icon.svg'"
+        [replacementIcon]="'assets/images/hourglass-icon.svg'"
+        [isModifiable]="false"
+      ></app-list-of-element>
+      } @if(userAllowed.id == foundTable.userId) {
+      <app-custom-add-button
+        [routerLink]="'new-player'"
+      ></app-custom-add-button>
       <app-custom-button
         [style]="'gold'"
-        [name]="'Reprendre cette partie'"
-        (click)="selectTableToPlay()"
+        [name]="'Persos à valider'"
+        [routerLink]="'accept-characters'"
       ></app-custom-button>
-      } @if(isDrawingVisible) {
-      <app-drawing-display
-        (isDrawingVisible)="toggleDrawingVisible($event)"
-        [drawingToShow]="drawingToShow"
-      ></app-drawing-display>
       }
-    </footer>
+    </p-accordionTab>
+    @if(userAllowed.id == foundTable.userId) {
+    <p-accordionTab header="Discussions avec les joueurs">
+      <app-list-of-element
+        [elementList]="chatList"
+        [elementIcon]="'assets/images/discussion-icon.svg'"
+      ></app-list-of-element>
+      <app-custom-add-button></app-custom-add-button>
+    </p-accordionTab>
+    }
+    <p-accordionTab header="Dessins">
+      <app-list-of-element
+        [elementList]="foundTable.drawingList"
+        [elementIcon]="'assets/images/brush-icon.svg'"
+        (sendDrawingUrl)="showDrawing($event)"
+        [isForDrawing]="true"
+        [isModifiable]="false"
+      ></app-list-of-element>
+      <app-custom-add-button
+        [routerLink]="'new-drawing'"
+      ></app-custom-add-button>
+    </p-accordionTab>
+  </p-accordion>
+  <footer class="bottom-part">
+    @if(userAllowed.id == foundTable.userId) {
+    <app-custom-button
+      [style]="'gold'"
+      [name]="'Reprendre cette partie'"
+      (click)="selectTableToPlay()"
+    ></app-custom-button>
+    } @if(isDrawingVisible) {
+    <app-drawing-display
+      (isDrawingVisible)="toggleDrawingVisible($event)"
+      [drawingToShow]="drawingToShow"
+    ></app-drawing-display>
+    }
+  </footer>
 </ng-container>
