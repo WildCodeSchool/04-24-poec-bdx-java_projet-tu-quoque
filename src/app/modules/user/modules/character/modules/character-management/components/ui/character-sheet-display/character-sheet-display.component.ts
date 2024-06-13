@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-character-sheet-display',
@@ -6,9 +6,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './character-sheet-display.component.scss',
 })
 export class CharacterSheetDisplayComponent {
-  
+
   @Output()
   isCharacterSheetVisible: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Input()
+  characterSheetId!: number;
 
   hideCharacterSheet(): void {
     this.isCharacterSheetVisible.emit();

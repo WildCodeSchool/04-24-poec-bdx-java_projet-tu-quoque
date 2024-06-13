@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, shareReplay, switchMap } from "rxjs";
+import { map, Observable, shareReplay, switchMap, tap } from "rxjs";
 import { DbService } from "../../../shared/services/db-service/db.service";
 import { SkillDetails } from '../../models/classes/skill-details.class';
 import { SkillFromDb } from '../../models/types/skill-from-db.type';
@@ -25,16 +25,17 @@ export class SkillsService {
     this.skills$ = this.dbService.getSkills$().pipe(
       map((skillList: SkillFromDb[]) => this.transformSkillFromDbIntoSkillsDetails(skillList)),
       switchMap((skills: SkillDetails[]) => this.sheetService.race$.pipe(
-        map((race: Race) => this.updateSkillsWithRace(skills, race))
+        map((race: Race) => this.updateSkillsWithRace(skills, race)),
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getClasseDetails$().pipe(
         map((classDetails: CharacterClass) =>
           this.updateSkillsWithClass(skills, classDetails)
-        )
+        ),
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getCaracteristics$().pipe(
         map((stats: CharacterStats) => this.updateSkillStatMod(skills, stats)),
       )),
+
       shareReplay(),
     );
   }
@@ -63,6 +64,7 @@ export class SkillsService {
 
   updateSkillStatMod(skills: SkillDetails[], stats: CharacterStats): SkillDetails[] {
     if (!stats) return skills;
+    if (!stats.FOR.originalValue) return skills;
     for (let skill of skills) {
       skill.setStatMod(stats);
     }

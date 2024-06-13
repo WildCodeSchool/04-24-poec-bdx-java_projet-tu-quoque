@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
-import { Observable, Subscription, switchMap} from 'rxjs';
+import { Observable, Subscription, switchMap } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
 import { Table } from '../../../../../../../../shared/models/types/users/table.type';
@@ -19,7 +19,7 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class CharacterPageComponent implements OnInit, OnDestroy {
-  
+
   private character$!: Observable<Character>;
   private table$!: Observable<Table>;
   chatList$!: Observable<Chat[]>;
@@ -37,7 +37,7 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
     private _renderer: Renderer2,
     private _router: Router,
     private _connectionService: ConnectionService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));

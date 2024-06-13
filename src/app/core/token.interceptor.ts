@@ -16,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private localStoragesService: LocalStorageService,
     private httpRequestService: HttpRequestService
-  ) {}
+  ) { }
 
   intercept(
     request: HttpRequest<unknown>,
@@ -47,7 +47,7 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         console.log(err);
         this.httpRequestService.setHttpErrorSubject$(err);
-      
+
         return of();
       })
     );

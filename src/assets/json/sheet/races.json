@@ -1,0 +1,126 @@
+[
+    {
+        "name": "Elfe",
+        "statsModifiers": [
+            {
+                "stat": "DEX",
+                "mod": 2
+            },
+            {
+                "stat": "CON",
+                "mod": -2
+            }
+        ],
+        "sizeCategorie": "M",
+        "skills": [
+            {
+                "skill": "Détection",
+                "mod": 2
+            },
+            {
+                "skill": "Fouille",
+                "mod": 2
+            },
+            {
+                "skill": "Perception auditive",
+                "mod": 2
+            }
+        ],
+        "languages": {
+            "systemically": [
+                "commun",
+                "elfe"
+            ],
+            "additional": [
+                "draconien",
+                "gnoll",
+                "gnome",
+                "gobelin",
+                "orque",
+                "sylvestre"
+            ]
+        },
+        "adultAge": 110,
+        "ageModifier": {
+            "Barbare": "4d6",
+            "Ensorceleur": "4d6",
+            "Roublard": "4d6",
+            "Barde": "6d6",
+            "Guerrier": "6d6",
+            "Paladin": "6d6",
+            "Rôdeur": "6d6",
+            "Druide": "10d6",
+            "Magicien": "10d6",
+            "Moine": "10d6",
+            "Prêtre": "10d6"
+        },
+        "baseHeight": {
+            "M": 135,
+            "F": 135
+        },
+        "modHeight": "5d6",
+        "baseWeight": {
+            "M": 42,
+            "F": 40
+        },
+        "modWeight": "1d6",
+        "id": "5bf3"
+    },
+    {
+        "name": "Demi-orque",
+        "statsModifiers": [
+            {
+                "stat": "FOR",
+                "mod": 2
+            },
+            {
+                "stat": "INT",
+                "mod": -2
+            },
+            {
+                "stat": "CHA",
+                "mod": -2
+            }
+        ],
+        "sizeCategorie": "M",
+        "skills": [],
+        "languages": {
+            "systemically": [
+                "commun",
+                "orque"
+            ],
+            "additional": [
+                "abyssal",
+                "draconien",
+                "géant",
+                "gnoll",
+                "gobelin"
+            ]
+        },
+        "adultAge": 14,
+        "ageModifier": {
+            "Barbare": "1d4",
+            "Ensorceleur": "1d4",
+            "Roublard": "1d4",
+            "Barde": "1d6",
+            "Guerrier": "1d6",
+            "Paladin": "1d6",
+            "Rôdeur": "1d6",
+            "Druide": "2d6",
+            "Magicien": "2d6",
+            "Moine": "2d6",
+            "Prêtre": "2d6"
+        },
+        "baseHeight": {
+            "M": 150,
+            "F": 135
+        },
+        "modHeight": "5d12",
+        "baseWeight": {
+            "M": 75,
+            "F": 55
+        },
+        "modWeight": "2d6",
+        "id": "7e29"
+    }
+]

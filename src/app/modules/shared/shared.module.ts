@@ -66,4 +66,4 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     ToastModule
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
