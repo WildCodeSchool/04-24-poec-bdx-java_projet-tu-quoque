@@ -30,18 +30,6 @@
 <ng-template #noTable>
   <app-custom-area-title title="Aucune table"></app-custom-area-title>
 </ng-template>
-<ng-container *ngIf="chatList$ | async as chatList">
-  <p-accordion [activeIndex]="">
-    <p-accordionTab header="Discussions">
-      <app-list-of-element
-        [baseUrl]="''"
-        [elementIcon]="'assets/images/discussion-icon.svg'"
-        [elementList]="chatList"
-      ></app-list-of-element>
-      <app-custom-add-button></app-custom-add-button>
-    </p-accordionTab>
-  </p-accordion>
-</ng-container>
 <footer class="page-footer">
   <app-custom-button
     [style]="'gold'"

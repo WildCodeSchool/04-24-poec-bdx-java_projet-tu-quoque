@@ -1,6 +1,5 @@
 export type UserBasicInfos = {
   id: number;
-  name: string;
+  nickname: string;
   avatar: string;
-  role: string;
 };
