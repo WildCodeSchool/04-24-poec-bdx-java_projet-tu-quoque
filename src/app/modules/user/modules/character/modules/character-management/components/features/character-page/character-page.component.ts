@@ -32,7 +32,6 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
   constructor(
     private _characterService: CharacterService,
     private _tableService: TableService,
-    private _chatService: ChatService,
     private _route: ActivatedRoute,
     private _renderer: Renderer2,
     private _router: Router,
@@ -50,7 +49,6 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
         return this._tableService.getById$(res.tableId as number);
       })
     );
-    this.chatList$ = this._chatService.getChatListByCharacter$(id);
   }
 
   ngOnDestroy(): void {

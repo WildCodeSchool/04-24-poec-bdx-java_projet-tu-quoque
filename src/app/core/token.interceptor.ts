@@ -10,12 +10,14 @@ import {
 import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../modules/shared/services/connection/local-storage.service';
 import { HttpRequestService } from '../modules/shared/services/connection/http-request.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private localStoragesService: LocalStorageService,
-    private httpRequestService: HttpRequestService
+    private httpRequestService: HttpRequestService,
+    private _router: Router
   ) { }
 
   intercept(
@@ -47,6 +49,7 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         console.log(err);
         this.httpRequestService.setHttpErrorSubject$(err);
+        this._router.navigate(['/visitor/home'])
 
         return of();
       })

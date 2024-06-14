@@ -7,6 +7,7 @@ import { UserInfos } from '../../models/types/users/user-infos';
 import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
 import { Character } from '../../models/types/users/character.type';
 import { CharacterDTO } from '../../models/types/users/character-dto';
+import { CharacterAvatarDTO } from '../../models/types/users/character-avatar-DTO';
 
 @Injectable({
   providedIn: 'root',
@@ -30,8 +31,12 @@ export class CharacterService extends ApiRessourceService<Character> {
     return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, { headers })
   }
    
-  getCharacterWithoutTableListNew$(id: number): Observable<CharacterDTO[]> {
-    return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-available/userId=${id}`)
+  getCharacterWithoutTableListNew$(userId: number): Observable<CharacterDTO[]> {
+    return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-available/userId=${userId}`)
+  }
+
+  getCharacterOnHoldList$(tableId: number): Observable<CharacterAvatarDTO[]> {
+    return this._http.get<CharacterAvatarDTO[]>(this._BASE_URL_NEW + `/get/character-on-hold/tableId=${tableId}`)
   }
 
   getUserCharacterAvailableList$(): Observable<CharacterDTO[]> {

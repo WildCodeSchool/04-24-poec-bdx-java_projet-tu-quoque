@@ -18,29 +18,13 @@ import { Sheet, SheetKeyForStringKeys } from '../../models/types/sheet.type';
 import { ConnectionSheetService } from './connection-sheet.service';
 import { TransformDtoToSheetService } from './transform-dto-to-sheet.service';
 import { SheetDTO } from '../../models/types/dto/sheet-dto.type';
+import { BlankSheetGeneratorService } from './blank-sheet-generator.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListenPlayerActionService {
-  sheetModifiedByPlayer: Sheet = {
-    skills: [], weapons: [],
-    age: '',
-    alignment: '',
-    characterClass: '',
-    characterName: '',
-    characterRace: '',
-    eyesColor: '',
-    gender: '',
-    god: '',
-    hairColor: '',
-    heightModifierRolled: '',
-    level: '',
-    playerName: '',
-    skinColor: '',
-    stats: new CharacterStats,
-    weightModifierRolled: ''
-  };
+  sheetModifiedByPlayer: Sheet = BlankSheetGeneratorService.generate();
 
   private connectionSheetService: ConnectionSheetService = inject(ConnectionSheetService);
   private destroyRef: DestroyRef = inject(DestroyRef);
