@@ -1,21 +1,28 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListenPlayerActionService } from '../../shared/services/listen-player-action.service';
-import { Observable, Subject } from 'rxjs';
-import { UserInfos } from '../../../shared/models/types/users/user-infos';
-import { CharacterDTO } from '../../../shared/models/types/users/character-dto';
-import { ConnectionSheetService } from '../../shared/services/connection-sheet.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-sheet-page',
   templateUrl: './sheet-page.component.html',
   styleUrl: './sheet-page.component.scss'
 })
-export class SheetPageComponent {
+export class SheetPageComponent implements OnInit, OnDestroy {
+  @HostListener('window:unload', ['$event'])
+  unloadHandler(event: any) {
+    this.isAlive ? this.taskBeforeDestroyComponent() : "";
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnloadHandler(event: any) {
+    this.isAlive ? this.taskBeforeDestroyComponent() : "";
+  }
+
   private route = inject(ActivatedRoute);
   id!: number;
   id$: Subject<number> = new Subject();
-
+  isAlive: boolean = true;
   listener: ListenPlayerActionService = inject(ListenPlayerActionService);
 
   ngOnInit() {
@@ -24,4 +31,12 @@ export class SheetPageComponent {
     this.id$.next(this.id);
   }
 
+  ngOnDestroy(): void {
+    this.isAlive ? this.taskBeforeDestroyComponent() : "";
+  }
+
+  taskBeforeDestroyComponent() {
+    this.isAlive = false;
+    // save the sheet
+  }
 }

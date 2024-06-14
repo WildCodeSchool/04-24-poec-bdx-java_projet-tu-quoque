@@ -4,6 +4,7 @@ import { Purse } from "../classes/purse-related/purse.class"
 import { Weapon } from "../classes/weapon.class"
 
 export type Sheet = {
+    id: number;
     age: string,
     alignment: string,
     characterClass: string,
