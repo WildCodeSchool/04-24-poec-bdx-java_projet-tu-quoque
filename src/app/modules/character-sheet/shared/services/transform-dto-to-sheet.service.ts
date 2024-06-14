@@ -9,6 +9,8 @@ import { DbService } from '../../../shared/services/db-service/db.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { WeaponDetails } from '../../models/types/weapons/weapon.type';
 import { StatisticsDTO } from '../../models/types/dto/statistics-dto.type';
+import { Purse } from '../../models/classes/purse-related/purse.class';
+import { BlankSheetGeneratorService } from './blank-sheet-generator.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,10 @@ export class TransformDtoToSheetService {
   private destroyRef: DestroyRef = inject(DestroyRef)
 
   public transform(sheetDTO: SheetDTO): Sheet {
-    const sheet: Sheet = this.generateBlankSheet();
+    const sheet: Sheet = BlankSheetGeneratorService.generate();
     this.transformStringAttributes(sheet, sheetDTO);
+
+    sheet.id = sheetDTO.id;
 
     const weapons = [...sheetDTO.weapons.weapons]
 
@@ -37,30 +41,9 @@ export class TransformDtoToSheetService {
 
     sheet.stats = this.transformStatistics(sheetDTO.stats);
 
-    //TODO : weapons, purse
+    sheet.purse = Purse.purseFromPurseDTO(sheetDTO.purse);
 
     return sheet;
-  }
-
-  private generateBlankSheet(): Sheet {
-    return {
-      "skills": [], "weapons": [],
-      age: '',
-      alignment: '',
-      characterClass: '',
-      characterName: '',
-      characterRace: '',
-      eyesColor: '',
-      gender: '',
-      god: '',
-      hairColor: '',
-      heightModifierRolled: '',
-      level: '',
-      playerName: '',
-      skinColor: '',
-      stats: new CharacterStats,
-      weightModifierRolled: ''
-    };
   }
 
   private transformSkillDTOintoSkill(skillDTO: SkillInfoModifiedByPlayerDTO): SkillInfosAddByPlayer {

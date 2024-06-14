@@ -5,7 +5,6 @@ import { WeaponDetails } from '../../../../models/types/weapons/weapon.type';
 import { Observable } from 'rxjs';
 import { Purse } from '../../../../models/classes/purse-related/purse.class';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Weapon } from '../../../../models/classes/weapon.class';
 
 @Component({
   selector: 'app-market-place',
