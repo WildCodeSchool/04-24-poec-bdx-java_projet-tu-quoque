@@ -3,19 +3,21 @@ import { PurseDTO } from "../../types/dto/purse-dto.type";
 import { PurseCoinIndex } from "./purse-coin-index.class";
 
 export class Purse {
+    id: number;
     gold: number = 0;
     silver: number = 0;
     copper: number = 0;
     rolled: boolean;
 
-    constructor(amountInString: string = "", rolled = false) {
+    constructor(amountInString: string = "", rolled = false, id = -1) {
         [this.gold, this.silver, this.copper] = this.convert(amountInString);
         this.rolled = rolled;
+        this.id = id;
     }
 
     static purseFromPurseDTO(purseDto: PurseDTO) {
         const purseInString: string = `${purseDto.goldPieces}po ${purseDto.silverPieces}pa ${purseDto.copperPieces}pc`;
-        return new Purse(purseInString, purseDto.rolled);
+        return new Purse(purseInString, purseDto.rolled, purseDto.id);
     }
 
     gain(amount: string): void {

@@ -25,6 +25,7 @@ export class TransformDtoToSheetService {
     this.transformStringAttributes(sheet, sheetDTO);
 
     sheet.id = sheetDTO.id;
+    sheet.statisticsId = sheetDTO.stats.id;
 
     const weapons = [...sheetDTO.weapons.weapons]
 
@@ -34,7 +35,7 @@ export class TransformDtoToSheetService {
       ).subscribe((weapons: WeaponDetails[]) => {
         const weaponFound = weapons.find(weapon => weapon.name == weaponDTO.name)
         if (weaponFound) {
-          sheet.weapons[index] = new Weapon(weaponFound);
+          sheet.weapons[index] = new Weapon(weaponFound, weaponDTO.id);
         }
       })
     }

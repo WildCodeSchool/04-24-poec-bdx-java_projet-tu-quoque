@@ -12,6 +12,7 @@ export class BlankSheetGeneratorService {
     return {
       "skills": [], "weapons": [],
       id: 0,
+      statisticsId: -1,
       age: '',
       alignment: '',
       characterClass: '',

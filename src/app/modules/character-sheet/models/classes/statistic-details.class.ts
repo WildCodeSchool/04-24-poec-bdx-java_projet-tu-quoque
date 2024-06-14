@@ -3,6 +3,7 @@ import { StatAbbr, StatAbbrKey, StatAbbrValue } from "../enums/stats-abbr.enum";
 import { StatModifier } from "../types/stat-modifier.type";
 
 export class StatisticDetails {
+    id: number;
     abbr: StatAbbrKey;
     originalValue!: number;
     value!: number;
@@ -11,13 +12,14 @@ export class StatisticDetails {
     tempValue!: number;
     tempMod!: number;
 
-    constructor(abbr: StatAbbrKey, generateValue: boolean = false, tempModifier = null) {
+    constructor(abbr: StatAbbrKey, generateValue: boolean = false, tempModifier = null, id = -1) {
         this.abbr = abbr;
         this.name = StatAbbr[this.abbr];
         this.value = generateValue ? this.generateOriginalValue() : NaN;
         this.originalValue = this.value;
         this.mod = this.calcMod();
         if (tempModifier) this.tempValue = tempModifier;
+        this.id = id;
     }
 
     generateOriginalValue(): number {
