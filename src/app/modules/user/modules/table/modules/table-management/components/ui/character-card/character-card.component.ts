@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
+import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/user-basic-infos.type';
+import { CharacterAvatarDTO } from '../../../../../../../../shared/models/types/users/character-avatar-DTO';
 
 @Component({
   selector: 'app-character-card',
@@ -9,5 +11,12 @@ import { Character } from '../../../../../../../../shared/models/types/users/cha
 export class CharacterCardComponent {
   
   @Input()
-  character!: Character;
+  character!: CharacterAvatarDTO;
+
+  @Input()
+  isUserCard: boolean = false;
+
+  ngOnInit(): void {
+    console.log(this.character)
+  }
 }
