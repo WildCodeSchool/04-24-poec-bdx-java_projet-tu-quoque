@@ -16,11 +16,11 @@
         </div>
       </p-accordionTab>
     </ng-container>
-    <ng-container *ngIf="userInvitedList">
+    <ng-container *ngIf="characterOnHoldList">
       <p-accordionTab header="Personnages">
         <div class="card-container">
           <app-character-card
-            *ngFor="let character of userInvitedList"
+            *ngFor="let character of characterOnHoldList"
             [character]="character"
           ></app-character-card>
         </div>
