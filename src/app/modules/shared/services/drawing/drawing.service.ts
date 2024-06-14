@@ -25,29 +25,13 @@ export class DrawingService extends ApiRessourceService<Drawing> {
     );
   }
 
-  postDrawing(canvas: HTMLCanvasElement, tableId: number): Observable<DrawingDTO> {
+  postDrawing(name: string, url: string, tableId: number): Observable<DrawingDTO> {
     const headers = this.getHeaders(); 
-    return new Observable(observer => {
-      canvas.toBlob(blob => {
-        if (blob) {
-          console.log(blob);
-          const formData = new FormData();
-          console.log(formData);
-          formData.append('file', blob, 'drawing.png');
-          
-          this._http.post<DrawingDTO>(this._BASE_URL + `/add/${tableId}`, formData, { headers }).subscribe(
-            (response) => { 
-              observer.next(response);
-              observer.complete();
-            },
-            (error) => {
-              observer.error(error);
-            }
-          );
-        } else {
-          observer.error('Failed to create Blob from canvas');
-        }
-      }, 'image/png');
-    });
+    const drawing = {
+      name,
+      content: url,
+      tableId
+    };
+    return this._http.post<DrawingDTO>(`${this._BASE_URL}/add/${tableId}`, drawing, { headers });
   }
 }

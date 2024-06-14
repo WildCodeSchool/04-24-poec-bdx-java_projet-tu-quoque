@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { DrawingService } from '../../../../../../../../../../../../shared/services/drawing/drawing.service';
-import { Observable, Subscription, filter, finalize } from 'rxjs';
+import { Observable, Subscription, filter, finalize, lastValueFrom } from 'rxjs';
 import { DrawingDTO } from '../../../../../../../../../../../../shared/models/types/users/drawing-dto';
 import { UserInfos } from '../../../../../../../../../../../../shared/models/types/users/user-infos';
 import { UploadFileService } from '../../../../../../../../../../../../shared/services/uploadFile/upload-file.service';
@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SaveDrawingComponent implements OnInit {
   @Input() canvasRef!: ElementRef<HTMLCanvasElement>;
-  @Input() tableId!: number;
+  tableId!: number;
 
   downloadIcon:string = 'assets/icons/drawTools/download.svg';
   selectedFile: File | null = null;
@@ -32,6 +32,7 @@ export class SaveDrawingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.tableId = this._route.snapshot.params['id'];
     const userData = this._route.snapshot.data['user'];
     this.user = userData;
 
@@ -47,8 +48,9 @@ export class SaveDrawingComponent implements OnInit {
         })
       ).subscribe(url => {
         console.log('File uploaded to:', url);
-        this.saveDrawing();
+        this.saveDrawing(url);
       });
+      console.log('Initial tableId:', this.tableId);
   }
 
   ngOnDestroy() {
@@ -64,8 +66,12 @@ export class SaveDrawingComponent implements OnInit {
   selectFile(): void {
     const canvas = this.canvasRef.nativeElement;
     
-    const timestamp = new Date().getTime();
-    const fileName = `drawing_${timestamp}.png`;
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+    const formattedDate = `${day}-${month}-${year}`;
+    const fileName = `dessin_${formattedDate}.png`;
 
     canvas.toBlob(blob => {
       if (blob) {
@@ -79,12 +85,35 @@ export class SaveDrawingComponent implements OnInit {
     }, 'image/png');
   }
 
-  saveDrawing(): void {
-    const canvas = this.canvasRef.nativeElement;
+  async saveDrawing(url: string | null): Promise<void> {
+    if (!this.tableId) {
+      console.error('tableId is undefined, cannot save drawing.');
+      return;
+    }
 
-    this._drawingService.postDrawing(canvas, this.tableId).subscribe({
-      next: (response) => console.log(response),
-      error: (error: any) => console.error(error)
-    });
+    if (!url) {
+      console.error('URL is null or undefined, cannot save drawing.');
+      return;
+    }
+
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+    const formattedDate = `${day}-${month}-${year}`;
+    const name = `dessin_${formattedDate}.png`;  
+
+    try {
+      const response = await lastValueFrom(this._drawingService.postDrawing(name, url, this.tableId));
+      console.log('Drawing posted successfully:', response);
+      this._router.navigate([`/user/tables/management/my-tables/${this.tableId}`]);
+    } catch (error) {
+      console.error('Error posting drawing:', error);
+      console.error('Error details:', {
+        name,
+        url,
+        tableId: this.tableId
+      });
+    }
   }
 }
