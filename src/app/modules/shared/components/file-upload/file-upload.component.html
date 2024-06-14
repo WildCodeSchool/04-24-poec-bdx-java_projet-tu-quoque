@@ -4,5 +4,10 @@
       <img class="add-button-img" src="assets/images/add-round-icon.svg" />
     </label>
     <input id="file-upload" type="file" (change)="onFileSelected($event)" />
+    @if (preview) {
+    <div class="preview-image-container">
+      <img [src]="preview" alt="preview image" class="preview-image" />
+    </div>
+    }
   </div>
 </div>
