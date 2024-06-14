@@ -31,6 +31,7 @@ export class SheetPageComponent implements OnInit, OnDestroy {
     this.id$.next(this.id);
   }
 
+  @HostListener('unloaded')
   ngOnDestroy(): void {
     this.isAlive ? this.taskBeforeDestroyComponent() : "";
   }
