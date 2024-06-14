@@ -30,44 +30,4 @@ export class TableInvitationService extends ApiRessourceService<TableInvitation>
   override getRessourceUrl(): string {
     return this._BASE_URL;
   }
-
-  getTableInvitationListByUser$(): Observable<number[]> {
-    return this.getAll$().pipe(
-      switchMap((tableInvitationList: TableInvitation[]) =>
-        this._userConnected$.pipe(
-          map((user: UserInfos) =>
-            tableInvitationList.filter(
-              (tableInvitation: TableInvitation) =>
-                tableInvitation.userId === user.id
-            )
-          )
-        )
-      ),
-      map((invitationArray: TableInvitation[]) =>
-        invitationArray.map((invit: TableInvitation) => invit.tableId)
-      )
-    );
-  }
-
-  getTableInvitationListNames$(): Observable<Table[]> {
-    return this.getTableInvitationListByUser$().pipe(
-      switchMap((tableIdList: number[]) =>
-        this._tableService
-          .getAll$()
-          .pipe(
-            map((tableList: Table[]) =>
-              tableList.filter((table: Table) =>
-                tableIdList.includes(Number(table.id))
-              )
-            )
-          )
-      )
-    );
-  }
-
-  getUserTableInvitationList$(): Observable<TableInvitation[]> {
-    return this._userTableInvitationList$.value.length
-      ? this._userTableInvitationList$.asObservable()
-      : this.getTableInvitationListNames$();
-  }
 }

@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, map, of, switchMap } from 'rxjs';
 import { ConnectionService } from '../connection/connection.service';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { environment } from '../../../../../environments/environment.development';
@@ -28,47 +28,32 @@ export class CharacterService extends ApiRessourceService<Character> {
     return this._BASE_URL;
   }
 
-  // A voir : 
-  // getUserCharacterListNew$(id: number): Observable<CharacterFullDTO[]> {
-  //   const headers = this.getHeaders();
-  //   return this._http.get<CharacterFullDTO[]>(`${this._BASE_URL_NEW}/get/userId=${id}`, { headers });
-  // }
-
   getUserCharacterById$(id: number): Observable<CharacterFullDTO>{
     const headers = this.getHeaders()
     return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, { headers })
   }
-
-  getUserCharacterList$(): Observable<Character[]> {
-    return this.getAll$().pipe(
-      switchMap((CharacterList: Character[]) =>
-        this._userConnected$.pipe(
-          map((user: UserBasicInfos) =>
-            CharacterList.filter(
-              (character: Character) => character.userId === user.id
-            )
-          )
-        )
-      )
-    );
+   
+  getCharacterWithoutTableListNew$(id: number): Observable<CharacterDTO[]> {
+    return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-available/userId=${id}`)
   }
 
-  getUserCharacterWithoutTableList$(): Observable<Character[]> {
-    return this.getUserCharacterList$().pipe(
-      map((response: Character[]) =>
-        response.filter((character: Character) => character.tableId === null)
-      )
-    );
+  getUserCharacterAvailableList$(): Observable<CharacterDTO[]> {
+    return this._connectionService.getUserConnected$().pipe(
+      switchMap((user: UserInfos | null) => {
+        if(user == null) {
+          return of([])
+        } else {
+          return this.getCharacterWithoutTableListNew$(user.id);
+        }
+      }
+    )
+  )
   }
- 
-//  Porposition :
-  // getUserCharacterWithoutTableList$(id: number): Observable<CharacterFullDTO[]> {
-  //   return this.getUserCharacterListNew$(id).pipe(
-  //     map((response: CharacterFullDTO[]) =>
-  //       response.filter((character: CharacterFullDTO) => character.gameTable === null)
-  //     )
-  //   );
-  // } 
+
+  getCharacterAcceptedList$(tableId: number): Observable<CharacterDTO[]> {
+    const headers = this.getHeaders()
+    return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-accepted/tableId=${tableId}`)
+  }
   
   getCharactersByTable$(tableId: number): Observable<Character[]> {
     return this.getAll$().pipe(
@@ -80,12 +65,6 @@ export class CharacterService extends ApiRessourceService<Character> {
     );
   }
 
-  // Proposition : 
-  // getCharactersByTableNew$(tableId: number): Observable<CharacterFullDTO[]> {
-  //   const headers = this.getHeaders();
-  //   return this._http.get<CharacterFullDTO[]>(`${this._BASE_URL}/table/${tableId}`, { headers });
-  // }
-
   getCharacterToAcceptByTable$(id: number): Observable<Character[]> {
     return this.getCharactersByTable$(id).pipe(
       map((characterList: Character[]) =>
@@ -95,17 +74,6 @@ export class CharacterService extends ApiRessourceService<Character> {
       )
     );
   }
-
-  // Proposition : 
-  // getCharacterToAcceptByTable$(tableId: number): Observable<CharacterFullDTO[]> {
-  //   return this.getCharactersByTableNew$(tableId).pipe(
-  //     map((characterList: CharacterFullDTO[]) =>
-  //       characterList.filter(
-  //         (character: CharacterFullDTO) => character.accepted === false
-  //       )
-  //     )
-  //   );
-  // }
 
   postCharacter(userId: number, character: CharacterFullDTO): Observable<any>{
     const headers = this.getHeaders(); 
