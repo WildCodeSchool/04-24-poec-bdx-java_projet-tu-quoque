@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,11 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from '../environments/environment.development';
+import { registerLocaleData } from '@angular/common';
+import localFr from '@angular/common/locales/fr';
+
+registerLocaleData(localFr);
+
 
 @NgModule({
   declarations: [
@@ -43,6 +48,7 @@ import { environment } from '../environments/environment.development';
 			provide: FIREBASE_OPTIONS,
 			useValue: environment.firebase,
 		},
+    {provide: LOCALE_ID, useValue: 'fr_FR'},
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

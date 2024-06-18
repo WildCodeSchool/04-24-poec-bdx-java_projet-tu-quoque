@@ -27,31 +27,16 @@
   &.gold {
     background-color: #c29b0f;
     color: #0b202f;
-    &:hover {
-      opacity: 80%;
-    }
   }
   &.red {
     background-color: #0b202f;
     color: #ff0000;
     border: 0.5px solid #ff0000;
-    &:hover {
-      background-color: #ff0000;
-    }
   }
   &.red-white {
     background-color: transparent;
     color: #ff0000;
     border: 0.5px solid #ff0000;
-    &:hover {
-      background-color: #ff0000;
-    }
-  }
-  &:hover {
-    background-color: #c29b0f;
-    color: #0b202f;
-    opacity: 80%;
-    border: 1;
   }
   &.bgSquare {
     width: 130px;
