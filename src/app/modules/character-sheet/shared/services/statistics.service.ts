@@ -1,14 +1,26 @@
-import { Injectable } from '@angular/core';
+import { DestroyRef, inject, Injectable } from '@angular/core';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
-import { StatAbbr, StatAbbrKey } from '../../models/enums/stats-abbr.enum';
 import { StatModifier } from '../../models/types/stat-modifier.type';
 import { CharacterStats } from '../../models/classes/character-stats.class';
+import { map } from 'rxjs';
+import { ListenPlayerActionService } from './listen-player-action.service';
+import { Sheet } from '../../models/types/sheet.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatisticsService {
   stats: CharacterStats = new CharacterStats();
+  destroyRef: DestroyRef = inject(DestroyRef);
+  listener = inject(ListenPlayerActionService);
+
+  constructor() {
+    this.listener.sendInfos().pipe(
+      map((sheet: Sheet) => sheet.stats),
+    ).subscribe(stats => {
+      this.stats = stats;
+    });
+  }
 
   generate(): CharacterStats {
     while (!this.isViable()) {

@@ -1,56 +1,68 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, DestroyRef, Renderer2, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { ActivatedRoute } from '@angular/router';
-import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
 import { Table } from '../../../../../../../../shared/models/types/users/table.type';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
-import { ChatService } from '../../../../../../../../shared/services/chat/chat.service';
 import { Chat } from '../../../../../../../../shared/models/types/users/chat.type';
-import { DrawingService } from '../../../../../../../../shared/services/drawing/drawing.service';
 import { Drawing } from '../../../../../../../../shared/models/types/users/drawing.type';
+import { UserInfos } from '../../../../../../../../shared/models/types/users/user-infos';
+import { GameTableFullDTO } from '../../../../../../../../shared/models/types/users/table-full-dto';
 import { ConnectionService } from '../../../../../../../../shared/services/connection/connection.service';
-import { UserBasicInfos } from '../../../../../../../../shared/models/types/users/userBasicInfos.type';
+import { MessageService } from 'primeng/api';
+import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
+import { CharacterDTO } from '../../../../../../../../shared/models/types/users/character-dto';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-table-page',
   templateUrl: './table-page.component.html',
   styleUrl: './table-page.component.scss',
+  providers: [MessageService],
 })
 export class TablePageComponent {
   id!: number;
   drawingToShow!: string;
   isDrawingVisible: boolean = false;
-
-  table$!: Observable<Table>;
-  participantList$!: Observable<Character[]>;
-  chatList$!: Observable<Chat[]>;
+  private _messageService = inject(MessageService);
+  private _characterService = inject(CharacterService);
+  participantList!: CharacterDTO[];
+  chatList!: Chat[];
   drawingList$!: Observable<Drawing[]>;
-  userAllowed!: UserBasicInfos;
+  userAllowed!: UserInfos;
+  foundTable!: GameTableFullDTO;
+  destroyRef: DestroyRef = inject(DestroyRef);
 
   constructor(
     private _tableService: TableService,
-    private _characterService: CharacterService,
-    private _chatService: ChatService,
-    private _drawingService: DrawingService,
     private _route: ActivatedRoute,
     private _renderer: Renderer2,
     private _connectionService: ConnectionService
   ) {}
 
   ngOnInit(): void {
-    this.id = Number(this._route.snapshot.paramMap.get('id'));
-    this.table$ = this._tableService.getById$(this.id);
-    this.participantList$ = this._characterService.getCharactersByTable$(
-      this.id
-    );
-    this.chatList$ = this._chatService.getChatListByTable$(this.id);
-    this.drawingList$ = this._drawingService.getDrawingListByTable$(this.id);
-    this._connectionService
-      .getUserConected$()
-      .subscribe((user: UserBasicInfos | null) => {
-        if (user) this.userAllowed = user as UserBasicInfos;
-      });
+    this._route.data.subscribe((data) => {
+      this.userAllowed = data['user'] as UserInfos;
+      this.id = Number(this._route.snapshot.paramMap.get('id'));
+      this._tableService
+        .getUserTableByIdNew$(this.id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((response) => (this.foundTable = response));
+      this._characterService
+        .getCharacterAcceptedList$(this.id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((characterList) => (this.participantList = characterList));
+    });
+  }
+
+  selectTableToPlay(): void {
+    this._connectionService.setTableConnectedNew(this.foundTable);
+    this._connectionService.setCharacterConnectedNew(null);
+    this._messageService.add({
+      severity: 'info',
+      summary: 'Connecté',
+      detail: `Vous avez maintenant repris : ${this.foundTable.name}`,
+    });
   }
 
   toggleDrawingVisible(event: boolean): void {

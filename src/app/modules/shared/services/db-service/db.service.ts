@@ -12,13 +12,13 @@ import { WeaponDetails } from '../../../character-sheet/models/types/weapons/wea
   providedIn: 'root'
 })
 export class DbService {
-  private readonly INDEX_URL: string = "http://localhost:3000/";
-  private readonly RACES_ENDPOINT: string = "races";
-  private readonly CLASSES_ENDPOINT: string = "classes";
-  private readonly ALIGNMENTS_ENDPOINT: string = "alignments";
-  private readonly GENDERS_ENDPOINT: string = "genders";
-  private readonly SKILLS_ENDPOINT: string = "skills";
-  private readonly WEAPONS_ENDPOINT: string = "weapons";
+  private readonly INDEX_URL: string = "assets/json/sheet/";
+  private readonly RACES_ENDPOINT: string = "races.json";
+  private readonly CLASSES_ENDPOINT: string = "classes.json";
+  private readonly ALIGNMENTS_ENDPOINT: string = "alignments.json";
+  private readonly GENDERS_ENDPOINT: string = "genders.json";
+  private readonly SKILLS_ENDPOINT: string = "skills.json";
+  private readonly WEAPONS_ENDPOINT: string = "weapons.json";
 
   private race$: Observable<Race[]>;
   private classCharacter$: Observable<CharacterClass[]>;

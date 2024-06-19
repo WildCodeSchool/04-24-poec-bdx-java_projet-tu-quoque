@@ -4,7 +4,9 @@
   [elementIcon]="connexionIcon"
 ></app-page-header>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <app-custom-area-title [title]="'Email'"></app-custom-area-title>
+  <div class="title-container">
+    <h2>Email</h2>
+  </div>
   <ng-container *ngIf="emailField$ | async as emailField">
     <app-input-text
       [field]="emailField"
@@ -14,7 +16,9 @@
     </app-input-text>
   </ng-container>
 
-  <app-custom-area-title [title]="'Mot de passe'"></app-custom-area-title>
+  <div class="title-container">
+    <h2>Mot de passe</h2>
+  </div>
   <ng-container *ngIf="passwordField$ | async as passwordField">
     <app-input-text
       [field]="passwordField"

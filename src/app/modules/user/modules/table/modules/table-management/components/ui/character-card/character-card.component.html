@@ -1,7 +1,11 @@
   <header class="header">
-    <h2>{{character.name}}</h2>
-    <app-custom-button [style]="'gold'" [name]="'Accepter'"></app-custom-button>
-    <app-custom-button [style]="'dblue-gold'" [name]="'Refuser'"></app-custom-button>
+    <h2>{{character.nickname}}</h2>
+    @if(!isUserCard){
+      <app-custom-button [style]="'gold'" [name]="'Accepter'"></app-custom-button>
+    <app-custom-button [style]="'red'" [name]="'Refuser'"></app-custom-button>
+    } @else{
+      <app-custom-button [style]="'red'" [name]="'Annuler'"></app-custom-button>
+    }
   </header>
   <div class="img-container">
     <img

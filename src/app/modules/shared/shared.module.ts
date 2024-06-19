@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'primeng/fileupload'; // import primeNG
 import { AutoCompleteModule } from 'primeng/autocomplete'; // import primeNG
 import { AccordionModule } from 'primeng/accordion'; // import primeNG
+import { ToastModule } from 'primeng/toast';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CustomAddButtonComponent } from './components/custom-add-button/custom-add-button.component';
 import { ShowCommentPageComponent } from './components/show-comment-page/show-comment-page.component';
@@ -17,6 +18,7 @@ import { BackToPreviousPageDirective } from './directives/back-to-previous-page.
 import { BaseInputComponent } from './components/custom-form/form-inputs/base-input/base-input.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ReturnButtonComponent } from './components/return-button/return-button.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     ShowCommentPageComponent,
     BackToPreviousPageDirective,
     ReturnButtonComponent,
+    FileUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     FullCalendarModule,
     AccordionModule,
     DynamicDialogModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ],
   exports: [
     CustomButtonComponent,
@@ -56,9 +60,10 @@ import { ReturnButtonComponent } from './components/return-button/return-button.
     FullCalendarModule,
     AccordionModule,
     DynamicDialogModule,
-    FormsModule,
     ReactiveFormsModule,
-    FormsModule
+    FileUploadComponent,
+    FormsModule,
+    ToastModule
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

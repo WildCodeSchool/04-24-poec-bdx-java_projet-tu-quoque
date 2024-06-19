@@ -13,7 +13,7 @@ import { SizeCategoryEnumKey } from '../../../../models/enums/sizeCategoryEnum.e
 })
 export class AttackComponent implements OnInit {
   @Input()
-  weapon!: Weapon;
+  weapon!: Weapon | undefined;
   @Input()
   index!: number;
   @Input()

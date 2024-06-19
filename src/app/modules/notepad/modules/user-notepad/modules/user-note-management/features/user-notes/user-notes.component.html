@@ -1,10 +1,15 @@
-<ng-container *ngIf="noteList$ |async as noteList" >
-    <app-list-of-element [elementList]="noteList" [elementIcon]="'assets/images/discussion-icon.svg'" [baseUrl]="'../note'"></app-list-of-element>
-    @if(noteList.length) {
-        <app-custom-add-button [routerLink]="'../../creation'"></app-custom-add-button>
-    } @else {
-        <main class="notes-main">
-            <app-custom-add-button [style]="'list-empty'" [routerLink]="'../../creation'"></app-custom-add-button>
-        </main>
-    }
-</ng-container>
+<app-list-of-element
+  [elementList]="user.playerNoteList"
+  [elementIcon]="'assets/images/discussion-icon.svg'"
+  [baseUrl]="'../note'"
+></app-list-of-element>
+@if(user.playerNoteList.length) {
+<app-custom-add-button (click)="onClick()"></app-custom-add-button>
+} @else {
+<main class="notes-main">
+  <app-custom-add-button
+    [style]="'list-empty'"
+    (click)="onClick()"
+  ></app-custom-add-button>
+</main>
+}

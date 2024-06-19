@@ -5,6 +5,8 @@ import { CharacterSheetService } from '../../../../shared/services/character-she
 import { map, Observable } from 'rxjs';
 import { CharacterStats } from '../../../../models/classes/character-stats.class';
 import { BaseAttackBonusStreamService } from '../../../../shared/services/base-attack-bonus/base-attack-bonus-stream.service';
+import { ListenPlayerActionService } from '../../../../shared/services/listen-player-action.service';
+import { Sheet } from '../../../../models/types/sheet.type';
 
 @Component({
   selector: 'app-attacks',
@@ -12,7 +14,9 @@ import { BaseAttackBonusStreamService } from '../../../../shared/services/base-a
   styleUrl: './attacks.component.scss'
 })
 export class AttacksComponent implements OnInit {
-  weapons: Weapon[] = [];
+  weapons$: Observable<Weapon[]> = inject(ListenPlayerActionService).sendInfos().pipe(
+    map((sheet: Sheet) => sheet.weapons)
+  );
   characterSize$ = inject(CharacterSheetService).setSizeCategory$()
   classWeapons$ = inject(ClassWeaponsService).getClassWeapons$();
   statistics$ = inject(CharacterSheetService).getCaracteristics$();

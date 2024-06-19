@@ -13,8 +13,36 @@
     justify-content: center;
     overflow: hidden;
 
+    p {
+      font-weight: bold;
+    }
+
     .character-img {
       width: 100%;
+      border-radius: 7px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .table-button {
+    width: 45vw;
+    padding: 0.4rem 0;
+    display: flex;
+    margin-top: 1rem;
+    border-radius: 7px;
+    background-color: #0b202f;
+    text-align: center;
+    white-space: pre-line;
+    flex-direction: column;
+    .table-name {
+      p {
+        margin-top: 0;
+        color: #c29b0f;
+        font-size: 1.3rem;
+      }
     }
   }
 }

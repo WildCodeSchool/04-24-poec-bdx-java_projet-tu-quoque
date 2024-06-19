@@ -1,10 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, switchMap } from 'rxjs';
-import { Character } from '../../models/types/users/character.type';
+import { Observable, map, of, switchMap } from 'rxjs';
 import { ConnectionService } from '../connection/connection.service';
-import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
+import { environment } from '../../../../../environments/environment.development';
+import { UserInfos } from '../../models/types/users/user-infos';
+import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
+import { Character } from '../../models/types/users/character.type';
+import { CharacterDTO } from '../../models/types/users/character-dto';
+import { CharacterAvatarDTO } from '../../models/types/users/character-avatar-DTO';
 
 @Injectable({
   providedIn: 'root',
@@ -14,36 +17,46 @@ export class CharacterService extends ApiRessourceService<Character> {
   private _connectionService = inject(ConnectionService);
 
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
-  
-  private readonly _userConnected$: Observable<UserBasicInfos> =
-    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
+  private readonly _BASE_URL_NEW: string = environment.baseUrl + '/characters';
+
+  private readonly _userConnected$ =
+    this._connectionService.getUserConnected$() as Observable<UserInfos>;
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
   }
 
-  getUserCharacterList$(): Observable<Character[]> {
-    return this.getAll$().pipe(
-      switchMap((CharacterList: Character[]) =>
-        this._userConnected$.pipe(
-          map((user: UserBasicInfos) =>
-            CharacterList.filter(
-              (character: Character) => character.userId === user.id
-            )
-          )
-        )
-      )
-    );
+  getUserCharacterById$(id: number): Observable<CharacterFullDTO>{
+    const headers = this.getHeaders()
+    return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, { headers })
+  }
+   
+  getCharacterWithoutTableListNew$(userId: number): Observable<CharacterDTO[]> {
+    return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-available/userId=${userId}`)
   }
 
-  getUserCharacterWithoutTableList$(): Observable<Character[]> {
-    return this.getUserCharacterList$().pipe(
-      map((response: Character[]) =>
-        response.filter((character: Character) => character.tableId === null)
-      )
-    );
+  getCharacterOnHoldList$(tableId: number): Observable<CharacterAvatarDTO[]> {
+    return this._http.get<CharacterAvatarDTO[]>(this._BASE_URL_NEW + `/get/character-on-hold/tableId=${tableId}`)
   }
 
+  getUserCharacterAvailableList$(): Observable<CharacterDTO[]> {
+    return this._connectionService.getUserConnected$().pipe(
+      switchMap((user: UserInfos | null) => {
+        if(user == null) {
+          return of([])
+        } else {
+          return this.getCharacterWithoutTableListNew$(user.id);
+        }
+      }
+    )
+  )
+  }
+
+  getCharacterAcceptedList$(tableId: number): Observable<CharacterDTO[]> {
+    const headers = this.getHeaders()
+    return this._http.get<CharacterDTO[]>(this._BASE_URL_NEW + `/get/character-accepted/tableId=${tableId}`)
+  }
+  
   getCharactersByTable$(tableId: number): Observable<Character[]> {
     return this.getAll$().pipe(
       map((characters: Character[]) =>
@@ -62,5 +75,10 @@ export class CharacterService extends ApiRessourceService<Character> {
         )
       )
     );
+  }
+
+  postCharacter(userId: number, character: CharacterFullDTO): Observable<any>{
+    const headers = this.getHeaders(); 
+    return this._http.post(this._BASE_URL_NEW + `/add/${userId}`, character, { headers })
   }
 }

@@ -9,10 +9,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class CharacterInformationsComponent extends AbstractListenerComponent implements OnInit {
 
-  constructor(private destroyRef: DestroyRef) {
-    super();
-  }
-
   ngOnInit(): void {
     this.listener.sendInfos().pipe(
       takeUntilDestroyed(this.destroyRef),

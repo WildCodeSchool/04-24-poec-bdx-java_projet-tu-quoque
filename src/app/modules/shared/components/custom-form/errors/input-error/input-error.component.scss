@@ -1,7 +1,13 @@
-span {
+.error-message {
   display: flex;
+  justify-content: center;
+  align-content: center;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  color: red;
+  span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: red;
+  }
 }

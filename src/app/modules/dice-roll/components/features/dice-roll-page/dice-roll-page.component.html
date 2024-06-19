@@ -17,5 +17,8 @@
     [style]="'gold'"
     (click)="rollDice()"
   ></app-custom-button>
+  <button class="info-btn" type="button" (click)="showDiceThrowRules()">
+    <img class="info-btn-img" [src]="'assets/images/info-circle.svg'" alt="modify">
+  </button>
 </header>
 <div #diceBoxContainer id="diceBoxContainer"></div>

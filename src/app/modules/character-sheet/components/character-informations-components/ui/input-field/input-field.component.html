@@ -1,5 +1,11 @@
+<div *ngIf="field.preFillValue; else blankField" class="information-container {{field.sizeClass}}">
+    <input type="text" [name]="field.name" [id]="field.name" [(ngModel)]="playerInput" (ngModelDebounceChange)="sendChanges()">
+    <label [for]="field.name">{{field.label}}</label>
+</div>
+<ng-template #blankField>
 <div class="information-container {{field.sizeClass}}">
     <input type="text" [name]="field.name" [id]="field.name" [(ngModel)]="playerInput" (ngModelDebounceChange)="sendChanges()">
     <label [for]="field.name">{{field.label}}</label>
 </div>
+</ng-template>
 

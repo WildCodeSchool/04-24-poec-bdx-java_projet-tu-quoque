@@ -1,10 +1,9 @@
 <ng-container *ngIf="userConnected$ | async as userConnected; else visitor">
   <header class="header">
-    <div class="header-side">
+    <div class="header-side" (click)="onClick()">
       <app-header-button
         class="header-btn"
         [picture]="'assets/images/menu-icon.svg'"
-        (click)="onClick()"
       ></app-header-button>
       <span>Menu</span>
     </div>
@@ -12,15 +11,31 @@
       {{ title | uppercase }}
     </h1>
     <div class="header-side">
+      @if ((characterConnected$|async) || (tableConnected$|async)) { @if
+      (characterConnected$|async) {
+      <button
+        class="header-btn avatar"
+        [ngStyle]="{
+          'background-image':
+            'url(' + (characterConnected$ | async)?.avatar + ')'
+        }"
+      ></button>
+      } @else {
+      <button
+        class="header-btn avatar"
+        [ngStyle]="{
+          'background-image': 'url(' + (tableConnected$ | async)?.avatar + ')'
+        }"
+      ></button>
+      } } @else {
       <button
         class="header-btn avatar"
         [ngStyle]="{ 'background-image': 'url(' + userConnected.avatar + ')' }"
       ></button>
+      }
     </div>
   </header>
-  <app-notes-button
-    (click)="goToNotepad()"
-  ></app-notes-button>
+  <app-notes-button (click)="goToNotepad()"></app-notes-button>
   <app-dice-button (click)="goToDiceRoll()"></app-dice-button>
   <app-menu-sidebar></app-menu-sidebar>
 </ng-container>
@@ -30,4 +45,5 @@
       {{ title | uppercase }}
     </h1>
   </header>
+  <app-dice-button (click)="goToDiceRoll()"></app-dice-button>
 </ng-template>
