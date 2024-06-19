@@ -63,9 +63,7 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
     this._messageService.add({ severity: 'info', summary: 'Connecté', detail: `Vous jouez maintenant : ${this.foundCharacter.name}` });
   }
 
-  linkToCharacterTable(id: number): void {
-    this._router.navigateByUrl(`user/tables/management/my-tables/${id}`)
-  }
+
 
   toggleCharacterSheetVisible(event: boolean): void {
     window.scrollTo(0, 0);

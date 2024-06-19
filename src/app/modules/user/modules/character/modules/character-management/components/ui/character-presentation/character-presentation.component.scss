@@ -13,9 +13,18 @@
     justify-content: center;
     overflow: hidden;
 
+    p {
+      font-weight: bold;
+    }
+
     .character-img {
       width: 100%;
       border-radius: 7px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
