@@ -87,10 +87,7 @@ export class ConnexionPageComponent extends ParentFormComponent implements OnDes
     this.form = this._fb.group({
       email: ['', [
         Validators.required, 
-        Validators.email, 
-        Validators.minLength(2), 
-        Validators.maxLength(50),
-        Validators.pattern(RegexPatterns.emailPattern)
+        Validators.email
       ]],
       password: ['', [
         Validators.required
