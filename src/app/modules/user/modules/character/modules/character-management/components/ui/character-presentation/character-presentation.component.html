@@ -13,12 +13,17 @@
     [routerLink]="'/character-sheet/' + character.characterSheetId"
   ></app-custom-button>
 
-  <ng-container *ngIf="character.gameTable as gameTable; else noTable">
-    <app-custom-area-title
-      [title]="'Table reliée :\n' + gameTable.name"
-      (click)="linkToCharacterTable(gameTable.id)"
-    ></app-custom-area-title>
-  </ng-container>
+  <div
+    class="table-button"
+    (click)="linkToCharacterTable(character.gameTable.id)"
+  >
+    <ng-container *ngIf="character.gameTable as gameTable; else noTable">
+      <p>Table reliée :</p>
+      <div class="table-name">
+        <p>{{ gameTable.name }}</p>
+      </div>
+    </ng-container>
+  </div>
   <ng-template #noTable>
     <app-custom-area-title title="Aucune table"></app-custom-area-title>
   </ng-template>
