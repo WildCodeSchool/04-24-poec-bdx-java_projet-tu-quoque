@@ -15,7 +15,9 @@
 
   <div
     class="table-button"
-    (click)="linkToCharacterTable(character.gameTable.id)"
+    (click)="
+      character.gameTable ? linkToCharacterTable(character.gameTable.id) : null
+    "
   >
     <ng-container *ngIf="character.gameTable as gameTable; else noTable">
       <p>Table reliée :</p>
