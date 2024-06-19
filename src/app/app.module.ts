@@ -23,7 +23,6 @@ import { environment } from '../environments/environment.development';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule,
     ButtonModule,
     NavigationModule,
     AuthentificationModule,

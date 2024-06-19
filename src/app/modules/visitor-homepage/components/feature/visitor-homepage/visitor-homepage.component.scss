@@ -19,20 +19,23 @@ h2 {
 
 .inscription-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  padding-top: 16rem;
+  padding-bottom: 1.4rem;
   gap: 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .description-app {
   width: 100vw;
-  height: 20rem;
+  height: 18rem;
   display: flex;
   flex-direction: column;
   padding: 3rem;
-  margin: 3rem 0rem 4rem 0rem;
   background-color: #30495b;
   color: #fff;
   font-family: cinzel;
@@ -43,43 +46,21 @@ h2 {
 }
 
 img {
-  height: 15rem;
-}
-
-.table-function {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 2rem;
-  .table-function-img {
-    display: flex;
-  }
-  .table-function-description {
-    background-color: #172c3b;
-    width: 50%;
-    height: 15rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0rem 1rem 0rem 1rem;
-    p {
-      font-family: alice;
-      text-align: center;
-    }
-  }
+  width: 100vw;
+  opacity: 0.8;
 }
 
 .function-desciption {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 6rem;
+  flex-direction: column;
   .function-desciption-img {
     display: flex;
   }
   .function-description-content {
     background-color: #172c3b;
-    width: 50%;
+    width: 100vw;
     height: 15rem;
     display: flex;
     flex-direction: column;
@@ -89,5 +70,11 @@ img {
       font-family: alice;
       text-align: center;
     }
+  }
+}
+
+:host ::ng-deep app-custom-button {
+  .button {
+    font-size: 1.5rem;
   }
 }
