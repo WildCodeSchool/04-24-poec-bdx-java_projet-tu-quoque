@@ -15,7 +15,9 @@
 
   <div
     class="table-button"
-    (click)="linkToCharacterTable(character.gameTable.id)"
+    (click)="
+      character.gameTable ? linkToCharacterTable(character.gameTable.id) : null
+    "
   >
     <ng-container *ngIf="character.gameTable as gameTable; else noTable">
       <p>Table reliée :</p>
@@ -24,7 +26,5 @@
       </div>
     </ng-container>
   </div>
-  <ng-template #noTable>
-    <app-custom-area-title title="Aucune table"></app-custom-area-title>
-  </ng-template>
+  <ng-template #noTable> Aucune table reliée </ng-template>
 </div>

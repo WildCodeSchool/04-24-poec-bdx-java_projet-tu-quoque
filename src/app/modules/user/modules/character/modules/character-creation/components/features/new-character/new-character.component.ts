@@ -74,7 +74,7 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
           name: this.form.value.characterName,
           avatar: url as string,
           accepted: false,
-          gameTable: {} as GameTableDTO,
+          gameTable: null,
           characterSheetId: 0,
           characterNoteList: []
         };
