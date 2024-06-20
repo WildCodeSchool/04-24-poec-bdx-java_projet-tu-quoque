@@ -16,6 +16,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   providedIn: 'root',
 })
 export class NoteService extends ApiRessourceService<Note> {
+  
   private _gameTableNotes$: BehaviorSubject<NoteDTO[]> = new BehaviorSubject<
     NoteDTO[]
   >([]);
@@ -79,7 +80,13 @@ export class NoteService extends ApiRessourceService<Note> {
       this._BASE_URL + `/add/character/${characterId}`,
       formValue,
       { headers }
-    );
+    )
+    .pipe(
+      tap((newNote: NoteDTO) => {
+        this._tableNoteList = [...this._tableNoteList, newNote]
+        this._gameTableNotes$.next(this._tableNoteList)
+      })
+    )
   }
 
   postTableNote(formValue: any, tableId: number): Observable<NoteDTO> {
@@ -92,6 +99,7 @@ export class NoteService extends ApiRessourceService<Note> {
     .pipe(
       tap((newNote: NoteDTO) => {
         this._tableNoteList = [...this._tableNoteList, newNote];
+        console.log(this._tableNoteList)
         this._gameTableNotes$.next(this._tableNoteList)
       }
       )

@@ -15,7 +15,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class CharacterService extends ApiRessourceService<Character> {
 
-  private _character$: BehaviorSubject<CharacterFullDTO | null>= new BehaviorSubject<CharacterFullDTO | null>(null)
   private _userCharacterList$: BehaviorSubject<CharacterDTO[] | null> =
     new BehaviorSubject<CharacterDTO[] | null>(null);
   private _characterList: CharacterDTO[] = [];
@@ -33,20 +32,9 @@ export class CharacterService extends ApiRessourceService<Character> {
     return this._BASE_URL;
   }
 
-  setUserCharacterById$(id: number): void {
-    const headers = this.getHeaders();
-    this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, {
-      headers,
-    })
-    .pipe(
-      tap((foundCharacter: CharacterFullDTO) => this._character$.next(foundCharacter))
-    )
-    .pipe(takeUntilDestroyed(this._destroyRef))
-    .subscribe()
-  }
-
-  getUserCharacter$(): Observable<CharacterFullDTO | null> {
-    return this._character$.asObservable()
+  getUserCharacterById$(id: number): Observable<CharacterFullDTO>{
+    const headers = this.getHeaders()
+    return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, { headers })
   }
 
   getCharacterWithoutTableListNew$(userId: number): Observable<CharacterDTO[]> {
