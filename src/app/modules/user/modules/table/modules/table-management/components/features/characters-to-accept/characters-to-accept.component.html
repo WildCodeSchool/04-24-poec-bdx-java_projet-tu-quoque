@@ -9,21 +9,30 @@
     <ng-container *ngIf="userInvitedList$ | async as userInvitedList">
       <p-accordionTab header="Utilisateurs">
         <div class="card-container">
-          <app-character-card
+          @if(userInvitedList.length){
+            <app-character-card
             *ngFor="let userInvited of userInvitedList"
             [character]="userInvited"
             [isUserCard]="true"
-          ></app-character-card>
-        </div>
+            ></app-character-card>
+          } @else {
+            <p>pas d'utilisateur invité</p>
+          }
+          </div>
       </p-accordionTab>
+
     </ng-container>
     <ng-container *ngIf="characterOnHoldList$| async as characterOnHoldList">
       <p-accordionTab header="Personnages">
         <div class="card-container">
-          <app-character-card
+          @if(characterOnHoldList.length){
+            <app-character-card
             *ngFor="let character of characterOnHoldList"
             [character]="character"
-          ></app-character-card>
+            ></app-character-card>
+          } @else {
+            <p>pas de joueur en attente de validation</p>
+          }
         </div>
       </p-accordionTab>
     </ng-container>

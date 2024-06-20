@@ -13,12 +13,12 @@ import { CharacterAvatarDTO } from '../../models/types/users/character-avatar-DT
   providedIn: 'root',
 })
 export class CharacterService extends ApiRessourceService<Character> {
-  
   private _userCharacterList$: BehaviorSubject<CharacterDTO[] | null> =
     new BehaviorSubject<CharacterDTO[] | null>(null);
   private _characterList: CharacterDTO[] = [];
-  private _tableCharacterOnHoldList$: BehaviorSubject<CharacterAvatarDTO[]> = new BehaviorSubject<CharacterAvatarDTO[]>([]);
-  private _characterOnHoldList: CharacterAvatarDTO[] = []
+  private _tableCharacterOnHoldList$: BehaviorSubject<CharacterAvatarDTO[]> =
+    new BehaviorSubject<CharacterAvatarDTO[]>([]);
+  private _characterOnHoldList: CharacterAvatarDTO[] = [];
   private _connectionService = inject(ConnectionService);
 
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
@@ -88,18 +88,28 @@ export class CharacterService extends ApiRessourceService<Character> {
   }
 
   getCharacterOnHoldList$(): Observable<CharacterAvatarDTO[]> {
-    return this._tableCharacterOnHoldList$.asObservable()
+    return this._tableCharacterOnHoldList$.asObservable();
   }
 
   setCharacterOnHoldList(tableId: number): void {
-    this._http.get<CharacterAvatarDTO[]>(
-      this._BASE_URL_NEW + `/get/character-on-hold/tableId=${tableId}`
-    ).pipe(
-      tap((characterOnHoldList: CharacterAvatarDTO[]) => {
-        this._characterOnHoldList = characterOnHoldList;
-        this._tableCharacterOnHoldList$.next(characterOnHoldList);
-      })
-    ).subscribe()
+    this._http
+      .get<CharacterAvatarDTO[]>(
+        this._BASE_URL_NEW + `/get/character-on-hold/tableId=${tableId}`
+      )
+      .pipe(
+        tap((characterOnHoldList: CharacterAvatarDTO[]) => {
+          this._characterOnHoldList = characterOnHoldList;
+          this._tableCharacterOnHoldList$.next(characterOnHoldList);
+        })
+      )
+      .subscribe();
+  }
+
+  deleteCaharacterInvited(CharacterId: number): void {
+    this._characterOnHoldList = this._characterOnHoldList.filter(
+      (character: CharacterAvatarDTO) => character.id !== CharacterId
+    );
+    this._tableCharacterOnHoldList$.next(this._characterOnHoldList);
   }
 
   getCharacterList$(): Observable<CharacterDTO[] | null> {

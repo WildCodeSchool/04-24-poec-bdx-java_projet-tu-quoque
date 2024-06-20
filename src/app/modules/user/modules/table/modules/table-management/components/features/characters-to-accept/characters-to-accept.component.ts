@@ -12,7 +12,6 @@ import { CharacterAvatarDTO } from '../../../../../../../../shared/models/types/
   styleUrl: './characters-to-accept.component.scss',
 })
 export class CharactersToAcceptComponent implements OnInit {
-
   tableId!: number;
   userInvitedList$: Observable<UserBasicInfos[]> =
     this._userService.getTableUserInvited$();

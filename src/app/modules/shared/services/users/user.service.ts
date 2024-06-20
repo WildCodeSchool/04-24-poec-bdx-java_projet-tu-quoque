@@ -58,4 +58,12 @@ export class userService extends ApiRessourceService<User> {
   getTableUserInvited$(): Observable<UserBasicInfos[]> {
     return this._tableUserInvitedList$.asObservable()
   }
+
+  deleteUserInvited(userId: number): void {
+    this._userInvitedList = this._userInvitedList.filter(
+      (user: UserBasicInfos) => user.id !== userId
+    );
+    this._tableUserInvitedList$.next(this._userInvitedList);
+  }
+
 }

@@ -1,18 +1,24 @@
-  <header class="header">
-    <h2>{{character.nickname}}</h2>
-    @if(!isUserCard){
-      <app-custom-button [style]="'gold'" [name]="'Accepter'"></app-custom-button>
-    <app-custom-button [style]="'red'" [name]="'Refuser'"></app-custom-button>
-    } @else{
-      <app-custom-button [style]="'red'" [name]="'Annuler'"></app-custom-button>
-    }
-  </header>
-  <div class="img-container">
-    <img
-      class="character-img"
-      [src]="character.avatar ? character.avatar : 'assets/images/user-icon.svg'"
-      alt="character-picture"
-    />
-
-  </div>
-
+<header class="header">
+  <h2>{{ character.nickname }}</h2>
+  @if(!isUserCard){
+  <app-custom-button [style]="'gold'" [name]="'Accepter'"></app-custom-button>
+  <app-custom-button
+    [style]="'red'"
+    [name]="'Refuser'"
+    (click)="removeInvitation(character.id)"
+  ></app-custom-button>
+  } @else{
+  <app-custom-button
+    [style]="'red'"
+    [name]="'Annuler'"
+    (click)="removeInvitation(character.id)"
+  ></app-custom-button>
+  }
+</header>
+<div class="img-container">
+  <img
+    class="character-img"
+    [src]="character.avatar ? character.avatar : 'assets/images/user-icon.svg'"
+    alt="character-picture"
+  />
+</div>
