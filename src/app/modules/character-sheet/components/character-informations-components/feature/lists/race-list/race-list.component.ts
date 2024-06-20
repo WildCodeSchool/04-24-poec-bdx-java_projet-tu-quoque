@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Race } from '../../../../../models/types/race.type';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AbstractListComponent } from '../abstract-list-component.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Sheet } from '../../../../../models/types/sheet.type';
 
 @Component({
   selector: 'app-race-list',
@@ -13,14 +14,11 @@ export class RaceListComponent extends AbstractListComponent {
   raceList$: Observable<Race[]> = this.dbService.getRaces$();
   selectName: string = "characterRace";
   selectLabel: string = "RACE";
-
-  actual: string = "";
+  actual$!: Observable<string>;
 
   ngOnInit() {
     this.listener.sendInfos().pipe(
-      takeUntilDestroyed(this.destroyRef),
-    ).subscribe(sheet => {
-      this.actual = sheet.characterRace;
-    })
+      map((sheet: Sheet) => sheet.characterRace)
+    );
   }
 }
