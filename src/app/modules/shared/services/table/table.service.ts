@@ -46,7 +46,6 @@ export class TableService extends ApiRessourceService<Table> {
     this._tableList = this._tableList.filter(
       (table: GameTableDTO) => table.id !== tableId
     );
-    console.log(this._tableList)
     this._userTableList$.next(this._tableList);
     // this._http
     //   .delete(this._BASE_URL + `/delete/${tableId}`, {headers})

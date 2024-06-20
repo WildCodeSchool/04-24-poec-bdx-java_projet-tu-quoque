@@ -15,8 +15,4 @@ export class CharacterCardComponent {
 
   @Input()
   isUserCard: boolean = false;
-
-  ngOnInit(): void {
-    console.log(this.character)
-  }
 }

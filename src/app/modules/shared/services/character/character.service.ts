@@ -41,12 +41,6 @@ export class CharacterService extends ApiRessourceService<Character> {
     );
   }
 
-  getCharacterOnHoldList$(tableId: number): Observable<CharacterAvatarDTO[]> {
-    return this._http.get<CharacterAvatarDTO[]>(
-      this._BASE_URL_NEW + `/get/character-on-hold/tableId=${tableId}`
-    );
-  }
-
   getUserCharacterAvailableList$(): Observable<CharacterDTO[]> {
     return this._connectionService.getUserConnected$().pipe(
       switchMap((user: UserInfos | null) => {
@@ -93,7 +87,7 @@ export class CharacterService extends ApiRessourceService<Character> {
     });
   }
 
-  getCharacterOnHoldList$2(): Observable<CharacterAvatarDTO[]> {
+  getCharacterOnHoldList$(): Observable<CharacterAvatarDTO[]> {
     return this._tableCharacterOnHoldList$.asObservable()
   }
 
@@ -103,7 +97,6 @@ export class CharacterService extends ApiRessourceService<Character> {
     ).pipe(
       tap((characterOnHoldList: CharacterAvatarDTO[]) => {
         this._characterOnHoldList = characterOnHoldList;
-        console.log(characterOnHoldList);
         this._tableCharacterOnHoldList$.next(characterOnHoldList);
       })
     ).subscribe()

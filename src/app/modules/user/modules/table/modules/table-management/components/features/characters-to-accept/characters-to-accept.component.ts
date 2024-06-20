@@ -12,12 +12,12 @@ import { CharacterAvatarDTO } from '../../../../../../../../shared/models/types/
   styleUrl: './characters-to-accept.component.scss',
 })
 export class CharactersToAcceptComponent implements OnInit {
-  
+
   tableId!: number;
   userInvitedList$: Observable<UserBasicInfos[]> =
     this._userService.getTableUserInvited$();
   characterOnHoldList$: Observable<CharacterAvatarDTO[]> =
-    this._characterService.getCharacterOnHoldList$2();
+    this._characterService.getCharacterOnHoldList$();
   constructor(
     private _route: ActivatedRoute,
     private _userService: userService,
