@@ -1,7 +1,6 @@
-import { DestroyRef, inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, Subject, switchMap, tap } from 'rxjs';
 import { BasicField } from '../models/types/basic-field.type';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { StatisticDetails } from '../../models/classes/statistic-details.class';
 import { StatField } from '../models/types/stat-field.type';
 import { SkillDetails } from '../../models/classes/skill-details.class';
@@ -27,14 +26,12 @@ export class ListenPlayerActionService {
   sheetModifiedByPlayer: Sheet = BlankSheetGeneratorService.generate();
 
   private connectionSheetService: ConnectionSheetService = inject(ConnectionSheetService);
-  private destroyRef: DestroyRef = inject(DestroyRef);
   private transformDTOService: TransformDtoToSheetService = inject(TransformDtoToSheetService);
   private sheetModifiedListener$: BehaviorSubject<any> = new BehaviorSubject(this.sheetModifiedByPlayer);
   sheetId$: Subject<number> = new Subject();
 
   constructor() {
     this.sheetId$.pipe(
-      takeUntilDestroyed(this.destroyRef),
       switchMap((id: number) => this.connectionSheetService.getSheetById$(id).pipe(
         map((sheet: SheetDTO) => this.transformDTOService.transform(sheet)),
         tap(sheet => this.sheetModifiedByPlayer = sheet),
@@ -45,11 +42,7 @@ export class ListenPlayerActionService {
   }
 
   setId(id$: Observable<number>) {
-    id$.pipe(
-      takeUntilDestroyed(this.destroyRef),
-    ).subscribe(num => this.sheetId$.next(num))
-
-
+    id$.subscribe(num => this.sheetId$.next(num))
   }
 
   sendInfos(): Observable<Sheet> {
@@ -57,23 +50,25 @@ export class ListenPlayerActionService {
   }
 
   receiveFieldFrom(fromObs$: Observable<Field>): void {
-    fromObs$.pipe(
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe((field: Field) => {
-      if (field.value instanceof SkillDetails) {
-        this.receiveSkillField(field as SkillField);
-      } else if (field.value instanceof Weapon) {
-        this.receiveWeapon(field as WeaponField);
-      } else if (field.value instanceof StatisticDetails) {
-        this.receiveStatField(field as StatField);
-      } else if (field.value instanceof Purse) {
-        this.receivePurseField(field as PurseField);
-      } else if (field.value instanceof CharacterStats) {
-        this.receiveStatListField(field as StatListField)
-      } else {
-        this.receiveBasicField(field as BasicField)
-      }
+    fromObs$.subscribe((field: Field) => {
+      this.routeField(field);
     });
+  }
+
+  routeField(field: Field) {
+    if (field.value instanceof SkillDetails) {
+      this.receiveSkillField(field as SkillField);
+    } else if (field.value instanceof Weapon) {
+      this.receiveWeapon(field as WeaponField);
+    } else if (field.value instanceof StatisticDetails) {
+      this.receiveStatField(field as StatField);
+    } else if (field.value instanceof Purse) {
+      this.receivePurseField(field as PurseField);
+    } else if (field.value instanceof CharacterStats) {
+      this.receiveStatListField(field as StatListField)
+    } else {
+      this.receiveBasicField(field as BasicField)
+    }
   }
 
   controlField(field: BasicField): void {
