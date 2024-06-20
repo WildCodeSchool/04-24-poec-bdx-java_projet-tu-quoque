@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <p-accordion [multiple]="true" [activeIndex]="[]">
+  <p-accordion [multiple]="false" [activeIndex]="0">
     <p-accordionTab header="Titre">
       <ng-container *ngIf="nameField$ | async as nameField">
         <app-input-text
