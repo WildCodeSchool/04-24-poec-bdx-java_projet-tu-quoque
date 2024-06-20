@@ -27,6 +27,7 @@ import { ConnectionService } from '../../services/connection/connection.service'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from '../../services/connection/local-storage.service';
+import { NoteDTO } from '../../models/types/users/note-dto';
 
 @Component({
   selector: 'app-add-note-page',
@@ -107,26 +108,25 @@ export class AddNotePageComponent
       );
   }
 
-  protected onSubmit() {
+  protected onSubmit(): void {
     if (this.form.valid) {
       if (this.role === 'user') {
         this._noteService
           .postUserNote(this.form.value, this.user.id)
           .pipe(takeUntilDestroyed(this._destroyRef))
-          .subscribe();
-        this._router.navigateByUrl(`notepad/user/notes`);
+          .subscribe(() => this._router.navigateByUrl(`notepad/user/notes`));
+        ;
       } else if (this.tableConnected) {
         this._noteService
           .postTableNote(this.form.value, this.tableConnected.id)
           .pipe(takeUntilDestroyed(this._destroyRef))
-          .subscribe();
-        this._router.navigateByUrl(`notepad/game/notes`);
+          .subscribe(() => this._router.navigateByUrl(`notepad/game/notes`));
+        
       } else if (this.characterConnected) {
-        this._router.navigateByUrl(`notepad/game/notes`);
         this._noteService
           .postCharacterNote(this.form.value, this.characterConnected.id)
           .pipe(takeUntilDestroyed(this._destroyRef))
-          .subscribe();
+          .subscribe(() => this._router.navigateByUrl(`notepad/game/notes`));
       }
     } else {
       console.log(

@@ -9,11 +9,13 @@ import { environment } from '../../../../../environments/environment.development
   providedIn: 'root',
 })
 export class userService extends ApiRessourceService<User> {
+  
   private readonly _BASE_URL: string = 'http://localhost:3000/users';
-  private readonly _BASE_URL_NEW: string = environment.baseUrl + '/users'
+  private readonly _BASE_URL_NEW: string = environment.baseUrl + '/users';
 
   private userListFilteredByName$: Subject<string[]> = new Subject();
-  private _tableUserInvitedList$: BehaviorSubject<UserBasicInfos[]> = new BehaviorSubject<UserBasicInfos[]>([])
+  private _tableUserInvitedList$: BehaviorSubject<UserBasicInfos[]> =
+    new BehaviorSubject<UserBasicInfos[]>([]);
   private _userInvitedList: UserBasicInfos[] = [];
 
   override getRessourceUrl(): string {
@@ -45,18 +47,21 @@ export class userService extends ApiRessourceService<User> {
   }
 
   setTableUserInvited(tableId: number): void {
-    this._http.get<UserBasicInfos[]>(
-      this._BASE_URL_NEW + `/get/user-invited/tableId=${tableId}`
-    ).pipe(
-      tap((userInvitedList: UserBasicInfos[]) => {
-        this._userInvitedList = userInvitedList;
-        this._tableUserInvitedList$.next(userInvitedList);
-      })
-    ).subscribe();
-  } 
+    this._http
+      .get<UserBasicInfos[]>(
+        this._BASE_URL_NEW + `/get/user-invited/tableId=${tableId}`
+      )
+      .pipe(
+        tap((userInvitedList: UserBasicInfos[]) => {
+          this._userInvitedList = userInvitedList;
+          this._tableUserInvitedList$.next(userInvitedList);
+        })
+      )
+      .subscribe();
+  }
 
   getTableUserInvited$(): Observable<UserBasicInfos[]> {
-    return this._tableUserInvitedList$.asObservable()
+    return this._tableUserInvitedList$.asObservable();
   }
 
   deleteUserInvited(userId: number): void {
@@ -65,5 +70,4 @@ export class userService extends ApiRessourceService<User> {
     );
     this._tableUserInvitedList$.next(this._userInvitedList);
   }
-
 }

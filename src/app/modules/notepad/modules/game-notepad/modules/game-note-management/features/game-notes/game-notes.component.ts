@@ -13,7 +13,7 @@ import { NoteDTO } from '../../../../../../../shared/models/types/users/note-dto
 })
 export class GameNotesComponent {
 
-  noteListNew$: Observable<NoteDTO[] | null> = this._notesService.setGameNotes$()
+  noteListNew$: Observable<NoteDTO[] | null> = this._notesService.getTableNoteList$()
   tableConnectedNew$: Observable<GameTableDTO> =
     this._connectionService.getTableConnectedNew$() as Observable<GameTableDTO>;
 
@@ -24,4 +24,8 @@ export class GameNotesComponent {
     private _notesService: NoteService,
     private _connectionService: ConnectionService
   ) {}
+
+  ngOnInit(): void {
+    this._notesService.setGameNotes$()
+  }
 }
