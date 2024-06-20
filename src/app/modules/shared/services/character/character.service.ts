@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, map, of, switchMap, tap } from 'rxjs';
 import { ConnectionService } from '../connection/connection.service';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { environment } from '../../../../../environments/environment.development';
@@ -17,6 +17,8 @@ export class CharacterService extends ApiRessourceService<Character> {
   private _userCharacterList$: BehaviorSubject<CharacterDTO[] | null> =
     new BehaviorSubject<CharacterDTO[] | null>(null);
   private _characterList: CharacterDTO[] = [];
+  private _tableCharacterOnHoldList$: BehaviorSubject<CharacterAvatarDTO[]> = new BehaviorSubject<CharacterAvatarDTO[]>([]);
+  private _characterOnHoldList: CharacterAvatarDTO[] = []
   private _connectionService = inject(ConnectionService);
 
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
@@ -89,6 +91,22 @@ export class CharacterService extends ApiRessourceService<Character> {
     return this._http.post(this._BASE_URL_NEW + `/add/${userId}`, character, {
       headers,
     });
+  }
+
+  getCharacterOnHoldList$2(): Observable<CharacterAvatarDTO[]> {
+    return this._tableCharacterOnHoldList$.asObservable()
+  }
+
+  setCharacterOnHoldList(tableId: number): void {
+    this._http.get<CharacterAvatarDTO[]>(
+      this._BASE_URL_NEW + `/get/character-on-hold/tableId=${tableId}`
+    ).pipe(
+      tap((characterOnHoldList: CharacterAvatarDTO[]) => {
+        this._characterOnHoldList = characterOnHoldList;
+        console.log(characterOnHoldList);
+        this._tableCharacterOnHoldList$.next(characterOnHoldList);
+      })
+    ).subscribe()
   }
 
   getCharacterList$(): Observable<CharacterDTO[] | null> {

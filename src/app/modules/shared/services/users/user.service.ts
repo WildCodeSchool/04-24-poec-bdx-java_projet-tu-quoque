@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, of, tap } from 'rxjs';
 import { User } from '../../models/types/users/user.types';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
@@ -13,6 +13,8 @@ export class userService extends ApiRessourceService<User> {
   private readonly _BASE_URL_NEW: string = environment.baseUrl + '/users'
 
   private userListFilteredByName$: Subject<string[]> = new Subject();
+  private _tableUserInvitedList$: BehaviorSubject<UserBasicInfos[]> = new BehaviorSubject<UserBasicInfos[]>([])
+  private _userInvitedList: UserBasicInfos[] = [];
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
@@ -42,17 +44,18 @@ export class userService extends ApiRessourceService<User> {
     return this.userListFilteredByName$.asObservable();
   }
 
-  getUserInvitedList$(tableId: number): Observable<UserBasicInfos[]> {
-    return this._http.get<UserBasicInfos[]>(
+  setTableUserInvited(tableId: number): void {
+    this._http.get<UserBasicInfos[]>(
       this._BASE_URL_NEW + `/get/user-invited/tableId=${tableId}`
-    );
-  }
+    ).pipe(
+      tap((userInvitedList: UserBasicInfos[]) => {
+        this._userInvitedList = userInvitedList;
+        this._tableUserInvitedList$.next(userInvitedList);
+      })
+    ).subscribe();
+  } 
 
-  getTableUserInvitedList$(tableId: number): Observable<UserBasicInfos[]> {
-    if(this.getUserInvitedList$(tableId)) {
-      return this.getUserInvitedList$(tableId)
-    } else {
-      return of([])
-    }
+  getTableUserInvited$(): Observable<UserBasicInfos[]> {
+    return this._tableUserInvitedList$.asObservable()
   }
 }

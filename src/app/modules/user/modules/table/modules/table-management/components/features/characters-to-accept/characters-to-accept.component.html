@@ -4,8 +4,9 @@
   [title]="'Invitations en cours'"
 ></app-page-header>
 <body>
+
   <p-accordion [activeIndex]="">
-    <ng-container *ngIf="userInvitedList">
+    <ng-container *ngIf="userInvitedList$ | async as userInvitedList">
       <p-accordionTab header="Utilisateurs">
         <div class="card-container">
           <app-character-card
@@ -16,7 +17,7 @@
         </div>
       </p-accordionTab>
     </ng-container>
-    <ng-container *ngIf="characterOnHoldList">
+    <ng-container *ngIf="characterOnHoldList$| async as characterOnHoldList">
       <p-accordionTab header="Personnages">
         <div class="card-container">
           <app-character-card
