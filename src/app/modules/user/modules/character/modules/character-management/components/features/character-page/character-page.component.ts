@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Renderer2, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../../../../../../../shared/services/character/character.service';
-import { Observable, Subscription, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { TableService } from '../../../../../../../../shared/services/table/table.service';
 import { Character } from '../../../../../../../../shared/models/types/users/character.type';
 import { Table } from '../../../../../../../../shared/models/types/users/table.type';
@@ -17,7 +17,7 @@ import { MessageService } from 'primeng/api';
   styleUrl: './character-page.component.scss',
   providers: [MessageService]
 })
-export class CharacterPageComponent implements OnInit {
+export class CharacterPageComponent implements OnInit{
 
   character$!: Observable<Character>;
   private table$!: Observable<Table>;
@@ -46,7 +46,6 @@ export class CharacterPageComponent implements OnInit {
       })
     );
   }
-
 
   selectCharacterToPlay(foundCharacter: CharacterFullDTO): void {
     this._connectionService.setCharacterConnectedNew(foundCharacter)

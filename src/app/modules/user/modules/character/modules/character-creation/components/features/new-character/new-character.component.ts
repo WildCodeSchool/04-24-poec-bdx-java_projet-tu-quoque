@@ -4,7 +4,7 @@ import { SharedModule } from '../../../../../../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextComponent } from '../../../../../../../../shared/components/custom-form/form-inputs/input-text/input-text.component';
-import { Observable, Subscription, filter, finalize, firstValueFrom, map } from 'rxjs';
+import { Observable, Subscription, catchError, filter, finalize, firstValueFrom, map, of, switchMap, tap } from 'rxjs';
 import { TextField } from '../../../../../../../../shared/models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../../../../../../../shared/services/form-field/get-fields.service';
 import { ParentFormComponent } from '../../../../../../../../shared/components/parent-form/parent-form.component';
@@ -49,44 +49,10 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
   }
 
   ngOnInit() {
-    const userData = this._route.snapshot.data['user'];
-    this.user = userData;
-    this.characterNameField$ = this._fieldsService.getFields$().pipe(
-      map(fields => fields.find(field => field.name === 'characterName') as TextField)
-    );
-
-    this._subscription = this._uploadFileService.selectedFile$.subscribe(
-      file => {
-        this.selectedFile = file;
-      }
-    );
-
-    this._uploadSubscription = this._uploadToFirebaseService.downloadURL$
-    .pipe(
-      filter(url => !!url),
-      finalize(() => {
-        console.log('Upload process finished');
-      })
-    )
-      .subscribe(async (url) => {
-        const character: CharacterFullDTO = {
-          id:0,
-          name: this.form.value.characterName,
-          avatar: url as string,
-          accepted: false,
-          gameTable: null,
-          characterSheetId: 0,
-          characterNoteList: []
-        };
-        const userId = userData.id;
-        firstValueFrom(this._characterService.postCharacter(userId, character))
-          .then(response => {
-            this._router.navigate([`/user/characters/management/my-characters/${response.id}`]);
-          })
-          .catch(err => {
-            console.error('Error creating character:', err);
-          });
-      });
+    this.user = this._route.snapshot.data['user'];
+    this.setupCharacterNameField();
+    this.setupSelectedFileSubscription();
+    this.setupUploadSubscription();
   }
 
   ngOnDestroy() {
@@ -98,16 +64,54 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
     }
   }
 
+  private setupCharacterNameField() {
+    this.characterNameField$ = this._fieldsService.getFields$().pipe(
+      map(fields => fields.find(field => field.name === 'characterName') as TextField)
+    );
+  }
+
+  private setupSelectedFileSubscription() {
+    this._subscription = this._uploadFileService.selectedFile$.subscribe(
+      file => {
+        this.selectedFile = file;
+      }
+    );
+  }
+
+  private setupUploadSubscription() {
+    this._uploadSubscription = this._uploadToFirebaseService.downloadURL$
+      .pipe(
+        filter(url => !!url),
+        switchMap(url => {
+          const character: CharacterFullDTO = {
+            id: 0,
+            name: this.form.value.characterName,
+            avatar: url as string,
+            accepted: false,
+            gameTable: null,
+            characterSheetId: 0,
+            characterNoteList: []
+          };
+          const userId = this.user!.id;
+          return this._characterService.postCharacter(userId, character).pipe(
+            tap(response => {
+              this._router.navigate([`/user/characters/management/my-characters/${response.id}`]);
+            }),
+            catchError(err => {
+              console.error('Error creating character:', err);
+              return of(null);
+            })
+          );
+        }),
+      ).subscribe();
+  }
+
   protected onSubmit() {
     if (this.form.valid) {
       if (this.selectedFile) {
         this._uploadToFirebaseService.uploadFile(this.selectedFile);
-      } else {
-        console.log('No file selected');
-      }
-    } else {
-      console.log('Form is not valid:', this.form.get('characterName')?.errors);
-    }
+      } 
+    } 
   }
 
   protected buildForm() {
