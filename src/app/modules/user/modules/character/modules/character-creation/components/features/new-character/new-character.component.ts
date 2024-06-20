@@ -64,9 +64,6 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
     this._uploadSubscription = this._uploadToFirebaseService.downloadURL$
     .pipe(
       filter(url => !!url),
-      finalize(() => {
-        console.log('Upload process finished');
-      })
     )
       .subscribe(async (url) => {
         const character: CharacterFullDTO = {
@@ -102,12 +99,8 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
     if (this.form.valid) {
       if (this.selectedFile) {
         this._uploadToFirebaseService.uploadFile(this.selectedFile);
-      } else {
-        console.log('No file selected');
-      }
-    } else {
-      console.log('Form is not valid:', this.form.get('characterName')?.errors);
-    }
+      } 
+    } 
   }
 
   protected buildForm() {
