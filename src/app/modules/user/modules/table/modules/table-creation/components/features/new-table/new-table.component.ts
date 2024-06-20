@@ -4,7 +4,7 @@ import { SharedModule } from '../../../../../../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextComponent } from '../../../../../../../../shared/components/custom-form/form-inputs/input-text/input-text.component';
-import { Observable, Subscription, filter, finalize, firstValueFrom, map } from 'rxjs';
+import { Observable, Subscription, catchError, filter, finalize, firstValueFrom, map, of, switchMap, tap } from 'rxjs';
 import { TextField } from '../../../../../../../../shared/models/types/fields/text-fields.type';
 import { GetFieldsService } from '../../../../../../../../shared/services/form-field/get-fields.service';
 import { ParentFormComponent } from '../../../../../../../../shared/components/parent-form/parent-form.component';
@@ -47,65 +47,62 @@ export class NewTableComponent extends ParentFormComponent implements OnInit{
   }
 
   ngOnInit() {
-    const userData = this._route.snapshot.data['user'];
-    this.user = userData;
+    this.user = this._route.snapshot.data['user'];
+    this.setupTableNameField();
+    this.setupSelectedFileSubscription();
+    this.setupUploadSubscription();
+  }
+
+  ngOnDestroy() {
+    this._subscription?.unsubscribe();
+    this._uploadSubscription?.unsubscribe();
+  }
+
+  private setupTableNameField() {
     this.tableNameField$ = this._fieldsService.getFields$().pipe(
       map(fields => fields.find(field => field.name === 'tableName') as TextField)
     );
+  }
 
+  private setupSelectedFileSubscription() {
     this._subscription = this._uploadFileService.selectedFile$.subscribe(
       file => {
         this.selectedFile = file;
       }
     );
-   
-    this._uploadSubscription = this._uploadToFirebaseService.downloadURL$
-    .pipe(
-      filter(url => !!url),
-      finalize(() => {
-        console.log('Upload process finished');
-      })
-    )
-      .subscribe(async (url) => {
-        const table: GameTableFullDTO = {
-          id: 0,
-          name: this.form.value.tableName,
-          avatar: url as string,
-          userId: this.user?.id?? 0,
-          drawingList: [], 
-          eventList: [], 
-          noteList: [],
-          playerCharacterDTOList: [] 
-        };
-        const userId = userData.id;
-        firstValueFrom(this._tableService.postTable(userId, table))
-          .then(response => {
-            this._router.navigate([`/user/tables/management/my-tables/${response.id}`]);
-          })
-          .catch(err => {
-            console.error('Error creating table:', err);
-          });
-      });
   }
 
-  ngOnDestroy() {
-    if (this._subscription) {
-      this._subscription.unsubscribe();
-    }
-    if (this._uploadSubscription) {
-      this._uploadSubscription.unsubscribe();
-    }
+  private setupUploadSubscription() {
+    this._uploadSubscription = this._uploadToFirebaseService.downloadURL$
+      .pipe(
+        filter(url => !!url),
+        switchMap(url => {
+          const table: GameTableFullDTO = {
+            id: 0,
+            name: this.form.value.tableName,
+            avatar: url as string,
+            userId: this.user?.id ?? 0,
+            drawingList: [],
+            eventList: [],
+            noteList: [],
+            playerCharacterDTOList: []
+          };
+          return this._tableService.postTable(this.user!.id, table).pipe(
+            tap(response => {
+              this._router.navigate([`/user/tables/management/my-tables/${response.id}`]);
+            }),
+            catchError(err => {
+              console.error('Error creating table:', err);
+              return of(null);
+            })
+          );
+        }),
+      ).subscribe();
   }
 
   protected onSubmit() {
-    if (this.form.valid) {
-      if (this.selectedFile) {
-        this._uploadToFirebaseService.uploadFile(this.selectedFile);
-      } else {
-        console.log('No file selected');
-      }
-    } else {
-      console.log('Form is not valid:', this.form.get('tableName')?.errors);
+    if (this.form.valid && this.selectedFile) {
+      this._uploadToFirebaseService.uploadFile(this.selectedFile);
     }
   }
 
@@ -118,8 +115,7 @@ export class NewTableComponent extends ParentFormComponent implements OnInit{
         Validators.pattern(RegexPatterns.textPattern)
       ]],
       imageUrl: ['']
-    }, 
-  );
+    });
   }
 
   protected initializeFormControls() {

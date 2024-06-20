@@ -17,6 +17,7 @@ export class FileUploadComponent implements ControlValueAccessor {
   imgUrl: string | null = null;
   onChanged!: (value: string) => void;
   onTouched!: () => void;
+  preview: string = "";
 
   constructor(private _uploadFileService: UploadFileService) {}
 
@@ -34,8 +35,11 @@ export class FileUploadComponent implements ControlValueAccessor {
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
-
-    if (file) this._uploadFileService.setSelectedFile(file);
+    
+    if (file) {
+      this.preview = URL.createObjectURL(file)
+      this._uploadFileService.setSelectedFile(file)
+    }
   }
 
 }

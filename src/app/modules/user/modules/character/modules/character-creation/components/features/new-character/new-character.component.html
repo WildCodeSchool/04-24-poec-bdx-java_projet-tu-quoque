@@ -5,7 +5,7 @@
 ></app-page-header>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <p-accordion [multiple]="true" [activeIndex]="[]">
+  <p-accordion [multiple]="true" [activeIndex]="[0, 1]">
     <p-accordionTab header="Nom du personnage">
       <ng-container *ngIf="characterNameField$ | async as characterNameField">
         <app-input-text
@@ -19,12 +19,7 @@
 
     <p-accordionTab header="Télécharger un avatar">
       <div class="add-image-area">
-        <app-file-upload
-          labelFor="imgUrl"
-          labelContent="Choisir une image :"
-          name="imgUrl"
-          id="imgUrl"
-        ></app-file-upload>
+        <app-file-upload name="imgUrl" id="imgUrl"></app-file-upload>
       </div>
     </p-accordionTab>
   </p-accordion>
