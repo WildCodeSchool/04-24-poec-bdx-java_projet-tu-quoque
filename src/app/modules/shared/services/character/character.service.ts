@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { DestroyRef, Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, switchMap, tap } from 'rxjs';
 import { ConnectionService } from '../connection/connection.service';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
@@ -8,17 +8,22 @@ import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
 import { Character } from '../../models/types/users/character.type';
 import { CharacterDTO } from '../../models/types/users/character-dto';
 import { CharacterAvatarDTO } from '../../models/types/users/character-avatar-DTO';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharacterService extends ApiRessourceService<Character> {
+
+  private _character$: BehaviorSubject<CharacterFullDTO | null>= new BehaviorSubject<CharacterFullDTO | null>(null)
   private _userCharacterList$: BehaviorSubject<CharacterDTO[] | null> =
     new BehaviorSubject<CharacterDTO[] | null>(null);
   private _characterList: CharacterDTO[] = [];
   private _tableCharacterOnHoldList$: BehaviorSubject<CharacterAvatarDTO[]> =
     new BehaviorSubject<CharacterAvatarDTO[]>([]);
   private _characterOnHoldList: CharacterAvatarDTO[] = [];
+
+  private _destroyRef: DestroyRef = inject(DestroyRef);
   private _connectionService = inject(ConnectionService);
 
   private readonly _BASE_URL: string = 'http://localhost:3000/characters';
@@ -28,11 +33,20 @@ export class CharacterService extends ApiRessourceService<Character> {
     return this._BASE_URL;
   }
 
-  getUserCharacterById$(id: number): Observable<CharacterFullDTO> {
+  setUserCharacterById$(id: number): void {
     const headers = this.getHeaders();
-    return this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, {
+    this._http.get<CharacterFullDTO>(this._BASE_URL_NEW + `/get/${id}`, {
       headers,
-    });
+    })
+    .pipe(
+      tap((foundCharacter: CharacterFullDTO) => this._character$.next(foundCharacter))
+    )
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe()
+  }
+
+  getUserCharacter$(): Observable<CharacterFullDTO | null> {
+    return this._character$.asObservable()
   }
 
   getCharacterWithoutTableListNew$(userId: number): Observable<CharacterDTO[]> {
@@ -102,6 +116,7 @@ export class CharacterService extends ApiRessourceService<Character> {
           this._tableCharacterOnHoldList$.next(characterOnHoldList);
         })
       )
+      .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe();
   }
 

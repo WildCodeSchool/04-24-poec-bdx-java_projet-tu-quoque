@@ -20,7 +20,7 @@ import { MessageService } from 'primeng/api';
 })
 export class CharacterPageComponent implements OnInit, OnDestroy {
 
-  private character$!: Observable<Character>;
+  character$: Observable<CharacterFullDTO | null> = this._characterService.getUserCharacter$()
   private table$!: Observable<Table>;
   chatList$!: Observable<Chat[]>;
   foundCharacter!: CharacterFullDTO;
@@ -40,9 +40,10 @@ export class CharacterPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const id = Number(this._route.snapshot.paramMap.get('id'));
-    this.characterSubscription = this._characterService.getUserCharacterById$(id).subscribe(response => this.foundCharacter = response);
+    this._characterService.setUserCharacterById$(id);
+    this.character$.subscribe(res => console.log(res))
 
-    this.character$ = this._characterService.getById$(id);
+    // this.character$ = this._characterService.getById$(id);
 
     this.table$ = this._characterService.getById$(id).pipe(
       switchMap((res: Character) => {
