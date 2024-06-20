@@ -28,7 +28,6 @@ registerLocaleData(localFr);
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule,
     ButtonModule,
     NavigationModule,
     AuthentificationModule,

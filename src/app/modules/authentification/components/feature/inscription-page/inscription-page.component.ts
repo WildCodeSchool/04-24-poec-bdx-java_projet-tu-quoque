@@ -110,21 +110,16 @@ export class InscriptionPageComponent extends ParentFormComponent implements OnI
       email: ['', [
         Validators.required, 
         Validators.email, 
-        Validators.minLength(2), 
-        Validators.maxLength(50),
-        Validators.pattern(RegexPatterns.emailPattern)
       ]],
       password: ['', [
         Validators.required, 
         Validators.minLength(8), 
         Validators.maxLength(50),
-        Validators.pattern(RegexPatterns.passwordPattern)
       ]],
       passwordVerification: ['', [
         Validators.required, 
         Validators.minLength(8), 
         Validators.maxLength(50),
-        Validators.pattern(RegexPatterns.passwordPattern)
       ]]
     }, 
   );
