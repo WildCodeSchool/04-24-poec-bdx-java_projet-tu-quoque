@@ -15,13 +15,10 @@
       [elementIcon]="'assets/images/character-icon.svg'"
       [title]="foundCharacter.name"
     ></app-page-header>
-
-    <div class="button-container">
       <app-character-presentation
         [character]="foundCharacter"
         (isCharachterSheetVisible)="toggleCharacterSheetVisible($event)"
       ></app-character-presentation>
-    </div>
     <footer class="page-footer">
       <app-custom-button
         [style]="'gold'"
