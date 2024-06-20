@@ -1,4 +1,4 @@
-<ng-container *ngIf="noteListNew$ | async as noteList">
+<ng-container *ngIf="noteListNew$ | async as noteList; else noNoteList">
   <app-list-of-element
     [elementList]="noteList"
     [elementIcon]="'assets/images/discussion-icon.svg'"
@@ -17,3 +17,6 @@
   </main>
   }
 </ng-container>
+<ng-template #noNoteList>
+  <p>Vous n'êtes connecté à aucune partie</p>
+</ng-template>
