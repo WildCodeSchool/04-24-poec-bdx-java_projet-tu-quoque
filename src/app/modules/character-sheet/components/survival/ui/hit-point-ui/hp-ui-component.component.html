@@ -4,12 +4,12 @@
 </div>
 <div>
     <div>TOTAL</div>
-    <div class="case" *ngIf="hitPoints$ | async as hitPoints; else caseVide">
+    <div class="case" *ngIf="hitPoints$ | async as hitPoints; else emptyCase">
         <app-metamorphosis
         [value]="hitPoints.toString()"
         ></app-metamorphosis>
     </div>
-    <ng-template #caseVide>
+    <ng-template #emptyCase>
         <div class="case"></div>
     </ng-template>
 </div>
