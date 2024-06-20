@@ -90,4 +90,14 @@ export class Purse {
     public valueOf(): number {
         return this.gold * CHANGE_RATE * CHANGE_RATE + this.silver * CHANGE_RATE + this.copper;
     }
+
+    transformInPurseDTO(): PurseDTO {
+        return {
+            id: this.id,
+            goldPieces: this.gold,
+            silverPieces: this.silver,
+            copperPieces: this.copper,
+            rolled: this.rolled
+        }
+    }
 }

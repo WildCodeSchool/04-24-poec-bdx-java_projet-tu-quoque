@@ -6,6 +6,8 @@ import { Weapon } from "../classes/weapon.class"
 export type Sheet = {
     id: number;
     statisticsId: number;
+    weaponsId: number,
+    purseId: number,
     age: string,
     alignment: string,
     characterClass: string,

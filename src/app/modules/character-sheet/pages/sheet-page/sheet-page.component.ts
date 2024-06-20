@@ -2,6 +2,7 @@ import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { ListenPlayerActionService } from '../../shared/services/listen-player-action.service';
 import { Subject } from 'rxjs';
+import { ConnectionSheetService } from '../../shared/services/connection-sheet.service';
 
 @Component({
   selector: 'app-sheet-page',
@@ -24,6 +25,8 @@ export class SheetPageComponent implements OnInit, OnDestroy {
   id$: Subject<number> = new Subject();
   isAlive: boolean = true;
   listener: ListenPlayerActionService = inject(ListenPlayerActionService);
+  connectionService: ConnectionSheetService = inject(ConnectionSheetService);
+
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -39,5 +42,11 @@ export class SheetPageComponent implements OnInit, OnDestroy {
   taskBeforeDestroyComponent() {
     this.isAlive = false;
     // save the sheet
+    this.connectionService.postSheet(this.listener.sheetModifiedByPlayer);
+    console.log("plop");
+  }
+
+  save() {
+    this.connectionService.postSheet(this.listener.sheetModifiedByPlayer);
   }
 }

@@ -26,6 +26,7 @@ export class TransformDtoToSheetService {
 
     sheet.id = sheetDTO.id;
     sheet.statisticsId = sheetDTO.stats.id;
+    sheet.purseId = sheetDTO.purse.id;
 
     const weapons = [...sheetDTO.weapons.weapons]
 
@@ -44,11 +45,13 @@ export class TransformDtoToSheetService {
 
     sheet.purse = Purse.purseFromPurseDTO(sheetDTO.purse);
 
+    sheet.weaponsId = sheetDTO.weapons.id;
+
     return sheet;
   }
 
   private transformSkillDTOintoSkill(skillDTO: SkillInfoModifiedByPlayerDTO): SkillInfosAddByPlayer {
-    return new SkillInfosAddByPlayer(skillDTO.skillId, skillDTO.rankSkill, skillDTO.complement);
+    return new SkillInfosAddByPlayer(skillDTO.skillId, skillDTO.rankSkill, skillDTO.complement, skillDTO.id);
   }
 
   private transformStringAttributes(sheet: Sheet, sheetDTO: SheetDTO) {
