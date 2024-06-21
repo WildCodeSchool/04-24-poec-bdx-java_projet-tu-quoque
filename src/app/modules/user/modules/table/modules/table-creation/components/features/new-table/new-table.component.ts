@@ -88,8 +88,8 @@ export class NewTableComponent extends ParentFormComponent implements OnInit{
             playerCharacterDTOList: []
           };
           return this._tableService.postTable(this.user!.id, table).pipe(
-            tap(response => {
-              this._router.navigate([`/user/tables/management/my-tables/${response.id}`]);
+            tap(() => {
+              this._router.navigate([`/user/tables/management/my-tables`]);
             }),
             catchError(err => {
               console.error('Error creating table:', err);
