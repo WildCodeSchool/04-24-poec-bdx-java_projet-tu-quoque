@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { NoteService } from '../../../../../../../shared/services/note/note.service';
 import { NoteDTO } from '../../../../../../../shared/models/types/users/note-dto';
@@ -8,19 +8,19 @@ import { NoteDTO } from '../../../../../../../shared/models/types/users/note-dto
   templateUrl: './game-notes.component.html',
   styleUrl: './game-notes.component.scss',
 })
-export class GameNotesComponent implements OnInit {
+export class GameNotesComponent {
 
-  noteListNew$: Observable<NoteDTO[]> = this._notesService.setGameNotes$()
-  .pipe(
-    switchMap(() => this._notesService.getTableNoteList$()),
-    tap(result => console.log(result))
+  tableList: NoteDTO[] = [];
+  _noteService = inject(NoteService);
+  noteListNew$: Observable<NoteDTO[]> = this._noteService.getTableNoteList$().pipe(
+    tap((val) => {
+     console.log("TAP getTableNoteList$", val);
+    })
   );
 
-  constructor(
-    private _notesService: NoteService,
-  ) {}
+    constructor() {
+    }
 
-  ngOnInit(): void {
-    // this._notesService.setGameNotes$();
-  }
+
+
 }
