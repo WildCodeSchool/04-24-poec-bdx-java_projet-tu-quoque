@@ -81,7 +81,7 @@ export class BlankSheetGeneratorService {
       abbr: abbreviation,
       id: -1,
       originalValue: -1,
-      tempModifier: -1
+      tempValue: -1
     }
   }
 }

@@ -90,7 +90,8 @@ export class TransformDtoToSheetService {
     if (!statisticsDTO.FOR.originalValue) return stats;
     for (let stat of stats) {
       stats[stat.abbr].originalValue = statisticsDTO[stat.abbr].originalValue;
-      stats[stat.abbr].tempValue = statisticsDTO[stat.abbr].tempModifier;
+      stats[stat.abbr].tempValue = statisticsDTO[stat.abbr].tempValue;
+      stats[stat.abbr].id = statisticsDTO[stat.abbr].id;
     }
     stats.resetRaceModifier()
     return stats;

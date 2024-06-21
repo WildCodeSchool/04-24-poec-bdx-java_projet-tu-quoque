@@ -58,7 +58,7 @@ export class TransformSheetToDtoService {
         abbr: statisticDetails.abbr,
         id: statisticDetails.id,
         originalValue: statisticDetails.originalValue,
-        tempModifier: statisticDetails.tempMod
+        tempValue: statisticDetails.tempValue
       }
     }
   }
