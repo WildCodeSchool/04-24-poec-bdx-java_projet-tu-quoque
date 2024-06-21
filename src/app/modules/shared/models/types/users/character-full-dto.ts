@@ -6,7 +6,7 @@ export type CharacterFullDTO = {
     name: string,
     avatar: string,
     accepted: boolean,
-    gameTable: GameTableDTO,
+    gameTable?: GameTableDTO | null,
     characterSheetId: number,
     characterNoteList: NoteDTO[]
 }

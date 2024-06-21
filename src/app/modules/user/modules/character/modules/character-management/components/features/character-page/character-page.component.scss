@@ -13,12 +13,17 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 55vh;
+    height: 100vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
-  
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+  }
+
   .page-footer {
     display: flex;
     flex-direction: column;
@@ -31,14 +36,15 @@
 
 :host ::ng-deep p-toast {
   .p-toast {
-    width: 60%!important;
+    width: 60% !important;
     right: 0 !important;
     top: 90px !important;
   }
   .p-toast-message-icon {
     display: none;
   }
-  .p-toast-message-info, .p-toast-message{
+  .p-toast-message-info,
+  .p-toast-message {
     border-left-width: 0;
   }
 }
@@ -69,3 +75,10 @@
   justify-content: flex-end;
 }
 
+:host ::ng-deep app-custom-button {
+  .button.gold[_ngcontent-ng-c1282570419] {
+    width: 80vw;
+    height: 20vw;
+    font-size: 1.5rem;
+  }
+}

@@ -1,14 +1,11 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map, of, switchMap } from 'rxjs';
 import { ConnectionService } from '../connection/connection.service';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
 import { environment } from '../../../../../environments/environment.development';
-import { LocalStorageService } from '../connection/local-storage.service';
 import { UserInfos } from '../../models/types/users/user-infos';
 import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
 import { Character } from '../../models/types/users/character.type';
-import { UserBasicInfos } from '../../models/types/users/user-basic-infos.type';
 import { CharacterDTO } from '../../models/types/users/character-dto';
 import { CharacterAvatarDTO } from '../../models/types/users/character-avatar-DTO';
 

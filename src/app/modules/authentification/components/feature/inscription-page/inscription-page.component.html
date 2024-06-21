@@ -4,7 +4,9 @@
   [elementIcon]="connexionIcon"
 ></app-page-header>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <app-custom-area-title [title]="'Pseudonyme'"></app-custom-area-title>
+  <div class="title-container">
+    <h2>Pseudonyme</h2>
+  </div>
   <ng-container *ngIf="nicknameField$ | async as nicknameField">
     <app-input-text
       [field]="nicknameField"
@@ -14,7 +16,9 @@
     </app-input-text>
   </ng-container>
 
-  <app-custom-area-title [title]="'Email'"></app-custom-area-title>
+  <div class="title-container">
+    <h2>Email</h2>
+  </div>
   <ng-container *ngIf="emailField$ | async as emailField">
     <app-input-text
       [field]="emailField"
@@ -24,7 +28,9 @@
     </app-input-text>
   </ng-container>
 
-  <app-custom-area-title [title]="'Mot de passe'"></app-custom-area-title>
+  <div class="title-container">
+    <h2>Mot de passe</h2>
+  </div>
   <ng-container *ngIf="passwordField$ | async as passwordField">
     <app-input-text
       [field]="passwordField"
@@ -34,9 +40,9 @@
     </app-input-text>
   </ng-container>
 
-  <app-custom-area-title
-    [title]="'Répéter le mot de passe'"
-  ></app-custom-area-title>
+  <div class="title-container">
+    <h2>Répéter le mot de passe</h2>
+  </div>
   <ng-container
     *ngIf="passwordVerificationField$ | async as passwordVerificationField"
   >
@@ -48,9 +54,9 @@
     </app-input-text>
   </ng-container>
 
-  <app-custom-area-title
-    [title]="'Télécharger un avatar'"
-  ></app-custom-area-title>
+  <div class="title-container">
+    <h2>Télécharger un avatar</h2>
+  </div>
   <app-custom-add-button></app-custom-add-button>
 
   <app-custom-button
