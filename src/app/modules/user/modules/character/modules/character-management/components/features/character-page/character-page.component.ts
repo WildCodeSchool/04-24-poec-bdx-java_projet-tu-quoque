@@ -53,8 +53,6 @@ export class CharacterPageComponent implements OnInit{
     this._messageService.add({ severity: 'info', summary: 'Connecté', detail: `Vous jouez maintenant : ${foundCharacter.name}` });
   }
 
-
-
   toggleCharacterSheetVisible(event: boolean): void {
     window.scrollTo(0, 0);
     this.isCharacterSheetVisible = !this.isCharacterSheetVisible;
