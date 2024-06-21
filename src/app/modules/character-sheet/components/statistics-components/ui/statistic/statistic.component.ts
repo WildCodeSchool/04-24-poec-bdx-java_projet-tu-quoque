@@ -18,6 +18,10 @@ export class StatisticComponent extends AbstractSendToListenerComponent {
   @Input()
   playerInput: any;
 
+  override ngOnInit(): void {
+    this.updateTempValue();
+  }
+
   override updateField(): Field {
     const statField: StatField = {
       index: this.index,
