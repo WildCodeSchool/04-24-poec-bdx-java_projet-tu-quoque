@@ -46,7 +46,6 @@ export class EventService extends ApiRessourceService<any> {
           this.eventList$.next([...currentEventList, event])
         )
       );
-
     return newEvent;
   }
 

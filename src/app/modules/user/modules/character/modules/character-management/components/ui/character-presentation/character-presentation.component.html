@@ -5,8 +5,31 @@
     alt="character"
   />
 </div>
-<app-custom-button
-  [style]="'dblue-gold'"
-  [name]="'Fiche personnage'"
-  [routerLink]="'/character-sheet/' + character.characterSheetId"
-></app-custom-button>
+
+<div class="button-container">
+  <app-custom-button
+    [style]="'dblue-gold'"
+    [name]="'Fiche personnage'"
+    [routerLink]="'/character-sheet/' + character.characterSheetId"
+  ></app-custom-button>
+
+  <div
+    class="table-button"
+    (click)="
+      character.gameTable ? linkToCharacterTable(character.gameTable.id) : null
+    "
+  >
+    <ng-container *ngIf="character.gameTable as gameTable; else noTable">
+      <p>Table reliée :</p>
+      <div class="table-name">
+        <p>{{ gameTable.name }}</p>
+      </div>
+    </ng-container>
+  </div>
+  <ng-template #noTable>
+    <p>Table reliée :</p>
+    <div class="table-name">
+      <p>Aucune</p>
+    </div>
+  </ng-template>
+</div>

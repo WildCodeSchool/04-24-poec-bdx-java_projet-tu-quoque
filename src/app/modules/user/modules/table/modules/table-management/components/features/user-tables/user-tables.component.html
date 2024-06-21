@@ -1,24 +1,26 @@
+<ng-container *ngIf="userTableList$|async as tableList">
 <app-page-header
   [elementIcon]="'assets/images/myTables-title-icon.svg'"
   [title]="'Mes tables'"
 ></app-page-header>
-@if (user?.playerGameTableList?.length) {
-<main class="table-list-body">
-  <app-list-of-element
-    [elementList]="user?.playerGameTableList"
-    [elementIcon]="'assets/images/table-icon.svg'"
-    [baseUrl]="'../my-tables'"
-  ></app-list-of-element>
-  <app-custom-add-button
-    [routerLink]="'../../creation'"
-  ></app-custom-add-button>
-</main>
-} @else {
-<main class="table-list-body list-empty">
-  <app-custom-add-button
-    [style]="'list-empty'"
-    [routerLink]="'../../creation'"
-  ></app-custom-add-button>
-</main>
-
-}
+  @if (tableList.length) {
+    <main class="table-list-body">
+      <app-list-of-element
+      [elementList]="tableList"
+      [elementIcon]="'assets/images/table-icon.svg'"
+      [baseUrl]="'../my-tables'"
+      [role]="'table'"
+      ></app-list-of-element>
+      <app-custom-add-button
+      [routerLink]="'../../creation'"
+      ></app-custom-add-button>
+    </main>
+  } @else {
+    <main class="table-list-body list-empty">
+      <app-custom-add-button
+      [style]="'list-empty'"
+      [routerLink]="'../../creation'"
+      ></app-custom-add-button>
+    </main>    
+  }
+</ng-container>

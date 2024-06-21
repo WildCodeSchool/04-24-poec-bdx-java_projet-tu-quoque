@@ -1,23 +1,26 @@
+<ng-container *ngIf="characterList$|async as characterList">
 <app-page-header
   [elementIcon]="'assets/images/user-icon.svg'"
   [title]="'Mes fiches personnage'"
 ></app-page-header>
-@if(user?.playerCharacterList?.length) {
-<main class="character-list-body">
-  <app-list-of-element
-    [elementList]="user?.playerCharacterList"
-    [elementIcon]="'assets/images/character-icon.svg'"
-    [baseUrl]="'../my-characters'"
-  ></app-list-of-element>
-  <app-custom-add-button
-    [routerLink]="'../../creation'"
-  ></app-custom-add-button>
-</main>
-} @else {
-<main class="character-list-body list-empty">
-  <app-custom-add-button
-    [style]="'list-empty'"
-    [routerLink]="'../../creation'"
-  ></app-custom-add-button>
-</main>
-}
+  @if(characterList.length) {
+    <main class="character-list-body">
+      <app-list-of-element
+      [elementList]="characterList"
+      [elementIcon]="'assets/images/character-icon.svg'"
+      [baseUrl]="'../my-characters'"
+      [role]="'character'"
+      ></app-list-of-element>
+      <app-custom-add-button
+      [routerLink]="'../../creation'"
+      ></app-custom-add-button>
+    </main>
+  } @else {
+    <main class="character-list-body list-empty">
+      <app-custom-add-button
+      [style]="'list-empty'"
+      [routerLink]="'../../creation'"
+      ></app-custom-add-button>
+    </main>
+  }
+</ng-container>

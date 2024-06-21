@@ -8,12 +8,9 @@ import { AbstractMetamorphosisComponent } from '../../abstract-components/abstra
 })
 export class MetamorphosisComponent extends AbstractMetamorphosisComponent {
   @Input() set value(valuePassed: string | number | null) {
-    if (typeof valuePassed == "number" && Number.isNaN(valuePassed)) {
-      this._value = "";
-    }
-    else if (typeof valuePassed == "number") this._value = valuePassed.toString();
-    else if (valuePassed == "NaN" || valuePassed == null) this._value = "";
-    else this._value = valuePassed;
+    if (typeof valuePassed == "string") this._value = valuePassed;
+    else if (typeof valuePassed == "number" && (!Number.isNaN(valuePassed))) this._value = valuePassed.toString();
+    else this._value = "";
   }
 
   get value(): string {

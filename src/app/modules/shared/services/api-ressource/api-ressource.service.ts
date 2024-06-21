@@ -18,11 +18,6 @@ export abstract class ApiRessourceService<T extends ElementProperties> {
     return this._http.get<T[]>(this.getRessourceUrl())
   }
 
-  // proposition :
-  // getById$(id: number): Observable<T> {
-  //   return this._http.get<T>(`${this.getRessourceUrl()}/${id}`);
-  // }
-
   getHeaders(): HttpHeaders {
     const token = this._localStorageService.getToken();
     return new HttpHeaders({
