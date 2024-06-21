@@ -28,8 +28,8 @@ export class NoteService extends ApiRessourceService<Note> {
     return this._BASE_URL;
   }
 
-  setGameNotes$(): void {
-    this._connectionService
+  setGameNotes$(): Observable<NoteDTO[]> {
+    return this._connectionService
       .getCharacterConnectedNew$()
       .pipe(
         switchMap((response) =>
@@ -38,6 +38,7 @@ export class NoteService extends ApiRessourceService<Note> {
                 map((response: GameTableFullDTO | null) => {
                   this._tableNoteList = response?.noteList as NoteDTO[];
                   this._gameTableNotes$.next(this._tableNoteList);
+                  return this._gameTableNotes$.asObservable();
                 })
               )
             : this._connectionService.getCharacterConnectedNew$().pipe(
@@ -47,7 +48,8 @@ export class NoteService extends ApiRessourceService<Note> {
                   );
                   this._tableNoteList =
                     response?.characterNoteList as NoteDTO[];
-                })
+                    return this._gameTableNotes$.asObservable();
+                  })
               )
         )
       )
