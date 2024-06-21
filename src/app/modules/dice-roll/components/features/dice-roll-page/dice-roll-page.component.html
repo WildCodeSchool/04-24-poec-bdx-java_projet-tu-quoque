@@ -11,7 +11,7 @@
     [elementIcon]="'/assets/images/dice-icon.svg'"
     [title]="'Table de dés'"
   ></app-page-header>
-  <input type="text" id="dice" name="dice" [(ngModel)]="inputText" />
+  <input (keydown.enter)="rollDice()" type="text" id="dice" name="dice" [(ngModel)]="inputText" />
   <app-custom-button
     [name]="'Lancer'"
     [style]="'gold'"

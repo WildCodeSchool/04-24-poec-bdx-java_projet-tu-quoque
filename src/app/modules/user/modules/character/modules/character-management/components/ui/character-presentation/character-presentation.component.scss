@@ -19,7 +19,7 @@
 
     .character-img {
       width: 100%;
-      border-radius: 7px;
+      border-radius: 14px;
     }
 
     .button-container {
@@ -33,6 +33,7 @@
     display: flex;
     margin-top: 1rem;
     border-radius: 7px;
+    border: 1px solid #c29b0f ;
     background-color: #0b202f;
     text-align: center;
     white-space: pre-line;
