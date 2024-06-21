@@ -94,8 +94,8 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
           };
           const userId = this.user!.id;
           return this._characterService.postCharacter(userId, character).pipe(
-            tap(response => {
-              this._router.navigate([`/user/characters/management/my-characters/${response.id}`]);
+            tap(() => {
+              this._router.navigate([`/user/characters/management/my-characters`]);
             }),
             catchError(err => {
               console.error('Error creating character:', err);
@@ -106,12 +106,12 @@ export class NewCharacterComponent extends ParentFormComponent implements OnInit
       ).subscribe();
   }
 
-  protected onSubmit() {
+  protected onSubmit() {    
     if (this.form.valid) {
       if (this.selectedFile) {
         this._uploadToFirebaseService.uploadFile(this.selectedFile);
       } 
-    } 
+    }
   }
 
   protected buildForm() {
