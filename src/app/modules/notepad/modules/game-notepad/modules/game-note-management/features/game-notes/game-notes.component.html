@@ -1,4 +1,4 @@
-<ng-container *ngIf="noteListNew$ | async as noteList; else noNoteList">
+<ng-container *ngIf="noteList$ | async as noteList; else noNoteList">
   <app-list-of-element
     [elementList]="noteList"
     [elementIcon]="'assets/images/discussion-icon.svg'"

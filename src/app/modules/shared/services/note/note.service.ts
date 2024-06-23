@@ -14,8 +14,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class NoteService extends ApiRessourceService<Note> {
   
-  private _gameTableNotes$: BehaviorSubject<NoteDTO[] | null> = new BehaviorSubject<NoteDTO[] | null>(null);
-  private _tableNoteList: NoteDTO[] = [];
+  private _gameTableNoteList$: BehaviorSubject<NoteDTO[] | null> = new BehaviorSubject<NoteDTO[] | null>(null);
+  private _gameNoteList: NoteDTO[] = [];
 
   private _connectionService = inject(ConnectionService);
   private _destroyRef: DestroyRef = inject(DestroyRef);
@@ -26,7 +26,7 @@ export class NoteService extends ApiRessourceService<Note> {
     return this._BASE_URL;
   }
 
-  setGameNotes$(): void {
+  setGameTableNoteList$(): void {
     this._connectionService
       .getCharacterConnectedNew$()
       .pipe(
@@ -34,8 +34,8 @@ export class NoteService extends ApiRessourceService<Note> {
           if (character !== null) {
             return this.getNoteListByCharacter$(character.id).pipe(
               map((notes: NoteDTO[]) => {
-                this._tableNoteList = notes;
-                this._gameTableNotes$.next(notes);
+                this._gameNoteList = notes;
+                this._gameTableNoteList$.next(notes);
               })
             );
           } else {
@@ -44,13 +44,13 @@ export class NoteService extends ApiRessourceService<Note> {
                 if (table !== null) {
                   return this.getNoteListByTable$(table.id).pipe(
                     map((notes: NoteDTO[]) => {
-                      this._tableNoteList = notes;
-                      this._gameTableNotes$.next(notes);
+                      this._gameNoteList = notes;
+                      this._gameTableNoteList$.next(notes);
                     })
                   );
                 } else {
-                  this._tableNoteList = [];
-                  this._gameTableNotes$.next(null);
+                  this._gameNoteList = [];
+                  this._gameTableNoteList$.next(null);
                   return of(null);
 
                 }
@@ -63,9 +63,8 @@ export class NoteService extends ApiRessourceService<Note> {
       .subscribe();
 }
 
-
   getTableNoteList$(): Observable<NoteDTO[] | null> {
-    return this._gameTableNotes$.asObservable();
+    return this._gameTableNoteList$.asObservable();
   }
 
   getNoteById$(id: number): Observable<any> {
@@ -100,8 +99,8 @@ export class NoteService extends ApiRessourceService<Note> {
     )
     .pipe(
       tap((newNote: NoteDTO) => {
-        this._tableNoteList = [...this._tableNoteList, newNote]
-        this._gameTableNotes$.next(this._tableNoteList)
+        this._gameNoteList = [...this._gameNoteList, newNote]
+        this._gameTableNoteList$.next(this._gameNoteList)
       })
     )
   }
@@ -115,10 +114,9 @@ export class NoteService extends ApiRessourceService<Note> {
     )
     .pipe(
       tap((newNote: NoteDTO) => {
-        this._tableNoteList = [...this._tableNoteList, newNote];
-        console.log(this._tableNoteList)
-        this._gameTableNotes$.next(this._tableNoteList)
-      }
+        this._gameNoteList = [...this._gameNoteList, newNote];
+        this._gameTableNoteList$.next(this._gameNoteList)
+        }
       )
     )
   }
