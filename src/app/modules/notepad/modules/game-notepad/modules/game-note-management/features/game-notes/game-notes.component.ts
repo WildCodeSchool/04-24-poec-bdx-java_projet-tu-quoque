@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { NoteService } from '../../../../../../../shared/services/note/note.service';
 import { NoteDTO } from '../../../../../../../shared/models/types/users/note-dto';
 
@@ -10,17 +10,13 @@ import { NoteDTO } from '../../../../../../../shared/models/types/users/note-dto
 })
 export class GameNotesComponent implements OnInit {
 
-  noteListNew$: Observable<NoteDTO[]> = this._notesService.setGameNotes$()
-  .pipe(
-    switchMap(() => this._notesService.getTableNoteList$()),
-    tap(result => console.log(result))
-  );
+  noteListNew$: Observable<NoteDTO[] | null> = this._notesService.getTableNoteList$()
 
   constructor(
     private _notesService: NoteService,
   ) {}
 
   ngOnInit(): void {
-    // this._notesService.setGameNotes$();
+    this._notesService.setGameNotes$();
   }
 }

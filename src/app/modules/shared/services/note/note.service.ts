@@ -1,5 +1,5 @@
 import { DestroyRef, Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, map, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, of, switchMap, tap } from 'rxjs';
 import { Note } from '../../models/types/users/note.type';
 import { ConnectionService } from '../connection/connection.service';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
@@ -14,9 +14,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class NoteService extends ApiRessourceService<Note> {
   
-  private _gameTableNotes$: BehaviorSubject<NoteDTO[]> = new BehaviorSubject<
-    NoteDTO[]
-  >([]);
+  private _gameTableNotes$: BehaviorSubject<NoteDTO[] | null> = new BehaviorSubject<NoteDTO[] | null>(null);
   private _tableNoteList: NoteDTO[] = [];
 
   private _connectionService = inject(ConnectionService);
@@ -28,42 +26,62 @@ export class NoteService extends ApiRessourceService<Note> {
     return this._BASE_URL;
   }
 
-  setGameNotes$(): Observable<NoteDTO[]> {
-    return this._connectionService
+  setGameNotes$(): void {
+    this._connectionService
       .getCharacterConnectedNew$()
       .pipe(
-        switchMap((response) =>
-          response == null
-            ? this._connectionService.getTableConnectedNew$().pipe(
-                map((response: GameTableFullDTO | null) => {
-                  this._tableNoteList = response?.noteList as NoteDTO[];
-                  this._gameTableNotes$.next(this._tableNoteList);
-                  return this._gameTableNotes$.asObservable();
-                })
-              )
-            : this._connectionService.getCharacterConnectedNew$().pipe(
-                map((response: CharacterFullDTO | null) => {
-                  this._gameTableNotes$.next(
-                    response?.characterNoteList as NoteDTO[]
+        switchMap((character: CharacterFullDTO | null) => {
+          if (character !== null) {
+            return this.getNoteListByCharacter$(character.id).pipe(
+              map((notes: NoteDTO[]) => {
+                this._tableNoteList = notes;
+                this._gameTableNotes$.next(notes);
+              })
+            );
+          } else {
+            return this._connectionService.getTableConnectedNew$().pipe(
+              switchMap((table: GameTableFullDTO | null) => {
+                if (table !== null) {
+                  return this.getNoteListByTable$(table.id).pipe(
+                    map((notes: NoteDTO[]) => {
+                      this._tableNoteList = notes;
+                      this._gameTableNotes$.next(notes);
+                    })
                   );
-                  this._tableNoteList =
-                    response?.characterNoteList as NoteDTO[];
-                    return this._gameTableNotes$.asObservable();
-                  })
-              )
-        )
+                } else {
+                  this._tableNoteList = [];
+                  this._gameTableNotes$.next(null);
+                  return of(null);
+
+                }
+              })
+            );
+          }
+        })
       )
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe();
-  }
+}
 
-  getTableNoteList$(): Observable<NoteDTO[]> {
+
+  getTableNoteList$(): Observable<NoteDTO[] | null> {
     return this._gameTableNotes$.asObservable();
   }
 
   getNoteById$(id: number): Observable<any> {
     const headers = this.getHeaders();
     return this._http.get(this._BASE_URL + `/get/note/${id}`, { headers });
+  }
+
+  getNoteListByCharacter$(id: number): Observable<NoteDTO[]> {
+    const headers = this.getHeaders();
+    return this._http.get<NoteDTO[]>(this._BASE_URL + `/get/note/characterId=${id}`, { headers })
+  }
+
+  getNoteListByTable$(id: number): Observable<NoteDTO[]> {
+    const headers = this.getHeaders();
+    return this._http.get<NoteDTO[]>(this._BASE_URL + `/get/note/tableId=${id}`, { headers })
+
   }
 
   postUserNote(formValue: any, userId: number): Observable<any> {
