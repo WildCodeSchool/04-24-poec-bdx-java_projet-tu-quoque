@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CharacterDTO } from '../../../../../../shared/models/types/users/character-dto';
 import { ConnectionService } from '../../../../../../shared/services/connection/connection.service';
 import { identifierName } from '@angular/compiler';
+import { GameTableDTO } from '../../../../../../shared/models/types/users/table-dto';
 
 @Component({
   selector: 'app-table-invitation',
@@ -16,7 +17,8 @@ import { identifierName } from '@angular/compiler';
 export class TableInvitationComponent {
   
   userConnected$: Observable<UserInfos> = this._connectionService.getUserConnected$() as Observable<UserInfos>;
-  availableCharacterListNew$: Observable<CharacterDTO[]> = this._characterService.getUserCharacterAvailableList$();
+  availableCharacterListNew$: Observable<CharacterDTO[]> = this._tableInvitationService.getCharacterWithoutTableList$();
+  tableInvitationList$: Observable<GameTableDTO[]> = this._tableInvitationService.getTableInvitationList$()
 
   private tableSelected!: number;
   private characterSelected!: number;
@@ -28,6 +30,11 @@ export class TableInvitationComponent {
     private _connectionService: ConnectionService
   ) {}
 
+  ngOnInit(): void {
+    this._tableInvitationService.setCharacterWithoutTableList$().subscribe();
+    this._tableInvitationService.setUserTableInvitationList$().subscribe();
+  }
+
   getTableSelected(event: number): void {
     this.tableSelected = Number(event);
   }
@@ -37,6 +44,6 @@ export class TableInvitationComponent {
   }
 
   attributeCharacterToTable(): void {
-    this._characterService.updateCharacterTable(this.characterSelected, this.tableSelected).subscribe();
+    this._tableInvitationService.updateCharacterTable(this.characterSelected, this.tableSelected).subscribe();
   }
 }
