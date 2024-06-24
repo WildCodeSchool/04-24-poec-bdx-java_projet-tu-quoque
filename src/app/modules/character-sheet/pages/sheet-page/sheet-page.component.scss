@@ -12,13 +12,14 @@
 }
 
 button.save {
-    width: 128px;
-    height: 128px;
+    width: 88px;
+    height: 88px;
     border: none;
-    background: transparent;
+    background: var(--custom-dark-blue);
+    color: white;
     position: fixed;
-    top: 100px;
-    right: 120px;
+    top: 102px;
+    right: 12px;
     z-index: 1;
 
     &:active {
@@ -84,4 +85,21 @@ app-defenses {
 app-possessions {
     grid-column: 16/25;
     grid-row: 31/auto
+}
+
+:host ::ng-deep p-toast {
+    .p-toast {
+        width: 25% !important;
+        right: 0 !important;
+        top: 90px !important;
+    }
+
+    .p-toast-message-icon {
+        display: none;
+    }
+
+    .p-toast-message-info,
+    .p-toast-message {
+        border-left-width: 0;
+    }
 }
