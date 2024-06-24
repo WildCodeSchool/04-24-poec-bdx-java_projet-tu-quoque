@@ -101,6 +101,7 @@ export class CharacterService extends ApiRessourceService<Character> {
       .pipe(
         tap((characterOnHoldList: CharacterAvatarDTO[]) => {
           this._characterOnHoldList = characterOnHoldList;
+          console.log(this._characterOnHoldList)
           this._tableCharacterOnHoldList$.next(characterOnHoldList);
         })
       )
@@ -122,6 +123,20 @@ export class CharacterService extends ApiRessourceService<Character> {
   setCharacterList(list: CharacterDTO[]): void {
     this._characterList = list;
     this._userCharacterList$.next(list);
+  }
+
+  acceptCharacter(characterId: number): Observable<CharacterFullDTO> {
+    const acceptedValue = { accepted: true }
+    const headers = this.getHeaders();
+    return this._http.patch<CharacterFullDTO>(this._BASE_URL_NEW + `/patch/${characterId}`, acceptedValue, {headers})
+    .pipe(
+      tap(modifiedCharacter => {
+        this._characterOnHoldList = this._characterOnHoldList.filter(
+          (character: CharacterAvatarDTO) => character.id !== modifiedCharacter.id
+        )
+        this._tableCharacterOnHoldList$.next(this._characterOnHoldList);
+      })
+    )
   }
 
   deleteCharacter(characterId: number): void {

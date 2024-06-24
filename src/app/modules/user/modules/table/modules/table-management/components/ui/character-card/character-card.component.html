@@ -1,7 +1,7 @@
 <header class="header">
   <h2>{{ character.nickname }}</h2>
   @if(!isUserCard){
-  <app-custom-button [style]="'gold'" [name]="'Accepter'"></app-custom-button>
+  <app-custom-button [style]="'gold'" [name]="'Accepter'" (click)="acceptCharacter(character.id)"></app-custom-button>
   <app-custom-button
     [style]="'red'"
     [name]="'Refuser'"
