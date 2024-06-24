@@ -3,6 +3,7 @@ import { RouterModule, Routes, mapToCanActivate } from '@angular/router';
 import { VisitorHomepageModule } from './modules/visitor-homepage/visitor-homepage.module';
 import { userResolver } from './modules/shared/resolver/user.resolver';
 import { authGuard } from './modules/shared/guards/auth.guard';
+import { ErrorPageComponent } from './modules/navigation/components/features/error/error-page/error-page.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,12 @@ const routes: Routes = [
   {
     path: 'dice-roll',
     loadChildren: () => import('./modules/dice-roll/dice-roll.module').then(m => m.DiceRollModule)
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent,
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   }
 ];
 

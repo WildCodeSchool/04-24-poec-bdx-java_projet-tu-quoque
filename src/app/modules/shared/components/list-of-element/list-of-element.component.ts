@@ -18,9 +18,6 @@ export class ListOfElementComponent {
   elementIcon!: string;
 
   @Input()
-  replacementIcon!: string;
-
-  @Input()
   baseUrl!: string;
 
   @Input()

@@ -10,14 +10,13 @@ import { NoteDTO } from '../../../../../../../shared/models/types/users/note-dto
 })
 export class GameNotesComponent implements OnInit {
 
-  noteListNew$: Observable<NoteDTO[]> = this._notesService.getTableNoteList$();
+  noteList$: Observable<NoteDTO[] | null> = this._notesService.getTableNoteList$()
 
   constructor(
     private _notesService: NoteService,
   ) { }
 
   ngOnInit(): void {
-    this._notesService.setGameNotes$();
-    this.noteListNew$.subscribe(notes => console.log("voici les notes", notes))
+    this._notesService.setGameTableNoteList$();
   }
 }
