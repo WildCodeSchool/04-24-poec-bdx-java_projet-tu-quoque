@@ -101,7 +101,6 @@ export class CharacterService extends ApiRessourceService<Character> {
       .pipe(
         tap((characterOnHoldList: CharacterAvatarDTO[]) => {
           this._characterOnHoldList = characterOnHoldList;
-          console.log(this._characterOnHoldList)
           this._tableCharacterOnHoldList$.next(characterOnHoldList);
         })
       )
