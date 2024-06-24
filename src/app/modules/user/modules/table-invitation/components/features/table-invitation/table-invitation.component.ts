@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { TableInvitationService } from '../../../../../../shared/services/table-invitation/table-invitation.service';
 import { Observable } from 'rxjs';
-import { CharacterService } from '../../../../../../shared/services/character/character.service';
 import { UserInfos } from '../../../../../../shared/models/types/users/user-infos';
-import { ActivatedRoute } from '@angular/router';
 import { CharacterDTO } from '../../../../../../shared/models/types/users/character-dto';
 import { ConnectionService } from '../../../../../../shared/services/connection/connection.service';
-import { identifierName } from '@angular/compiler';
 import { GameTableDTO } from '../../../../../../shared/models/types/users/table-dto';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-table-invitation',
@@ -25,14 +23,17 @@ export class TableInvitationComponent {
 
   constructor(
     private _tableInvitationService: TableInvitationService,
-    private _characterService: CharacterService,
-    private _route: ActivatedRoute,
-    private _connectionService: ConnectionService
+    private _connectionService: ConnectionService,
+    private _destroyRef: DestroyRef = inject(DestroyRef) 
   ) {}
 
   ngOnInit(): void {
-    this._tableInvitationService.setCharacterWithoutTableList$().subscribe();
-    this._tableInvitationService.setUserTableInvitationList$().subscribe();
+    this._tableInvitationService.setCharacterWithoutTableList$()
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe();
+    this._tableInvitationService.setUserTableInvitationList$()
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe();
   }
 
   getTableSelected(event: number): void {
