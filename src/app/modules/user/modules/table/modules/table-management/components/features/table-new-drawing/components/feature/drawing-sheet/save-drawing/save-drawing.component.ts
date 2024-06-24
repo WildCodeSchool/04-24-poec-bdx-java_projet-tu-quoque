@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, inject } from '@angular/core';
 import { DrawingService } from '../../../../../../../../../../../../shared/services/drawing/drawing.service';
 import { Observable, Subscription, filter, finalize, lastValueFrom } from 'rxjs';
 import { DrawingDTO } from '../../../../../../../../../../../../shared/models/types/users/drawing-dto';
@@ -6,11 +6,13 @@ import { UserInfos } from '../../../../../../../../../../../../shared/models/typ
 import { UploadFileService } from '../../../../../../../../../../../../shared/services/uploadFile/upload-file.service';
 import { UploadToFirebaseService } from '../../../../../../../../../../../../shared/services/uploadFile/upload-to-firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-save-drawing',
   templateUrl: './save-drawing.component.html',
-  styleUrl: './save-drawing.component.scss'
+  styleUrl: './save-drawing.component.scss',
+  providers: [MessageService]
 })
 export class SaveDrawingComponent implements OnInit {
   @Input() canvasRef!: ElementRef<HTMLCanvasElement>;
@@ -22,6 +24,7 @@ export class SaveDrawingComponent implements OnInit {
   private _uploadSubscription!: Subscription;
   userTableList$: Observable<DrawingDTO> | null = null;
   user: UserInfos | null = null;
+  private _messageService = inject(MessageService);
 
   constructor(
     private _drawingService: DrawingService,
@@ -42,15 +45,10 @@ export class SaveDrawingComponent implements OnInit {
 
     this._uploadSubscription = this._uploadToFirebaseService.downloadURL$
       .pipe(
-        filter(url => !!url),
-        finalize(() => {
-          console.log('Upload process finished');
-        })
+        filter(url => !!url)
       ).subscribe(url => {
-        console.log('File uploaded to:', url);
         this.saveDrawing(url);
       });
-      console.log('Initial tableId:', this.tableId);
   }
 
   ngOnDestroy() {
@@ -105,9 +103,8 @@ export class SaveDrawingComponent implements OnInit {
 
     try {
       const response = await lastValueFrom(this._drawingService.postDrawing(name, url, this.tableId));
-      console.log('Drawing posted successfully:', response);
-      this._router.navigate([`/user/tables/management/my-tables/${this.tableId}`]);
-    } catch (error) {
+      this._messageService.add({ severity: 'info', summary: 'Enregistré', detail: `Image sauvegardée` })
+         } catch (error) {
       console.error('Error posting drawing:', error);
       console.error('Error details:', {
         name,
