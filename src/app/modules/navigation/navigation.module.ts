@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderButtonComponent } from './components/ui/header-button/header-button.component';
 import { NotesButtonComponent } from './components/ui/notes-button/notes-button.component';
 import { DiceButtonComponent } from './components/ui/dice-button/dice-button.component';
+import { ErrorPageComponent } from './components/features/error/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DiceButtonComponent } from './components/ui/dice-button/dice-button.com
     HeaderComponent,
     HeaderButtonComponent,
     NotesButtonComponent,
-    DiceButtonComponent
+    DiceButtonComponent,
+    ErrorPageComponent
   ],
   imports: [
     CommonModule,
