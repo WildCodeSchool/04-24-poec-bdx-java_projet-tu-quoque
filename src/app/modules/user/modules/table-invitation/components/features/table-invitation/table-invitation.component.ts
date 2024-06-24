@@ -36,5 +36,7 @@ export class TableInvitationComponent {
     this.characterSelected = Number(event);
   }
 
-  attributeCharacterToTable(): void {}
+  attributeCharacterToTable(): void {
+    this._characterService.updateCharacterTable(this.characterSelected, this.tableSelected).subscribe();
+  }
 }

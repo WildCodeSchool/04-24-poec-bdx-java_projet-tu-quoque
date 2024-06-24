@@ -124,7 +124,7 @@ export class CharacterService extends ApiRessourceService<Character> {
     this._userCharacterList$.next(list);
   }
 
-  acceptCharacter(characterId: number): Observable<CharacterFullDTO> {
+  acceptCharacterToTable$(characterId: number): Observable<CharacterFullDTO> {
     const acceptedValue = { accepted: true }
     const headers = this.getHeaders();
     return this._http.patch<CharacterFullDTO>(this._BASE_URL_NEW + `/patch/${characterId}`, acceptedValue, {headers})
@@ -136,6 +136,11 @@ export class CharacterService extends ApiRessourceService<Character> {
         this._tableCharacterOnHoldList$.next(this._characterOnHoldList);
       })
     )
+  }
+
+  updateCharacterTable(characterId: number, tableId: number): Observable<CharacterFullDTO> {
+    const headers = this.getHeaders();
+    return this._http.post<CharacterFullDTO>(this._BASE_URL_NEW + `/assign-table/characterId=${characterId}/tableId=${tableId}`, {headers})
   }
 
   deleteCharacter(characterId: number): void {
