@@ -14,7 +14,7 @@ export class GameNotesComponent implements OnInit {
 
   constructor(
     private _notesService: NoteService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._notesService.setGameTableNoteList$();

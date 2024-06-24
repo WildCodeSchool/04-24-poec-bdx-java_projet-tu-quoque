@@ -16,7 +16,7 @@ export class NgModelDebounceChangeDirective implements OnInit {
             .pipe(
                 takeUntilDestroyed(this.destroyRef),
                 skip(1),
-                debounceTime(500),
+                debounceTime(1000),
                 distinctUntilChanged())
             .subscribe(value => this.ngModelDebounceChange.emit(value));
     }

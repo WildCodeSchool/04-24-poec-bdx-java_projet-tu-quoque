@@ -14,7 +14,9 @@ export class GenderListComponent extends AbstractListComponent {
   list$: Observable<Gender[]> = this.dbService.getGenders$();
   selectName: string = "gender";
   selectLabel: string = "SEXE";
-  actual$!: Observable<string>;
+  actual$: Observable<string> = this.listener.sendInfos().pipe(
+    map((sheet: Sheet) => sheet.gender)
+  );
 
   ngOnInit() {
     this.listener.sendInfos().pipe(

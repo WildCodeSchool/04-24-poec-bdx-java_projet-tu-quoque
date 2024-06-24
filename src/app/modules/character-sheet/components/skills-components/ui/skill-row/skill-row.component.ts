@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SkillDetails } from '../../../../models/classes/skill-details.class';
 import { Field } from '../../../../shared/models/types/field.type';
 import { SkillField } from '../../../../shared/models/types/skill-field.type';

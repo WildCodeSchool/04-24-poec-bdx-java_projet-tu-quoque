@@ -1,9 +1,8 @@
-import { Component, DestroyRef, inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BasicField } from '../../../../shared/models/types/basic-field.type';
 import { InputField } from '../../../../shared/classes/input-field.class';
 import { AbstractSendToListenerComponent } from '../../../../shared/abstract-components/abstract-send-to-listener-component.component';
 import { Field } from '../../../../shared/models/types/field.type';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-input-field',
@@ -16,6 +15,7 @@ export class InputFieldComponent extends AbstractSendToListenerComponent {
   playerInput!: string;
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.playerInput = this.field.preFillValue;
   }
 
