@@ -3,11 +3,7 @@
     class="element-line"
     *ngFor="let element of elementList"
   >
-    @if (!element?.accepted && replacementIcon) {
-    <img [src]="replacementIcon" alt="element" />
-    } @else {
-    <img [src]="elementIcon" alt="element"/>
-    }
+    <img [src]="elementIcon" alt="element"/> 
     @if (isForDrawing) {
       <p class="element-name" (click)="onClick(element.content)">
         {{ element.name }}
