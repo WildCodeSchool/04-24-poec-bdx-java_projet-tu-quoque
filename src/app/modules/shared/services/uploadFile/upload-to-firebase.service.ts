@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { UploadTaskSnapshot } from 'firebase/storage';
 import { BehaviorSubject, Observable, finalize, switchMap, tap } from 'rxjs';
 
 @Injectable({
@@ -17,10 +18,15 @@ export class UploadToFirebaseService {
   uploadFile(file: File): void {
     const filePath = `images/${file.name}`;
     const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
+    const task = this.storage.upload(filePath, file)
+    .then((res: UploadTaskSnapshot) => {
+      res.
+    });
    
-    task.snapshotChanges().pipe(
-      switchMap(() => fileRef.getDownloadURL().pipe(
+    task.snapshotChanges()
+    .pipe(
+      switchMap(() => fileRef.getDownloadURL()
+      .pipe(
         tap(url => this._downloadURL$.next(url)),
         finalize(() => this._downloadURL$.complete())
       ))
