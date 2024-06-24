@@ -12,10 +12,28 @@
 }
 
 button.save {
-    position: absolute;
+    width: 128px;
+    height: 128px;
+    border: none;
+    background: transparent;
+    position: fixed;
     top: 100px;
-    right: 450px;
+    right: 120px;
     z-index: 1;
+
+    &:active {
+        animation: rotating 0.2s linear;
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
 }
 
 app-character-informations {
