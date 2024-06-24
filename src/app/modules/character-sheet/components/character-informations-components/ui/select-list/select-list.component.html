@@ -1,5 +1,9 @@
 <select [name]="selectName" [id]="selectName" #change *ngIf="list$ | async as list" (change)="sendChanges(change.value)">
-    <option *ngIf="actual$ | async as actual" [value]="actual">{{actual}}</option>
+    
+    <option *ngIf="actual$ | async as actual; else empty" [value]="actual">{{actual}}</option>
+    <ng-template #empty>
+        <option [value]=""></option>
+    </ng-template>
     <option *ngFor="let item of list" [value]="item.name" >{{item.name}}</option>
     
 </select>

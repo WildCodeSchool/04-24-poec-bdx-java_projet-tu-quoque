@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListenPlayerActionService } from '../../shared/services/listen-player-action.service';
 import { Subject } from 'rxjs';
@@ -41,9 +41,7 @@ export class SheetPageComponent implements OnInit, OnDestroy {
 
   taskBeforeDestroyComponent() {
     this.isAlive = false;
-    // save the sheet
     this.connectionService.postSheet(this.listener.sheetModifiedByPlayer);
-    console.log("plop");
   }
 
   save() {

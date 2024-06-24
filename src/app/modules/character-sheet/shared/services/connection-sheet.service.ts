@@ -33,7 +33,6 @@ export class ConnectionSheetService extends ApiRessourceService<Sheet> {
   postSheet(sheet: Sheet): void {
     const headers = this.getHeaders();
     const dto = this.transformService.transform(sheet);
-    console.log(JSON.stringify(dto));
 
     this._http.put<any>(`${this._BASE_URL}/update/${sheet.id}`, dto, { headers }).subscribe();
   }

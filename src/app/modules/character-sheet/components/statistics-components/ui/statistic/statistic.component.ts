@@ -16,9 +16,10 @@ export class StatisticComponent extends AbstractSendToListenerComponent {
   index!: number;
 
   @Input()
-  playerInput: any;
+  playerInput!: any;
 
   override ngOnInit(): void {
+    super.ngOnInit()
     this.updateTempValue();
   }
 

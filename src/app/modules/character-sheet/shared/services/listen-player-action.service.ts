@@ -31,14 +31,21 @@ export class ListenPlayerActionService {
   sheetId$: Subject<number> = new Subject();
 
   constructor() {
+    this.loadSheet();
+  }
+
+  loadSheet() {
     this.sheetId$.pipe(
       switchMap((id: number) => this.connectionSheetService.getSheetById$(id).pipe(
         map((sheet: SheetDTO) => this.transformDTOService.transform(sheet)),
-        tap(sheet => this.sheetModifiedByPlayer = sheet),
-        tap(sheet => this.sheetModifiedListener$.next(sheet)),
-        tap(sheet => this.updateSheetStream())
       ))
-    ).subscribe();
+    ).subscribe(
+      sheet => {
+        this.sheetModifiedByPlayer = sheet
+        this.sheetModifiedListener$.next(sheet);
+        this.updateSheetStream();
+      }
+    );
   }
 
   setId(id$: Observable<number>) {

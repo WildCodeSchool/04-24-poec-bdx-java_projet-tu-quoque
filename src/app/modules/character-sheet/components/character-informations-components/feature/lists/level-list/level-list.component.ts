@@ -14,7 +14,9 @@ export class LevelListComponent extends AbstractListenerComponent {
   list$: Observable<Level[]> = of(Array.from({ length: 20 }, (x, i) => { return { name: i + 1 } }));
   selectName: string = "level";
   selectLabel: string = "NIVEAU";
-  actual$!: Observable<string>;
+  actual$: Observable<string> = this.listener.sendInfos().pipe(
+    map((sheet: Sheet) => sheet.level)
+  );
 
   ngOnInit() {
     this.listener.sendInfos().pipe(
