@@ -14,7 +14,9 @@ export class RaceListComponent extends AbstractListComponent {
   raceList$: Observable<Race[]> = this.dbService.getRaces$();
   selectName: string = "characterRace";
   selectLabel: string = "RACE";
-  actual$!: Observable<string>;
+  actual$: Observable<string> = this.listener.sendInfos().pipe(
+    map((sheet: Sheet) => sheet.characterRace)
+  );
 
   ngOnInit() {
     this.listener.sendInfos().pipe(
