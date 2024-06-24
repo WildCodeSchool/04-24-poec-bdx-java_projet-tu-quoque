@@ -146,30 +146,6 @@ export class CharacterService extends ApiRessourceService<Character> {
       );
   }
 
-  // updateCharacterTable(
-  //   characterId: number,
-  //   tableId: number
-  // ): Observable<CharacterFullDTO> {
-  //   const headers = this.getHeaders();
-  //   return this._http
-  //     .post<CharacterFullDTO>(
-  //       this._BASE_URL_NEW +
-  //         `/assign-table/characterId=${characterId}/tableId=${tableId}`,
-  //       { headers }
-  //     )
-  //     .pipe(
-  //       tap((updatedCharacter) => {
-  //         this._tableInvitationService.characterWithoutTableList =
-  //           this._tableInvitationService.characterWithoutTableList.filter(
-  //             (character: CharacterDTO) => character.id !== updatedCharacter.id
-  //           );
-  //         this._tableInvitationService._playerCharactersWithoutTableList$.next(
-  //           this._tableInvitationService.characterWithoutTableList
-  //         );
-  //       })
-  //     );
-  // }
-
   deleteCharacter(characterId: number): void {
     const headers = this.getHeaders();
     this._characterList = this._characterList.filter(
