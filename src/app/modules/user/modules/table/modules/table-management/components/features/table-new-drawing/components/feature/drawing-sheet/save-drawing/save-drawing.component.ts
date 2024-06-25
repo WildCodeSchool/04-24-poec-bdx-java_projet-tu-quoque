@@ -18,7 +18,7 @@ export class SaveDrawingComponent implements OnInit {
   @Input() canvasRef!: ElementRef<HTMLCanvasElement>;
   tableId!: number;
 
-  downloadIcon:string = 'assets/icons/drawTools/download.svg';
+  downloadIcon: string = 'assets/icons/drawTools/download.svg';
   selectedFile: File | null = null;
   private _subscription!: Subscription;
   private _uploadSubscription!: Subscription;
@@ -29,7 +29,7 @@ export class SaveDrawingComponent implements OnInit {
   constructor(
     private _drawingService: DrawingService,
     private _uploadFileService: UploadFileService,
-    private _uploadToFirebaseService: UploadToFirebaseService, 
+    private _uploadToFirebaseService: UploadToFirebaseService,
     private _router: Router,
     private _route: ActivatedRoute
   ) { }
@@ -47,6 +47,8 @@ export class SaveDrawingComponent implements OnInit {
       .pipe(
         filter(url => !!url)
       ).subscribe(url => {
+        console.log("OMG URL", url);
+
         this.saveDrawing(url);
       });
   }
@@ -63,7 +65,7 @@ export class SaveDrawingComponent implements OnInit {
 
   selectFile(): void {
     const canvas = this.canvasRef.nativeElement;
-    
+
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');
     const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -99,12 +101,12 @@ export class SaveDrawingComponent implements OnInit {
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
     const formattedDate = `${day}-${month}-${year}`;
-    const name = `dessin_${formattedDate}.png`;  
+    const name = `dessin_${formattedDate}.png`;
 
     try {
       const response = await lastValueFrom(this._drawingService.postDrawing(name, url, this.tableId));
-      this._messageService.add({ severity: 'info', summary: 'Enregistré', detail: `Image sauvegardée` })
-         } catch (error) {
+      this._messageService.add({ severity: 'info', summary: 'Enregistré', detail: `Image sauvegardée` });
+    } catch (error) {
       console.error('Error posting drawing:', error);
       console.error('Error details:', {
         name,
