@@ -60,6 +60,7 @@ import { PossessionsComponent } from './components/possessions/feature/possessio
 import { EquipmentComponent } from './components/possessions/ui/equipment/equipment.component';
 import { CoinsComponent } from './components/market/ui/coins/coins.component';
 import { StatisticsDiceComponent } from './components/statistics-components/ui/statistics-dice/statistics-dice.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { StatisticsDiceComponent } from './components/statistics-components/ui/s
   imports: [
     CommonModule,
     CharacterSheetRoutingModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ]
 })
 export class CharacterSheetModule { }

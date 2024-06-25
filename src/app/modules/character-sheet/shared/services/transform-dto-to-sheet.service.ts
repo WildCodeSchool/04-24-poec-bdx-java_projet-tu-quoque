@@ -25,6 +25,8 @@ export class TransformDtoToSheetService {
     this.transformStringAttributes(sheet, sheetDTO);
 
     sheet.id = sheetDTO.id;
+    sheet.statisticsId = sheetDTO.stats.id;
+    sheet.purseId = sheetDTO.purse.id;
 
     const weapons = [...sheetDTO.weapons.weapons]
 
@@ -34,7 +36,7 @@ export class TransformDtoToSheetService {
       ).subscribe((weapons: WeaponDetails[]) => {
         const weaponFound = weapons.find(weapon => weapon.name == weaponDTO.name)
         if (weaponFound) {
-          sheet.weapons[index] = new Weapon(weaponFound);
+          sheet.weapons[index] = new Weapon(weaponFound, weaponDTO.id);
         }
       })
     }
@@ -43,11 +45,13 @@ export class TransformDtoToSheetService {
 
     sheet.purse = Purse.purseFromPurseDTO(sheetDTO.purse);
 
+    sheet.weaponsId = sheetDTO.weapons.id;
+
     return sheet;
   }
 
   private transformSkillDTOintoSkill(skillDTO: SkillInfoModifiedByPlayerDTO): SkillInfosAddByPlayer {
-    return new SkillInfosAddByPlayer(skillDTO.skillId, skillDTO.rankSkill, skillDTO.complement);
+    return new SkillInfosAddByPlayer(skillDTO.skillId, skillDTO.rankSkill, skillDTO.complement, skillDTO.id);
   }
 
   private transformStringAttributes(sheet: Sheet, sheetDTO: SheetDTO) {
@@ -86,7 +90,8 @@ export class TransformDtoToSheetService {
     if (!statisticsDTO.FOR.originalValue) return stats;
     for (let stat of stats) {
       stats[stat.abbr].originalValue = statisticsDTO[stat.abbr].originalValue;
-      stats[stat.abbr].tempValue = statisticsDTO[stat.abbr].tempModifier;
+      stats[stat.abbr].setStatTempValue(statisticsDTO[stat.abbr].tempValue);
+      stats[stat.abbr].id = statisticsDTO[stat.abbr].id;
     }
     stats.resetRaceModifier()
     return stats;

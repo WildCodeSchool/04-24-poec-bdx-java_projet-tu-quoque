@@ -9,6 +9,6 @@
         </tr>
     </thead>
     <tbody *ngIf="stats$ | async as stats">
-        <tr *ngFor="let stat of stats, let index=index " trStatistic [stat]="stat" [index]="index"></tr>
+        <tr *ngFor="let stat of stats, let index=index " trStatistic [stat]="stat" [playerInput]="stat.tempValue ? stat.tempValue : ''" [index]="index"></tr>
     </tbody>
 </table>

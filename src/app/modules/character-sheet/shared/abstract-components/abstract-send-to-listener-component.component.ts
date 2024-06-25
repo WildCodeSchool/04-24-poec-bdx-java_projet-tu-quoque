@@ -12,7 +12,7 @@ export abstract class AbstractSendToListenerComponent extends AbstractListenerCo
     protected fieldChangeStream$: Subject<Field> = new Subject();
 
     ngOnInit(): void {
-        this.configureStream()
+        this.configureStream();
     }
 
     abstract updateField(value: string): Field;

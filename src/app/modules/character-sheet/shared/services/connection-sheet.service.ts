@@ -5,6 +5,8 @@ import { ConnectionService } from '../../../shared/services/connection/connectio
 import { environment } from '../../../../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { UserInfos } from '../../../shared/models/types/users/user-infos';
+import { SheetDTO } from '../../models/types/dto/sheet-dto.type';
+import { TransformSheetToDtoService } from './transform-sheet-to-dto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ import { UserInfos } from '../../../shared/models/types/users/user-infos';
 export class ConnectionSheetService extends ApiRessourceService<Sheet> {
 
   private _connectionService = inject(ConnectionService);
+  private transformService = inject(TransformSheetToDtoService);
 
   private readonly _BASE_URL: string = environment.baseUrl + '/sheets';
 
@@ -25,5 +28,12 @@ export class ConnectionSheetService extends ApiRessourceService<Sheet> {
   getSheetById$(id: number): Observable<any> {
     const headers = this.getHeaders()
     return this._http.get<any>(`${this._BASE_URL}/get/${id}`, { headers });
+  }
+
+  postSheet(sheet: Sheet): void {
+    const headers = this.getHeaders();
+    const dto = this.transformService.transform(sheet);
+
+    this._http.put<any>(`${this._BASE_URL}/update/${sheet.id}`, dto, { headers }).subscribe();
   }
 }

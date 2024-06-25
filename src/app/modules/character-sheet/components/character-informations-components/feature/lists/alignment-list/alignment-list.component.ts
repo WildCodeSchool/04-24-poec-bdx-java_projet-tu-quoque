@@ -14,7 +14,9 @@ export class AlignmentListComponent extends AbstractListComponent {
   list$: Observable<Alignment[]> = this.dbService.getAlignments$();
   selectName: string = "alignment";
   selectLabel: string = "ALIGNEMENT";
-  actual$!: Observable<string>;
+  actual$: Observable<string> = this.listener.sendInfos().pipe(
+    map((sheet: Sheet) => sheet.alignment)
+  );
 
   ngOnInit() {
     this.listener.sendInfos().pipe(

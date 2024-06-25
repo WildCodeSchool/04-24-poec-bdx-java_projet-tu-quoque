@@ -1,6 +1,7 @@
 @import url("./../../shared/character-sheet.scss");
 
 .page-container {
+    position: relative;
     padding: 116px 32px;
     width: 1524px; //1460px free
     margin: 0 auto;
@@ -8,6 +9,32 @@
     grid-template-columns: repeat(24, 1fr);
     gap: 20px;
     grid-auto-rows: 36px;
+}
+
+button.save {
+    width: 88px;
+    height: 88px;
+    border: none;
+    background: var(--custom-dark-blue);
+    color: white;
+    position: fixed;
+    top: 102px;
+    right: 12px;
+    z-index: 1;
+
+    &:active {
+        animation: rotating 0.2s linear;
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
 }
 
 app-character-informations {
@@ -58,4 +85,21 @@ app-defenses {
 app-possessions {
     grid-column: 16/25;
     grid-row: 31/auto
+}
+
+:host ::ng-deep p-toast {
+    .p-toast {
+        width: 25% !important;
+        right: 0 !important;
+        top: 90px !important;
+    }
+
+    .p-toast-message-icon {
+        display: none;
+    }
+
+    .p-toast-message-info,
+    .p-toast-message {
+        border-left-width: 0;
+    }
 }
