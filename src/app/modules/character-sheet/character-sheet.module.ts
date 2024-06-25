@@ -62,12 +62,12 @@ import { CoinsComponent } from './components/market/ui/coins/coins.component';
 import { StatisticsDiceComponent } from './components/statistics-components/ui/statistics-dice/statistics-dice.component';
 import { ToastModule } from 'primeng/toast';
 import { ReturnButtonSheetComponent } from './shared/return-button-sheet/return-button.component';
-import { BackToPreviousPageDirective } from '../shared/directives/back-to-previous-page.directive';
+import { BackFromSheetDirective } from '../shared/directives/back-from-sheet.directive';
 
 
 @NgModule({
   declarations: [
-    BackToPreviousPageDirective,
+    BackFromSheetDirective,
     SheetPageComponent,
     CharacterInformationsComponent,
     ClassesListComponent,
