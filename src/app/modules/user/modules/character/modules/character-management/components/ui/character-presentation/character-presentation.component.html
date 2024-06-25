@@ -12,17 +12,20 @@
     [name]="'Fiche personnage'"
     [routerLink]="'/character-sheet/' + character.characterSheetId"
   ></app-custom-button>
-
   <div
     class="table-button"
     (click)="
-      character.gameTable ? linkToCharacterTable(character.gameTable.id) : null
+      character.gameTable && character.accepted ? linkToCharacterTable(character.gameTable.id) : null
     "
   >
     <ng-container *ngIf="character.gameTable as gameTable; else noTable">
+      
       <p>Table reliée :</p>
       <div class="table-name">
         <p>{{ gameTable.name }}</p>
+        @if(!character.accepted) {
+          <p class="wait">(En attente)</p>
+        }
       </div>
     </ng-container>
   </div>

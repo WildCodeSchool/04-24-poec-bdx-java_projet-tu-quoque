@@ -1,9 +1,8 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { InputTextComponent } from '../custom-form/form-inputs/input-text/input-text.component';
 import {
   FormBuilder,
   FormControl,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -25,9 +24,7 @@ import { GameTableFullDTO } from '../../models/types/users/table-full-dto';
 import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
 import { ConnectionService } from '../../services/connection/connection.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LocalStorageService } from '../../services/connection/local-storage.service';
-import { NoteDTO } from '../../models/types/users/note-dto';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-note-page',
@@ -53,7 +50,7 @@ export class AddNotePageComponent
   tableConnected!: GameTableFullDTO | null;
   characterConnected!: CharacterFullDTO | null;
   private readonly _BASE_URL: string = environment.baseUrl + '/notes';
-
+  private messageService = inject(MessageService);
   nameField$!: Observable<TextField>;
   nameControl!: FormControl;
   textField$!: Observable<TextAreaField>;
@@ -111,18 +108,33 @@ export class AddNotePageComponent
   protected onSubmit(): void {
     if (this.form.valid) {
       if (this.role === 'user') {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Nouvelle note',
+          detail: 'Note créée avec succès !'
+        });
         this._noteService
           .postUserNote(this.form.value, this.user.id)
           .pipe(takeUntilDestroyed(this._destroyRef))
           .subscribe(() => this._router.navigateByUrl(`notepad/user/notes`));
         ;
       } else if (this.tableConnected) {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Nouvelle note',
+          detail: 'Note créée avec succès !'
+        });
         this._noteService
           .postTableNote(this.form.value, this.tableConnected.id)
           .pipe(takeUntilDestroyed(this._destroyRef))
           .subscribe(() => this._router.navigateByUrl(`notepad/game/notes`));
         
       } else if (this.characterConnected) {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Nouvelle note',
+          detail: 'Note créée avec succès !'
+        });
         this._noteService
           .postCharacterNote(this.form.value, this.characterConnected.id)
           .pipe(takeUntilDestroyed(this._destroyRef))
