@@ -48,12 +48,12 @@ h2 {
 
 img {
   width: 100vw;
-  opacity: 0.8;
-  object-fit: cover;
-  animation: reveal linear;
-  animation-timeline: view();
-  animation-range-start: cover 0%;
-  animation-range-end: contain 1%;
+  // opacity: 0.8;
+  // object-fit: cover;
+  // animation: reveal linear;
+  // animation-timeline: view();
+  // animation-range-start: cover 0%;
+  // animation-range-end: contain 1%;
 }
 
 .function-desciption {
@@ -84,11 +84,11 @@ img {
     font-size: 1.5rem;
   }
 }
-@keyframes reveal {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
-}
+// @keyframes reveal {
+//   from {
+//     transform: scale(0);
+//   }
+//   to {
+//     transform: scale(1);
+//   }
+// }
