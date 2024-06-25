@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { TableInvitationService } from '../../../../../../shared/services/table-invitation/table-invitation.service';
 import { Observable } from 'rxjs';
-import { CharacterService } from '../../../../../../shared/services/character/character.service';
 import { UserInfos } from '../../../../../../shared/models/types/users/user-infos';
-import { ActivatedRoute } from '@angular/router';
 import { CharacterDTO } from '../../../../../../shared/models/types/users/character-dto';
 import { ConnectionService } from '../../../../../../shared/services/connection/connection.service';
-import { identifierName } from '@angular/compiler';
+import { GameTableDTO } from '../../../../../../shared/models/types/users/table-dto';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-table-invitation',
@@ -16,17 +15,26 @@ import { identifierName } from '@angular/compiler';
 export class TableInvitationComponent {
   
   userConnected$: Observable<UserInfos> = this._connectionService.getUserConnected$() as Observable<UserInfos>;
-  availableCharacterListNew$: Observable<CharacterDTO[]> = this._characterService.getUserCharacterAvailableList$();
+  availableCharacterListNew$: Observable<CharacterDTO[]> = this._tableInvitationService.getCharacterWithoutTableList$();
+  tableInvitationList$: Observable<GameTableDTO[]> = this._tableInvitationService.getTableInvitationList$()
 
   private tableSelected!: number;
   private characterSelected!: number;
 
   constructor(
     private _tableInvitationService: TableInvitationService,
-    private _characterService: CharacterService,
-    private _route: ActivatedRoute,
-    private _connectionService: ConnectionService
+    private _connectionService: ConnectionService,
+    private _destroyRef: DestroyRef = inject(DestroyRef) 
   ) {}
+
+  ngOnInit(): void {
+    this._tableInvitationService.setCharacterWithoutTableList$()
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe();
+    this._tableInvitationService.setUserTableInvitationList$()
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe();
+  }
 
   getTableSelected(event: number): void {
     this.tableSelected = Number(event);
@@ -36,5 +44,7 @@ export class TableInvitationComponent {
     this.characterSelected = Number(event);
   }
 
-  attributeCharacterToTable(): void {}
+  attributeCharacterToTable(): void {
+    this._tableInvitationService.updateCharacterTable(this.characterSelected, this.tableSelected).subscribe();
+  }
 }

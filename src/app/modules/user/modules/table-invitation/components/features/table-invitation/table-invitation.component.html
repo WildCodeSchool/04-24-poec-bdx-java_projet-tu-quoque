@@ -1,4 +1,4 @@
-<ng-container *ngIf="userConnected$ | async as userConnected">
+<ng-container *ngIf="tableInvitationList$ | async as tableInvitationList">
 <app-return-button></app-return-button>
 <app-page-header
   [title]="'Mes invitations'"
@@ -6,10 +6,10 @@
 ></app-page-header>
 <p-accordion [activeIndex]="">
   <p-accordionTab header="Tables">
-    <ng-container *ngIf="userConnected.gameTableInvitationList.length; else noTableInvitation">
+    <ng-container *ngIf="tableInvitationList.length; else noTableInvitation">
       <app-available-character-list
       [toSelectCharacter]="false"
-      [elementList]="userConnected.gameTableInvitationList"
+      [elementList]="tableInvitationList"
       [elementIcon]="'assets/images/table-icon.svg'"
       (tableIdSelected)="getTableSelected($event)"
     ></app-available-character-list>
