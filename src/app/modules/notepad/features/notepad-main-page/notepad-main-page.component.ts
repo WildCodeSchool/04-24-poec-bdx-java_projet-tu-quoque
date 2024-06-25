@@ -1,14 +1,16 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConnectionService } from '../../../shared/services/connection/connection.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { GameTableFullDTO } from '../../../shared/models/types/users/table-full-dto';
 import { CharacterFullDTO } from '../../../shared/models/types/users/character-full-dto';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-notepad-main-page',
   templateUrl: './notepad-main-page.component.html',
   styleUrl: './notepad-main-page.component.scss',
+  providers: [MessageService]
 })
 export class NotepadMainPageComponent {
   
