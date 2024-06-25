@@ -33,7 +33,7 @@
     display: flex;
     margin-top: 1rem;
     border-radius: 7px;
-    border: 1px solid #c29b0f ;
+    border: 1px solid #c29b0f;
     background-color: #0b202f;
     text-align: center;
     white-space: pre-line;
@@ -45,6 +45,7 @@
         font-size: 1.3rem;
         &.wait {
           color: lightgray;
+          font-size: 1em;
         }
       }
     }
