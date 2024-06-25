@@ -47,8 +47,6 @@ export class SaveDrawingComponent implements OnInit {
       .pipe(
         filter(url => !!url)
       ).subscribe(url => {
-        console.log("OMG URL", url);
-
         this.saveDrawing(url);
       });
   }
