@@ -20,7 +20,8 @@ export class UploadToFirebaseService {
     const task = this.storage.upload(filePath, file);
    
     task.snapshotChanges().pipe(
-      switchMap(() => fileRef.getDownloadURL().pipe(
+      switchMap(() => fileRef.getDownloadURL()
+      .pipe(
         tap(url => this._downloadURL$.next(url)),
         finalize(() => this._downloadURL$.complete())
       ))

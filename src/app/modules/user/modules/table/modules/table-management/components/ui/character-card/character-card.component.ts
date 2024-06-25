@@ -32,7 +32,7 @@ export class CharacterCardComponent {
 
   acceptCharacter(characterId: number): void {
     this._characterService
-      .acceptCharacter(characterId)
+      .acceptCharacterToTable$(characterId)
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe();
   }

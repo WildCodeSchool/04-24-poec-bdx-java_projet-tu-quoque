@@ -16,3 +16,18 @@ button {
     color: #fff;
   }
 }
+
+:host ::ng-deep p-toast {
+  .p-toast {
+    width: 60% !important;
+    right: 0 !important;
+    top: 90px !important;
+  }
+  .p-toast-message-icon {
+    display: none;
+  }
+  .p-toast-message-info,
+  .p-toast-message {
+    border-left-width: 0;
+  }
+}
