@@ -1,38 +1,22 @@
-import { Component } from '@angular/core';
-import { Observable, mergeMap, switchMap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { NoteService } from '../../../../../../../shared/services/note/note.service';
-import { Note } from '../../../../../../../shared/models/types/users/note.type';
-import { ConnectionService } from '../../../../../../../shared/services/connection/connection.service';
-import { Table } from '../../../../../../../shared/models/types/users/table.type';
-import { Character } from '../../../../../../../shared/models/types/users/character.type';
+import { NoteDTO } from '../../../../../../../shared/models/types/users/note-dto';
 
 @Component({
   selector: 'app-game-notes',
   templateUrl: './game-notes.component.html',
   styleUrl: './game-notes.component.scss',
 })
-export class GameNotesComponent {
+export class GameNotesComponent implements OnInit {
 
-  noteList$!: Observable<Note[]>;
-
-  tableConnected$: Observable<Table> =
-    this._connectionService.getTableConnected$() as Observable<Table>;
-
-  characterConnected$: Observable<Character> =
-    this._connectionService.getCharacterConnected$() as Observable<Character>;
+  noteList$: Observable<NoteDTO[] | null> = this._notesService.getTableNoteList$()
 
   constructor(
     private _notesService: NoteService,
-    private _connectionService: ConnectionService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.noteList$ = this.characterConnected$.pipe(
-      switchMap((response) =>
-        response == null
-          ? this._notesService.getNoteListByTable()
-          : this._notesService.getNoteListByCharacter()
-      )
-    );
+    this._notesService.setGameTableNoteList$();
   }
 }

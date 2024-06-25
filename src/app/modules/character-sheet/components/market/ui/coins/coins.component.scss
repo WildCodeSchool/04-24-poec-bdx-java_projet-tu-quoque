@@ -1,0 +1,38 @@
+svg {
+    width: 24px;
+    height: 24px;
+}
+
+button {
+    position: relative;
+}
+
+
+button {
+    background-color: var(--custom-gold);
+    border-radius: 7px;
+
+    svg {
+        fill: black;
+    }
+}
+
+::backdrop {
+    background-color: black;
+    opacity: 0.5;
+}
+
+dialog {
+    padding: 24px;
+
+    &>div {
+        position: relative;
+        padding-top: 24px;
+
+        button {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+        }
+    }
+}

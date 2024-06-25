@@ -26,25 +26,25 @@ describe("test purse", () => {
         expect(new Purse('1po') < new Purse('10po')).toBeTrue();
     });
 
-    it('should be 3po 50 pa if i have got 3po and i gain 50pa', () => {
+    it('should be 3po 5 pa if i have got 3po and i gain 5pa', () => {
         let purse = new Purse('3po');
-        purse.gain('50pa');
-        expect(purse.toString()).toEqual('3po 50pa');
+        purse.gain('5pa');
+        expect(purse.toString()).toEqual('3po 5pa');
     });
-    it('should be 4po if i have got 3po 50 pa and i gain 50pa', () => {
-        let purse = new Purse('3po 50pa');
-        purse.gain('50pa');
+    it('should be 4po if i have got 3po 5pa and i gain 50pc', () => {
+        let purse = new Purse('3po 5pa');
+        purse.gain('50pc');
         expect(purse.toString()).toEqual('4po');
     });
 
-    it('should be 3po 50 pa if i have got 3po 95 pa and i spend 45pa', () => {
-        let purse = new Purse('3po 95pa');
-        purse.debt('45pa');
-        expect(purse.toString()).toEqual('3po 50pa');
+    it('should be 3po 5 pa if i have got 3po 9pa and i spend 4pa', () => {
+        let purse = new Purse('3po 9pa');
+        purse.debt('4pa');
+        expect(purse.toString()).toEqual('3po 5pa');
     });
-    it('should be 2po 55pa if i have got 3po 50 pa and i spend 95pa', () => {
-        let purse = new Purse('3po 50pa');
-        purse.debt('95pa');
-        expect(purse.toString()).toEqual('2po 55pa');
+    it('should be 2po 6pa if i have got 3po 5 pa and i spend 9pa', () => {
+        let purse = new Purse('3po 5pa');
+        purse.debt('9pa');
+        expect(purse.toString()).toEqual('2po 6pa');
     });
 })

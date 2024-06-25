@@ -1,72 +1,88 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { TableService } from '../table/table.service';
 import { TableInvitation } from '../../models/types/users/table-invitation.type';
-import { Table } from '../../models/types/users/table.type';
 import { ConnectionService } from '../connection/connection.service';
-import { UserBasicInfos } from '../../models/types/users/userBasicInfos.type';
 import { ApiRessourceService } from '../api-ressource/api-ressource.service';
+import { UserInfos } from '../../models/types/users/user-infos';
+import { CharacterService } from '../character/character.service';
+import { CharacterDTO } from '../../models/types/users/character-dto';
+import { GameTableDTO } from '../../models/types/users/table-dto';
+import { CharacterFullDTO } from '../../models/types/users/character-full-dto';
+import { environment } from '../../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TableInvitationService extends ApiRessourceService<TableInvitation> {
-  
-  private _tableService = inject(TableService);
-
-  private _connectionService = inject(ConnectionService);
-
-  private _userConnected$ =
-    this._connectionService.getUserConected$() as Observable<UserBasicInfos>;
-
   private readonly _BASE_URL = 'http://localhost:3000/user_table_invitations';
+  private readonly _BASE_URL_CHARACTER: string =
+    environment.baseUrl + '/characters';
+
+  private _tableService = inject(TableService);
+  private _connectionService = inject(ConnectionService);
+  private _characterService = inject(CharacterService);
 
   private _userTableInvitationList$: BehaviorSubject<any> = new BehaviorSubject(
     []
   );
+  private _tableInvitationList: GameTableDTO[] = [];
+  private _playerCharactersWithoutTableList$: BehaviorSubject<CharacterDTO[]> =
+    new BehaviorSubject<CharacterDTO[]>([]);
+  private _characterWithoutTableList: CharacterDTO[] = [];
 
   override getRessourceUrl(): string {
     return this._BASE_URL;
   }
 
-  getTableInvitationListByUser$(): Observable<number[]> {
-    return this.getAll$().pipe(
-      switchMap((tableInvitationList: TableInvitation[]) =>
-        this._userConnected$.pipe(
-          map((user: UserBasicInfos) =>
-            tableInvitationList.filter(
-              (tableInvitation: TableInvitation) =>
-                tableInvitation.userId === user.id
-            )
-          )
-        )
-      ),
-      map((invitationArray: TableInvitation[]) =>
-        invitationArray.map((invit: TableInvitation) => invit.tableId)
-      )
+  setCharacterWithoutTableList$(): Observable<CharacterDTO[]> {
+    return this._characterService.getUserCharacterAvailableList$().pipe(
+      tap((response) => {
+        this._playerCharactersWithoutTableList$.next(response);
+        this._characterWithoutTableList = response;
+      })
     );
   }
 
-  getTableInvitationListNames$(): Observable<Table[]> {
-    return this.getTableInvitationListByUser$().pipe(
-      switchMap((tableIdList: number[]) =>
-        this._tableService
-          .getAll$()
-          .pipe(
-            map((tableList: Table[]) =>
-              tableList.filter((table: Table) =>
-                tableIdList.includes(Number(table.id))
-              )
-            )
-          )
-      )
+  setUserTableInvitationList$(): Observable<UserInfos | null> {
+    return this._connectionService.getUserConnected$().pipe(
+      tap((response: UserInfos | null) => {
+        this._userTableInvitationList$.next(response?.gameTableInvitationList);
+        this._tableInvitationList =
+          response?.gameTableInvitationList as GameTableDTO[];
+      })
     );
   }
 
-  getUserTableInvitationList$(): Observable<TableInvitation[]> {
-    return this._userTableInvitationList$.value.length
-      ? this._userTableInvitationList$.asObservable()
-      : this.getTableInvitationListNames$();
+  getCharacterWithoutTableList$(): Observable<CharacterDTO[]> {
+    return this._playerCharactersWithoutTableList$;
+  }
+
+  getTableInvitationList$(): Observable<GameTableDTO[]> {
+    return this._userTableInvitationList$;
+  }
+
+  updateCharacterTable(
+    characterId: number,
+    tableId: number
+  ): Observable<CharacterFullDTO> {
+    const headers = this.getHeaders();
+    return this._http
+      .post<CharacterFullDTO>(
+        this._BASE_URL_CHARACTER +
+          `/assign-table/characterId=${characterId}/tableId=${tableId}`,
+        { headers }
+      )
+      .pipe(
+        tap((updatedCharacter) => {
+          this._characterWithoutTableList =
+            this._characterWithoutTableList.filter(
+              (character: CharacterDTO) => character.id !== updatedCharacter.id
+            );
+          this._playerCharactersWithoutTableList$.next(
+            this._characterWithoutTableList
+          );
+        })
+      );
   }
 }

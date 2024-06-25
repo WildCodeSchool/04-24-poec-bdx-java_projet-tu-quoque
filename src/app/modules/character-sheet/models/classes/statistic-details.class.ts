@@ -3,6 +3,7 @@ import { StatAbbr, StatAbbrKey, StatAbbrValue } from "../enums/stats-abbr.enum";
 import { StatModifier } from "../types/stat-modifier.type";
 
 export class StatisticDetails {
+    id: number;
     abbr: StatAbbrKey;
     originalValue!: number;
     value!: number;
@@ -11,12 +12,20 @@ export class StatisticDetails {
     tempValue!: number;
     tempMod!: number;
 
-    constructor(abbr: StatAbbrKey) {
+    constructor(abbr: StatAbbrKey, generateValue: boolean = false, tempModifier = null, id = -1) {
         this.abbr = abbr;
-        this.name = StatAbbr[this.abbr]
-        this.value = DiceService.throwDicesForStatistic();
+        this.name = StatAbbr[this.abbr];
+        this.value = generateValue ? this.generateOriginalValue() : NaN;
         this.originalValue = this.value;
         this.mod = this.calcMod();
+        if (tempModifier) this.tempValue = tempModifier;
+        this.id = id;
+    }
+
+    generateOriginalValue(): number {
+        let value = DiceService.throwDicesForStatistic()
+        while (value < 7) value = DiceService.throwDicesForStatistic();
+        return value;
     }
 
     calcMod(statValue: number = this.value): number {
@@ -40,10 +49,9 @@ export class StatisticDetails {
         return this.mod;
     }
 
-    applyModifiers(modifiers: StatModifier[]): void {
+    applyModifier(modifier: StatModifier): void {
         this.value = this.originalValue;
-        const mod = modifiers.find(modifier => modifier.stat === this.abbr);
-        if (mod) this.value += mod.mod;
+        this.value += modifier.mod;
         this.setMod();
     }
 }

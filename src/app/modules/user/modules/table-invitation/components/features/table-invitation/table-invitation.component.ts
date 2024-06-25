@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { TableInvitationService } from '../../../../../../shared/services/table-invitation/table-invitation.service';
 import { Observable } from 'rxjs';
-import { CharacterService } from '../../../../../../shared/services/character/character.service';
-import { Character } from '../../../../../../shared/models/types/users/character.type';
-import { TableInvitation } from '../../../../../../shared/models/types/users/table-invitation.type';
+import { UserInfos } from '../../../../../../shared/models/types/users/user-infos';
+import { CharacterDTO } from '../../../../../../shared/models/types/users/character-dto';
+import { ConnectionService } from '../../../../../../shared/services/connection/connection.service';
+import { GameTableDTO } from '../../../../../../shared/models/types/users/table-dto';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-table-invitation',
@@ -12,18 +14,27 @@ import { TableInvitation } from '../../../../../../shared/models/types/users/tab
 })
 export class TableInvitationComponent {
   
-  tableInvitationList$: Observable<TableInvitation[]> =
-    this._tableInvitationService.getUserTableInvitationList$();
-  availableCharacterList$: Observable<Character[]> =
-    this._characterService.getUserCharacterWithoutTableList$();
+  userConnected$: Observable<UserInfos> = this._connectionService.getUserConnected$() as Observable<UserInfos>;
+  availableCharacterListNew$: Observable<CharacterDTO[]> = this._tableInvitationService.getCharacterWithoutTableList$();
+  tableInvitationList$: Observable<GameTableDTO[]> = this._tableInvitationService.getTableInvitationList$()
 
   private tableSelected!: number;
   private characterSelected!: number;
 
   constructor(
     private _tableInvitationService: TableInvitationService,
-    private _characterService: CharacterService
+    private _connectionService: ConnectionService,
+    private _destroyRef: DestroyRef = inject(DestroyRef) 
   ) {}
+
+  ngOnInit(): void {
+    this._tableInvitationService.setCharacterWithoutTableList$()
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe();
+    this._tableInvitationService.setUserTableInvitationList$()
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe();
+  }
 
   getTableSelected(event: number): void {
     this.tableSelected = Number(event);
@@ -33,5 +44,7 @@ export class TableInvitationComponent {
     this.characterSelected = Number(event);
   }
 
-  attributeCharacterToTable(): void {}
+  attributeCharacterToTable(): void {
+    this._tableInvitationService.updateCharacterTable(this.characterSelected, this.tableSelected).subscribe();
+  }
 }

@@ -1,4 +1,5 @@
 <div class="note-body">
+  <p-toast></p-toast>
   <div class="close-btn-container">
     <img
       class="close-btn"
@@ -7,6 +8,15 @@
       alt="close"
     />
   </div>
+  @if ((characterConnected$|async) || (tableConnected$|async)) {
+    @if (characterConnected$|async) {
+      <p class="connected-info-title">Vous jouez votre personnage :</p>
+      <p class="connected-info-content">{{(characterConnected$|async)?.name}}</p>
+    } @else {
+      <p class="connected-info-title">Vous êtes MJ de la table :</p>
+      <p class="connected-info-content">{{(tableConnected$|async)?.name}}</p>
+    }
+  }
   <app-page-header
     [elementIcon]="'assets/images/note-gold-icon.svg'"
     [title]="'Mes notes'"
@@ -14,18 +24,16 @@
   <nav class="notes-navbar">
     <app-custom-button
       [style]="isUserSelected ? 'dblue-gold' : 'gold'"
-      [name]="'Notes personnelles'"
+      [name]="'Notes perso'"
       [routerLink]="['user/notes']"
       (click)="setUserSelected(true)"
     ></app-custom-button>
-    @if ((fakeCharacterConnected$|async) || (fakeTableConnected$|async)) {
     <app-custom-button
       [style]="!isUserSelected ? 'dblue-gold' : 'gold'"
-      [name]="'Notes de table'"
+      [name]="'Notes de jeu'"
       [routerLink]="'game/notes'"
       (click)="setUserSelected(false)"
     ></app-custom-button>
-    }
   </nav>
   <router-outlet></router-outlet>
 </div>

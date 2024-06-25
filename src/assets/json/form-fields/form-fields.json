@@ -35,8 +35,8 @@
       },
       {
         "fieldType": "text",
-        "id": "username",
-        "name": "username",
+        "id": "nickname",
+        "name": "nickname",
         "type": "text",
         "value": "",
         "autocomplete": false,
@@ -68,8 +68,8 @@
       },
       {
         "fieldType": "text",
-        "id": "noteTitle",
-        "name": "noteTitle",
+        "id": "name",
+        "name": "name",
         "type": "text",
         "value": "",
         "autocomplete": false,
@@ -78,8 +78,8 @@
       },
       {
         "fieldType": "textarea",
-        "id": "noteDescription",
-        "name": "noteDescription",
+        "id": "text",
+        "name": "text",
         "value": "",
         "autocomplete": false,
         "placeholder": "Entrez la description de votre note",
@@ -89,12 +89,43 @@
       },
       {
         "fieldType": "text",
-        "id": "usernameChange",
-        "name": "usernameChange",
+        "id": "nicknameChange",
+        "name": "nicknameChange",
         "type": "text",
         "value": "",
         "autocomplete": false,
         "placeholder": "Pseudonyme",
+        "disabled": false
+      },
+      {
+        "fieldType": "text",
+        "id": "CalendarTitle",
+        "name": "calendarTitle",
+        "type": "text",
+        "value": "",
+        "autocomplete": false,
+        "placeholder": "Titre",
+        "disabled": false
+      },
+      {
+        "fieldType": "text",
+        "id": "calendarDate",
+        "name": "calendarDate",
+        "type": "text",
+        "value": "",
+        "autocomplete": false,
+        "placeholder": "Date de fin",
+        "disabled": false
+      },
+      {
+        "fieldType": "textarea",
+        "id": "calendarDescription",
+        "name": "calendarDescription",
+        "value": "",
+        "autocomplete": false,
+        "placeholder": "Entrez la description de votre évènement",
+        "required": true,
+        "minlength": 5,
         "disabled": false
       }
     ]

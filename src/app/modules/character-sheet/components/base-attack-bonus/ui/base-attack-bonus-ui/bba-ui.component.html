@@ -1,0 +1,17 @@
+<div class="title-case">
+    <div class="major">{{"bonus de base à l'attaque" | uppercase}}</div>
+</div>
+<div class="case case-bba">
+    <ng-container *ngIf="baseAttackBonus$ | async as bba">
+        <span *ngFor="let bonus of bba; let i = index">
+            <app-metamorphosis
+            [value]="( bonus || 0).toString()" >
+            </app-metamorphosis>
+            <span *ngIf="i < bba.length - 1">
+                <app-metamorphosis
+                [value]="'/'"
+                ></app-metamorphosis>
+            </span>     
+        </span>
+    </ng-container>
+</div>

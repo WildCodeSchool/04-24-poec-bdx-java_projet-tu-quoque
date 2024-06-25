@@ -4,53 +4,61 @@
   [elementIcon]="connexionIcon"
 ></app-page-header>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <p-accordion [multiple]="true" [activeIndex]="[]">
-    <p-accordionTab header="Pseudonyme">
-      <ng-container *ngIf="usernameField$ | async as usernameField">
-        <app-input-text
-          [field]="usernameField"
-          formControlName="username"
-          [control]="usernameControl"
-        >
-        </app-input-text>
-      </ng-container>
-    </p-accordionTab>
-    <p-accordionTab header="Email">
-      <ng-container *ngIf="emailField$ | async as emailField">
-        <app-input-text
-          [field]="emailField"
-          formControlName="email"
-          [control]="emailControl"
-        >
-        </app-input-text>
-      </ng-container>
-    </p-accordionTab>
-    <p-accordionTab header="Mot de passe">
-      <ng-container *ngIf="passwordField$ | async as passwordField">
-        <app-input-text
-          [field]="passwordField"
-          formControlName="password"
-          [control]="passwordControl"
-        >
-        </app-input-text>
-      </ng-container>
-    </p-accordionTab>
-    <p-accordionTab header="Répéter le mot de passe">
-      <ng-container
-        *ngIf="passwordVerificationField$ | async as passwordVerificationField"
-      >
-        <app-input-text
-          [field]="passwordVerificationField"
-          formControlName="passwordVerification"
-          [control]="passwordVerificationControl"
-        >
-        </app-input-text>
-      </ng-container>
-    </p-accordionTab>
-    <p-accordionTab header="Télécharger un avatar">
-      <app-custom-add-button></app-custom-add-button>
-    </p-accordionTab>
-  </p-accordion>
+  <div class="title-container">
+    <h2>Pseudonyme</h2>
+  </div>
+  <ng-container *ngIf="nicknameField$ | async as nicknameField">
+    <app-input-text
+      [field]="nicknameField"
+      formControlName="nickname"
+      [control]="nicknameControl"
+    >
+    </app-input-text>
+  </ng-container>
+
+  <div class="title-container">
+    <h2>Email</h2>
+  </div>
+  <ng-container *ngIf="emailField$ | async as emailField">
+    <app-input-text
+      [field]="emailField"
+      formControlName="email"
+      [control]="emailControl"
+    >
+    </app-input-text>
+  </ng-container>
+
+  <div class="title-container">
+    <h2>Mot de passe</h2>
+  </div>
+  <ng-container *ngIf="passwordField$ | async as passwordField">
+    <app-input-text
+      [field]="passwordField"
+      formControlName="password"
+      [control]="passwordControl"
+    >
+    </app-input-text>
+  </ng-container>
+
+  <div class="title-container">
+    <h2>Répéter le mot de passe</h2>
+  </div>
+  <ng-container
+    *ngIf="passwordVerificationField$ | async as passwordVerificationField"
+  >
+    <app-input-text
+      [field]="passwordVerificationField"
+      formControlName="passwordVerification"
+      [control]="passwordVerificationControl"
+    >
+    </app-input-text>
+  </ng-container>
+
+  <div class="title-container">
+    <h2>Télécharger un avatar</h2>
+  </div>
+  <app-custom-add-button></app-custom-add-button>
+
   <app-custom-button
     type="submit"
     [name]="'Valider'"

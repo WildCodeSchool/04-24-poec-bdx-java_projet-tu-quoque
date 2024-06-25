@@ -11,12 +11,12 @@ export class CharacterSavingThrows {
 
     constructor() { }
 
-    public setLevel(level: number) {
+    public setLevel(level: number): void {
         if (level) this.level = level;
         else this.level = 0;
     }
 
-    public toString() {
+    public toString(): string {
         return `level : ${this.level}`;
     }
 

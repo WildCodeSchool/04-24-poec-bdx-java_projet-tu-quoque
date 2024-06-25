@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, shareReplay, switchMap } from "rxjs";
+import { map, Observable, shareReplay, switchMap, tap } from "rxjs";
 import { DbService } from "../../../shared/services/db-service/db.service";
 import { SkillDetails } from '../../models/classes/skill-details.class';
 import { SkillFromDb } from '../../models/types/skill-from-db.type';
 import { CharacterSheetService } from "../../shared/services/character-sheet.service";
 import { Race } from '../../models/types/race.type';
 import { CharacterClass } from '../../models/types/character-class.type';
-import { StatisticDetails } from '../../models/classes/statistic-details.class';
+import { CharacterStats } from '../../models/classes/character-stats.class';
 
 @Injectable({
   providedIn: 'root'
@@ -25,16 +25,17 @@ export class SkillsService {
     this.skills$ = this.dbService.getSkills$().pipe(
       map((skillList: SkillFromDb[]) => this.transformSkillFromDbIntoSkillsDetails(skillList)),
       switchMap((skills: SkillDetails[]) => this.sheetService.race$.pipe(
-        map((race: Race) => this.updateSkillsWithRace(skills, race))
+        map((race: Race) => this.updateSkillsWithRace(skills, race)),
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getClasseDetails$().pipe(
         map((classDetails: CharacterClass) =>
           this.updateSkillsWithClass(skills, classDetails)
-        )
+        ),
       )),
       switchMap((skills: SkillDetails[]) => this.sheetService.getCaracteristics$().pipe(
-        map((stats: StatisticDetails[]) => this.updateSkillStatMod(skills, stats)),
+        map((stats: CharacterStats) => this.updateSkillStatMod(skills, stats)),
       )),
+
       shareReplay(),
     );
   }
@@ -61,8 +62,9 @@ export class SkillsService {
     return skills;
   }
 
-  updateSkillStatMod(skills: SkillDetails[], stats: StatisticDetails[]): SkillDetails[] {
+  updateSkillStatMod(skills: SkillDetails[], stats: CharacterStats): SkillDetails[] {
     if (!stats) return skills;
+    if (!stats.FOR.originalValue) return skills;
     for (let skill of skills) {
       skill.setStatMod(stats);
     }

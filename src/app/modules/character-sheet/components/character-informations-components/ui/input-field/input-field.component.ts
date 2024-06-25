@@ -12,8 +12,12 @@ import { Field } from '../../../../shared/models/types/field.type';
 export class InputFieldComponent extends AbstractSendToListenerComponent {
   @Input()
   field!: InputField;
+  playerInput!: string;
 
-  playerInput: string = "";
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.playerInput = this.field.preFillValue;
+  }
 
   override updateField(): Field {
     const field: BasicField = {

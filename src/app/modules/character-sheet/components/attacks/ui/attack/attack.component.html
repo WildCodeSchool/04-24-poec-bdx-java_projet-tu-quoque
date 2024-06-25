@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="weapon; else emptyWeapon">
     <table class="main-table">
         <thead>
             <tr>
@@ -15,10 +15,30 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><app-coins *ngIf="!weapon"
+                    [index]="index"
+                    (weaponEmitter)="purchaseWeapon($event)"
+                    ></app-coins>
+                    <app-metamorphosis
+                    [value]="weapon.weaponDetails.name"
+                    ></app-metamorphosis></td>
+                <td>
+                    <app-metamorphosis *ngIf="getBaseAttackBonus(weapon.weaponDetails.rangeFactor ? (dexterityBonus) : (strengthBonus)) | async as baseAttackBonus"
+                    [value]="baseAttackBonus"
+                    ></app-metamorphosis>
+                </td>
+                <td *ngIf="characterSize$ | async as characterSize; else emptyTd">
+                    <app-metamorphosis
+                   [value]="weapon.weaponDetails.damages[characterSize] + (strengthBonus ? (strengthBonus > 0 ? ' + ' : '') + strengthBonus : '')"
+                    >
+                </app-metamorphosis>
+                </td>
+                <ng-template #emptyTd><td></td></ng-template>
+                <td>
+                    <app-metamorphosis
+                    [value]="weapon.weaponDetails.critic"
+                    ></app-metamorphosis>
+                    </td>
             </tr>
         </tbody>
     </table>
@@ -32,8 +52,16 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
+                <td>
+                    <app-metamorphosis
+                    [value]="weapon.weaponDetails.rangeFactor"
+                    ></app-metamorphosis>
+                </td>
+                <td>
+                    <app-metamorphosis
+                    [value]="weapon.weaponDetails.type"
+                    ></app-metamorphosis>
+                </td>
                 <td></td>
             </tr>
         </tbody>
@@ -44,3 +72,55 @@
         <span *ngIf="(i+1) % 5 == 0">&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </span>
 </div>
+
+<ng-template #emptyWeapon>
+    <div>
+        <table class="main-table">
+            <thead>
+                <tr>
+                    <th rowspan="2" class="first">ATTAQUE</th>
+                    <th class="blank" rowspan="1">&nbsp;</th>
+                    <th class="blank" rowspan="1">&nbsp;</th>
+                    <th class="blank" rowspan="1">&nbsp;</th>
+                </tr>
+                <tr>
+                    <th rowspan="1">BONUS AU TOUCHER</th>
+                    <th rowspan="1" class="damages">{{"dégâts" | uppercase}}</th>
+                    <th rowspan="1">CRITIQUE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><app-coins *ngIf="!weapon"
+                        (weaponEmitter)="purchaseWeapon($event)"
+                        ></app-coins></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="sub-table">
+            <thead>
+                <tr>
+                    <th>{{"portée" | uppercase}}</th>
+                    <th>TYPE</th>
+                    <th class="note">NOTES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        {{"munitions" | uppercase }} ________________________________________________ 
+        <span *ngFor="let item of [].constructor(20); let i = index">
+            &#9634;
+            <span *ngIf="(i+1) % 5 == 0">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span>
+    </div>
+    
+</ng-template>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PossibleDice } from '../../models/enums/possible-dice.enum';
+import { PossibleDiceKey } from '../../models/enums/possible-dice.enum';
 import { DiceDeclaration } from '../../models/types/dice-declaration.type';
 
 @Injectable({
@@ -7,22 +7,22 @@ import { DiceDeclaration } from '../../models/types/dice-declaration.type';
 })
 export class ParseDiceService {
 
-  static transformStringToDice(dice: string): PossibleDice {
-    switch (dice) {
+  static transformStringToDice(dice: string): PossibleDiceKey {
+    switch (dice.trim()) {
       case "d3":
-        return PossibleDice.d3;
+        return "d3";
       case "d4":
-        return PossibleDice.d4;
+        return "d4";
       case "d6":
-        return PossibleDice.d6;
+        return "d6";
       case "d8":
-        return PossibleDice.d8;
+        return "d8";
       case "d10":
-        return PossibleDice.d10;
+        return "d10";
       case "d12":
-        return PossibleDice.d12;
+        return "d12";
       case "d20":
-        return PossibleDice.d20;
+        return "d20";
       default:
         throw new Error("dice not recognized");
     }

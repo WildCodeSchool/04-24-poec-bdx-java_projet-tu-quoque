@@ -7,14 +7,17 @@ import { HeaderComponent } from './components/features/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderButtonComponent } from './components/ui/header-button/header-button.component';
 import { NotesButtonComponent } from './components/ui/notes-button/notes-button.component';
-
+import { DiceButtonComponent } from './components/ui/dice-button/dice-button.component';
+import { ErrorPageComponent } from './components/features/error/error-page/error-page.component';
 
 @NgModule({
   declarations: [
     MenuSidebarComponent,
     HeaderComponent,
     HeaderButtonComponent,
-    NotesButtonComponent
+    NotesButtonComponent,
+    DiceButtonComponent,
+    ErrorPageComponent
   ],
   imports: [
     CommonModule,

@@ -1,15 +1,15 @@
-<ng-container *ngIf="invitationList$ | async as invitationList">
+  <ng-container *ngIf="userConnected$| async as user">
   <app-custom-button
     *ngFor="let option of buttonOptionList; let index = index"
     [style]="index % 2 === 0 ? 'dblue-gold bgSquare' : 'gold bgSquare'"
     [name]="option.name"
     [routerLink]="option.url"
     [showSpan]="
-      index === buttonOptionList.length - 1 && invitationList.length
+      index === buttonOptionList.length - 1 && user.gameTableInvitationList.length
         ? true
         : false
     "
-    [spanValue]="invitationList.length ? invitationList.length : 0"
+    [spanValue]="user.gameTableInvitationList.length ? user.gameTableInvitationList.length : 0"
   >
   </app-custom-button>
 </ng-container>

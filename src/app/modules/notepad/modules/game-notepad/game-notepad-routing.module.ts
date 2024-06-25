@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddNotePageComponent } from '../../../shared/components/add-note-page/add-note-page.component';
+import { authGuard } from '../../../shared/guards/auth.guard';
+import { userResolver } from '../../../shared/resolver/user.resolver';
 
 const routes: Routes = [
   {
     path:"",
     redirectTo: "management",
-    pathMatch: "full"
+    pathMatch: "full",
+    resolve: {user: userResolver}
   },
   {
     path: "management",
@@ -15,7 +18,9 @@ const routes: Routes = [
   },
   {
     path: "creation",
-    component: AddNotePageComponent
+    component: AddNotePageComponent,
+    resolve: {user: userResolver},
+    canActivate: [authGuard]
   }
 ];
 

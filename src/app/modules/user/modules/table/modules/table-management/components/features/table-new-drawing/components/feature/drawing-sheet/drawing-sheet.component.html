@@ -1,10 +1,12 @@
-
-    <section class="accessory">
-        <app-save-drawing [canvasRef]="canvasRef" class="save-button"></app-save-drawing>
-        <app-palette></app-palette>
-        <app-tools></app-tools> 
-    </section>
-    <div>
-        <canvas class="sheet" #canvas></canvas>
-    </div>
-    <footer></footer>
+<section class="accessory">
+  <div class="buttons">
+    <app-return-button></app-return-button>
+    <app-save-drawing [canvasRef]="canvasRef"></app-save-drawing>
+  </div>
+  <app-palette></app-palette>
+  <app-tools></app-tools>
+</section>
+<div>
+  <canvas class="sheet" #canvas></canvas>
+</div>
+<footer></footer>

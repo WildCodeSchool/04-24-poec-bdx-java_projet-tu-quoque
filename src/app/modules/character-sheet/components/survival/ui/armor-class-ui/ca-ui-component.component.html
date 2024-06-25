@@ -1,0 +1,84 @@
+<div class="title-case">
+    <div class="major">CA</div>
+    <div class="minor">Classe d'armure</div>
+</div>
+<div>
+    <div class="case total" *ngIf="armorClass$ | async as armorClass; else armorClassEmpty">
+        <app-metamorphosis
+        [value]="armorClass.toString()"
+        >
+        </app-metamorphosis>
+    </div>
+    <ng-template #armorClassEmpty>
+            <div class="case total">10</div>
+        </ng-template>
+   <div>TOTAL</div>    
+</div>
+<div>
+    <div class="case no-border">10</div>
+</div>
+<div>
+    <div class="case"></div>
+    <div class="minor">{{"armure" | uppercase}}</div>
+</div>
+<div>
+    <div class="case"></div>
+    <div class="minor">{{"Bonus de bouclier" | uppercase}}</div>
+</div>
+<div>
+    <div class="case" *ngIf="dexMod$ | async as dexMod; else modDexEmpty">
+        <app-metamorphosis
+        [value]="dexMod.toString()"
+        ></app-metamorphosis>
+    </div>
+    <ng-template #modDexEmpty>
+            <div class="case"></div>
+        </ng-template>
+    <div class="minor">{{"mod. de dex" | uppercase}}</div>
+</div>
+<div>
+    <div class="case"></div>
+    <div class="minor">{{"mod. de taille" | uppercase}}</div>
+</div>
+<div>
+    <div class="case"></div>
+    <div class="minor">{{"armure naturelle" | uppercase}}</div>
+</div>
+<div>
+    <div class="case"></div>
+    <div class="minor">{{"mod de parade" | uppercase}}</div>
+</div>
+<div>
+    <div class="case last"></div>
+    <div class="minor">{{"mod divers" | uppercase}}</div>
+</div>
+
+<div class="title-case second-line">
+    <div class="minor">Classe d'armure</div>
+    <div class="major under">Attaques de contact</div>
+</div>
+<div>
+    <div class="case last" *ngIf="armorClassContact$ | async as armorClassContact; else contactEmpty">
+        <app-metamorphosis
+        [value]="armorClassContact.toString()"
+        ></app-metamorphosis>
+    </div>
+    <ng-template #contactEmpty>
+            <div class="case last"></div>
+        </ng-template>
+</div>
+<div class="title-case second-line">
+    <div class="minor">Classe d'armure</div>
+    <div class="major under">Pris au dépourvu</div>
+    
+</div> 
+<div>
+    <div class="case last" *ngIf="armorClassSurprised$ | async as armorClassSurprised; else surprisedEmpty">
+        <app-metamorphosis
+        [value]="armorClassSurprised.toString()"
+        ></app-metamorphosis>
+    </div>
+    <ng-template #surprisedEmpty>
+            <div class="case last"></div>
+        </ng-template>
+</div>

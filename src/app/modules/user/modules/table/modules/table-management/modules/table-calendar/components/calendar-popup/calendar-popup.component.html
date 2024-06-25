@@ -1,0 +1,44 @@
+<form #eventForm="ngForm" (ngSubmit)="onSubmit()">
+  <p-accordion [activeIndex]="">
+    <p-accordionTab header="Titre">
+      <input
+        type="text"
+        id="title-input"
+        name="title-input"
+        #titleInput="ngModel"
+        [(ngModel)]="title"
+      />
+    </p-accordionTab>
+    <p-accordionTab header="Date">
+      <p>Date de début :</p>
+      <p class="start-date">{{ startDate | date }}</p>
+      <fieldset>
+        <label for="date-input">Date de fin : </label>
+        <input
+          type="date"
+          id="date-input"
+          name="date-input"
+          #dateInput="ngModel"
+          [(ngModel)]="date"
+        />
+      </fieldset>
+    </p-accordionTab>
+    <p-accordionTab header="Description">
+      <textarea
+        class="textArea"
+        type="textArea"
+        id="description-input"
+        name="description-input"
+        #descriptionInput="ngModel"
+        [(ngModel)]="description"
+        rows="4"
+      ></textarea>
+    </p-accordionTab>
+  </p-accordion>
+  <app-custom-button
+    type="submit"
+    [name]="'Valider'"
+    [style]="'gold'"
+    class="validation-button"
+  ></app-custom-button>
+</form>

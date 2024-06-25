@@ -20,6 +20,6 @@ export class ShowCommentPageComponent {
 
   ngOnInit(): void {
     const id: number = Number(this._route.snapshot.paramMap.get('id'));
-    this.note$ = this._noteService.getById$(id);
+    this.note$ = this._noteService.getNoteById$(id);
   }
 }

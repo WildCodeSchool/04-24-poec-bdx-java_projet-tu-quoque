@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   input {
-    width: 45vw;
+    width: 80vw;
     font-family: alice;
     font-size: 1.2rem;
     padding: 1rem 0;
@@ -16,7 +16,7 @@
     background-color: #0b202f;
     text-align: center;
     margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     font-family: alice;
     color: white;
   }
@@ -25,9 +25,12 @@
   }
 }
 
+.input-container-error {
+  height: calc(100% + 2rem);
+}
 .error-input {
   display: flex;
-  height: 3rem;
+  height: 1rem;
   margin-bottom: 1rem;
   justify-content: center;
 }

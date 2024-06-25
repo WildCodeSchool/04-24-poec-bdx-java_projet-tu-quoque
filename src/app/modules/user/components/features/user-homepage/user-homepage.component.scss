@@ -8,3 +8,10 @@
   justify-content: center;
   gap: 4em;
 }
+
+:host ::ng-deep app-custom-button {
+  .button.bgSquare[_ngcontent-ng-c1282570419] {
+    width: 38vh;
+    height: 108px;
+  }
+}

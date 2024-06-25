@@ -1,2 +1,20 @@
-<app-attack *ngFor="let item of [].constructor(5); let i = index" 
-></app-attack>
+<ng-container *ngIf="weapons$ | async as weapons; else emptyWeapon">
+    <app-attack *ngFor="let item of [].constructor(5); let i = index"
+    [dexterityBonus$]="dexterityBonus$"
+    [strengthBonus$]="strengthBonus$"
+    [baseAttackBonus$]="baseAttackBonus$"
+    [weapon]="weapons[i]"
+    [characterSize$]="characterSize$"
+    [index]="i"
+    ></app-attack>
+</ng-container>
+<ng-template #emptyWeapon>
+    <app-attack *ngFor="let item of [].constructor(5); let i = index"
+    [dexterityBonus$]="dexterityBonus$"
+    [strengthBonus$]="strengthBonus$"
+    [baseAttackBonus$]="baseAttackBonus$"
+    [weapon]=""
+    [characterSize$]="characterSize$"
+    [index]="i"
+    ></app-attack>
+</ng-template>

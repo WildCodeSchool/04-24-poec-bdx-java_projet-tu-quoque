@@ -6,26 +6,28 @@ import { CharacterClass } from '../../../character-sheet/models/types/character-
 import { Alignment } from '../../../character-sheet/models/types/alignment.type';
 import { Gender } from '../../../character-sheet/models/types/gender.type';
 import { SkillFromDb } from '../../../character-sheet/models/types/skill-from-db.type';
-import { Weapon } from '../../../character-sheet/models/types/weapons/weapon.type';
+import { WeaponDetails } from '../../../character-sheet/models/types/weapons/weapon.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbService {
-  private readonly INDEX_URL: string = "http://localhost:3000/";
-  private readonly RACES_ENDPOINT: string = "races";
-  private readonly CLASSES_ENDPOINT: string = "classes";
-  private readonly ALIGNMENTS_ENDPOINT: string = "alignments";
-  private readonly GENDERS_ENDPOINT: string = "genders";
-  private readonly SKILLS_ENDPOINT: string = "skills";
-  private readonly WEAPONS_ENDPOINT: string = "weapons";
+  private readonly INDEX_URL: string = "assets/json/sheet/";
+  private readonly RACES_ENDPOINT: string = "races.json";
+  private readonly CLASSES_ENDPOINT: string = "classes.json";
+  private readonly ALIGNMENTS_ENDPOINT: string = "alignments.json";
+  private readonly GENDERS_ENDPOINT: string = "genders.json";
+  private readonly SKILLS_ENDPOINT: string = "skills.json";
+  private readonly WEAPONS_ENDPOINT: string = "weapons.json";
 
   private race$: Observable<Race[]>;
   private classCharacter$: Observable<CharacterClass[]>;
+  private weapons$: Observable<WeaponDetails[]>;
 
   constructor(private http: HttpClient) {
     this.race$ = this.setRaces$();
     this.classCharacter$ = this.setClasses$();
+    this.weapons$ = this.setWeapons$();
   }
 
   getEndpoint$(endpoint: string): Observable<any> {
@@ -58,7 +60,10 @@ export class DbService {
     return this.getEndpoint$(this.SKILLS_ENDPOINT);
   }
 
-  getWeapons$(): Observable<Weapon[]> {
-    return this.getEndpoint$(this.WEAPONS_ENDPOINT);
+  setWeapons$(): Observable<WeaponDetails[]> {
+    return this.getEndpoint$(this.WEAPONS_ENDPOINT).pipe(shareReplay());
+  }
+  getWeapons$(): Observable<WeaponDetails[]> {
+    return this.weapons$;
   }
 }

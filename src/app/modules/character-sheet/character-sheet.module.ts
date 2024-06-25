@@ -32,21 +32,21 @@ import { MetamorphosisComponent } from './shared/components/metamorphosis/metamo
 import { SavingThrowsFeatureComponent } from './components/saving-throws/feature/saving-throws-feature/saving-throws-feature.component';
 import { SavingThrowsListComponent } from './components/saving-throws/ui/saving-throws-list-component/saving-throws-list-component.component';
 import { SavingThrowsDetailsComponent } from './components/saving-throws/ui/saving-throws-details-component/saving-throws-details-component.component';
-import { HpAcComponent } from './components/hp-ac/feature/hp-ac-component/hp-ac-component.component';
-import { HitPointComponent } from './components/hp-ac/feature/hp-component/hp-component.component';
-import { MovementComponent } from './components/hp-ac/feature/movement-component/movement-component.component';
-import { ArmorClassComponent } from './components/hp-ac/feature/ca-component/ca-component.component';
-import { ReduceDamageComponent } from './components/hp-ac/feature/reduce-damage-component/reduce-damage-component.component';
-import { InitiativeComponent } from './components/hp-ac/feature/init-component/init-component.component';
-import { MovementUiComponent } from './components/hp-ac/ui/movement-ui-component/movement-ui-component.component';
-import { HitPointUIComponent } from './components/hp-ac/ui/hp-ui-component/hp-ui-component.component';
-import { ArmorClassUIComponent } from './components/hp-ac/ui/ca-ui-component/ca-ui-component.component';
-import { ReduceDamageUiComponent } from './components/hp-ac/ui/reduce-damage-ui-component/reduce-damage-ui-component.component';
-import { InitiativeUIComponent } from './components/hp-ac/ui/init-ui-component/init-ui-component.component';
-import { BaseAttackBonusComponent } from './components/bba-components/features/bba-component/bba-component.component';
-import { BaseAttackBonusUiComponent } from './components/bba-components/ui/bba-ui/bba-ui.component';
-import { MagicalResistanceComponent } from './components/bba-components/ui/magical-resistance/magical-resistance.component';
-import { WrestlingComponent } from './components/bba-components/ui/wrestling/wrestling.component';
+import { HitPointArmorClassComponent } from './components/survival/feature/survival/hp-ac-component.component';
+import { HitPointComponent } from './components/survival/feature/hit-point/hp-component.component';
+import { MovementComponent } from './components/survival/feature/movement/movement-component.component';
+import { ArmorClassComponent } from './components/survival/feature/armor-class/ca-component.component';
+import { ReduceDamageComponent } from './components/survival/feature/reduce-damage/reduce-damage-component.component';
+import { InitiativeComponent } from './components/survival/feature/initiative/init-component.component';
+import { MovementUiComponent } from './components/survival/ui/movement-ui/movement-ui-component.component';
+import { HitPointUIComponent } from './components/survival/ui/hit-point-ui/hp-ui-component.component';
+import { ArmorClassUIComponent } from './components/survival/ui/armor-class-ui/ca-ui-component.component';
+import { ReduceDamageUiComponent } from './components/survival/ui/reduce-damage-ui/reduce-damage-ui-component.component';
+import { InitiativeUIComponent } from './components/survival/ui/initiative-ui/init-ui-component.component';
+import { BaseAttackBonusComponent } from './components/base-attack-bonus/features/base-attack-bonus/bba-component.component';
+import { BaseAttackBonusUiComponent } from './components/base-attack-bonus/ui/base-attack-bonus-ui/bba-ui.component';
+import { MagicalResistanceComponent } from './components/base-attack-bonus/ui/magical-resistance/magical-resistance.component';
+import { WrestlingComponent } from './components/base-attack-bonus/ui/wrestling/wrestling.component';
 import { AttacksComponent } from './components/attacks/features/attacks/attacks.component';
 import { AttackComponent } from './components/attacks/ui/attack/attack.component';
 import { ArmorUiComponent } from './components/defense/ui/armor-ui/armor-ui.component';
@@ -55,11 +55,19 @@ import { ProtectionUiComponent } from './components/defense/ui/protection-ui/pro
 import { DefensesComponent } from './components/defense/feature/defenses/defenses.component';
 import { MarketPlaceComponent } from './components/market/feature/market-place/market-place.component';
 import { BuyWeaponsComponent } from './components/market/ui/buy-weapons/buy-weapons.component';
-import { PurseComponent } from './components/market/ui/purse/purse.component';
+import { PurseComponent } from './components/possessions/ui/purse/purse.component';
+import { PossessionsComponent } from './components/possessions/feature/possessions/possessions.component';
+import { EquipmentComponent } from './components/possessions/ui/equipment/equipment.component';
+import { CoinsComponent } from './components/market/ui/coins/coins.component';
+import { StatisticsDiceComponent } from './components/statistics-components/ui/statistics-dice/statistics-dice.component';
+import { ToastModule } from 'primeng/toast';
+import { ReturnButtonSheetComponent } from './shared/return-button-sheet/return-button.component';
+import { BackFromSheetDirective } from '../shared/directives/back-from-sheet.directive';
 
 
 @NgModule({
   declarations: [
+    BackFromSheetDirective,
     SheetPageComponent,
     CharacterInformationsComponent,
     ClassesListComponent,
@@ -89,7 +97,7 @@ import { PurseComponent } from './components/market/ui/purse/purse.component';
     SavingThrowsFeatureComponent,
     SavingThrowsListComponent,
     SavingThrowsDetailsComponent,
-    HpAcComponent,
+    HitPointArmorClassComponent,
     HitPointComponent,
     MovementComponent,
     ArmorClassComponent,
@@ -112,12 +120,18 @@ import { PurseComponent } from './components/market/ui/purse/purse.component';
     DefensesComponent,
     MarketPlaceComponent,
     BuyWeaponsComponent,
-    PurseComponent
+    PurseComponent,
+    PossessionsComponent,
+    EquipmentComponent,
+    CoinsComponent,
+    StatisticsDiceComponent,
+    ReturnButtonSheetComponent
   ],
   imports: [
     CommonModule,
     CharacterSheetRoutingModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ]
 })
 export class CharacterSheetModule { }

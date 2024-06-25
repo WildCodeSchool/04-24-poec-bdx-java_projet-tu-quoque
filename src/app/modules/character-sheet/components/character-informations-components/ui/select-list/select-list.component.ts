@@ -16,6 +16,12 @@ export class SelectListComponent extends AbstractSendToListenerComponent {
   selectName!: string;
   @Input()
   selectLabel!: string;
+  @Input()
+  actual$!: Observable<string>;
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+  }
 
   override updateField(value: string): Field {
     const field: BasicField = {
