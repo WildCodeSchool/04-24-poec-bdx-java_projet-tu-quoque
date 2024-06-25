@@ -2,7 +2,7 @@
 
 .page-container {
     position: relative;
-    padding: 116px 32px;
+    padding: 160px 32px;
     width: 1524px; //1460px free
     margin: 0 auto;
     display: grid;
@@ -11,16 +11,25 @@
     grid-auto-rows: 36px;
 }
 
-button.save {
-    width: 88px;
-    height: 88px;
-    border: none;
+.background-button {
     background: var(--custom-dark-blue);
-    color: white;
     position: fixed;
-    top: 102px;
-    right: 12px;
+    top: 90px;
+    right: 0;
     z-index: 1;
+}
+
+button.save {
+    border: none;
+    width: 54px;
+    height: 64px;
+    color: white;
+    background: transparent;
+
+    & svg {
+        width: 40px;
+        height: 40px;
+    }
 
     &:active {
         animation: rotating 0.2s linear;
