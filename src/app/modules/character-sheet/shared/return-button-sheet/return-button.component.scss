@@ -1,0 +1,28 @@
+:host {
+    padding: 1rem 5% 0;
+
+    button {
+        position: fixed;
+        top: 90px;
+        left: 0px;
+        display: flex;
+        align-items: center;
+        padding-inline: 0;
+        gap: 0.5rem;
+        border: none;
+        background-color: var(--custom-dark-blue);
+        color: white;
+        font-family: alice;
+        padding: 4px;
+        z-index: 100;
+
+        img {
+            width: 25px;
+            height: 25px;
+        }
+
+        span {
+            font-size: 1.1rem;
+        }
+    }
+}
