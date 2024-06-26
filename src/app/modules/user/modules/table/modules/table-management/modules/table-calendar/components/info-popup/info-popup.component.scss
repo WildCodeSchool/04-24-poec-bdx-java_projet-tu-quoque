@@ -1,15 +1,23 @@
 article {
   margin-bottom: 3rem;
+  font-family: alice;
+  font-size: 1.1rem;
 
   p:first-child {
     margin-top: 0;
   }
   p:nth-child(even) {
     text-align: center;
+  
   }
 
   p:nth-last-child(2) {
     margin-top: 3rem;
+  }
+
+  .date {
+    font-size: 1.4rem;
+    color: #c29b0f;
   }
 }
 
